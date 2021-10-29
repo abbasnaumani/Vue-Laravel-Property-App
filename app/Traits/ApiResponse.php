@@ -11,7 +11,7 @@ trait ApiResponse
         return $this->sendJsonResponse($response, $data, $statusCode);
     }
 
-    public function error($msg, $data = [], $statusCode = 200)
+    public function error($msg, $data = [], $statusCode = 400)
     {
         $response = (isset($msg['status']) && trim($msg['status']) == 'error') ? $msg : $this->response(['message' => $msg]);
         return $this->sendJsonResponse($response, $data, $statusCode);
