@@ -1,36 +1,64 @@
 import EventEmitter from 'events';
-import axios from "axios";
 import appApi from "../api/index";
 import store from "../store";
 import errorHandlerService from '../services/errorHandlerService';
+import { useToast } from "vue-toastification";
+import {ApiResponse} from "../constants";
 
 const localStorageKey = "loggedIn";
+const toast = useToast();
 
 class AuthService extends EventEmitter {
+    async handleRegistration(newUser){
+        try {
+            const response = await appApi.post('/register',newUser)
+            console.log(response,"Saddique");
+            // if(response.data.status == ApiResponse.SUCCESS){
+            //     toast.success(response.data.message, {
+            //         timeout: 3500
+            //     });
+            //     await this.onLogin(response.data.token, response.data.user_data);
+            //     this.emit('loginSuccess',response);
+            // }else{
+            //     toast.error(response.data.message, {
+            //         timeout: 5000
+            //     });
+            // }
+
+        } catch (err) {
+            console.log(err, "err err")
+            toast.error(err.response.data.message, {
+                timeout: 5000
+            });
+            const error = await errorHandlerService.errors.index(err);
+            console.log(error, "error catch")
+        }
+    }
     async handleLogin(email, password) {
         let credentials = {email, password};
         try {
             const response = await appApi.post('/login', credentials)
-            console.log('response', response);
-            this.onLogin(data.data.token,data.data.user_data);
-            this.emit('loginSuccess',data);
+            if(response.data.status == ApiResponse.SUCCESS){
+                toast.success(response.data.message, {
+                    timeout: 3500
+                });
+                await this.onLogin(response.data.token, response.data.user_data);
+                this.emit('loginSuccess',response);
+            }else{
+                toast.error(response.data.message, {
+                    timeout: 5000
+                });
+            }
+
         } catch (err) {
             console.log(err, "err err")
+            toast.error(err.response.data.message, {
+                timeout: 5000
+            });
             const error = await errorHandlerService.errors.index(err);
             console.log(error, "error catch")
         }
 
-      /*  let response = await appApi.post('/login', credentials)
-        .then(data => {
-            if (data.status == 200) {
-                this.onLogin(data.data.token, data.data.user_data);
-                this.emit('loginSuccess', data);
-            }
-        })
-        .catch(async err => {
-            const error = await errorHandlerService.errors.index(err);
-            console.log("catch errors", error)
-        });*/
     }
 
     async onLogin(token, profile) {
@@ -51,16 +79,28 @@ class AuthService extends EventEmitter {
     }
 
     async handleLogout() {
-        let response = await axios.post('/logout')
-        .then(data => {
-            if (data.status == 200) {
-                this.onLogout();
-                this.emit('logoutSuccess', data);
+        try {
+            const response = await appApi.post('/logout')
+            if(response.data.status == ApiResponse.SUCCESS){
+                toast.success(response.data.message, {
+                    timeout: 3500
+                });
+                await this.onLogout();
+                this.emit('logoutSuccess', response);
+            }else{
+                toast.error(response.data.message, {
+                    timeout: 3500
+                });
             }
-        })
-        .catch(error => {
+
+        } catch (err) {
+            console.log(err, "err err")
+            toast.error(err.response.data.message, {
+                timeout: 5000
+            });
+            const error = await errorHandlerService.errors.index(err);
             console.log(error, "error catch")
-        });
+        }
     }
 
     async onLogout() {

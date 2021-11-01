@@ -22,7 +22,7 @@ class LoginController extends Controller
         $userData = $user ? $user->toArray() : [];
         $userId = $userData['id'] ?? 0;
         $responseData = ['token' => $token, 'user_data' => $userData, 'user_id' => $userId, 'expiresIn' => null, 'redirect_to' => '/'];
-        return $this->successResponse(trans('auth.login_success'), $responseData);
+        return $this->success(trans('auth.login_success'), $responseData);
     }
 
     /**
@@ -37,6 +37,6 @@ class LoginController extends Controller
         if ($user) {
             $user->currentAccessToken()->delete();
         }
-        return $this->successResponse(trans('auth.logout_success'));
+        return $this->success(trans('auth.logout_success'));
     }
 }

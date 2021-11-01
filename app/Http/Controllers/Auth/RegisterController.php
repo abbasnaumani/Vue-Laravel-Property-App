@@ -39,7 +39,7 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
         ]);
         event(new Registered($user));
-        return $this->successResponse('User Registered Successfully.', ['user' => $user]);
+        return $this->success(trans('auth.registration_success'), ['user' => $user]);
     }
 
     /**
