@@ -20,17 +20,6 @@ class AuthService extends EventEmitter {
             console.log(error, "error catch")
         }
 
-      /*  let response = await appApi.post('/login', credentials)
-        .then(data => {
-            if (data.status == 200) {
-                this.onLogin(data.data.token, data.data.user_data);
-                this.emit('loginSuccess', data);
-            }
-        })
-        .catch(async err => {
-            const error = await errorHandlerService.errors.index(err);
-            console.log("catch errors", error)
-        });*/
     }
 
     async onLogin(token, profile) {
