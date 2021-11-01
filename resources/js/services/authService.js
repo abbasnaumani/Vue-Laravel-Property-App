@@ -12,14 +12,25 @@ class AuthService extends EventEmitter {
         try {
             const response = await appApi.post('/login', credentials)
             console.log('response', response);
-            //this.onLogin(data.data.token,data.data.user_data);
-            //this.emit('loginSuccess',data);
+            this.onLogin(data.data.token,data.data.user_data);
+            this.emit('loginSuccess',data);
         } catch (err) {
             console.log(err, "err err")
             const error = await errorHandlerService.errors.index(err);
             console.log(error, "error catch")
         }
 
+      /*  let response = await appApi.post('/login', credentials)
+        .then(data => {
+            if (data.status == 200) {
+                this.onLogin(data.data.token, data.data.user_data);
+                this.emit('loginSuccess', data);
+            }
+        })
+        .catch(async err => {
+            const error = await errorHandlerService.errors.index(err);
+            console.log("catch errors", error)
+        });*/
     }
 
     async onLogin(token, profile) {
