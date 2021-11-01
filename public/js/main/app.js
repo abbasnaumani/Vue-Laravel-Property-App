@@ -20856,6 +20856,15 @@ function page(path) {
   },
   props: true
 }, {
+  path: '/register',
+  name: 'register',
+  component: page('auth/Register'),
+  meta: {
+    login: true,
+    meta_title: 'User Registration'
+  },
+  props: true
+}, {
   name: 'user-dashboard',
   path: '/dashboard',
   meta: {
@@ -20956,41 +20965,53 @@ var AuthService = /*#__PURE__*/function (_EventEmitter) {
 
               case 3:
                 response = _context.sent;
-                console.log(response, "Saddique"); // if(response.data.status == ApiResponse.SUCCESS){
-                //     toast.success(response.data.message, {
-                //         timeout: 3500
-                //     });
-                //     await this.onLogin(response.data.token, response.data.user_data);
-                //     this.emit('loginSuccess',response);
-                // }else{
-                //     toast.error(response.data.message, {
-                //         timeout: 5000
-                //     });
-                // }
 
-                _context.next = 15;
+                if (!(response.data.status == _constants__WEBPACK_IMPORTED_MODULE_6__.ApiResponse.SUCCESS)) {
+                  _context.next = 11;
+                  break;
+                }
+
+                toast.success("Login Successfully", {
+                  // successful registration will auto Logged-in the user
+                  timeout: 3500
+                });
+                _context.next = 8;
+                return this.onLogin(response.data.token, response.data.user_data);
+
+              case 8:
+                this.emit('loginSuccess', response);
+                _context.next = 12;
                 break;
 
-              case 7:
-                _context.prev = 7;
+              case 11:
+                toast.error(response.data.message, {
+                  timeout: 5000
+                });
+
+              case 12:
+                _context.next = 22;
+                break;
+
+              case 14:
+                _context.prev = 14;
                 _context.t0 = _context["catch"](0);
                 console.log(_context.t0, "err err");
                 toast.error(_context.t0.response.data.message, {
                   timeout: 5000
                 });
-                _context.next = 13;
+                _context.next = 20;
                 return _services_errorHandlerService__WEBPACK_IMPORTED_MODULE_4__["default"].errors.index(_context.t0);
 
-              case 13:
+              case 20:
                 error = _context.sent;
                 console.log(error, "error catch");
 
-              case 15:
+              case 22:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 7]]);
+        }, _callee, this, [[0, 14]]);
       }));
 
       function handleRegistration(_x) {

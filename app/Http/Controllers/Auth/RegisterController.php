@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enums\RoleUser;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use DB;
 
 class RegisterController extends Controller
 {
@@ -30,16 +32,29 @@ class RegisterController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $this->registerationValidator($request);
-        $user = User::create([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'email' => $request->email,
-            'phone_number' => $request->phone_number,
-            'password' => Hash::make($request->password),
-        ]);
-        event(new Registered($user));
-        return $this->success(trans('auth.registration_success'), ['user' => $user]);
+        DB::beginTransaction();
+        try {
+            $this->registerationValidator($request);
+            $user = User::create([
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
+                'phone_number' => $request->phone_number,
+                'password' => Hash::make($request->password),
+            ]);
+            event(new Registered($user));
+            $token = $this->authUserToken($user);
+            $userData = $user ? $user->toArray() : [];
+            $userId = $userData['id'] ?? 0;
+            $user->roles()->sync(RoleUser::AGENT);
+            $responseData = ['token' => $token, 'user_data' => $userData, 'user_id' => $userId, 'expiresIn' => null, 'redirect_to' => '/'];
+            DB::commit();
+            $response =  $this->success(trans('auth.registration_success'), $responseData);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $response = $this->error(trans('auth.registration_failed'));
+        }
+        return $response;
     }
 
     /**

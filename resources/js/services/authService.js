@@ -12,18 +12,17 @@ class AuthService extends EventEmitter {
     async handleRegistration(newUser){
         try {
             const response = await appApi.post('/register',newUser)
-            console.log(response,"Saddique");
-            // if(response.data.status == ApiResponse.SUCCESS){
-            //     toast.success(response.data.message, {
-            //         timeout: 3500
-            //     });
-            //     await this.onLogin(response.data.token, response.data.user_data);
-            //     this.emit('loginSuccess',response);
-            // }else{
-            //     toast.error(response.data.message, {
-            //         timeout: 5000
-            //     });
-            // }
+            if(response.data.status == ApiResponse.SUCCESS){
+                toast.success("Login Successfully", { // successful registration will auto Logged-in the user
+                    timeout: 3500
+                });
+                await this.onLogin(response.data.token, response.data.user_data);
+                this.emit('loginSuccess',response);
+            }else{
+                toast.error(response.data.message, {
+                    timeout: 5000
+                });
+            }
 
         } catch (err) {
             console.log(err, "err err")

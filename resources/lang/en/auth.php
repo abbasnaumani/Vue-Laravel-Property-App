@@ -19,5 +19,6 @@ return [
     'login_success' => 'Logged-in successfully.',
     'logout_success' => 'Logged-out successfully.',
     'registration_success' => 'Registered successfully.',
+    'registration_failed' => 'Registration Failed.',
 
 ];

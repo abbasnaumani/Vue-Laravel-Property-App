@@ -19,6 +19,13 @@ export default [
         props: true,
     },
     {
+        path: '/register',
+        name: 'register',
+        component: page('auth/Register'),
+        meta:{login: true, meta_title: 'User Registration'},
+        props: true,
+    },
+    {
         name: 'user-dashboard',
         path: '/dashboard',
         meta:{public:false,meta_title:'User Dashboard'},
