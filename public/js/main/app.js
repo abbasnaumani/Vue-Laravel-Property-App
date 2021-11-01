@@ -19956,16 +19956,42 @@ var _hoisted_7 = ["src"];
 
 var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div><!-- Options --><div class=\"dropdown d-inline-block ml-2\"><a class=\"btn btn-sm btn-dual\" id=\"sidebar-themes-dropdown\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\" href=\"#\"><i class=\"si si-drop\"></i></a></div><!-- END Options --><!-- Close Sidebar, Visible only on mobile screens --><!-- Layout API, functionality initialized in Template._uiApiLayout() --><a class=\"d-lg-none btn btn-sm btn-dual ml-1\" data-toggle=\"layout\" data-action=\"sidebar_close\" href=\"javascript:void(0)\"><i class=\"fa fa-fw fa-times\"></i></a><!-- END Close Sidebar --></div>", 1);
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"js-sidebar-scroll\"><!-- Side Navigation --><div class=\"content-side\"><ul class=\"nav-main\"><!--                        {!! $menus??&#39;&#39; !!}--><li class=\"nav-main-item\"><a class=\"nav-main-link nav-main-link-submenu\" data-toggle=\"submenu\" aria-haspopup=\"true\" aria-expanded=\"true\" href=\"#\"><i class=\"nav-main-link-icon si si-bulb\"></i><span class=\"nav-main-link-name\">First Link</span></a><ul class=\"nav-main-submenu\"><li class=\"nav-main-item\"><a class=\"nav-main-link\" href=\"\"><i class=\"nav-main-link-icon si si-cursor\"></i><span class=\"nav-main-link-name\">Second link</span></a></li></ul></li></ul></div><!-- END Side Navigation --></div>", 1);
+var _hoisted_9 = {
+  "class": "js-sidebar-scroll"
+};
+var _hoisted_10 = {
+  "class": "content-side"
+};
+var _hoisted_11 = {
+  "class": "nav-main"
+};
+var _hoisted_12 = {
+  "class": "nav-main-item"
+};
+
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Users ");
+
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<a class=\"nav-main-link nav-main-link-submenu\" data-toggle=\"submenu\" aria-haspopup=\"true\" aria-expanded=\"true\" href=\"#\"><i class=\"nav-main-link-icon si si-bulb\"></i><span class=\"nav-main-link-name\">First Link</span></a><ul class=\"nav-main-submenu\"><li class=\"nav-main-item\"><a class=\"nav-main-link\" href=\"\"><i class=\"nav-main-link-icon si si-cursor\"></i><span class=\"nav-main-link-name\">Second link</span></a></li></ul>", 2);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
+
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Side Header "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Logo "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: 'assets/images/ks-logo.png',
     alt: "tag",
     width: "120"
   }, null, 8
   /* PROPS */
-  , _hoisted_7), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" One<span class=\"font-w400\">UI</span> ")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" END Logo "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Extra "), _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" END Extra ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" END Side Header "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Sidebar Scrolling "), _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" END Sidebar Scrolling ")])]);
+  , _hoisted_7), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" One<span class=\"font-w400\">UI</span> ")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" END Logo "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Extra "), _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" END Extra ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" END Side Header "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Sidebar Scrolling "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Side Navigation "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                        {!! $menus??'' !!}"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: "/user/list"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_13];
+    }),
+    _: 1
+    /* STABLE */
+
+  }), _hoisted_14])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" END Side Navigation ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" END Sidebar Scrolling ")])]);
 }
 
 /***/ }),
@@ -20872,6 +20898,14 @@ function page(path) {
     meta_title: 'User Dashboard'
   },
   component: page('user/UserDashboard')
+}, {
+  name: 'user-list',
+  path: '/user/list',
+  meta: {
+    "public": false,
+    meta_title: 'User List'
+  },
+  component: page('user/UserList')
 } // {
 //     path: '/logout',
 //     name: 'logout',
@@ -29052,6 +29086,16 @@ var map = {
 		"./resources/js/pages/user/UserDashboard.vue",
 		9,
 		"resources_js_pages_user_UserDashboard_vue"
+	],
+	"./user/UserList": [
+		"./resources/js/pages/user/UserList.vue",
+		9,
+		"resources_js_pages_user_UserList_vue"
+	],
+	"./user/UserList.vue": [
+		"./resources/js/pages/user/UserList.vue",
+		9,
+		"resources_js_pages_user_UserList_vue"
 	]
 };
 function webpackAsyncContext(req) {

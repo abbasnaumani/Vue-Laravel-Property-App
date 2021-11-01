@@ -31,6 +31,12 @@ export default [
         meta:{public:false,meta_title:'User Dashboard'},
         component: page('user/UserDashboard'),
     },
+    {
+        name: 'user-list',
+        path: '/user/list',
+        meta:{public:false,meta_title:'User List'},
+        component: page('user/UserList'),
+    },
 
     // {
     //     path: '/logout',
