@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -22,6 +23,7 @@ class LoginController extends Controller
         $userData = $user ? $user->toArray() : [];
         $userId = $userData['id'] ?? 0;
         $responseData = ['token' => $token, 'user_data' => $userData, 'user_id' => $userId, 'expiresIn' => null, 'redirect_to' => '/'];
+        $this->destroySession($request); // It's only for APIs to destroy session if any
         return $this->success(trans('auth.login_success'), $responseData);
     }
 
@@ -38,5 +40,17 @@ class LoginController extends Controller
             $user->currentAccessToken()->delete();
         }
         return $this->success(trans('auth.logout_success'));
+    }
+    /**
+     * Destroy an authenticated session.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroySession(Request $request)
+    {
+        Auth::guard('web')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
     }
 }
