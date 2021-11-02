@@ -105,7 +105,7 @@ class RegisterController extends Controller
                     if ($verificationCode) {
                         $encodedToken = $this->customEncode($verificationCode);
 //                        dd($verificationCode,$encodedToken);
-//                        Notification::send($user, new VerifyEmail(['token' => $verificationCode]));
+                        Notification::send($user, new VerifyEmail(['token' => $verificationCode]));
                         return $this->success(trans('auth.email_sent'), ['token'=>$encodedToken]);
                     } else {
                         return $this->error(trans('auth.verify_email_not_sent'));

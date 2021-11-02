@@ -6,9 +6,29 @@ namespace App\Http\Services;
 use App\Http\Services\BaseService\BaseService;
 use App\Models\Property;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PropertyService extends BaseService
 {
+    public function propertyValidation($request){
+        $validator = Validator::make($request->all(), [
+//            'is_update' => 'required|bool',
+//            'property_id' => 'required_if:is_update,1|exists:properties,id',
+            'user_id' => 'required',
+            'property_sub_type_id' => 'required',
+            'area_unit_id' => 'required',
+            'city_id' => 'required',
+            'title' => 'required',
+            'area' => 'required',
+            'purpose' => 'required',
+            'price' => 'required',
+            'location' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return $this->errorResponse(trans('auth.validation_failed'), ['errors' => $validator->errors()]);
+        }
+        return $this->successResponse(trans('auth.request_validated'));
+    }
     /**
      * Create or Update Property in Properties Table
      */
