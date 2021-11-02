@@ -2,11 +2,25 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class PropertySubType extends Model
 {
-    use HasFactory;
     protected $guarded = [];
+    /**
+     * Property Sub Type has a Property Type
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function propertyType(){
+        return $this->hasOne(PropertyType::class);
+    }
+    /**
+     * Property Sub Type belongs to a Property
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function property(){
+        return $this->belongsTo(Property::class);
+    }
 }

@@ -53,4 +53,12 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Role::class);//->with('parentMenus');
     }
+    /**
+     * User belongs to a Property
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function property(){
+        return $this->belongsTo(Property::class);
+    }
 }
