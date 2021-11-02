@@ -32,6 +32,7 @@ return [
     'password_not_updated' => 'Password Not Updated Successfully.',
 
     'validation_failed' => 'Validation Failed.',
+    'request_validated' => 'Request Validate Successfully.',
 
     'property_added' => 'Property Added Successfully.',
     'property_updated' => 'Property Updated Successfully.',

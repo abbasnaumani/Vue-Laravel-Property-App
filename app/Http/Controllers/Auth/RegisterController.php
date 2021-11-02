@@ -73,6 +73,4 @@ class RegisterController extends Controller
             'password' => 'required|string|confirmed|min:8',
         ]);
     }
-
-
 }

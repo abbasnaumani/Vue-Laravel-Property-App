@@ -21,9 +21,22 @@ class PropertyController extends Controller
      */
     public function listProperty(){
         $properties = Property::all();
-        return $this->successResponse("Data Retrieved Successfully", ['data'=>$properties]);
+        return $this->success("Data Retrieved Successfully", ['data'=>$properties]);
     }
+    public function store(Request $request){
 
+        $validationResponse = $this->propertyService->propertyValidation($request);
+//        dd($validationResponse,$validationResponse['status'],isset($validationResponse['status'] && trim($validationResponse['status'] == 'success'));
+        if($validationResponse['status']){
+
+        }
+        $response = $this->propertyService->propertyAddUpdate($request);
+        if (isset($response['status']) && trim($response['status']) == 'success') {
+            return $this->success($response);
+        }else{
+            return $this->error($response);
+        }
+    }
     /**
      * Create or Update Property in Properties Table
      * @param Request $request
@@ -68,5 +81,9 @@ class PropertyController extends Controller
         }else{
             return $this->errorResponse("Property Not Available.");
         }
+    }
+    public function test(){
+        $property = Property::all();
+        dd($property,$property->toArray());
     }
 }
