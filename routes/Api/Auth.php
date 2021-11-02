@@ -18,5 +18,14 @@ class Auth
         Route::match(['get', 'post'], '/logout', [LoginController::class, 'logout'])
             ->name('logout')
             ->middleware('auth:sanctum');
+
+        // Discuss for route placement
+        //password reset routes
+        Route::post( '/send/verification/token', [RegisterController::class, 'sendVerificationToken'])
+            ->name('send.verification.token');
+        Route::post( '/verify/email/token', [RegisterController::class, 'verifyEmailToken'])
+            ->name('send.email.token');
+        Route::post('/reset/password', [RegisterController::class,'resetPassword'])
+            ->name('reset.password');
     }
 }
