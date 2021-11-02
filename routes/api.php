@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Route\Api\Auth;
-use Route\Api\property;
+use Route\Api\Property;
 use Route\Api\User;
 /*
 |--------------------------------------------------------------------------
