@@ -39,6 +39,9 @@ return [
     'property_not_added' => 'Property Not Added Successfully.',
     'property_delete' => 'Property Deleted Successfully.',
 
+    'data_retrieved' => 'Data Retrieved Successfully.',
+    'not_found' => 'Data Not Found.',
+
     'registration_success' => 'Registered successfully.',
     'registration_failed' => 'Registration Failed.',
 

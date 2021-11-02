@@ -19,33 +19,33 @@ class Property extends Model
     /**
      * Property has a Property SubType
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function propertySubType(){
-        return $this->hasOne(PropertySubType::class);
+        return $this->belongsTo(PropertySubType::class);
     }
     /**
      * Property has an Area Unit
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function areaUnit(){
-        return $this->hasOne(AreaUnit::class);
+        return $this->belongsTo(AreaUnit::class);
     }
     /**
      * Property has a City
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function city(){
-        return $this->hasOne(City::class);
+        return $this->belongsTo(City::class);
     }
     /**
      * Property has a user
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user(){
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 }

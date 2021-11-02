@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Property;
 use Illuminate\Http\Request;
 use App\Http\Services\PropertyService;
-use Illuminate\Support\Facades\Validator;
 class PropertyController extends Controller
 {
     protected $propertyService;
@@ -16,74 +15,66 @@ class PropertyController extends Controller
     }
 
     /**
-     * Give all property data in response
+     * Give property data in response
      * @return mixed
      */
-    public function listProperty(){
-        $properties = Property::all();
-        return $this->success("Data Retrieved Successfully", ['data'=>$properties]);
-    }
-    public function store(Request $request){
-
-        $validationResponse = $this->propertyService->propertyValidation($request);
-//        dd($validationResponse,$validationResponse['status'],isset($validationResponse['status'] && trim($validationResponse['status'] == 'success'));
-        if($validationResponse['status']){
-
-        }
-        $response = $this->propertyService->propertyAddUpdate($request);
-        if (isset($response['status']) && trim($response['status']) == 'success') {
-            return $this->success($response);
+    public function show(Request $request){
+        $propertyId = $request->property_id ?? 0;
+        if(isset($propertyId) && !empty($propertyId)){
+            $property = Property::find($propertyId);
+            if(!isset($property) || empty($property)) return $this->error(trans('auth.not_found'), ['data'=>$property]);
         }else{
-            return $this->error($response);
+            $property = Property::all() ?? [];
         }
+        return $this->success(trans('auth.data_retrieved'), ['data'=>$property]);
     }
     /**
-     * Create or Update Property in Properties Table
+     * Create Property Method.
      * @param Request $request
      * @return mixed
      */
-    public function propertyAddUpdate(Request $request){
-        $validator = Validator::make($request->all(), [
-            'is_update' => 'required|bool',
-            'property_id' => 'required_if:is_update,1|exists:properties,id',
-            'user_id' => 'required',
-            'property_sub_type_id' => 'required',
-            'area_unit_id' => 'required',
-            'city_id' => 'required',
-            'title' => 'required',
-            'area' => 'required',
-            'purpose' => 'required',
-            'price' => 'required',
-            'location' => 'required'
-        ]);
-        if ($validator->fails()) {
-            return $this->errorResponse(trans('auth.validation_failed'), ['errors' => $validator->errors()]);
+    public function store(Request $request)
+    {
+        $validationResponse = $this->propertyService->propertyStoreValidation($request);
+        if(isset($validationResponse['status']) && trim($validationResponse['status'] !== 'success')){
+            return $this->error($validationResponse);
         }
-        $response = $this->propertyService->propertyAddUpdate($request);
-        if (isset($response['status']) && trim($response['status']) == 'success') {
-            return $this->successResponse($response);
-        }else{
-            return $this->errorResponse($response);
+        $response = $this->propertyService->propertyStore($request);
+        if (isset($response['status']) && trim($response['status']) !== 'success') {
+            return $this->error($response);
         }
+        return $this->success($response);
     }
-
+    /**
+     * Property Update Method. That Update existing property.
+     * @param Request $request
+     * @return mixed
+     */
+    public function update(Request $request)
+    {
+        $validationResponse = $this->propertyService->propertyUpdateValidation($request);
+        if(isset($validationResponse['status']) && trim($validationResponse['status'] !== 'success')){
+            return $this->error($validationResponse);
+        }
+        $response = $this->propertyService->propertyUpdate($request);
+        if (isset($response['status']) && trim($response['status']) !== 'success') {
+            return $this->error($response);
+        }
+        return $this->success($response);
+    }
     /**
      * delete Property record from properties table
      * @param $id
      * @return mixed
      */
-    public function deleteProperty($id){
-        $propertyId = $id ?? 0;
+    public function destroy($property_id){
+        $propertyId = $property_id ?? 0;
         $property = Property::find($propertyId);
         if($property){
             $property->delete();
-            return $this->successResponse(trans('auth.property_delete'), ['data'=>$property]);
+            return $this->success(trans('auth.property_delete'), ['data'=>$property]);
         }else{
-            return $this->errorResponse("Property Not Available.");
+            return $this->error("auth.not_found");
         }
-    }
-    public function test(){
-        $property = Property::all();
-        dd($property,$property->toArray());
     }
 }
