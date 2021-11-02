@@ -8,7 +8,7 @@ const toast = useToast();
 class UserService extends EventEmitter {
       async getUserList(){
             try {
-                const response = await appApi.get('/user/list')
+                const response = await appApi.get('/user/list');
                 console.log(response,"response");
                 if(response.data.status == ApiResponse.SUCCESS){
                     toast.success(response.data.message, { // successful registration will auto Logged-in the user

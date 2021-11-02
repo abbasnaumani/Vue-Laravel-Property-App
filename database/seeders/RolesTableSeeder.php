@@ -16,7 +16,6 @@ class RolesTableSeeder extends Seeder
             ['id' => 1, 'name' => 'Super admin', 'route' => '/dashboard'],
             ['id' => 2, 'name' => 'Admin', 'route' => '/dashboard'],
             ['id' => 3, 'name' => 'Agent', 'route' => '/dashboard'],
-
         ];
         DB::table('roles')->insert($roles);
     }

@@ -4,8 +4,8 @@ import {ApiResponse} from "../constants";
 import {useRouter} from "vue-router";
 
 export const authLogin = (props) => {
-    const email = ref('');
-    const password = ref('');
+    const email = ref('abbasnaumani+1@gmail.com');
+    const password = ref('12345678');
     const password_confirmation = ref('');
     const phone_number = ref('');
     const first_name = ref('');

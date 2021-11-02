@@ -11,14 +11,14 @@ class UserController extends Controller
     {
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the users
      *
-     * @return \Illuminate\Http\Response
      */
-    public function userList(){
+    public function userList()
+    {
         $users = $this->getAllUsers();
-        dd($users);
-        return $this->success(trans('get_user_list'),$users);
+        return $this->success(trans('get_user_list'), ['data' => $users]);
     }
 }
