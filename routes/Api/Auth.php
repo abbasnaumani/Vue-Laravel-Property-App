@@ -2,6 +2,7 @@
 
 namespace Route\Api;
 
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use \Illuminate\Support\Facades\Route;
@@ -19,13 +20,12 @@ class Auth
             ->name('logout')
             ->middleware('auth:sanctum');
 
-        // Discuss for route placement
         //password reset routes
-        Route::post( '/send/verification/token', [RegisterController::class, 'sendVerificationToken'])
+        Route::post( '/send/verification/token', [ForgotPasswordController::class, 'sendVerificationToken'])
             ->name('send.verification.token');
-        Route::post( '/verify/email/token', [RegisterController::class, 'verifyEmailToken'])
+        Route::post( '/verify/email/token', [ForgotPasswordController::class, 'verifyEmailToken'])
             ->name('send.email.token');
-        Route::post('/reset/password', [RegisterController::class,'resetPassword'])
+        Route::post('/reset/password', [ForgotPasswordController::class,'resetPassword'])
             ->name('reset.password');
     }
 }
