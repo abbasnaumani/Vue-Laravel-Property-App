@@ -1,25 +1,19 @@
 <template>
+    <!--        ## Sample Navigation Items-->
     <ul class="nav-main">
-        <li class="nav-main-item">
-            <a class="nav-main-link active" href="http://ksps.kodestudio.net/dashboard">
-                <i class="nav-main-link-icon si si-cursor"></i>
-                <span class="nav-main-link-name">Dashboard</span>
-            </a>
-        </li>
+
+
+        <!--        ## Sample Navigation Item-->
+        {SIMPLE_NAVIGATION_ITEM}
+
+        <!--        ## Sample Parent Navigation Item-->
         <li class="nav-main-item ">
-            <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
+            <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu"
+               aria-haspopup="true" aria-expanded="true" href="#">
                 <i class="nav-main-link-icon si si-bulb"></i>
                 <span class="nav-main-link-name">User Section</span>
             </a>
-            <ul class="nav-main-submenu">
-                <li class="nav-main-item">
-                    <a class="nav-main-link" href="http://ksps.kodestudio.net/user/edit/profile">
-                        <i class="nav-main-link-icon si si-cursor"></i>
-                        <span class="nav-main-link-name">User Profile</span>
-                    </a>
-                </li>
-
-            </ul>
+            {Navigation_ITEMS}
         </li>
     </ul>
 </template>
