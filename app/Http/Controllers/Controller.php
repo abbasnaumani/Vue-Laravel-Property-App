@@ -17,9 +17,5 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     /*## Custom Traits  ##*/
-<<<<<<< HEAD
-    use AuthUser, ApiResponse, GlobalSettingsTrait, VerificationToken, CustomHash;
-=======
-    use AuthUser, ApiResponse, GlobalSettingsTrait, UserTrait;
->>>>>>> 5f6b37cef3c16f51d188508538f11d733e5c686c
+    use AuthUser, ApiResponse, GlobalSettingsTrait, VerificationToken, CustomHash,UserTrait;
 }

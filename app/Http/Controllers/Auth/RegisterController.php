@@ -11,12 +11,9 @@ use App\Models\UserVerify;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-<<<<<<< HEAD
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
-=======
 use DB;
->>>>>>> 5f6b37cef3c16f51d188508538f11d733e5c686c
 
 class RegisterController extends Controller
 {
@@ -34,9 +31,9 @@ class RegisterController extends Controller
      * Handle an incoming registration request.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse
      *
-     * @throws \Illuminate\Validation\ValidationException
+     *
+     *
      */
     public function __invoke(Request $request)
     {
@@ -81,14 +78,14 @@ class RegisterController extends Controller
             'password' => 'required|string|confirmed|min:8',
         ]);
     }
-    
-    
-    
+
+
+
 //    Discuss for methods placement
 //    password reset methods
     /**
      * @param Request $request
-     * @return false|string
+     *
      */
     public function sendVerificationToken(Request $request)
     {
@@ -96,7 +93,7 @@ class RegisterController extends Controller
         $rules = array('email' => 'required|exists:users,email');
         $v = Validator::make($data, $rules);
         if ($v->fails()) {
-            return $this->errorResponse($v->errors()->first());
+            return $this->error($v->errors()->first());
         }else{
             $email = $data['email'] ?? '';
             $user = User::where('email',$email)->first();
@@ -109,28 +106,28 @@ class RegisterController extends Controller
                         $encodedToken = $this->customEncode($verificationCode);
 //                        dd($verificationCode,$encodedToken);
 //                        Notification::send($user, new VerifyEmail(['token' => $verificationCode]));
-                        return $this->successResponse(trans('auth.email_sent'), ['token'=>$encodedToken]);
+                        return $this->success(trans('auth.email_sent'), ['token'=>$encodedToken]);
                     } else {
-                        return $this->errorResponse(trans('auth.verify_email_not_sent'));
+                        return $this->error(trans('auth.verify_email_not_sent'));
                     }
                 } else {
-                    return $this->errorResponse(trans('auth.verify_email_not_sent'));
+                    return $this->error(trans('auth.verify_email_not_sent'));
                 }
             } else {
-                return $this->errorResponse(trans('auth.email_not_found'));
+                return $this->error(trans('auth.email_not_found'));
             }
         }
     }
     /**
      * @param Request $request
-     * @return false|string
+     *
      */
     public function verifyEmailToken(Request $request){
         $data = $request->all();
         $rules = array('email' => 'required|exists:users,email','token' => 'required');
         $v = Validator::make($data, $rules);
         if ($v->fails()) {
-            return $this->errorResponse($v->errors()->first());
+            return $this->error($v->errors()->first());
         }else{
             $user = User::where('email', $data['email'])->first();
             if ($user != null) {
@@ -145,26 +142,26 @@ class RegisterController extends Controller
                             $encodedToken = $this->customEncode($verificationCode);
                             $token = $encodedToken;
                         }
-                    return $this->errorResponse(trans('auth.email_token_verified'), ['reset_password_token'=>$token]);
+                    return $this->error(trans('auth.email_token_verified'), ['reset_password_token'=>$token]);
                 } else {
-                    return $this->errorResponse(trans('auth.email_token_not_verified'));
+                    return $this->error(trans('auth.email_token_not_verified'));
                 }
             } else {
-                return $this->errorResponse(trans('auth.user_not_found'));
+                return $this->error(trans('auth.user_not_found'));
             }
         }
     }
 
     /**
      * @param Request $request
-     * @return false|string
+     *
      */
     public function resetPassword(Request $request){
         $data = $request->all();
         $rules = array('password' => 'required|min:8','reset_password_token'=>'required');
         $v = Validator::make($data, $rules);
         if ($v->fails()) {
-            return $this->errorResponse($v->errors()->first());
+            return $this->error($v->errors()->first());
         }else {
             $codeData = $this->customDecode($data['reset_password_token']);
             $userVerifyCodeData = UserVerify::firstWhere('code',$codeData);
@@ -176,15 +173,15 @@ class RegisterController extends Controller
                     if (isset($response['status']) && trim($response['status']) == 'success') {
                         $user->password = \Illuminate\Support\Facades\Hash::make($data['password']);
                         $user->save();
-                        return $this->successResponse(trans('auth.password_updated'));
+                        return $this->success(trans('auth.password_updated'));
                     } else {
-                        return $this->errorResponse(trans('auth.password_not_updated'));
+                        return $this->error(trans('auth.password_not_updated'));
                     }
                 } else {
-                    return $this->errorResponse(trans('auth.user_not_found'));
+                    return $this->error(trans('auth.user_not_found'));
                 }
             }else{
-                return $this->errorResponse(trans('auth.token_not_found'));
+                return $this->error(trans('auth.token_not_found'));
             }
         }
     }
