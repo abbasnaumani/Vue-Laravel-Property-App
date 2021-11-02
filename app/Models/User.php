@@ -47,10 +47,10 @@ class User extends Authenticatable
     /**
      * User Roles Relation it will retuen the all user assigned roles
      *
-     * @return bool
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function roles()
     {
-        return $this->belongsToMany(Role::class);//->with('parentMenus');
+        return $this->belongsToMany(Role::class);
     }
 }

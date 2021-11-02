@@ -12,5 +12,8 @@ class User
         Route::get('/user/list', [UserController::class,'userList'])
             ->name('user.list')
             ->middleware('auth:sanctum');
+        Route::get('/user/menu', [UserController::class,'userMenu'])
+            ->name('user.menu')
+            ->middleware('auth:sanctum');
     }
 }
