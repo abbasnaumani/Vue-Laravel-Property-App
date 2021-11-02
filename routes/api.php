@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Route\Api\Auth;
 use Route\Api\property;
+use Route\Api\User;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,6 +17,7 @@ use Route\Api\property;
 */
 Auth::register();
 Property::register();
+User::register();
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
