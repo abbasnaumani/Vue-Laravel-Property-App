@@ -34,9 +34,10 @@ return [
     'validation_failed' => 'Validation Failed.',
     'request_validated' => 'Request Validate Successfully.',
 
-    'property_added' => 'Property Added Successfully.',
+    'property_store' => 'Property Stored Successfully.',
     'property_updated' => 'Property Updated Successfully.',
-    'property_not_added' => 'Property Not Added Successfully.',
+    'property_not_store' => 'Property Not Store Successfully.',
+    'property_detail_not_store' => 'Property Details Not Store Successfully.',
     'property_delete' => 'Property Deleted Successfully.',
 
     'data_retrieved' => 'Data Retrieved Successfully.',
