@@ -2,14 +2,12 @@
     <div id="page-container"
          class="sidebar-o enable-page-overlay sidebar-dark side-scroll page-header-fixed main-content-narrow side-trans-enabled">
         <div v-if="isAuthenticated">
-            <AuthHeader></AuthHeader>
+            <auth-header/>
             <sidebar/>
         </div>
         <child/>
     </div>
-
 </template>
-
 
 <script>
 import AuthHeader from "../components/ui/base/AuthHeader";
@@ -30,5 +28,6 @@ export default {
     }
 }
 </script>
+
 <style scoped>
 </style>
