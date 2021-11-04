@@ -1,16 +1,17 @@
 <template>
-    <li class="nav-main-item">
-        <router-link to="/dashboard"
-                     class="nav-main-link active">
-            <i class="nav-main-link-icon si si-cursor"></i>
-            <span class="nav-main-link-name">Dashboard</span>
-        </router-link>
-    </li>
+    <router-link :to="menuItem.route"
+                 class="nav-main-link active">
+        <i class="nav-main-link-icon si si-cursor"></i>
+        <span class="nav-main-link-name">{{ menuItem.name }}</span>
+    </router-link>
 </template>
 
 <script>
 export default {
-    name: "NavigationItem"
+    name: "NavigationItem",
+    props: {
+        menuItem: Object,
+    },
 }
 </script>
 

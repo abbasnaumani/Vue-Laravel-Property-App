@@ -6,7 +6,7 @@
                     <!-- Sign In Block -->
                     <div class="block block-rounded block-themed mb-0">
                         <div class="block-header bg-primary-dark">
-                            <h3 class="block-title">Sign In yoo</h3>
+                            <h3 class="block-title">Sign In</h3>
                             <!--                            <div class="block-options">-->
                             <!--                                @if (Route::has('password.request'))-->
                             <!--                                <a class="btn-block-option font-size-sm" href="{{ route('password.request') }}">-->
@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import {authLogin} from '../../composables/auth'
+import {authLogin} from '../../composables/auth';
 
 export default {
     name: "Login",

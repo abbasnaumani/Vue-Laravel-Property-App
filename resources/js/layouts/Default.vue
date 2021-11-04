@@ -1,13 +1,14 @@
 <template>
-    <div id="app">
+    <div id="page-container" class="sidebar-o enable-page-overlay sidebar-dark side-scroll page-header-fixed main-content-narrow side-trans-enabled">
         <div v-if="isAuthenticated()">
             <AuthHeader></AuthHeader>
-            <Sidebar></Sidebar>
+            <sidebar />
         </div>
 <!--                <slot name="top-bar" />-->
-        <child></child>
+<!--        <user-dashboard></user-dashboard>-->
+        <child/>
 <!--        <component v-bind:is="'userDashboard'"></component>-->
-        <!--        <slot name="main-content" />-->
+<!--                <slot name="main-content" />-->
 <!--        <UserList></UserList>-->
 <!--        <Login></Login>-->
     </div>
@@ -24,7 +25,7 @@ import store from "../store";
 
 export default {
     name: "Default",
-    components: {Child, Sidebar, AuthHeader, Login},
+    components: { Child, Sidebar, AuthHeader, Login},
     setup(props) {
         function  isAuthenticated(){
             return auth.isAuthenticated()

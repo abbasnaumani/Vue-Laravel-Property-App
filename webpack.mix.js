@@ -12,19 +12,27 @@ var path = require('path');
  */
 
 mix
+/* CSS */
+// .sass('resources/sass/main.scss', 'public/css/oneui.css')
+// .sass('resources/sass/oneui/themes/amethyst.scss', 'public/css/themes/')
+// .sass('resources/sass/oneui/themes/city.scss', 'public/css/themes/')
+// .sass('resources/sass/oneui/themes/flat.scss', 'public/css/themes/')
+// .sass('resources/sass/oneui/themes/modern.scss', 'public/css/themes/')
+// .sass('resources/sass/oneui/themes/smooth.scss', 'public/css/themes/')
 /* JS */
-.js('resources/js/app.js', 'public').vue()
+.js('resources/js/vendors.js', 'public')
+.js('resources/js/app.js', 'public')
+.js('resources/js/oneui/app.js', 'public/js/oneui.app.js').vue()
 .disableNotifications();
 mix.webpackConfig({
+    devtool:  "source-map",
     output: {
         filename: 'js/main[name].js',
         chunkFilename: 'js/chunks/[name].js',
     },
     module: {
         rules: [
-            {
-
-            },
+            {},
         ]
     },
     resolve: {
@@ -33,7 +41,7 @@ mix.webpackConfig({
             '~': path.join(__dirname, './resources/js')
         }
     },
-    plugins:[
+    plugins: [
         // new Dotenv()
     ]
 })
