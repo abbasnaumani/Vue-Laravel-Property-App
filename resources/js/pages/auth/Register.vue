@@ -9,9 +9,9 @@
                             <h3 class="block-title">Create Account</h3>
                             <div class="block-options">
                                 <a class="btn-block-option font-size-sm" href="javascript:void(0)" data-toggle="modal" data-target="#one-signup-terms">View Terms</a>
-                                <a class="btn-block-option" href="/login" data-toggle="tooltip" data-placement="left" title="Sign In">
+                                <router-link class="btn-block-option" to="/login" data-toggle="tooltip" data-placement="left" title="Sign In">
                                     <i class="fa fa-sign-in-alt"></i>
-                                </a>
+                                </router-link>
                             </div>
                         </div>
                         <div class="block-content">

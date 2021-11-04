@@ -4,6 +4,7 @@ import {ApiResponse} from "../constants";
 import {useRouter} from "vue-router";
 
 export const authLogin = (props) => {
+    const rememberMe = ref(false);
     const email = ref('abbasnaumani+1@gmail.com');
     const password = ref('12345678');
     const password_confirmation = ref('');
@@ -12,7 +13,7 @@ export const authLogin = (props) => {
     const last_name = ref('');
     const router = useRouter();
     const handleLogin = () => {
-        authService.handleLogin(email.value, password.value);
+        authService.handleLogin(email.value, password.value,rememberMe.value);
     }
     const handleLogout = () => {
         authService.handleLogout();
@@ -44,6 +45,7 @@ export const authLogin = (props) => {
     return {
         handleLogin,
         handleLogout,
+        rememberMe,
         first_name,
         last_name,
         email,

@@ -7,14 +7,15 @@
                     <div class="block block-rounded block-themed mb-0">
                         <div class="block-header bg-primary-dark">
                             <h3 class="block-title">Sign In</h3>
-                            <!--                            <div class="block-options">-->
-                            <!--                                @if (Route::has('password.request'))-->
-                            <!--                                <a class="btn-block-option font-size-sm" href="{{ route('password.request') }}">-->
-                            <!--                                    {{ __('Forgot your password?') }}-->
-                            <!--                                </a>-->
-                            <!--                                @endif-->
-                            <!--                                -->
-                            <!--                            </div>-->
+                            <div class="block-options">
+                                <router-link to="/signup" class="btn-block-option font-size-sm"> <!-- pending here forgot password component route will be written -->
+                                    Forgot Password
+                                </router-link>
+                                <router-link to="/signup" class="btn-block-option js-bs-tooltip-enabled"
+                                             data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="New Account">
+                                    <i class="fa fa-user-plus"></i>
+                                </router-link>
+                            </div>
                         </div>
                         <div class="block-content">
                             <div class="p-sm-3 px-lg-4 py-lg-5">
@@ -36,9 +37,9 @@
                                             <input id="password" class="form-control form-control-alt form-control-lg" type="password" v-model="password" required autocomplete="current-password" />
                                         </div>
                                         <div class="form-group">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="login-remember" name="login-remember" />
-                                                <label class="custom-control-label font-w400" for="login-remember" />
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="login-remember" v-model="rememberMe">
+                                                <label class="form-check-label" for="login-remember">Remember Me</label>
                                             </div>
                                         </div>
                                     </div>
@@ -74,11 +75,13 @@ export default {
     },
     setup(props) {
         const {
+            rememberMe,
             email,
             password,
             handleLogin
         } = authLogin(props);
         return {
+            rememberMe,
             email,
             password,
             handleLogin

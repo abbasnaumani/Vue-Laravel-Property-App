@@ -33,7 +33,7 @@ class AuthService extends EventEmitter {
             console.log(error, "error catch")
         }
     }
-    async handleLogin(email, password) {
+    async handleLogin(email, password,rememberMe) {
         let credentials = {email, password};
         try {
             const response = await appApi.post('/login', credentials)
@@ -41,7 +41,7 @@ class AuthService extends EventEmitter {
                 toast.success(response.data.message, {
                     timeout: 3500
                 });
-                await this.onLogin(response.data.token, response.data.user_data);
+                await this.onLogin(response.data.token, response.data.user_data,rememberMe);
                 this.emit('loginSuccess',response);
             }else{
                 toast.error(response.data.message, {
@@ -60,7 +60,7 @@ class AuthService extends EventEmitter {
 
     }
 
-    async onLogin(token, profile) {
+    async onLogin(token, profile,rememberMe) {
         try {
             await store.dispatch('setAuthState', {profile, token});
             localStorage.setItem(localStorageKey, "true");
@@ -110,32 +110,6 @@ class AuthService extends EventEmitter {
         } catch (e) {
             console.log('Error on cache reset (logout)', e.message)
         }
-    }
-    async handleLogin(email, password) {
-        let credentials = {email, password};
-        try {
-            const response = await appApi.post('/login', credentials)
-            if(response.data.status == ApiResponse.SUCCESS){
-                toast.success(response.data.message, {
-                    timeout: 3500
-                });
-                await this.onLogin(response.data.token, response.data.user_data);
-                this.emit('loginSuccess',response);
-            }else{
-                toast.error(response.data.message, {
-                    timeout: 5000
-                });
-            }
-
-        } catch (err) {
-            console.log(err, "err err")
-            toast.error(err.response.data.message, {
-                timeout: 5000
-            });
-            const error = await errorHandlerService.errors.index(err);
-            console.log(error, "error catch")
-        }
-
     }
 }
 

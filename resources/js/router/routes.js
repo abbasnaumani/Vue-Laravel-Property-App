@@ -22,7 +22,7 @@ export default [
         props: true,
     },
     {
-        path: '/register',
+        path: '/signup',
         name: 'register',
         component: page('auth/Register'),
         meta: {login: true, meta_title: 'User Registration'},
