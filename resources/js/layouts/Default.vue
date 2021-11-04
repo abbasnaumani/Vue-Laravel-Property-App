@@ -1,11 +1,12 @@
 <template>
-        <div id="page-container" class="sidebar-o enable-page-overlay sidebar-dark side-scroll page-header-fixed main-content-narrow side-trans-enabled">
-            <div v-if="isAuthenticated()">
-                <auth-header/>
-                <sidebar/>
-            </div>
-            <child/>
+    <div id="page-container" class="sidebar-o enable-page-overlay sidebar-dark side-scroll page-header-fixed main-content-narrow side-trans-enabled">
+        <div v-if="isAuthenticated()">
+            <AuthHeader></AuthHeader>
+            <sidebar />
         </div>
+        <child/>
+    </div>
+
 </template>
 
 
@@ -18,7 +19,7 @@ import auth from "../services/authService";
 
 export default {
     name: "Default",
-    components: {Child, Sidebar, AuthHeader, Login},
+    components: { Child, Sidebar, AuthHeader, Login},
     setup(props) {
         function  isAuthenticated(){
             return auth.isAuthenticated()

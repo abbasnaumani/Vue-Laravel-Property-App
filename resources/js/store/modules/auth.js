@@ -58,7 +58,7 @@ const actions = {
     //     commit('clearUserData')
     // }
 }
-export const auth = {
+export default {
     state,
     getters,
     actions,

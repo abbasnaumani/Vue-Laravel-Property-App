@@ -1,3 +1,5 @@
 {
-    "/js/main/app.js": "/js/main/app.js"
+    "/js/main/vendors.js": "/js/main/vendors.js",
+    "/js/main/app.js": "/js/main/app.js",
+    "/js/main/js/oneui.app.js": "/js/main/js/oneui.app.js"
 }

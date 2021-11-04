@@ -20,8 +20,8 @@
 </div>
 
 <script src="{{ asset('assets/js/oneui.core.min.js') }}"></script>
-<script src="{{ asset('assets/js/oneui.app.min.js') }}"></script>
-
+<script src="{{ asset('js/main/js/oneui.app.js') }}"></script>
+<script src="{{ asset('js/main/vendors.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/main/app.js') }}" type="text/javascript"></script>
 </body>
 </html>

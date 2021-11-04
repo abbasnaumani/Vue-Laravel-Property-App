@@ -40,9 +40,9 @@ class UserController extends Controller
         $prepareMenus = [];
         if (isset($menuItems) && count($menuItems) > 0) {
             foreach ($menuItems as $menuItem) {
-                if ($menuItem->menu->parent_id > 0) {
+                if (intval($menuItem->menu->parent_id)>0) {
                     $prepareMenus['sub_menu'][$menuItem->menu->parent_id][$menuItem->id] = $menuItem->menu;
-                } else {
+                }else{
                     $prepareMenus['main_menu'][$menuItem->id] = $menuItem->menu;
                 }
             }

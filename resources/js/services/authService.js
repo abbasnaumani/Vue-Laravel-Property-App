@@ -111,6 +111,32 @@ class AuthService extends EventEmitter {
             console.log('Error on cache reset (logout)', e.message)
         }
     }
+    async handleLogin(email, password) {
+        let credentials = {email, password};
+        try {
+            const response = await appApi.post('/login', credentials)
+            if(response.data.status == ApiResponse.SUCCESS){
+                toast.success(response.data.message, {
+                    timeout: 3500
+                });
+                await this.onLogin(response.data.token, response.data.user_data);
+                this.emit('loginSuccess',response);
+            }else{
+                toast.error(response.data.message, {
+                    timeout: 5000
+                });
+            }
+
+        } catch (err) {
+            console.log(err, "err err")
+            toast.error(err.response.data.message, {
+                timeout: 5000
+            });
+            const error = await errorHandlerService.errors.index(err);
+            console.log(error, "error catch")
+        }
+
+    }
 }
 
 const service = new AuthService();
