@@ -12,7 +12,6 @@
 
 
 <script>
-import Login from "../pages/auth/Login";
 import AuthHeader from "../components/ui/base/AuthHeader";
 import Sidebar from "../components/ui/base/Sidebar";
 import store from "../store";
@@ -20,7 +19,7 @@ import {computed} from "vue";
 
 export default {
     name: "Default",
-    components: {Sidebar, AuthHeader, Login},
+    components: {Sidebar, AuthHeader},
     setup() {
         const isAuthenticated = computed(() => {
             return store.getters.isAuthenticated ? store.getters.isAuthenticated : null;
@@ -29,10 +28,7 @@ export default {
             isAuthenticated
         }
     }
-
 }
 </script>
-
 <style scoped>
-
 </style>
