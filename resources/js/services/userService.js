@@ -4,17 +4,40 @@ import appApi from "../api";
 import errorHandlerService from "./errorHandlerService";
 import {useToast} from "vue-toastification";
 const toast = useToast();
+import store from "../store";
 
 class UserService extends EventEmitter {
       async getUserList(){
             try {
                 const response = await appApi.get('/user/list');
-                console.log(response,"response");
                 if(response.data.status == ApiResponse.SUCCESS){
                     toast.success(response.data.message, { // successful registration will auto Logged-in the user
                         timeout: 3500
                     });
-                    this.emit('userListResponse',response);
+                    await store.dispatch('setUsers', response.data.data);
+                }else{
+                    toast.error(response.data.message, {
+                        timeout: 5000
+                    });
+                }
+
+            } catch (err) {
+                console.log(err, "err err")
+                toast.error(err.response.data.message, {
+                    timeout: 5000
+                });
+                const error = await errorHandlerService.errors.index(err);
+                console.log(error, "error catch")
+            }
+        }
+        async getUserMenus(){
+            try {
+                const response = await appApi.get('/user/menu');
+                if(response.data.status == ApiResponse.SUCCESS){
+                    toast.success(response.data.message, { // successful registration will auto Logged-in the user
+                        timeout: 3500
+                    });
+                    return response.data.data;
                 }else{
                     toast.error(response.data.message, {
                         timeout: 5000

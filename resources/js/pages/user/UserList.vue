@@ -1,7 +1,7 @@
 <template>
     <div class="block block-rounded">
         <h3 class="block-title">User Record </h3>
-        <button class="btn btn-primary" onclick="commonAjaxModel('add/user/modal')"
+        <button class="btn btn-primary"
         >Add
         </button>
         <div class="block-content block-content-full">
@@ -17,8 +17,8 @@
                     <th style="width: 15%;">opertaion</th>
                 </tr>
                 </thead>
-                <tbody v-if="users">
-                <tr v-for="user in users">
+                <tbody v-if="users.users">
+                <tr v-for="(user,index) in users.users" :key="index">
                     <td class="text-center font-size-sm">{{user.id}}</td>
                     <td class="font-w600 font-size-sm">{{user.first_name}} {{user.last_name}}</td>
                     <td class="d-none d-sm-table-cell font-size-sm">
@@ -48,17 +48,14 @@
 </template>
 
 <script>
-import userService from "../../services/userService";
+import {getUserList} from "../../composables/user";
 import {ref} from "vue";
 
 export default {
     name: "UserList",
     setup(props) {
         let users = ref([]);
-        userService.getUserList();
-        userService.addListener('userListResponse',(response) => {
-            users = response;
-        });
+        users.value = getUserList();
         return {
             users
         }

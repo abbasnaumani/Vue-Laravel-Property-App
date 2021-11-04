@@ -20,7 +20,7 @@ export default async (to, from, next) => {
 
     if (to.meta.login) {
         if (auth.isAuthenticated()) {
-            return next({name: 'home'});
+            return next({name: 'user-dashboard'});
         }
         /*        if (to.name === 'create-account') {
                     if (!((to.params.accountType === 'vendor') || (to.params.accountType
