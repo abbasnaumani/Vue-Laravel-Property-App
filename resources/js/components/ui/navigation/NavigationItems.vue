@@ -16,7 +16,6 @@
 
 <script>
 import NavigationItem from "./NavigationItem";
-
 export default {
     name: "NavigationItems",
     components: {NavigationItem},
@@ -35,5 +34,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

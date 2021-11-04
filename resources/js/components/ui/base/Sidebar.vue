@@ -57,7 +57,6 @@ import {computed} from "vue";
 import store from '~/store';
 import userService from "../../../services/userService";
 import NavigationItems from "../navigation/NavigationItems";
-
 export default {
     name: "Sidebar",
     components: {NavigationItems},
@@ -81,6 +80,9 @@ export default {
     },
 }
 </script>
+
+<style scoped>
+</style>
 
 <style scoped>
 

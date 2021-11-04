@@ -3,11 +3,29 @@
         <div class="content">
             <!-- Row-01 -->
             <div class="row">
-                <div class="col-6 col-sm-4 col-md-2 col-lg-2" >
-                    <!--                <checkin-html></checkin-html>-->
+                <div class="col-6 col-sm-4 col-md-2 col-lg-2">
+                    <a class="block block-rounded block-link-shadow text-center bg-danger" href="javascript:void(0)">
+                        <div class="block-content block-content-full">
+                            <div class="font-size-h3 text-light">0</div>
+                        </div>
+                        <div class="block-content py-2 bg-body-light">
+                            <p class="font-w600 font-size-sm text-muted mb-0">
+                                Absent
+                            </p>
+                        </div>
+                    </a>
                 </div>
-                <div class="col-6 col-sm-4 col-md-2 col-lg-2" >
-                    <!--                <checkout-html></checkout-html>-->
+                <div class="col-6 col-sm-4 col-md-2 col-lg-2">
+                    <a class="block block-rounded block-link-shadow text-center bg-danger" href="javascript:void(0)">
+                        <div class="block-content block-content-full">
+                            <div class="font-size-h3 text-light">0</div>
+                        </div>
+                        <div class="block-content py-2 bg-body-light">
+                            <p class="font-w600 font-size-sm text-muted mb-0">
+                                Absent
+                            </p>
+                        </div>
+                    </a>
                 </div>
                 <div class="col-6 col-sm-4 col-md-2 col-lg-2">
                     <a class="block block-rounded block-link-shadow text-center bg-danger" href="javascript:void(0)">
@@ -273,5 +291,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

@@ -5,14 +5,9 @@
             <AuthHeader></AuthHeader>
             <sidebar/>
         </div>
-        <!--                <slot name="top-bar" />-->
-        <!--        <user-dashboard></user-dashboard>-->
         <child/>
-        <!--        <component v-bind:is="'userDashboard'"></component>-->
-        <!--                <slot name="main-content" />-->
-        <!--        <UserList></UserList>-->
-        <!--        <Login></Login>-->
     </div>
+
 </template>
 
 
@@ -21,7 +16,6 @@ import Login from "../pages/auth/Login";
 import AuthHeader from "../components/ui/base/AuthHeader";
 import Sidebar from "../components/ui/base/Sidebar";
 import Child from "../components/utilities/Child";
-import auth from "../services/authService";
 import store from "../store";
 import {computed} from "vue";
 

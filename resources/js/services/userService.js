@@ -1,11 +1,11 @@
 import EventEmitter from "events";
 import {ApiResponse} from "../constants";
 import appApi from "../api";
-import store from '~/store';
 import errorHandlerService from "./errorHandlerService";
 import {useToast} from "vue-toastification";
 
 const toast = useToast();
+import store from "../store";
 
 class UserService extends EventEmitter {
     async getUserList() {
@@ -15,7 +15,7 @@ class UserService extends EventEmitter {
                 toast.success(response.data.message, { // successful registration will auto Logged-in the user
                     timeout: 3500
                 });
-                this.emit('userListResponse', response);
+                await store.dispatch('setUsers', response.data.data);
             } else {
                 toast.error(response.data.message, {
                     timeout: 5000
@@ -45,6 +45,7 @@ class UserService extends EventEmitter {
             console.log(error, "error catch")
         }
     }
+
 }
 
 const service = new UserService();

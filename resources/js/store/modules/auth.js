@@ -1,4 +1,3 @@
-import axios from 'axios';
 const state = {
     profile: JSON.parse(localStorage.getItem('profile')) || null,
     accessToken: localStorage.getItem('accessToken') || null,

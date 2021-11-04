@@ -1,6 +1,5 @@
 <template>
-    <div>
-        <header id="page-header">
+    <header id="page-header">
             <!-- Header Content -->
             <div class="content-header">
                 <!-- Left Section -->
@@ -237,7 +236,6 @@
             </div>
             <!-- END Header Loader -->
         </header>
-    </div>
 </template>
 
 <script>
