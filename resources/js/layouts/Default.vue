@@ -21,7 +21,7 @@ import {computed} from "vue";
 export default {
     name: "Default",
     components: {Sidebar, AuthHeader, Login},
-    setup(props) {
+    setup() {
         const isAuthenticated = computed(() => {
             return store.getters.isAuthenticated ? store.getters.isAuthenticated : null;
         });
