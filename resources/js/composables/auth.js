@@ -1,26 +1,41 @@
-import {ref} from "vue";
+import {ref,computed} from "vue";
 import authService from "../services/authService";
-import {ApiResponse} from "../constants";
-import {useRouter} from "vue-router";
+import {required, email, minLength, sameAs} from '@vuelidate/validators'
+import useVuelidate from '@vuelidate/core'
 
 export const authLogin = (props) => {
     const rememberMe = ref(false);
-    const email = ref('abbasnaumani+1@gmail.com');
+    const userEmail = ref('abbasnaumani+1@gmail.com');
     const password = ref('12345678');
     const password_confirmation = ref('');
     const phone_number = ref('');
     const first_name = ref('');
     const last_name = ref('');
-    const router = useRouter();
+    const validationRules = computed(() => {
+        return {
+            userEmail: {
+                required,
+                email
+            },
+            password: {
+                required,
+                minLength: minLength(8)
+            },
+        }
+    });
+    const $v = useVuelidate(
+        validationRules,
+        {userEmail, password}
+    );
     const handleLogin = () => {
-        authService.handleLogin(email.value, password.value,rememberMe.value);
+        authService.handleLogin(userEmail.value, password.value,rememberMe.value);
     }
     const handleLogout = () => {
         authService.handleLogout();
     }
     const handleRegistration = () => {
         authService.handleRegistration({
-            email: email.value,
+            userEmail: userEmail.value,
             password: password.value,
             password_confirmation:password_confirmation.value,
             phone_number:phone_number.value,
@@ -28,27 +43,16 @@ export const authLogin = (props) => {
             last_name:last_name.value
         });
     }
-    authService.addListener('loginSuccess',(data)=>{
-        if(data.status === ApiResponse.SUCCESS_CODE){
-            router.push({
-                path: `/dashboard`
-            });
-        }
-    })
-    authService.addListener('logoutSuccess',(data)=>{
-        if(data.status === ApiResponse.SUCCESS_CODE){
-            router.push({
-                path: '/login'
-            });
-        }
-    })
+
+
     return {
+        $v,
         handleLogin,
         handleLogout,
         rememberMe,
         first_name,
         last_name,
-        email,
+        userEmail,
         phone_number,
         password,
         password_confirmation,
