@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Services\BaseService;
+namespace App\Services\BaseService;
 
 use App\Traits\ApiResponse;
 use App\Traits\AuthUser;

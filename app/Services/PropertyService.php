@@ -1,9 +1,9 @@
 <?php
 
 
-namespace App\Http\Services;
+namespace App\Services;
 
-use App\Http\Services\BaseService\BaseService;
+use App\Services\BaseService\BaseService;
 use App\Models\Property;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
