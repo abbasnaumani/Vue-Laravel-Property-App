@@ -41,7 +41,7 @@ class AuthService extends EventEmitter {
                 toast.success(response.data.message, {
                     timeout: 3500
                 });
-                await this.onLogin(response.data.token, response.data.user_data,rememberMe);
+                await this.onLogin(response.data.data.token, response.data.data.user_data,rememberMe);
                 this.emit('loginSuccess',response);
             }else{
                 toast.error(response.data.message, {

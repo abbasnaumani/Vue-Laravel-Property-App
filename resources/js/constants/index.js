@@ -1,6 +1,6 @@
 export const ApiResponse = {
-    SUCCESS: 'success',
-    FAILED: 'failed',
-    ERROR: 'error',
+    SUCCESS: 'SUCCESS',
+    FAILED: 'FAILED',
+    ERROR: 'ERROR',
     SUCCESS_CODE:200
 }

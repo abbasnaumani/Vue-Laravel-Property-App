@@ -14,5 +14,6 @@ return [
     */
 
     'get_user_list' => 'Users Fetch Successfully.',
+    'get_user_menu' => 'User Menu Fetch Successfully.',
 
 ];

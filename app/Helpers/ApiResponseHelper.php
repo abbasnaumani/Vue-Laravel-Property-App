@@ -16,6 +16,9 @@ class ApiResponseHelper
     {
         $apiHelper = app(ApiResponseHelper::class);
         $apiHelper->code = $code;
+        if($code == ApiResponseEnum::SUCCESS_CODE){
+            $apiHelper->status = ApiResponseEnum::SUCCESS_RESPONSE;
+        }
     }
 
     public static function getCode()
@@ -71,6 +74,7 @@ class ApiResponseHelper
         if ($apiHelper->responseFormat == ApiResponseEnum::RESPONSE_JSON_FORMAT) {
             return response()->json($apiHelper, $apiHelper->code);
         }
+        dd($apiHelper->code);
         return $apiHelper;
     }
 }

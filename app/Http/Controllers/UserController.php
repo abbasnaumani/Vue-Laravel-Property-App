@@ -20,7 +20,8 @@ class UserController extends Controller
     public function userList()
     {
         $users = $this->getAllUsers();
-        return $this->success(trans('user.get_user_list'), ['data' => $users]);
+        $this->setApiSuccessMessage(trans('user.get_user_list'), $users);
+        return $this->getApiResponse();
     }
 
     /**
@@ -47,6 +48,7 @@ class UserController extends Controller
                 }
             }
         }
-        return $this->success(trans('user.get_user_list'), ['data' => $prepareMenus]);
+        $this->setApiSuccessMessage(trans('user.get_user_menu'),$prepareMenus);
+        return $this->getApiResponse();
     }
 }
