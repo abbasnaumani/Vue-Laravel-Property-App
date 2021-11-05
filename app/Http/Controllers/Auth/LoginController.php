@@ -24,7 +24,8 @@ class LoginController extends Controller
         $userId = $userData['id'] ?? 0;
         $responseData = ['token' => $token, 'user_data' => $userData, 'user_id' => $userId, 'expiresIn' => null, 'redirect_to' => '/'];
         $this->destroySession(); // It's only for APIs to destroy session if any
-        return $this->success(trans('auth.login_success'), $responseData);
+        $this->setApiSuccessMessage(trans('auth.login_success'), $responseData);
+        return $this->getApiResponse();
     }
 
     /**
@@ -39,12 +40,14 @@ class LoginController extends Controller
         if ($user) {
             $user->currentAccessToken()->delete();
         }
-        return $this->success(trans('auth.logout_success'));
+        $this->setApiSuccessMessage(trans('auth.logout_success'));
+        return $this->getApiResponse();
     }
+
     /**
      * Destroy an authenticated session.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroySession()

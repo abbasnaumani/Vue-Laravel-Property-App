@@ -49,12 +49,13 @@ class RegisterController extends Controller
             $user->roles()->sync(RoleUser::AGENT);
             $responseData = ['token' => $token, 'user_data' => $userData, 'user_id' => $userId, 'expiresIn' => null, 'redirect_to' => '/'];
             DB::commit();
-            $response =  $this->success(trans('auth.registration_success'), $responseData);
+            $this->setApiSuccessMessage(trans('auth.registration_success'), $responseData);
         } catch (\Exception $e) {
             DB::rollBack();
-            $response = $this->error(trans('auth.registration_failed'));
+            $this->setApiErrorMessage(trans('auth.registration_failed'));
+
         }
-        return $response;
+        return $this->getApiResponse();
     }
 
     /**

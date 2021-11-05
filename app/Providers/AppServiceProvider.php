@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Helpers\ApiResponseHelper;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +14,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+//        $this->app->bind(ApiResponseHelper::class, function() {
+//            return new ApiResponseHelper('Hello, app!');
+//        });
+        $this->app->singleton(ApiResponseHelper::class, function() {
+            return new ApiResponseHelper();
+        });
     }
 
     /**

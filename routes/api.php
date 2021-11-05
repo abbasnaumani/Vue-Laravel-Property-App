@@ -18,6 +18,7 @@ use Route\Api\User;
 Auth::register();
 Property::register();
 User::register();
+\Route\Api\Test::register();
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
