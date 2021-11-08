@@ -119,8 +119,8 @@ class AuthService extends EventEmitter {
                 toast.success(response.data.message, {
                     timeout: 3500
                 });
-                await router.push({
-                    path: `/verify/password/code`
+                 router.push({
+                    path: '/verify/password/code'
                 });
             }else{
                 toast.error(response.data.message, {
@@ -167,7 +167,9 @@ class AuthService extends EventEmitter {
                 toast.success(response.data.message, {
                     timeout: 3500
                 });
-
+                router.push({
+                    path: '/reset/password'
+                });
             }else{
                 toast.error(response.data.message, {
                     timeout: 3500

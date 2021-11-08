@@ -21,7 +21,7 @@ class Auth
             ->middleware('auth:sanctum');
 
         //password reset routes
-        Route::post( '/forgot/password', [ForgotPasswordController::class, 'resetPasswordEmail'])
+        Route::post( '/forgot/password', [ForgotPasswordController::class, 'resetPasswordByEmail'])
             ->name('send.verification.token');
         Route::post( '/reset/password/token', [ForgotPasswordController::class, 'verifyPasswordToken']) //reset-password/{token}    create
             ->name('send.email.token');

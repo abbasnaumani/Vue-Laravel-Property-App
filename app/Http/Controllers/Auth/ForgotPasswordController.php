@@ -22,11 +22,12 @@ class ForgotPasswordController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function resetPasswordEmail(Request $request)
+    public function resetPasswordByEmail(Request $request)
     {
-        $this->forgotPasswordService->resetPasswordEmail($request); //        getApiResponse
+        $this->forgotPasswordService->resetPasswordByEmail($request);
         return $this->getApiResponse();
     }
+
     /**
      * @param Request $request
      *
@@ -35,12 +36,8 @@ class ForgotPasswordController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function verifyPasswordToken(Request $request){
-        $response = $this->forgotPasswordService->verifyPasswordToken($request);
-        if (isset($response['status']) && trim($response['status']) == 'success') {
-            return $this->success($response);
-        }else{
-            return $this->error($response);
-        }
+        $this->forgotPasswordService->verifyPasswordToken($request);
+        return $this->getApiResponse();
     }
     /**
      * @param Request $request
@@ -50,11 +47,7 @@ class ForgotPasswordController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function resetPassword(Request $request){
-        $response = $this->forgotPasswordService->resetPassword($request);
-        if (isset($response['status']) && trim($response['status']) == 'success') {
-            return $this->success($response);
-        }else{
-            return $this->error($response);
-        }
+        $this->forgotPasswordService->resetPassword($request);
+        return $this->getApiResponse();
     }
 }

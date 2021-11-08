@@ -20,7 +20,7 @@ class ForgotPasswordService extends BaseService
      *
      * @return Array
      */
-    public function resetPasswordEmail(Request $request)
+    public function resetPasswordByEmail(Request $request)
     {
         $data = $request->all();
         $rules = array('email' => 'required|exists:users,email');
