@@ -7,27 +7,34 @@ import authService from "../../services/authService";
 import {ApiResponse} from "../../constants";
 import {onBeforeUnmount, onMounted} from "vue";
 import {useRouter} from "vue-router";
+import {authLogin} from "../../composables/auth";
 
 export default {
     name: "Logout",
-    setup(){
+    setup(props) {
         const router = useRouter();
         onMounted(() => {
-            authService.addListener('loginSuccess',handleLogoutSuccessListner);
+            authService.addListener('logoutSuccess', handleLogoutSuccessListner);
         });
         onBeforeUnmount(() => {
-            authService.removeListener('loginSuccess',handleLogoutSuccessListner);
+            authService.removeListener('logoutSuccess', handleLogoutSuccessListner);
         });
-        const handleLogoutSuccessListner = (data) =>{
-            if(data.status === ApiResponse.SUCCESS_CODE){
+        const handleLogoutSuccessListner = (data) => {
+            console.log('logpour', data, ApiResponse.SUCCESS_CODE)
+            if (data.status === ApiResponse.SUCCESS_CODE) {
                 router.push({
                     path: '/login'
                 });
             }
         }
-        return{
-
+        const {
+            handleLogout
+        } = authLogin(props);
+        handleLogout();
+        return {
+            handleLogout
         }
+
     }
 }
 </script>

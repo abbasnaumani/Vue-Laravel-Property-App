@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3c72b4b06c522839f999a3caa6cfefd7",
+    "content-hash": "d4842c22e789d247c4b660e69490545f",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -957,49 +957,6 @@
                 }
             ],
             "time": "2021-10-06T17:43:30+00:00"
-        },
-        {
-            "name": "kodestudio/apiresponse",
-            "version": "dev-main",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/abbasnaumani/Kodestudio-ApiResponse.git",
-                "reference": "3876544983a7116e5b3bd8037e9e0203065a1b65"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/abbasnaumani/Kodestudio-ApiResponse/zipball/3876544983a7116e5b3bd8037e9e0203065a1b65",
-                "reference": "3876544983a7116e5b3bd8037e9e0203065a1b65",
-                "shasum": ""
-            },
-            "default-branch": true,
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Kodestudio\\ApiResponse\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "abbasnaumani",
-                    "email": "abbasnaumani@gmail.com"
-                }
-            ],
-            "description": "Helper Functions for API Response",
-            "keywords": [
-                "apiresponse",
-                "laravel",
-                "response"
-            ],
-            "support": {
-                "issues": "https://github.com/abbasnaumani/Kodestudio-ApiResponse/issues",
-                "source": "https://github.com/abbasnaumani/Kodestudio-ApiResponse/tree/main"
-            },
-            "time": "2021-11-05T15:49:15+00:00"
         },
         {
             "name": "laravel/framework",
@@ -7958,9 +7915,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "kodestudio/apiresponse": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

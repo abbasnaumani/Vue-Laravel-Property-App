@@ -41,10 +41,10 @@ export default [
         component: UserList,
     },
 
-    // {
-    //     path: '/logout',
-    //     name: 'logout',
-    //     meta: {logout: true, meta_title: 'Logout'},
-    //     component: page('auth/Logout')
-    // },
+    {
+        path: '/logout',
+        name: 'logout',
+        meta: {logout: true, meta_title: 'Logout'},
+        component: page('auth/Logout')
+    },
 ];
