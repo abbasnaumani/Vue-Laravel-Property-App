@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Services;
+namespace App\Services;
 
-use App\Http\Services\BaseService\BaseService;
 use App\Models\User;
 use App\Models\UserVerify;
 use App\Notifications\VerifyEmail;
+use App\Services\BaseService\BaseService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
@@ -20,12 +20,12 @@ class ForgotPasswordService extends BaseService
      *
      * @return array
      */
-    public function sendVerificationToken(Request $request){
+    public function resetPasswordEmail(Request $request){
         $data = $request->all();
         $rules = array('email' => 'required|exists:users,email');
         $v = Validator::make($data, $rules);
         if ($v->fails()) {
-            return $this->errorResponse($v->errors()->first());
+            return $this->setApiErrorMessage($v->errors()->first());
         }else{
             $email = $data['email'] ?? '';
             $user = User::where('email',$email)->first();
@@ -36,17 +36,16 @@ class ForgotPasswordService extends BaseService
                     $verificationCode = $verification->code ?? null;
                     if ($verificationCode) {
                         $encodedToken = $this->customEncode($verificationCode);
-//                        dd($verificationCode,$encodedToken);
                         Notification::send($user, new VerifyEmail(['token' => $verificationCode]));
-                        return $this->successResponse(trans('auth.email_sent'), ['token'=>$encodedToken]);
+                        return $this->setApiSuccessMessage(trans('auth.email_sent'), ['token'=>$encodedToken]);
                     } else {
-                        return $this->errorResponse(trans('auth.verify_email_not_sent'));
+                        return $this->setApiErrorMessage(trans('auth.verify_email_not_sent'));
                     }
                 } else {
-                    return $this->errorResponse(trans('auth.verify_email_not_sent'));
+                    return $this->setApiErrorMessage(trans('auth.verify_email_not_sent'));
                 }
             } else {
-                return $this->errorResponse(trans('auth.email_not_found'));
+                return $this->setApiErrorMessage(trans('auth.email_not_found'));
             }
         }
     }
@@ -57,12 +56,12 @@ class ForgotPasswordService extends BaseService
      *
      * @return array
      */
-    public function verifyEmailToken(Request $request){
+    public function verifyPasswordToken(Request $request){
         $data = $request->all();
         $rules = array('email' => 'required|exists:users,email','token' => 'required');
         $v = Validator::make($data, $rules);
         if ($v->fails()) {
-            return $this->errorResponse($v->errors()->first());
+            return $this->setApiErrorMessage($v->errors()->first());
         }else{
             $user = User::where('email', $data['email'])->first();
             if ($user != null) {
@@ -77,12 +76,12 @@ class ForgotPasswordService extends BaseService
                         $encodedToken = $this->customEncode($verificationCode);
                         $token = $encodedToken;
                     }
-                    return $this->successResponse(trans('auth.email_token_verified'), ['reset_password_token'=>$token]);
+                    return $this->setApiSuccessMessage(trans('auth.email_token_verified'), ['reset_password_token'=>$token]);
                 } else {
-                    return $this->errorResponse(trans('auth.email_token_not_verified'));
+                    return $this->setApiErrorMessage(trans('auth.email_token_not_verified'));
                 }
             } else {
-                return $this->errorResponse(trans('auth.user_not_found'));
+                return $this->setApiErrorMessage(trans('auth.user_not_found'));
             }
         }
     }
@@ -98,7 +97,7 @@ class ForgotPasswordService extends BaseService
         $rules = array('password' => 'required|min:8','reset_password_token'=>'required');
         $v = Validator::make($data, $rules);
         if ($v->fails()) {
-            return $this->errorResponse($v->errors()->first());
+            return $this->setApiErrorMessage($v->errors()->first());
         }else {
             $codeData = $this->customDecode($data['reset_password_token']);
             $userVerifyCodeData = UserVerify::firstWhere('code',$codeData);
@@ -110,15 +109,15 @@ class ForgotPasswordService extends BaseService
                     if (isset($response['status']) && trim($response['status']) == 'success') {
                         $user->password = Hash::make($data['password']);
                         $user->save();
-                        return $this->successResponse(trans('auth.password_updated'));
+                        return $this->setApiSuccessMessage(trans('auth.password_updated'));
                     } else {
-                        return $this->errorResponse(trans('auth.password_not_updated'));
+                        return $this->setApiErrorMessage(trans('auth.password_not_updated'));
                     }
                 } else {
-                    return $this->errorResponse(trans('auth.user_not_found'));
+                    return $this->setApiErrorMessage(trans('auth.user_not_found'));
                 }
             }else{
-                return $this->errorResponse(trans('auth.token_not_found'));
+                return $this->setApiErrorMessage(trans('auth.token_not_found'));
             }
         }
     }

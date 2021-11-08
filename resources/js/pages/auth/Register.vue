@@ -139,7 +139,12 @@
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-md-6 col-xl-5">
-                                            <button type="submit" class="btn btn-block btn-alt-primary cursor-not-allowed"  v-if="$v.$invalid" disabled>
+                                            <button
+                                                v-if="$v.$invalid"
+                                                type="submit"
+                                                class="btn btn-block btn-alt-primary cursor-not-allowed"
+                                                disabled
+                                            >
                                                 <i class="fa fa-fw fa-sign-in-alt mr-1"></i>Sign Up
                                             </button>
                                             <button v-else @click.prevent="handleRegistration"

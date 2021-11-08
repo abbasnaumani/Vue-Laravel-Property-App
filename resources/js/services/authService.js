@@ -111,6 +111,76 @@ class AuthService extends EventEmitter {
             console.log('Error on cache reset (logout)', e.message)
         }
     }
+    async handleForgotPassword(email){
+        try {
+            const response = await appApi.post('/forgot/password', {email})
+            if(response.data.status == ApiResponse.SUCCESS){
+                toast.success(response.data.message, {
+                    timeout: 3500
+                });
+                await this.onLogout();
+                this.emit('logoutSuccess', response);
+            }else{
+                toast.error(response.data.message, {
+                    timeout: 3500
+                });
+            }
+
+        } catch (err) {
+            console.log(err, "err err")
+            toast.error(err.response.data.message, {
+                timeout: 5000
+            });
+            const error = await errorHandlerService.errors.index(err);
+            console.log(error, "error catch")
+        }
+    }
+    async handleUpdatePassword(passwordData){
+        try {
+            const response = await appApi.post('/reset/password', passwordData)
+            if(response.data.status == ApiResponse.SUCCESS){
+                toast.success(response.data.message, {
+                    timeout: 3500
+                });
+                this.emit('logoutSuccess', response);
+            }else{
+                toast.error(response.data.message, {
+                    timeout: 3500
+                });
+            }
+
+        } catch (err) {
+            console.log(err, "err err")
+            toast.error(err.response.data.message, {
+                timeout: 5000
+            });
+            const error = await errorHandlerService.errors.index(err);
+            console.log(error, "error catch")
+        }
+    }
+    async handleVerificationCode(verificationToken){
+        try {
+            const response = await appApi.post('/reset/password/'+verificationToken)
+            if(response.data.status == ApiResponse.SUCCESS){
+                toast.success(response.data.message, {
+                    timeout: 3500
+                });
+                this.emit('logoutSuccess', response);
+            }else{
+                toast.error(response.data.message, {
+                    timeout: 3500
+                });
+            }
+
+        } catch (err) {
+            console.log(err, "err err")
+            toast.error(err.response.data.message, {
+                timeout: 5000
+            });
+            const error = await errorHandlerService.errors.index(err);
+            console.log(error, "error catch")
+        }
+    }
 }
 
 const service = new AuthService();

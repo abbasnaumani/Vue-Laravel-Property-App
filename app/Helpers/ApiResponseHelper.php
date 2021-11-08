@@ -74,7 +74,6 @@ class ApiResponseHelper
         if ($apiHelper->responseFormat == ApiResponseEnum::RESPONSE_JSON_FORMAT) {
             return response()->json($apiHelper, $apiHelper->code);
         }
-        dd($apiHelper->code);
         return $apiHelper;
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Services\ForgotPasswordService;
+use App\Services\ForgotPasswordService;
 use Illuminate\Http\Request;
 
 class ForgotPasswordController extends Controller
@@ -22,9 +22,10 @@ class ForgotPasswordController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function sendVerificationToken(Request $request)
+    public function resetPasswordEmail(Request $request)
     {
-        $response = $this->forgotPasswordService->sendVerificationToken($request);
+        $response = $this->forgotPasswordService->resetPasswordEmail($request); //        getApiResponse
+        dd($response);
         if (isset($response['status']) && trim($response['status']) == 'success') {
             return $this->success($response);
         }else{
@@ -38,8 +39,8 @@ class ForgotPasswordController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function verifyEmailToken(Request $request){
-        $response = $this->forgotPasswordService->verifyEmailToken($request);
+    public function verifyPasswordToken(Request $request){
+        $response = $this->forgotPasswordService->verifyPasswordToken($request);
         if (isset($response['status']) && trim($response['status']) == 'success') {
             return $this->success($response);
         }else{

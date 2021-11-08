@@ -72,7 +72,7 @@
                                                 <label class="form-check-label" for="login-remember">Remember Me</label>
                                             </div>
                                             <div class="col-md-6 col-xl-5 text-right">
-                                                <router-link to="/signup" class="btn-block-option font-size-sm"> <!-- pending here forgot password component route will be written -->
+                                                <router-link to="/forgot/password" class="btn-block-option font-size-sm">
                                                     <p class="text-muted">Forgot Password</p>
                                                 </router-link>
                                             </div>
@@ -107,11 +107,13 @@
 </template>
 
 <script>
-import {onMounted,onBeforeUnmount} from "vue";
+import {onMounted, onBeforeUnmount, computed} from "vue";
 import {authLogin} from '../../composables/auth';
 import authService from "../../services/authService";
 import {ApiResponse} from "../../constants";
 import {useRouter} from "vue-router";
+import {email, minLength, required} from "@vuelidate/validators";
+import useVuelidate from "@vuelidate/core";
 
 export default {
     name: "Login",
@@ -120,12 +122,27 @@ export default {
     },
     setup(props) {
         const {
-            $v,
             rememberMe,
             userEmail,
             password,
             handleLogin,
         } = authLogin(props);
+        const validationRules = computed(() => {
+            return {
+                userEmail: {
+                    required,
+                    email
+                },
+                password: {
+                    required,
+                    minLength: minLength(8)
+                },
+            }
+        });
+        const $v = useVuelidate(
+            validationRules,
+            {userEmail, password}
+        );
         const router = useRouter();
         onMounted(() => {
             authService.addListener('loginSuccess',handleLoginSuccessListner);

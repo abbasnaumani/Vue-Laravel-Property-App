@@ -964,12 +964,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/abbasnaumani/Kodestudio-ApiResponse.git",
-                "reference": "3876544983a7116e5b3bd8037e9e0203065a1b65"
+                "reference": "a6e1da6aefbb850aa1ed14b02627ddb6636ffd39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/abbasnaumani/Kodestudio-ApiResponse/zipball/3876544983a7116e5b3bd8037e9e0203065a1b65",
-                "reference": "3876544983a7116e5b3bd8037e9e0203065a1b65",
+                "url": "https://api.github.com/repos/abbasnaumani/Kodestudio-ApiResponse/zipball/a6e1da6aefbb850aa1ed14b02627ddb6636ffd39",
+                "reference": "a6e1da6aefbb850aa1ed14b02627ddb6636ffd39",
                 "shasum": ""
             },
             "default-branch": true,
@@ -989,7 +989,7 @@
                     "email": "abbasnaumani@gmail.com"
                 }
             ],
-            "description": "Helper Functions for API Response",
+            "description": "Package to generate a standard structure for api responses",
             "keywords": [
                 "apiresponse",
                 "laravel",
@@ -999,7 +999,7 @@
                 "issues": "https://github.com/abbasnaumani/Kodestudio-ApiResponse/issues",
                 "source": "https://github.com/abbasnaumani/Kodestudio-ApiResponse/tree/main"
             },
-            "time": "2021-11-05T15:49:15+00:00"
+            "time": "2021-11-08T11:09:45+00:00"
         },
         {
             "name": "laravel/framework",

@@ -29,6 +29,20 @@ export default [
         props: true,
     },
     {
+        path: '/forgot/password',
+        name: 'forgot-password',
+        component: page('auth/ForgotPassword'),
+        meta: {login: true, meta_title: 'Forgot Password'},
+        props: true,
+    },
+    {
+        path: '/reset/password',
+        name: 'reset-password',
+        component: page('auth/ResetPassword'),
+        meta: {login: true, meta_title: 'Reset Password'},
+        props: true,
+    },
+    {
         name: 'user-dashboard',
         path: '/dashboard',
         meta: {public: false, meta_title: 'User Dashboard'},
