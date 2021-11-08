@@ -36,6 +36,13 @@ export default [
         props: true,
     },
     {
+        path: '/verify/password/code',
+        name: 'verify-password-code',
+        component: page('auth/VerifyPasswordCode'),
+        meta: {login: true, meta_title: 'Verify Password Code'},
+        props: true,
+    },
+    {
         path: '/reset/password',
         name: 'reset-password',
         component: page('auth/ResetPassword'),
@@ -55,10 +62,10 @@ export default [
         component: UserList,
     },
 
-    // {
-    //     path: '/logout',
-    //     name: 'logout',
-    //     meta: {logout: true, meta_title: 'Logout'},
-    //     component: page('auth/Logout')
-    // },
+    {
+        path: '/logout',
+        name: 'logout',
+        meta: {logout: true, meta_title: 'Logout'},
+        component: page('auth/Logout')
+    },
 ];

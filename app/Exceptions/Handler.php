@@ -2,14 +2,14 @@
 
 namespace App\Exceptions;
 
-use App\Traits\ApiResponse;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
+use Kodestudio\ApiResponse\Traits\ApiResponseTrait;
 use Throwable;
 
 class Handler extends ExceptionHandler
 {
-    use ApiResponse;
+    use ApiResponseTrait;
 
     /**
      * A list of the exception types that are not reported.
@@ -47,7 +47,7 @@ class Handler extends ExceptionHandler
     {
         $this->renderable(function (Throwable $e) {
             if ($e instanceof ValidationException) {
-                return $this->error($this->extractErrorMessage($e->errors()), ['errors' => [
+                $this->setApiErrorMessage($this->extractErrorMessage($e->errors()), ['errors' => [
                     'getPrevious' => $e->getPrevious(),
                     'getMessage' => $e->getMessage(),
                     'getCode' => $e->getCode(),
@@ -55,8 +55,9 @@ class Handler extends ExceptionHandler
                     'getLine' => $e->getLine(),
                     'getTrace' => $e->getTrace()
                 ]]);
+                return $this->getApiResponse();
             }
-            return $this->error($e->getMessage(), ['errors' => [
+            $this->setApiErrorMessage($e->getMessage(), ['errors' => [
                 'getPrevious' => $e->getPrevious(),
                 'getMessage' => $e->getMessage(),
                 'getCode' => $e->getCode(),
@@ -64,17 +65,8 @@ class Handler extends ExceptionHandler
                 'getLine' => $e->getLine(),
                 'getTrace' => $e->getTrace()
             ]]);
+            return $this->getApiResponse();
         });
     }
 
-    private function extractErrorMessage($exceptionErrors)
-    {
-        if (isset($exceptionErrors) && is_array($exceptionErrors) && count($exceptionErrors) > 0) {
-            foreach ($exceptionErrors as $error) {
-                return $this->extractErrorMessage($error);
-            }
-        } else {
-            return $exceptionErrors;
-        }
-    }
 }

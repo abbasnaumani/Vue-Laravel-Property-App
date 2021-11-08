@@ -4,7 +4,9 @@ import store from "../store";
 import errorHandlerService from '../services/errorHandlerService';
 import { useToast } from "vue-toastification";
 import {ApiResponse} from "../constants";
+import {useRouter} from "vue-router";
 
+const router = useRouter();
 const localStorageKey = "loggedIn";
 const toast = useToast();
 
@@ -84,8 +86,6 @@ class AuthService extends EventEmitter {
                 toast.success(response.data.message, {
                     timeout: 3500
                 });
-                await this.onLogout();
-                this.emit('logoutSuccess', response);
             }else{
                 toast.error(response.data.message, {
                     timeout: 3500
@@ -114,12 +114,14 @@ class AuthService extends EventEmitter {
     async handleForgotPassword(email){
         try {
             const response = await appApi.post('/forgot/password', {email})
+            console.log(response,"response");
             if(response.data.status == ApiResponse.SUCCESS){
                 toast.success(response.data.message, {
                     timeout: 3500
                 });
-                await this.onLogout();
-                this.emit('logoutSuccess', response);
+                await router.push({
+                    path: `/verify/password/code`
+                });
             }else{
                 toast.error(response.data.message, {
                     timeout: 3500
@@ -142,7 +144,7 @@ class AuthService extends EventEmitter {
                 toast.success(response.data.message, {
                     timeout: 3500
                 });
-                this.emit('logoutSuccess', response);
+
             }else{
                 toast.error(response.data.message, {
                     timeout: 3500
@@ -165,7 +167,7 @@ class AuthService extends EventEmitter {
                 toast.success(response.data.message, {
                     timeout: 3500
                 });
-                this.emit('logoutSuccess', response);
+
             }else{
                 toast.error(response.data.message, {
                     timeout: 3500

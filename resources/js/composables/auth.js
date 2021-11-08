@@ -4,12 +4,12 @@ import authService from "../services/authService";
 export const authLogin = (props) => {
     const rememberMe = ref(false);
     const verificationToken = ref('');
-    const userEmail = ref('abbasnaumani+1@gmail.com');
-    const password = ref('12345678');
-    const password_confirmation = ref('');
-    const phone_number = ref('');
-    const first_name = ref('');
-    const last_name = ref('');
+    const userEmail = ref('');
+    const password = ref('');
+    const confirmPassword = ref('');
+    const phoneNumber = ref('');
+    const firstName = ref('');
+    const lastName = ref('');
 
     const handleLogin = () => {
         authService.handleLogin(userEmail.value, password.value,rememberMe.value);
@@ -21,10 +21,10 @@ export const authLogin = (props) => {
         authService.handleRegistration({
             userEmail: userEmail.value,
             password: password.value,
-            password_confirmation:password_confirmation.value,
-            phone_number:phone_number.value,
-            first_name:first_name.value,
-            last_name:last_name.value
+            password_confirmation:confirmPassword.value,
+            phone_number:phoneNumber.value,
+            first_name:firstName.value,
+            last_name:lastName.value
         });
     }
     const handleForgotPassword = () => {
@@ -33,7 +33,7 @@ export const authLogin = (props) => {
     const handleUpdatePassword = () => {
         authService.handleUpdatePassword({
             password: password.value,
-            password_confirmation:password_confirmation.value,
+            password_confirmation:confirmPassword.value,
         });
     }
     const handleVerificationCode = () => {
@@ -41,14 +41,13 @@ export const authLogin = (props) => {
     }
 
     return {
-        $v,
         rememberMe,
-        first_name,
-        last_name,
+        firstName,
+        lastName,
         userEmail,
-        phone_number,
+        phoneNumber,
         password,
-        password_confirmation,
+        confirmPassword,
         handleForgotPassword,
         handleRegistration,
         handleVerificationCode,

@@ -32,15 +32,15 @@
                                                 type="text"
                                                 class="form-control form-control-lg form-control-alt"
                                                 id="first_name"
-                                                v-model="first_name"
+                                                v-model="firstName"
                                                 placeholder="First Name"
                                                 autofocus
-                                                @blur="$v.first_name.$touch()"
+                                                @blur="$v.firstName.$touch()"
                                             />
                                         </div>
                                         <div class="text-left">
-                                            <div v-if="$v.first_name.$dirty">
-                                                <sub v-if="$v.first_name.$error"
+                                            <div v-if="$v.firstName.$dirty">
+                                                <sub v-if="$v.firstName.$error"
                                                      class= "px-2 py-2 text-danger">
                                                     First Name is Required
                                                 </sub>
@@ -51,14 +51,14 @@
                                                 type="text"
                                                 class="form-control form-control-lg form-control-alt"
                                                 id="last_name"
-                                                v-model="last_name"
+                                                v-model="lastName"
                                                 placeholder="Last Name"
-                                                @blur="$v.last_name.$touch()"
+                                                @blur="$v.lastName.$touch()"
                                             />
                                         </div>
                                         <div class="text-left">
-                                            <div v-if="$v.last_name.$dirty">
-                                                <sub v-if="$v.last_name.$error"
+                                            <div v-if="$v.lastName.$dirty">
+                                                <sub v-if="$v.lastName.$error"
                                                      class= "px-2 py-2 text-danger">
                                                     Last Name is Required
                                                 </sub>
@@ -87,14 +87,14 @@
                                                 type="tel"
                                                 class="form-control form-control-lg form-control-alt"
                                                 id="phone"
-                                                v-model="phone_number"
-                                                @blur="$v.phone_number.$touch()"
+                                                v-model="phoneNumber"
+                                                @blur="$v.phoneNumber.$touch()"
                                                 placeholder="Phone Number"
                                             />
                                         </div>
                                         <div class="text-left">
-                                            <div v-if="$v.phone_number.$dirty">
-                                                <sub v-if="$v.phone_number.$error"
+                                            <div v-if="$v.phoneNumber.$dirty">
+                                                <sub v-if="$v.phoneNumber.$error"
                                                      class= "px-2 py-2 text-danger">
                                                     Phone Number is Required
                                                 </sub>
@@ -123,14 +123,14 @@
                                                 type="password"
                                                 class="form-control form-control-lg form-control-alt"
                                                 id="password_confirmation"
-                                                v-model="password_confirmation"
-                                                @blur="$v.password_confirmation.$touch()"
+                                                v-model="confirmPassword"
+                                                @blur="$v.confirmPassword.$touch()"
                                                 placeholder="Confirm Password"
                                             />
                                         </div>
                                         <div class="text-left">
-                                            <div v-if="$v.password_confirmation.$dirty">
-                                                <sub v-if="$v.password_confirmation.$error"
+                                            <div v-if="$v.confirmPassword.$dirty">
+                                                <sub v-if="$v.confirmPassword.$error"
                                                      class= "px-2 py-2 text-danger">
                                                     Please Enter confirm password same as password
                                                 </sub>
@@ -180,12 +180,12 @@ export default {
     name: "Register",
     setup(props) {
         const {
-            first_name,
-            last_name,
+            firstName,
+            lastName,
             userEmail,
-            phone_number,
+            phoneNumber,
             password,
-            password_confirmation,
+            confirmPassword,
             handleRegistration
         } = authLogin(props);
         const validationRules = computed(() => {
@@ -198,33 +198,33 @@ export default {
                     required,
                     minLength: minLength(8)
                 },
-                password_confirmation: {
+                confirmPassword: {
                     required,
                     sameAsPassword: sameAs(password.value),
                 },
-                first_name:{
+                firstName:{
                     required
                 },
-                last_name:{
+                lastName:{
                     required
                 },
-                phone_number:{
+                phoneNumber:{
                     required
                 }
             }
         });
         const $v = useVuelidate(
             validationRules,
-            {userEmail, password,last_name,first_name,phone_number,password_confirmation}
+            {userEmail, password,lastName,firstName,phoneNumber,confirmPassword}
         );
         return {
             $v,
-            first_name,
-            last_name,
+            firstName,
+            lastName,
             userEmail,
-            phone_number,
+            phoneNumber,
             password,
-            password_confirmation,
+            confirmPassword,
             handleRegistration
         }
     },

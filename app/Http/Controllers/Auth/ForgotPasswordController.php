@@ -24,13 +24,8 @@ class ForgotPasswordController extends Controller
      */
     public function resetPasswordEmail(Request $request)
     {
-        $response = $this->forgotPasswordService->resetPasswordEmail($request); //        getApiResponse
-        dd($response);
-        if (isset($response['status']) && trim($response['status']) == 'success') {
-            return $this->success($response);
-        }else{
-            return $this->error($response);
-        }
+        $this->forgotPasswordService->resetPasswordEmail($request); //        getApiResponse
+        return $this->getApiResponse();
     }
     /**
      * @param Request $request

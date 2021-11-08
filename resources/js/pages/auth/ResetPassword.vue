@@ -51,10 +51,18 @@
                                                 type="password"
                                                 class="form-control form-control-lg form-control-alt"
                                                 id="password_confirmation"
-                                                v-model="password_confirmation"
-                                                @blur="$v.password_confirmation.$touch()"
+                                                v-model="confirmPassword"
+                                                @blur="$v.confirmPassword.$touch()"
                                                 placeholder="Confirm Password"
                                             />
+                                        </div>
+                                        <div class="text-left">
+                                            <div v-if="$v.confirmPassword.$dirty">
+                                                <sub v-if="$v.confirmPassword.$error"
+                                                     class= "px-2 py-2 text-danger">
+                                                    Please Enter confirm password same as password
+                                                </sub>
+                                            </div>
                                         </div>
                                     <div class="form-group row">
                                         <div class="col-md-6 col-xl-5">
@@ -100,7 +108,7 @@ export default {
     setup(props){
         const {
             password,
-            password_confirmation,
+            confirmPassword,
             handleUpdatePassword
         } = authLogin(props);
         const validationRules = computed(() => {
@@ -109,7 +117,7 @@ export default {
                     required,
                     minLength: minLength(8)
                 },
-                password_confirmation: {
+                confirmPassword: {
                     required,
                     sameAsPassword: sameAs(password.value),
                 },
@@ -117,12 +125,12 @@ export default {
         });
         const $v = useVuelidate(
             validationRules,
-            {password,password_confirmation}
+            {password,confirmPassword}
         );
         return{
             $v,
             password,
-            password_confirmation,
+            confirmPassword,
             handleUpdatePassword
         }
     }

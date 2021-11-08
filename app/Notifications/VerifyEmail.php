@@ -43,6 +43,7 @@ class VerifyEmail extends Notification
     {
         return (new MailMessage)
             ->line('ksProperty.com')
+            ->line("Reset your password by entering the code below:")
             ->line($this->token)
             ->line('Thank you for using our application!');
     }
