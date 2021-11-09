@@ -4,11 +4,19 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Services\AuthService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    protected $authService;
+
+    public function __construct(AuthService $authService)
+    {
+        $this->authService = $authService;
+    }
+
     /**
      * Handle an incoming authentication request.
      *
@@ -53,5 +61,29 @@ class LoginController extends Controller
     public function destroySession()
     {
         Auth::guard('web')->logout();
+    }
+    /**
+     * @param Request $request
+     *
+     *  Method for sending Verification token to user email
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function resetPasswordByEmail(Request $request)
+    {
+        $this->authService->resetPasswordByEmail($request);
+        return $this->getApiResponse();
+    }
+
+    /**
+     * @param Request $request
+     *
+     *  Method for Verify Email Token
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function resetPassword(Request $request){
+        $this->authService->resetPassword($request);
+        return $this->getApiResponse();
     }
 }

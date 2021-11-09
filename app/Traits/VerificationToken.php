@@ -43,26 +43,25 @@ trait VerificationToken
         $userId = $paramsData['user_id'] ?? 0;
         $type = $paramsData['type'] ?? '';
         $code = $paramsData['code'] ?? '';
-        $response = $this->response();
         $testing = false;
         if ($testing && $code == "4321") {
             $verify = UserVerify::where(['user_id' => $userId, 'type' => $type])->first();
             if ($verify == NULL) {
-                $response['message'] = 'Link is expired, please request again.';
+                $this->setApiErrorMessage(trans('auth.link_token_expire'));
             } else {
+                $this->setApiSuccessMessage(trans('auth.link_token_success'));
                 $verify->delete();
-                $response['status'] = 'success';
             }
         } else {
             $verify = UserVerify::where(['user_id' => $userId, 'type' => $type, 'code' => $code])->first();
             if ($verify == NULL) {
-                $response['message'] = 'Link is expired, please request again.';
+                $this->setApiErrorMessage(trans('auth.link_token_expire'));
             } else {
+                $this->setApiSuccessMessage(trans('auth.link_token_success'));
                 $verify->delete();
-                $response['status'] = 'success';
             }
         }
-        return $response;
+        return $this->getResponse();
     }
 
     public static function customQuickRandom($length = 16)

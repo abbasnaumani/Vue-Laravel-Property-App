@@ -51,13 +51,13 @@
                                                 v-if="$v.$invalid"
                                                 disabled
                                             >
-                                                <i class="fa fa-fw fa-sign-in-alt mr-1"></i>Send Mail
+                                                <i class="fa fa-fw fa-envelope mr-1"></i>Send Mail
                                             </button>
                                             <button v-else @click.prevent="handleForgotPassword"
                                                     type="submit"
                                                     class="btn btn-block btn-alt-primary"
                                             >
-                                                <i class="fa fa-fw fa-sign-in-alt mr-1"></i>Send Mail
+                                                <i class="fa fa-fw fa-envelope mr-1"></i>Send Mail
                                             </button>
                                         </div>
                                     </div>

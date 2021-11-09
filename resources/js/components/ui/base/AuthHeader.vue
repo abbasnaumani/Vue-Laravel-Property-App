@@ -97,10 +97,10 @@
                                href="javascript:void(0)">
                                 <span class="font-size-sm font-w500">Lock Account</span>
                             </a>
-                            <a href="/logout"
+                            <router-link to="/logout"
                                class="dropdown-item d-flex align-items-center justify-content-between">
                                 <span class="font-size-sm font-w500">Log Out</span>
-                            </a>
+                            </router-link>
                         </div>
                     </div>
                 </div>

@@ -36,18 +36,11 @@ export default [
         props: true,
     },
     {
-        path: '/verify/password/code',
-        name: 'verify-password-code',
-        component: page('auth/VerifyPasswordCode'),
-        meta: {login: true, meta_title: 'Verify Password Code'},
-        props: true,
-    },
-    {
-        path: '/reset/password',
+        path: '/reset/password:encodedToken',
         name: 'reset-password',
         component: page('auth/ResetPassword'),
         meta: {login: true, meta_title: 'Reset Password'},
-        props: true,
+        props: ({params}) =>  ({encodedToken: params.encodedToken || ''}),
     },
     {
         name: 'user-dashboard',

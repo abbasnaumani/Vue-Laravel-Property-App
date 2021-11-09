@@ -30,6 +30,7 @@ return [
 
     'password_updated' => 'Password Updated Successfully.',
     'password_not_updated' => 'Password Not Updated Successfully.',
+    'password_not_match' => 'Password does not match Confirm Password.',
 
     'validation_failed' => 'Validation Failed.',
     'request_validated' => 'Request Validate Successfully.',
@@ -41,5 +42,8 @@ return [
 
     'registration_success' => 'Registered successfully.',
     'registration_failed' => 'Registration Failed.',
+
+    'link_token_expire' => 'Link is expired, please request again.',
+    'link_token_success' => 'Code Verification Successful.',
 
 ];

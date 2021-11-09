@@ -1,38 +1,53 @@
 <template>
-
+    <vue-element-loading
+        class="relative"
+        :active="isLoading"
+        background-color="rgba(255, 255, 255, 0.6)"
+        text="Logging out..."
+        spinner="spinner"
+        color="blue"
+        size="128"
+        is-full-screen
+        />
 </template>
 
 <script>
+
+import VueElementLoading from 'vue-element-loading'
 import authService from "../../services/authService";
 import {ApiResponse} from "../../constants";
-import {onBeforeUnmount, onMounted} from "vue";
 import {useRouter} from "vue-router";
-import {authLogin} from "../../composables/auth";
+import {useToast} from "vue-toastification";
+import {ref} from "vue";
 
 export default {
     name: "Logout",
+    components: {
+        VueElementLoading
+    },
     setup(props) {
         const router = useRouter();
-        onMounted(() => {
-            authService.addListener('logoutSuccess', handleLogoutSuccessListner);
-        });
-        onBeforeUnmount(() => {
-            authService.removeListener('logoutSuccess', handleLogoutSuccessListner);
-        });
-        const handleLogoutSuccessListner = (data) => {
-            console.log('logpour', data, ApiResponse.SUCCESS_CODE)
-            if (data.status === ApiResponse.SUCCESS_CODE) {
+        const isLoading = ref(false);
+        const toast = useToast();
+        handleLogout();
+        async function handleLogout() {
+            isLoading.value = true;
+            let response = await authService.handleLogout();
+            if (response.data.status !== ApiResponse.SUCCESS) {
+                toast.error(response.data.message, {
+                    timeout: 3500
+                });
+            } else {
+                console.log("saddique")
                 router.push({
                     path: '/login'
                 });
+               await authService.onLogout();
+                isLoading.value = false;
             }
         }
-        const {
-            handleLogout
-        } = authLogin(props);
-        handleLogout();
         return {
-            handleLogout
+            isLoading,
         }
 
     }

@@ -2,7 +2,6 @@
 
 namespace Route\Api;
 
-use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use \Illuminate\Support\Facades\Route;
@@ -21,11 +20,9 @@ class Auth
             ->middleware('auth:sanctum');
 
         //password reset routes
-        Route::post( '/forgot/password', [ForgotPasswordController::class, 'resetPasswordByEmail'])
-            ->name('send.verification.token');
-        Route::post( '/reset/password/token', [ForgotPasswordController::class, 'verifyPasswordToken']) //reset-password/{token}    create
-            ->name('send.email.token');
-        Route::post('/reset/password', [ForgotPasswordController::class,'resetPassword'])
+        Route::post( '/forgot/password', [LoginController::class, 'resetPasswordByEmail'])
+            ->name('forgot.password');
+        Route::post('/reset/password', [LoginController::class,'resetPassword'])
             ->name('reset.password');
     }
 }

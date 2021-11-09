@@ -2,11 +2,9 @@ import EventEmitter from 'events';
 import appApi from "../api/index";
 import store from "../store";
 import errorHandlerService from '../services/errorHandlerService';
-import { useToast } from "vue-toastification";
+import {useToast} from "vue-toastification";
 import {ApiResponse} from "../constants";
-import {useRouter} from "vue-router";
 
-const router = useRouter();
 const localStorageKey = "loggedIn";
 const toast = useToast();
 
@@ -14,7 +12,7 @@ class AuthService extends EventEmitter {
     async handleRegistration(newUser){
         try {
             const response = await appApi.post('/register',newUser)
-            if(response.data.status == ApiResponse.SUCCESS){
+            if(response.data.status === ApiResponse.SUCCESS){
                 toast.success("Login Successfully", { // successful registration will auto Logged-in the user
                     timeout: 3500
                 });
@@ -39,10 +37,7 @@ class AuthService extends EventEmitter {
         let credentials = {email, password};
         try {
             const response = await appApi.post('/login', credentials)
-            if(response.data.status == ApiResponse.SUCCESS){
-                toast.success(response.data.message, {
-                    timeout: 3500
-                });
+            if(response.data.status === ApiResponse.SUCCESS){
                 await this.onLogin(response.data.data.token, response.data.data.user_data,rememberMe);
                 this.emit('loginSuccess',response);
             }else{
@@ -81,16 +76,7 @@ class AuthService extends EventEmitter {
 
     async handleLogout() {
         try {
-            const response = await appApi.post('/logout')
-            if(response.data.status == ApiResponse.SUCCESS){
-                toast.success(response.data.message, {
-                    timeout: 3500
-                });
-            }else{
-                toast.error(response.data.message, {
-                    timeout: 3500
-                });
-            }
+            return await appApi.post('/logout')
 
         } catch (err) {
             console.log(err, "err err")
@@ -113,20 +99,7 @@ class AuthService extends EventEmitter {
     }
     async handleForgotPassword(email){
         try {
-            const response = await appApi.post('/forgot/password', {email})
-            console.log(response,"response");
-            if(response.data.status == ApiResponse.SUCCESS){
-                toast.success(response.data.message, {
-                    timeout: 3500
-                });
-                 router.push({
-                    path: '/verify/password/code'
-                });
-            }else{
-                toast.error(response.data.message, {
-                    timeout: 3500
-                });
-            }
+            return await appApi.post('/forgot/password', {email});
 
         } catch (err) {
             console.log(err, "err err")
@@ -137,44 +110,9 @@ class AuthService extends EventEmitter {
             console.log(error, "error catch")
         }
     }
-    async handleUpdatePassword(passwordData){
+    async handleUpdatePassword(data){
         try {
-            const response = await appApi.post('/reset/password', passwordData)
-            if(response.data.status == ApiResponse.SUCCESS){
-                toast.success(response.data.message, {
-                    timeout: 3500
-                });
-
-            }else{
-                toast.error(response.data.message, {
-                    timeout: 3500
-                });
-            }
-
-        } catch (err) {
-            console.log(err, "err err")
-            toast.error(err.response.data.message, {
-                timeout: 5000
-            });
-            const error = await errorHandlerService.errors.index(err);
-            console.log(error, "error catch")
-        }
-    }
-    async handleVerificationCode(verificationToken){
-        try {
-            const response = await appApi.post('/reset/password/'+verificationToken)
-            if(response.data.status == ApiResponse.SUCCESS){
-                toast.success(response.data.message, {
-                    timeout: 3500
-                });
-                router.push({
-                    path: '/reset/password'
-                });
-            }else{
-                toast.error(response.data.message, {
-                    timeout: 3500
-                });
-            }
+            return await appApi.post('/reset/password', data)
 
         } catch (err) {
             console.log(err, "err err")
