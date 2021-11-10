@@ -2,7 +2,7 @@
     <div class="hero-static">
         <div class="content">
             <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-6 col-xl-4">
+                <div class="col-sm-8 col-md-8 col-lg-6 col-xl-6">
                     <!-- Reminder Block -->
                     <div class="block block-rounded block-themed mb-0">
                         <div class="block-header bg-primary-dark">
@@ -12,11 +12,14 @@
                             <div class="p-sm-3 px-lg-4 py-lg-5">
                                 <h1 class="h2 mb-1">KodeStudio</h1>
                                 <p class="text-muted">
-                                    Please provide your account’s email and we will send you rest password link.
+                                    Please provide your account’s email and we will send you rest
+                                    password link.
                                 </p>
                                 <div>
                                     Or click on the link for log into your account.
-                                    <router-link class="btn-block-option " to="/login" data-toggle="tooltip" data-placement="left" title="Sign In">
+                                    <router-link class="btn-block-option " to="/login"
+                                                 data-toggle="tooltip" data-placement="left"
+                                                 title="Sign In">
                                         <p class="text-muted fs-sm fw-medium">Login</p>
                                     </router-link>
                                 </div>
@@ -32,13 +35,13 @@
                                             id="email"
                                             v-model="userEmail"
                                             placeholder="Email"
-                                            @blur="$v.userEmail.$touch()"
+                                            @blur="v$.userEmail.$touch()"
                                         />
                                     </div>
                                     <div class="text-left">
-                                        <div v-if="$v.userEmail.$dirty">
-                                            <sub v-if="$v.userEmail.$error"
-                                                 class= "px-2 py-2 text-danger">
+                                        <div v-if="v$.userEmail.$dirty">
+                                            <sub v-if="v$.userEmail.$error"
+                                                 class="px-2 py-2 text-danger">
                                                 Please enter a valid Email address
                                             </sub>
                                         </div>
@@ -48,7 +51,7 @@
                                             <button
                                                 type="submit"
                                                 class="btn btn-block btn-alt-primary cursor-not-allowed"
-                                                v-if="$v.$invalid"
+                                                v-if="v$.$invalid"
                                                 disabled
                                             >
                                                 <i class="fa fa-fw fa-envelope mr-1"></i>Send Mail
@@ -77,19 +80,18 @@
 </template>
 
 <script>
-import {authLogin} from "../../composables/auth";
 import {email, required} from "@vuelidate/validators";
-import {computed} from "vue";
+import {computed, ref} from "vue";
 import useVuelidate from "@vuelidate/core";
+import authService from "../../services/authService";
 
 export default {
     name: "ForgotPassword",
-
-    setup(props){
-        const {
-            userEmail,
-            handleForgotPassword
-        } = authLogin(props);
+    setup() {
+        const userEmail = ref('');
+        const handleForgotPassword = async () => {
+            authService.handleForgotPassword(userEmail.value);
+        }
         const validationRules = computed(() => {
             return {
                 userEmail: {
@@ -98,12 +100,12 @@ export default {
                 },
             }
         });
-        const $v = useVuelidate(
+        const v$ = useVuelidate(
             validationRules,
             {userEmail}
         );
-        return{
-            $v,
+        return {
+            v$,
             userEmail,
             handleForgotPassword
         }
@@ -112,7 +114,7 @@ export default {
 </script>
 
 <style scoped>
-.cursor-not-allowed{
+.cursor-not-allowed {
     cursor: not-allowed;
 }
 </style>

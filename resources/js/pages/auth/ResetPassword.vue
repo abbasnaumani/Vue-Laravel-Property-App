@@ -2,7 +2,7 @@
     <div class="hero-static">
         <div class="content">
             <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-6 col-xl-4">
+                <div class="col-md-8 col-lg-8 col-xl-4">
                     <!-- Reminder Block -->
                     <div class="block block-rounded block-themed mb-0">
                         <div class="block-header bg-primary-dark">
@@ -16,7 +16,9 @@
                                 </p>
                                 <div>
                                     Or click on the link for log into your account.
-                                    <router-link class="btn-block-option " to="/login" data-toggle="tooltip" data-placement="left" title="Sign In">
+                                    <router-link class="btn-block-option " to="/login"
+                                                 data-toggle="tooltip" data-placement="left"
+                                                 title="Sign In">
                                         <p class="text-muted fs-sm fw-medium">Login</p>
                                     </router-link>
                                 </div>
@@ -33,14 +35,14 @@
                                             class="form-control form-control-lg form-control-alt"
                                             id="verification-code"
                                             v-model="verificationCode"
-                                            @blur="$v.verificationCode.$touch()"
+                                            @blur="v$.verificationCode.$touch()"
                                             placeholder="Verification Code"
                                         />
                                     </div>
                                     <div class="text-left">
-                                        <div v-if="$v.verificationCode.$dirty">
-                                            <sub v-if="$v.verificationCode.$error"
-                                                 class= "px-2 py-2 text-danger">
+                                        <div v-if="v$.verificationCode.$dirty">
+                                            <sub v-if="v$.verificationCode.$error"
+                                                 class="px-2 py-2 text-danger">
                                                 Verification Code is Required
                                             </sub>
                                         </div>
@@ -51,14 +53,14 @@
                                             class="form-control form-control-lg form-control-alt"
                                             id="password"
                                             v-model="password"
-                                            @blur="$v.password.$touch()"
+                                            @blur="v$.password.$touch()"
                                             placeholder="Password"
                                         />
                                     </div>
                                     <div class="text-left">
-                                        <div v-if="$v.password.$dirty">
-                                            <sub v-if="$v.password.$error"
-                                                 class= "px-2 py-2 text-danger">
+                                        <div v-if="v$.password.$dirty">
+                                            <sub v-if="v$.password.$error"
+                                                 class="px-2 py-2 text-danger">
                                                 Password is Required (at-least 8 characters long)
                                             </sub>
                                         </div>
@@ -69,14 +71,14 @@
                                             class="form-control form-control-lg form-control-alt"
                                             id="password_confirmation"
                                             v-model="confirmPassword"
-                                            @blur="$v.confirmPassword.$touch()"
+                                            @blur="v$.confirmPassword.$touch()"
                                             placeholder="Confirm Password"
                                         />
                                     </div>
                                     <div class="text-left">
-                                        <div v-if="$v.confirmPassword.$dirty">
-                                            <sub v-if="$v.confirmPassword.$error"
-                                                 class= "px-2 py-2 text-danger">
+                                        <div v-if="v$.confirmPassword.$dirty">
+                                            <sub v-if="v$.confirmPassword.$error"
+                                                 class="px-2 py-2 text-danger">
                                                 Please Enter confirm password same as password
                                             </sub>
                                         </div>
@@ -86,7 +88,7 @@
                                             <button
                                                 type="submit"
                                                 class="btn btn-block btn-alt-primary cursor-not-allowed"
-                                                v-if="$v.$invalid"
+                                                v-if="v$.$invalid"
                                                 disabled
                                             >
                                                 <i class="fa fa-fw fa-lock mr-1"></i>Update Password
@@ -99,13 +101,13 @@
                                             </button>
                                         </div>
                                         <div class="col-md-6 col-xl-5">
-                                            <button
-                                                    @click.prevent="handleForgotPassword"
-                                                    type="submit"
-                                                    class="btn btn-block btn-alt-primary"
+                                            <a
+                                                @click.prevent="handleForgotPassword"
+                                                class="btn btn-block btn-alt-primary"
                                             >
-                                                <i class="fa fa-fw fa-envelope mr-1"></i>Resend Email
-                                            </button>
+                                                <i class="fa fa-fw fa-envelope mr-1"></i>Resend
+                                                Email
+                                            </a>
                                         </div>
                                     </div>
                                 </form>
@@ -124,24 +126,25 @@
 </template>
 
 <script>
-import {authLogin} from "../../composables/auth";
-import {computed} from "vue";
+import {computed, ref} from "vue";
 import {minLength, required, sameAs} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
+import authService from "../../services/authService";
+import {ApiResponse} from "../../constants";
+import {useRouter} from "vue-router";
+import {useToast} from "vue-toastification";
 
 export default {
     name: "ResetPassword",
     props: {
         encodedToken: String,
     },
-    setup(props){
-        const {
-            verificationCode,
-            password,
-            confirmPassword,
-            handleForgotPassword,
-            handleUpdatePassword
-        } = authLogin(props);
+    setup() {
+        const router = useRouter();
+        const toast = useToast();
+        const verificationCode = ref('');
+        const password = ref('');
+        const confirmPassword = ref('');
         const validationRules = computed(() => {
             return {
                 verificationCode: {
@@ -157,12 +160,44 @@ export default {
                 },
             }
         });
-        const $v = useVuelidate(
+        const v$ = useVuelidate(
             validationRules,
-            {verificationCode,password,confirmPassword}
+            {verificationCode, password, confirmPassword}
         );
-        return{
-            $v,
+        const handleForgotPassword = async () => {
+            let response = await authService.handleForgotPassword(
+                (userEmail.value !== '') ? ({userEmail: userEmail.value, resendEmail: false})
+                    : ({encodedToken: encodedToken, resendEmail: true}));
+            if (response.data.status === ApiResponse.SUCCESS) {
+                toast.success(response.data.message);
+                router.push(
+                    {name: 'reset-password', params: {encodedToken: response.data.data.toke}});
+            } else {
+                toast.error(response.data.message);
+            }
+        }
+        const handleUpdatePassword = async () => {
+            let response = await authService.handleUpdatePassword({
+                verificationCode: verificationCode.value,
+                encodedToken: encodedToken.value,
+                password: password.value,
+                password_confirmation: confirmPassword.value
+            });
+            if (response.data.status === ApiResponse.SUCCESS) {
+                toast.success(response.data.message, {
+                    timeout: 3500
+                });
+                await router.push({
+                    path: '/login'
+                });
+            } else {
+                toast.error(response.data.message, {
+                    timeout: 3500
+                });
+            }
+        }
+        return {
+            v$,
             password,
             confirmPassword,
             verificationCode,
@@ -174,7 +209,7 @@ export default {
 </script>
 
 <style scoped>
-.cursor-not-allowed{
+.cursor-not-allowed {
     cursor: not-allowed;
 }
 </style>

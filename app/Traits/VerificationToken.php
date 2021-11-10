@@ -12,7 +12,7 @@ trait VerificationToken
         $type = $paramsData['type'] ?? '';
         $typeValue = $paramsData['type_value'] ?? '';
         $verify = UserVerify::where(['user_id' => $userId, 'type' => $type])->first();
-        if ($verify != NULL) {
+        if ($verify) {
             $verify->code = $this->generateVerificationToken();
             $verify->save();
         } else {
@@ -26,16 +26,9 @@ trait VerificationToken
         return $verify;
     }
 
-    public function generateVerificationToken($digits = 4)
+    public function generateVerificationToken()
     {
-        $i = 0; //counter
-        $pin = ""; //our default pin is blank.
-        while ($i < $digits) {
-            //generate a random number between 0 and 9.
-            $pin .= mt_rand(1, 9);
-            $i++;
-        }
-        return $pin;
+        return mt_rand(100000, 999999);
     }
 
     public function verifyVerificationToken($paramsData)
@@ -44,21 +37,22 @@ trait VerificationToken
         $type = $paramsData['type'] ?? '';
         $code = $paramsData['code'] ?? '';
         $testing = false;
-        if ($testing && $code == "4321") {
+        if ($testing && $code == "654321") {
             $verify = UserVerify::where(['user_id' => $userId, 'type' => $type])->first();
-            if ($verify == NULL) {
-                $this->setApiErrorMessage(trans('auth.link_token_expire'));
-            } else {
+            if ($verify) {
                 $this->setApiSuccessMessage(trans('auth.link_token_success'));
                 $verify->delete();
+
+            } else {
+                $this->setApiErrorMessage(trans('auth.link_token_expire'));
             }
         } else {
             $verify = UserVerify::where(['user_id' => $userId, 'type' => $type, 'code' => $code])->first();
-            if ($verify == NULL) {
-                $this->setApiErrorMessage(trans('auth.link_token_expire'));
-            } else {
+            if ($verify) {
                 $this->setApiSuccessMessage(trans('auth.link_token_success'));
                 $verify->delete();
+            } else {
+                $this->setApiErrorMessage(trans('auth.link_token_expire'));
             }
         }
         return $this->getResponse();

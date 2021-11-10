@@ -62,6 +62,7 @@ class LoginController extends Controller
     {
         Auth::guard('web')->logout();
     }
+
     /**
      * @param Request $request
      *
@@ -69,9 +70,9 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function resetPasswordByEmail(Request $request)
+    public function sendVerificationCode(Request $request)
     {
-        $this->authService->resetPasswordByEmail($request);
+        $this->authService->sendVerificationCode($request);
         return $this->getApiResponse();
     }
 
@@ -82,7 +83,8 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function resetPassword(Request $request){
+    public function resetPassword(Request $request)
+    {
         $this->authService->resetPassword($request);
         return $this->getApiResponse();
     }

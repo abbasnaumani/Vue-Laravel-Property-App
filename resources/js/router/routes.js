@@ -8,13 +8,6 @@ import UserDashboard from "../pages/user/UserDashboard";
 
 export default [
     {
-        path: '/',
-        name: 'login-main',
-        component: page('auth/Login'),
-        meta: {login: true, meta_title: 'User Login'},
-        props: true,
-    },
-    {
         path: '/login',
         name: 'login',
         component: page('auth/Login'),
@@ -36,21 +29,27 @@ export default [
         props: true,
     },
     {
-        path: '/reset/password:encodedToken',
+        path: '/reset/password/:encodedToken',
         name: 'reset-password',
         component: page('auth/ResetPassword'),
         meta: {login: true, meta_title: 'Reset Password'},
-        props: ({params}) =>  ({encodedToken: params.encodedToken || ''}),
+        props: ({params}) => ({encodedToken: params.encodedToken || ''}),
     },
     {
-        name: 'user-dashboard',
-        path: '/dashboard',
+        path: '/',
+        name: 'main',
         meta: {public: false, meta_title: 'User Dashboard'},
         component: UserDashboard,
     },
     {
-        name: 'user-list',
+        path: '/dashboard',
+        name: 'user-dashboard',
+        meta: {public: false, meta_title: 'User Dashboard'},
+        component: UserDashboard,
+    },
+    {
         path: '/user/list',
+        name: 'user-list',
         meta: {public: false, meta_title: 'User List'},
         component: UserList,
     },

@@ -17,7 +17,9 @@
                                 </p>
                                 <div>
                                     Or already have an account,
-                                    <router-link class="btn-block-option" to="/login" data-toggle="tooltip" data-placement="left" title="Sign In">
+                                    <router-link class="btn-block-option" to="/login"
+                                                 data-toggle="tooltip" data-placement="left"
+                                                 title="Sign In">
                                         <p class="text-muted">Login</p>
                                     </router-link>
                                 </div>
@@ -35,13 +37,13 @@
                                                 v-model="firstName"
                                                 placeholder="First Name"
                                                 autofocus
-                                                @blur="$v.firstName.$touch()"
+                                                @blur="v$.firstName.$touch()"
                                             />
                                         </div>
                                         <div class="text-left">
-                                            <div v-if="$v.firstName.$dirty">
-                                                <sub v-if="$v.firstName.$error"
-                                                     class= "px-2 py-2 text-danger">
+                                            <div v-if="v$.firstName.$dirty">
+                                                <sub v-if="v$.firstName.$error"
+                                                     class="px-2 py-2 text-danger">
                                                     First Name is Required
                                                 </sub>
                                             </div>
@@ -53,13 +55,13 @@
                                                 id="last_name"
                                                 v-model="lastName"
                                                 placeholder="Last Name"
-                                                @blur="$v.lastName.$touch()"
+                                                @blur="v$.lastName.$touch()"
                                             />
                                         </div>
                                         <div class="text-left">
-                                            <div v-if="$v.lastName.$dirty">
-                                                <sub v-if="$v.lastName.$error"
-                                                     class= "px-2 py-2 text-danger">
+                                            <div v-if="v$.lastName.$dirty">
+                                                <sub v-if="v$.lastName.$error"
+                                                     class="px-2 py-2 text-danger">
                                                     Last Name is Required
                                                 </sub>
                                             </div>
@@ -71,13 +73,13 @@
                                                 id="email"
                                                 v-model="userEmail"
                                                 placeholder="Email"
-                                                @blur="$v.userEmail.$touch()"
+                                                @blur="v$.userEmail.$touch()"
                                             />
                                         </div>
                                         <div class="text-left">
-                                            <div v-if="$v.userEmail.$dirty">
-                                                <sub v-if="$v.userEmail.$error"
-                                                     class= "px-2 py-2 text-danger">
+                                            <div v-if="v$.userEmail.$dirty">
+                                                <sub v-if="v$.userEmail.$error"
+                                                     class="px-2 py-2 text-danger">
                                                     Please enter a valid Email address
                                                 </sub>
                                             </div>
@@ -88,14 +90,14 @@
                                                 class="form-control form-control-lg form-control-alt"
                                                 id="phone"
                                                 v-model="phoneNumber"
-                                                @blur="$v.phoneNumber.$touch()"
+                                                @blur="v$.phoneNumber.$touch()"
                                                 placeholder="Phone Number"
                                             />
                                         </div>
                                         <div class="text-left">
-                                            <div v-if="$v.phoneNumber.$dirty">
-                                                <sub v-if="$v.phoneNumber.$error"
-                                                     class= "px-2 py-2 text-danger">
+                                            <div v-if="v$.phoneNumber.$dirty">
+                                                <sub v-if="v$.phoneNumber.$error"
+                                                     class="px-2 py-2 text-danger">
                                                     Phone Number is Required
                                                 </sub>
                                             </div>
@@ -106,15 +108,16 @@
                                                 class="form-control form-control-lg form-control-alt"
                                                 id="password"
                                                 v-model="password"
-                                                @blur="$v.password.$touch()"
+                                                @blur="v$.password.$touch()"
                                                 placeholder="Password"
                                             />
                                         </div>
                                         <div class="text-left">
-                                            <div v-if="$v.password.$dirty">
-                                                <sub v-if="$v.password.$error"
-                                                     class= "px-2 py-2 text-danger">
-                                                    Password is Required (at-least 8 characters long)
+                                            <div v-if="v$.password.$dirty">
+                                                <sub v-if="v$.password.$error"
+                                                     class="px-2 py-2 text-danger">
+                                                    Password is Required (at-least 8 characters
+                                                    long)
                                                 </sub>
                                             </div>
                                         </div>
@@ -124,14 +127,14 @@
                                                 class="form-control form-control-lg form-control-alt"
                                                 id="password_confirmation"
                                                 v-model="confirmPassword"
-                                                @blur="$v.confirmPassword.$touch()"
+                                                @blur="v$.confirmPassword.$touch()"
                                                 placeholder="Confirm Password"
                                             />
                                         </div>
                                         <div class="text-left">
-                                            <div v-if="$v.confirmPassword.$dirty">
-                                                <sub v-if="$v.confirmPassword.$error"
-                                                     class= "px-2 py-2 text-danger">
+                                            <div v-if="v$.confirmPassword.$dirty">
+                                                <sub v-if="v$.confirmPassword.$error"
+                                                     class="px-2 py-2 text-danger">
                                                     Please Enter confirm password same as password
                                                 </sub>
                                             </div>
@@ -140,7 +143,7 @@
                                     <div class="form-group row">
                                         <div class="col-md-6 col-xl-5">
                                             <button
-                                                v-if="$v.$invalid"
+                                                v-if="v$.$invalid"
                                                 type="submit"
                                                 class="btn btn-block btn-alt-primary cursor-not-allowed"
                                                 disabled
@@ -171,23 +174,30 @@
 </template>
 
 <script>
-import {authLogin} from "../../composables/auth";
 import {email, minLength, required, sameAs} from "@vuelidate/validators";
-import {computed} from "vue";
+import {computed, ref} from "vue";
 import useVuelidate from "@vuelidate/core";
+import authService from "../../services/authService";
 
 export default {
     name: "Register",
-    setup(props) {
-        const {
-            firstName,
-            lastName,
-            userEmail,
-            phoneNumber,
-            password,
-            confirmPassword,
-            handleRegistration
-        } = authLogin(props);
+    setup() {
+        const firstName = ref('');
+        const lastName = ref('');
+        const userEmail = ref('');
+        const phoneNumber = ref('');
+        const password = ref('');
+        const confirmPassword = ref('');
+        const handleRegistration = () => {
+            authService.handleRegistration({
+                userEmail: userEmail.value,
+                password: password.value,
+                password_confirmation: confirmPassword.value,
+                phone_number: phoneNumber.value,
+                first_name: firstName.value,
+                last_name: lastName.value
+            });
+        }
         const validationRules = computed(() => {
             return {
                 userEmail: {
@@ -202,23 +212,23 @@ export default {
                     required,
                     sameAsPassword: sameAs(password.value),
                 },
-                firstName:{
+                firstName: {
                     required
                 },
-                lastName:{
+                lastName: {
                     required
                 },
-                phoneNumber:{
+                phoneNumber: {
                     required
                 }
             }
         });
-        const $v = useVuelidate(
+        const v$ = useVuelidate(
             validationRules,
-            {userEmail, password,lastName,firstName,phoneNumber,confirmPassword}
+            {userEmail, password, lastName, firstName, phoneNumber, confirmPassword}
         );
         return {
-            $v,
+            v$,
             firstName,
             lastName,
             userEmail,
@@ -233,7 +243,7 @@ export default {
 </script>
 
 <style scoped>
-.cursor-not-allowed{
+.cursor-not-allowed {
     cursor: not-allowed;
 }
 </style>

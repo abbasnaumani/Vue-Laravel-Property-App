@@ -1,31 +1,26 @@
-import {createApp} from 'vue'
+import {createApp} from 'vue';
 import App from "./App.vue";
-import router from "./router";
+import router from "~/router";
 import store from '~/store';
-import Child from "./components/utilities/Child";
+import Child from "~/components/utilities/Child";
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 
-const options = {
-    // You can set your default options here
-};
 const app = createApp({
     ...App
 })
 .use(store)
 .use(router)
-.use(Toast, options);
-
+.use(Toast, {timeout: 3500});
 router.app = app;
+
+// Global Component Registration
 [
     Child,
 ].forEach(Component => {
-    app.component(Component.name, Component)
-})
-// axios.app = app;
+    app.component(Component.name, Component);
+});
 store.$app = app;
-
-// app.mount('#app');
 router.isReady().then(() => {
     app.mount('#app')
 });

@@ -20,8 +20,8 @@ class Auth
             ->middleware('auth:sanctum');
 
         //password reset routes
-        Route::post( '/forgot/password', [LoginController::class, 'resetPasswordByEmail'])
-            ->name('forgot.password');
+        Route::post( '/send/code', [LoginController::class, 'sendVerificationCode'])
+            ->name('send.code');
         Route::post('/reset/password', [LoginController::class,'resetPassword'])
             ->name('reset.password');
     }

@@ -1,6 +1,6 @@
 <template>
     <div id="page-container"
-         class="sidebar-o enable-page-overlay sidebar-dark side-scroll page-header-fixed main-content-narrow side-trans-enabled">
+         :class='{"sidebar-o enable-page-overlay sidebar-dark side-scroll page-header-fixed main-content-narrow side-trans-enabled":isAuthenticated}'>
         <div v-if="isAuthenticated">
             <auth-header/>
             <sidebar/>

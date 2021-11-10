@@ -6,6 +6,7 @@ use App\Enums\ApiResponseEnum;
 use App\Models\User;
 use App\Notifications\VerifyEmail;
 use App\Services\BaseService\BaseService;
+use Illuminate\Foundation\Mix;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
@@ -16,36 +17,26 @@ class AuthService extends BaseService
     /**
      * @param Request $request
      *
-     *  Method for sending Verification token to user email
+     *  Method for sending Verification code to user email
      *
-     * @return Array
+     * @return Mix
      */
-    public function resetPasswordByEmail(Request $request)
+    public function sendVerificationCode(Request $request)
     {
-        $data = $request->all();
-        if ($data['email']['resendEmail']) {
-            $codeData = $this->customDecode($data['email']['encodedToken']['_value']);
-            $codeDataArray = explode('|', $codeData);
-            $email = $codeDataArray[1] ?? null;
-        } else {
-            $rules = array('email' => 'required|exists:users,email');
-            $v = Validator::make($data, $rules);
-//            dd($v->fails());
-            if ($v->fails()) {
-                $this->setApiErrorMessage($v->errors()->first());
-                return;
-            }
-            $email = $data['email']['userEmail'] ?? '';
+        $rules = array('email' => 'required|exists:users,email');
+        $v = Validator::make($request->all(), $rules);
+        if ($v->fails()) {
+            $this->setApiErrorMessage($v->errors()->first());
+            return $this->getResponse();
         }
-        $user = User::where('email', $email)->first();
+        $user = User::where('email', $request->input('email'))->first();
         if ($user) {
             $userId = !is_null($user->id) ? $user->id : 0;
             if ($userId != '') {
-                $verification = $this->updateOrCreateVerificationToken(['user_id' => $userId, 'type' => 'reset_password', 'type_value' => $email]);
+                $verification = $this->updateOrCreateVerificationToken(['user_id' => $userId, 'type' => 'reset_password', 'type_value' => $request->input('email')]);
                 $verificationCode = $verification->code ?? null;
                 if ($verificationCode) {
-                    $verificationCode = $verification->type . '|' . $user->email . '|' . $verification->id;
-                    $encodedToken = $this->customEncode($verificationCode);
+                    $encodedToken = $this->customEncode($user->email . '|' . $verification->id);
                     Notification::send($user, new VerifyEmail(['token' => $verificationCode]));
                     $this->setApiSuccessMessage(trans('auth.email_sent'), ['token' => $encodedToken]);
                 } else {
@@ -57,7 +48,6 @@ class AuthService extends BaseService
         } else {
             $this->setApiErrorMessage(trans('auth.email_not_found'));
         }
-//        }
     }
 
     /**
@@ -92,7 +82,6 @@ class AuthService extends BaseService
                     } else {
                         $this->setApiErrorMessage(trans('auth.password_not_match'));
                     }
-
                 } else {
                     $this->setApiErrorMessage(trans('auth.password_not_updated'));
                 }
