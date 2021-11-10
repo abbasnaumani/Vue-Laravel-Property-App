@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Property;
 use Illuminate\Http\Request;
-use App\Http\Services\PropertyService;
+use App\Services\PropertyService;
 use Illuminate\Support\Facades\Validator;
 class PropertyController extends Controller
 {

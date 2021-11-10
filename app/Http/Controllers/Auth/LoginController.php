@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\Auth\SendVerificationCodeRequest;
 use App\Services\AuthService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -70,9 +71,9 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function sendVerificationCode(Request $request)
+    public function sendVerificationCode(SendVerificationCodeRequest $request)
     {
-        $this->authService->sendVerificationCode($request);
+        $this->authService->sendVerificationCode($request->getUserFromRequest());
         return $this->getApiResponse();
     }
 

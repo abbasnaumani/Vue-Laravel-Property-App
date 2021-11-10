@@ -56,11 +56,12 @@
                                             >
                                                 <i class="fa fa-fw fa-envelope mr-1"></i>Send Mail
                                             </button>
-                                            <button v-else @click.prevent="handleForgotPassword"
+                                            <button v-else
+                                                    @click.prevent="handleSendVerificationCode"
                                                     type="submit"
                                                     class="btn btn-block btn-alt-primary"
                                             >
-                                                <i class="fa fa-fw fa-envelope mr-1"></i>Send Mail
+                                                <i class="fa fa-fw fa-envelope mr-1"></i>Send Code
                                             </button>
                                         </div>
                                     </div>
@@ -89,9 +90,6 @@ export default {
     name: "ForgotPassword",
     setup() {
         const userEmail = ref('');
-        const handleForgotPassword = async () => {
-            authService.handleForgotPassword(userEmail.value);
-        }
         const validationRules = computed(() => {
             return {
                 userEmail: {
@@ -104,10 +102,13 @@ export default {
             validationRules,
             {userEmail}
         );
+        const handleSendVerificationCode = () => {
+            authService.handleSendVerificationCode({email: userEmail.value});
+        }
         return {
             v$,
             userEmail,
-            handleForgotPassword
+            handleSendVerificationCode
         }
     }
 }

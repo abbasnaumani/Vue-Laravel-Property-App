@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
-use Nuwave\Lighthouse\Exceptions\AuthenticationException;
 
 class LoginRequest extends FormRequest
 {
@@ -93,17 +92,13 @@ class LoginRequest extends FormRequest
     {
         return Str::lower($this->input('email')) . '|' . $this->ip();
     }
+    /*
 
-    /**
-     * Get the rate limiting throttle key for the request.
-     *
-     * @return string
-     */
-    public function verifyCredentials()
-    {
-        $user = User::where('email', $username)->first();
-        if (!$user || !Hash::check($password, $user->password)) {
-            throw new AuthenticationException('These credentials do not match our records.');
-        }
-    }
+        public function verifyCredentials()
+        {
+            $user = User::where('email', $username)->first();
+            if (!$user || !Hash::check($password, $user->password)) {
+                throw new AuthenticationException('These credentials do not match our records.');
+            }
+        }*/
 }

@@ -21,33 +21,33 @@ class AuthService extends BaseService
      *
      * @return Mix
      */
-    public function sendVerificationCode(Request $request)
+    public function sendVerificationCode(User $user)
     {
-        $rules = array('email' => 'required|exists:users,email');
-        $v = Validator::make($request->all(), $rules);
-        if ($v->fails()) {
-            $this->setApiErrorMessage($v->errors()->first());
-            return $this->getResponse();
-        }
-        $user = User::where('email', $request->input('email'))->first();
-        if ($user) {
-            $userId = !is_null($user->id) ? $user->id : 0;
-            if ($userId != '') {
-                $verification = $this->updateOrCreateVerificationToken(['user_id' => $userId, 'type' => 'reset_password', 'type_value' => $request->input('email')]);
-                $verificationCode = $verification->code ?? null;
-                if ($verificationCode) {
-                    $encodedToken = $this->customEncode($user->email . '|' . $verification->id);
-                    Notification::send($user, new VerifyEmail(['token' => $verificationCode]));
-                    $this->setApiSuccessMessage(trans('auth.email_sent'), ['token' => $encodedToken]);
-                } else {
-                    $this->setApiErrorMessage(trans('auth.verify_email_not_sent'));
-                }
+        if ($user && $user->id > 0) {
+            $verification = $this->updateOrCreateVerificationToken(['user_id' => $user->id, 'type' => 'reset_password', 'type_value' => $user->email]);
+            $verificationCode = $verification->code ?? null;
+            if ($verificationCode) {
+                $encodedToken = $this->customEncode($user->email . '|' . $verification->id);
+                Notification::send($user, new VerifyEmail(['token' => $verificationCode]));
+                $this->setApiSuccessMessage(trans('auth.email_sent'), ['token' => $encodedToken]);
             } else {
                 $this->setApiErrorMessage(trans('auth.verify_email_not_sent'));
             }
         } else {
-            $this->setApiErrorMessage(trans('auth.email_not_found'));
+            $this->setApiErrorMessage(trans('auth.verify_email_not_sent'));
         }
+    }
+
+    /**
+     * @param Request $request
+     *
+     *  Method to verify rules for send token
+     *
+     * @return array
+     */
+    public function validateSendVerificationCodeRule(Request $request)
+    {
+
     }
 
     /**
@@ -60,7 +60,7 @@ class AuthService extends BaseService
     public function resetPassword(Request $request)
     {
         $data = $request->all();
-        $rules = array('verificationCode' => 'required', 'encodedToken' => 'required');
+        $rules = array('verification_code' => 'required', 'token' => 'required');
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {
             $this->setApiErrorMessage($validator->errors()->first());
@@ -69,7 +69,6 @@ class AuthService extends BaseService
             $codeDataArray = explode('|', $codeData);
             $type = $codeDataArray[0] ?? null;
             $userEmail = $codeDataArray[1] ?? null;
-
             $user = User::where('email', $userEmail)->first();
             if ($user != null) {
                 $userId = $user->id ?? 0;

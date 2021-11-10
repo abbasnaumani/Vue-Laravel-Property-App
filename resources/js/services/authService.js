@@ -3,10 +3,10 @@ import appApi from "~/api/index";
 import store from "~/store";
 import errorHandlerService from '~/services/errorHandlerService';
 import {useToast} from "vue-toastification";
-import {ApiResponse} from "~/constants";
+import {ApiResponse, LocalStorageKeys} from "~/constants";
 import router from "~/router";
+import localStorageService from "./localStorageService";
 
-const localStorageKey = "loggedIn";
 const toast = useToast();
 
 class AuthService extends EventEmitter {
@@ -51,7 +51,7 @@ class AuthService extends EventEmitter {
     async onLogin(token, profile, rememberMe) {
         try {
             await store.dispatch('setAuthState', {profile, token});
-            localStorage.setItem(localStorageKey, "true");
+            localStorage.setItem(LocalStorageKeys.LOGGED_IN, "true");
         } catch (e) {
             console.log('Error on cache reset (login)', e.message)
         }
@@ -60,9 +60,9 @@ class AuthService extends EventEmitter {
     isAuthenticated() {
         const accessToken = localStorage.getItem('accessToken');
         if (!accessToken) {
-            localStorage.removeItem(localStorageKey);
+            localStorage.removeItem(LocalStorageKeys.LOGGED_IN);
         }
-        return (localStorage.getItem(localStorageKey) === "true");
+        return (localStorage.getItem(LocalStorageKeys.LOGGED_IN) === "true");
     }
 
     async handleLogout() {
@@ -85,17 +85,24 @@ class AuthService extends EventEmitter {
     async onLogout() {
         try {
             await store.dispatch('clearAuthState');
-            localStorage.removeItem(localStorageKey);
+            localStorage.removeItem(LocalStorageKeys.LOGGED_IN);
             localStorage.clear();
         } catch (e) {
             console.log('Error on cache reset (logout)', e.message)
         }
     }
 
-    async handleForgotPassword(email) {
+    async handleSendVerificationCode(payload) {
         try {
-            const response = await appApi.post('/send/code', {email});
+            const response = await appApi.post('/send/code', payload);
             if (response.data.status === ApiResponse.SUCCESS) {
+                if (payload.email) {
+                    await localStorageService.setWithExpiry({
+                        key: LocalStorageKeys.USER_EMAIL,
+                        value: payload.email,
+                        ttl: LocalStorageKeys.TTL
+                    });
+                }
                 toast.success(response.data.message);
                 router.push({
                     name: 'reset-password',
@@ -113,7 +120,19 @@ class AuthService extends EventEmitter {
 
     async handleUpdatePassword(data) {
         try {
-            return await appApi.post('/reset/password', data)
+            const response = await appApi.post('/reset/password', data);
+            if (response.data.status === ApiResponse.SUCCESS) {
+                toast.success(response.data.message, {
+                    timeout: 3500
+                });
+                await router.push({
+                    path: '/login'
+                });
+            } else {
+                toast.error(response.data.message, {
+                    timeout: 3500
+                });
+            }
 
         } catch (err) {
             console.log(err, "catch error");

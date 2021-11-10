@@ -2,7 +2,7 @@
     <div class="hero-static">
         <div class="content">
             <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-8 col-xl-4">
+                <div class="col-md-8 col-lg-8 col-xl-6">
                     <!-- Reminder Block -->
                     <div class="block block-rounded block-themed mb-0">
                         <div class="block-header bg-primary-dark">
@@ -12,16 +12,8 @@
                             <div class="p-sm-3 px-lg-4 py-lg-5">
                                 <h1 class="h2 mb-1">KodeStudio</h1>
                                 <p class="text-muted">
-                                    Please provide 4 digit code that we have send on your email.
+                                    Please provide 6 digit code that we have send on your email.
                                 </p>
-                                <div>
-                                    Or click on the link for log into your account.
-                                    <router-link class="btn-block-option " to="/login"
-                                                 data-toggle="tooltip" data-placement="left"
-                                                 title="Sign In">
-                                        <p class="text-muted fs-sm fw-medium">Login</p>
-                                    </router-link>
-                                </div>
                                 <!-- Reminder Form -->
                                 <!-- jQuery Validation (.js-validation-reminder class is initialized in js/pages/op_auth_reminder.min.js which was auto compiled from _js/pages/op_auth_reminder.js) -->
                                 <!-- For more info and examples you can check out https://github.com/jzaefferer/jquery-validation -->
@@ -84,7 +76,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-md-6 col-xl-5">
+                                        <div class="col-sm-6 col-md-6 col-xl-5">
                                             <button
                                                 type="submit"
                                                 class="btn btn-block btn-alt-primary cursor-not-allowed"
@@ -100,13 +92,9 @@
                                                 <i class="fa fa-fw fa-lock mr-1"></i>Update Password
                                             </button>
                                         </div>
-                                        <div class="col-md-6 col-xl-5">
-                                            <a
-                                                @click.prevent="handleForgotPassword"
-                                                class="btn btn-block btn-alt-primary"
-                                            >
-                                                <i class="fa fa-fw fa-envelope mr-1"></i>Resend
-                                                Email
+                                        <div class="col-sm-6 col-md-6 col-xl-5 text-center mt-1">
+                                            <a title="Not received code?" @click.prevent="handleResendVerificationCode" class="block-link-shadow" style="cursor: pointer;">
+                                                Resend Code
                                             </a>
                                         </div>
                                     </div>
@@ -130,18 +118,17 @@ import {computed, ref} from "vue";
 import {minLength, required, sameAs} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
 import authService from "../../services/authService";
-import {ApiResponse} from "../../constants";
+import {ApiResponse, LocalStorageKeys} from "../../constants";
 import {useRouter} from "vue-router";
 import {useToast} from "vue-toastification";
+import localStorageService from "../../services/localStorageService";
 
 export default {
     name: "ResetPassword",
     props: {
         encodedToken: String,
     },
-    setup() {
-        const router = useRouter();
-        const toast = useToast();
+    setup(props) {
         const verificationCode = ref('');
         const password = ref('');
         const confirmPassword = ref('');
@@ -164,44 +151,26 @@ export default {
             validationRules,
             {verificationCode, password, confirmPassword}
         );
-        const handleForgotPassword = async () => {
-            let response = await authService.handleForgotPassword(
-                (userEmail.value !== '') ? ({userEmail: userEmail.value, resendEmail: false})
-                    : ({encodedToken: encodedToken, resendEmail: true}));
-            if (response.data.status === ApiResponse.SUCCESS) {
-                toast.success(response.data.message);
-                router.push(
-                    {name: 'reset-password', params: {encodedToken: response.data.data.toke}});
-            } else {
-                toast.error(response.data.message);
-            }
+        const handleResendVerificationCode = async () => {
+            await authService.handleSendVerificationCode({
+                email: await localStorageService.getWithExpiry(LocalStorageKeys.USER_EMAIL),
+                token: props.encodedToken
+            });
         }
-        const handleUpdatePassword = async () => {
-            let response = await authService.handleUpdatePassword({
+        const handleUpdatePassword = () => {
+            authService.handleUpdatePassword({
                 verificationCode: verificationCode.value,
-                encodedToken: encodedToken.value,
+                encodedToken: props.encodedToken,
                 password: password.value,
                 password_confirmation: confirmPassword.value
             });
-            if (response.data.status === ApiResponse.SUCCESS) {
-                toast.success(response.data.message, {
-                    timeout: 3500
-                });
-                await router.push({
-                    path: '/login'
-                });
-            } else {
-                toast.error(response.data.message, {
-                    timeout: 3500
-                });
-            }
         }
         return {
             v$,
             password,
             confirmPassword,
             verificationCode,
-            handleForgotPassword,
+            handleResendVerificationCode,
             handleUpdatePassword
         }
     }
