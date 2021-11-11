@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Property;
+use App\Enums\ApiResponseEnum;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Services\PropertyService;
-use Illuminate\Support\Facades\Validator;
 class PropertyController extends Controller
 {
     protected $propertyService;
@@ -16,74 +16,45 @@ class PropertyController extends Controller
     }
 
     /**
-     * Give all property data in response
-     * @return mixed
+     * Give property data in response
+     * @return JsonResponse
      */
-    public function listProperty(){
-        $properties = Property::all();
-        return $this->success("Data Retrieved Successfully", ['data'=>$properties]);
-    }
-    public function store(Request $request){
-
-        $validationResponse = $this->propertyService->propertyValidation($request);
-//        dd($validationResponse,$validationResponse['status'],isset($validationResponse['status'] && trim($validationResponse['status'] == 'success'));
-        if($validationResponse['status']){
-
-        }
-        $response = $this->propertyService->propertyAddUpdate($request);
-        if (isset($response['status']) && trim($response['status']) == 'success') {
-            return $this->success($response);
-        }else{
-            return $this->error($response);
-        }
+    public function show(Request $request){
+        $this->propertyService->show($request);
+        return $this->getApiResponse();
     }
     /**
-     * Create or Update Property in Properties Table
+     * Create Property Method.
      * @param Request $request
-     * @return mixed
+     * @return JsonResponse
      */
-    public function propertyAddUpdate(Request $request){
-        $validator = Validator::make($request->all(), [
-            'is_update' => 'required|bool',
-            'property_id' => 'required_if:is_update,1|exists:properties,id',
-            'user_id' => 'required',
-            'property_sub_type_id' => 'required',
-            'area_unit_id' => 'required',
-            'city_id' => 'required',
-            'title' => 'required',
-            'area' => 'required',
-            'purpose' => 'required',
-            'price' => 'required',
-            'location' => 'required'
-        ]);
-        if ($validator->fails()) {
-            return $this->errorResponse(trans('auth.validation_failed'), ['errors' => $validator->errors()]);
+    public function store(Request $request)
+    {
+        $this->propertyService->propertyStoreValidation($request);
+        if(isset($this->getResponse()->status) && trim($this->getResponse()->status == ApiResponseEnum::SUCCESS_RESPONSE)) {
+                $this->propertyService->propertyStore($request);
         }
-        $response = $this->propertyService->propertyAddUpdate($request);
-        if (isset($response['status']) && trim($response['status']) == 'success') {
-            return $this->successResponse($response);
-        }else{
-            return $this->errorResponse($response);
-        }
+        return $this->getApiResponse();
     }
-
+    /**
+     * Property Update Method. That Update existing property.
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function update(Request $request)
+    {
+        $this->propertyService->propertyUpdateValidation($request);
+        if(isset($this->getResponse()->status) && trim($this->getResponse()->status == ApiResponseEnum::SUCCESS_RESPONSE))
+            $this->propertyService->propertyUpdate($request);
+        return $this->getApiResponse();
+    }
     /**
      * delete Property record from properties table
-     * @param $id
-     * @return mixed
+     * @param $property_id
+     * @return JsonResponse
      */
-    public function deleteProperty($id){
-        $propertyId = $id ?? 0;
-        $property = Property::find($propertyId);
-        if($property){
-            $property->delete();
-            return $this->successResponse(trans('auth.property_delete'), ['data'=>$property]);
-        }else{
-            return $this->errorResponse("Property Not Available.");
-        }
-    }
-    public function test(){
-        $property = Property::all();
-        dd($property,$property->toArray());
+    public function destroy($property_id){
+        $this->propertyService->destroy($property_id);
+        return $this->getApiResponse();
     }
 }
