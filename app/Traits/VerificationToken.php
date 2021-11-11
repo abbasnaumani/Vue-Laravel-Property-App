@@ -56,7 +56,7 @@ trait VerificationToken
         if ($verify) {
             $this->isTokenVerified = true;
             $this->setApiSuccessMessage(trans('auth.link_token_success'));
-            //$verify->delete();
+            $verify->delete();
         } else {
             $this->setApiErrorMessage(trans('auth.link_token_expire'));
         }

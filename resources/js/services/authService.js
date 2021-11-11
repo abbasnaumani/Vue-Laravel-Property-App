@@ -14,10 +14,10 @@ class AuthService extends EventEmitter {
         try {
             const response = await appApi.post('/register', newUser)
             if (response.data.status === ApiResponse.SUCCESS) {
-                toast.success("Login Successfully");
-                await this.onLogin(response.data.token,
-                    response.data.user_data);
-                this.emit('loginSuccess');
+                toast.success("Registration Completed!");
+                await this.onLogin(response.data.data.token,
+                    response.data.data.user_data, true);
+                router.push({name: `user-dashboard`});
             } else {
                 toast.error(response.data.message);
             }
@@ -35,7 +35,6 @@ class AuthService extends EventEmitter {
             if (response.data.status === ApiResponse.SUCCESS) {
                 await this.onLogin(response.data.data.token,
                     response.data.data.user_data, rememberMe);
-                // this.emit('loginSuccess', response);
                 router.push({name: `user-dashboard`});
             } else {
                 toast.error(response.data.message);
@@ -70,7 +69,6 @@ class AuthService extends EventEmitter {
             const response = await appApi.post('/logout');
             if (response.data.status === ApiResponse.SUCCESS) {
                 await this.onLogout();
-                //this.emit('logoutSuccess');
                 router.push({name: `login`});
             } else {
                 toast.error(response.data.message);
@@ -133,7 +131,6 @@ class AuthService extends EventEmitter {
                     timeout: 3500
                 });
             }
-
         } catch (err) {
             console.log(err, "catch error");
             const error = await errorHandlerService.errors.index(err);

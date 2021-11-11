@@ -26,12 +26,12 @@ class LoginController extends Controller
     {
         $request->authenticate();
         $user = $this->getAuthUser();
-        $token = $this->authUserToken($user);
-        $userData = $user ? $user->toArray() : [];
-        $userId = $userData['id'] ?? 0;
-        $responseData = ['token' => $token, 'user_data' => $userData, 'user_id' => $userId, 'expiresIn' => null, 'redirect_to' => '/'];
+        $this->setApiSuccessMessage(trans('auth.login_success'), [
+            'token' => $this->authUserToken($user),
+            'user_data' => $user,
+            'expires_in' => null
+        ]);
         $this->destroySession(); // It's only for APIs to destroy session if any
-        $this->setApiSuccessMessage(trans('auth.login_success'), $responseData);
         return $this->getApiResponse();
     }
 

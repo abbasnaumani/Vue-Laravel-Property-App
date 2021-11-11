@@ -23,10 +23,6 @@
                                         <p class="text-muted">Login</p>
                                     </router-link>
                                 </div>
-
-                                <!-- Sign Up Form -->
-                                <!-- jQuery Validation (.js-validation-signup class is initialized in js/pages/op_auth_signup.min.js which was auto compiled from _js/pages/op_auth_signup.js) -->
-                                <!-- For more info and examples you can check out https://github.com/jzaefferer/jquery-validation -->
                                 <form>
                                     <div class="py-3">
                                         <div class="form-group">
@@ -190,7 +186,7 @@ export default {
         const confirmPassword = ref('');
         const handleRegistration = () => {
             authService.handleRegistration({
-                userEmail: userEmail.value,
+                email: userEmail.value,
                 password: password.value,
                 password_confirmation: confirmPassword.value,
                 phone_number: phoneNumber.value,

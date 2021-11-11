@@ -34,7 +34,8 @@ class ResetPasswordRequest extends FormRequest
         return [
             'verification_code' => 'required|numeric|digits:6',
             'email' => 'required_without:token|nullable|exists:users,email',
-            'token' => 'required_without:email'
+            'token' => 'required_without:email',
+            'password' => 'required|string|confirmed|min:8'
         ];
     }
 

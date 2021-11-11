@@ -21,11 +21,7 @@
                                         <p class="text-muted">Create An Account</p>
                                     </router-link>
                                 </div>
-                                <!-- Sign In Form -->
-                                <!-- jQuery Validation (.js-validation-signin class is initialized in js/pages/op_auth_signin.min.js which was auto compiled from _js/pages/op_auth_signin.js) -->
-                                <!-- For more info and examples you can check out https://github.com/jzaefferer/jquery-validation -->
                                 <form>
-
                                     <div class="py-3">
                                         <div class="form-group">
                                             <input

@@ -1,5 +1,4 @@
 import { createStore } from 'vuex';
-import router from "../router";
 // Load store modules dynamically.
 const requireContext = require.context('~/store/modules', false, /.*\.js$/);
 

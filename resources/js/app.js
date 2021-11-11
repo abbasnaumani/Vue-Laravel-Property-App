@@ -5,6 +5,7 @@ import store from '~/store';
 import Child from "~/components/utilities/Child";
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
+import VueElementLoading from "vue-element-loading";
 
 const app = createApp({
     ...App
@@ -17,6 +18,7 @@ router.app = app;
 // Global Component Registration
 [
     Child,
+    VueElementLoading
 ].forEach(Component => {
     app.component(Component.name, Component);
 });
