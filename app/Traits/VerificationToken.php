@@ -3,62 +3,74 @@
 namespace App\Traits;
 
 use App\Models\UserVerify;
+use Ramsey\Uuid\Type\Integer;
 
 trait VerificationToken
 {
-    public function updateOrCreateVerificationToken($paramsData = [])
+    protected $debugMode;
+    protected $status;
+
+    /**
+     * Method for sending Verification code to user email
+     *
+     * @param array $params
+     * @return UserVerify
+     */
+    public function updateOrCreateVerificationCode(array $params = []): UserVerify
     {
-        $userId = $paramsData['user_id'] ?? 0;
-        $type = $paramsData['type'] ?? '';
-        $typeValue = $paramsData['type_value'] ?? '';
-        $verify = UserVerify::where(['user_id' => $userId, 'type' => $type])->first();
-        if ($verify) {
-            $verify->code = $this->generateVerificationToken();
-            $verify->save();
-        } else {
-            $verify = new UserVerify();
-            $verify->code = $this->generateVerificationToken();
-            $verify->user_id = $userId;
-            $verify->type = $type;
-            $verify->type_value = $typeValue;
-            $verify->save();
+        $userId = $params['user_id'] ?? 0;
+        $type = $params['type'] ?? '';
+        $userVerify = UserVerify::where(['user_id' => $userId, 'type' => $type])->first();
+        if (!$userVerify) {
+            $userVerify = new UserVerify();
+            $userVerify->user_id = $userId;
+            $userVerify->type = $type;
+            $userVerify->type_value = $params['type_value'] ?? '';
         }
-        return $verify;
+        $userVerify->code = $this->generateVerificationCode();
+        $userVerify->save();
+        return $userVerify;
     }
 
-    public function generateVerificationToken()
+    /**
+     * Method to generate random 6 digits code
+     *
+     * @return int
+     */
+    public function generateVerificationCode(): int
     {
         return mt_rand(100000, 999999);
     }
 
-    public function verifyVerificationToken($paramsData)
+    /**
+     * Method to verify Code
+     *
+     * @param array $params
+     * @return array
+     */
+    public function verifyVerificationCode(array $params = []): array
     {
-        $userId = $paramsData['user_id'] ?? 0;
-        $type = $paramsData['type'] ?? '';
-        $code = $paramsData['code'] ?? '';
-        $testing = false;
-        if ($testing && $code == "654321") {
-            $verify = UserVerify::where(['user_id' => $userId, 'type' => $type])->first();
-            if ($verify) {
-                $this->setApiSuccessMessage(trans('auth.link_token_success'));
-                $verify->delete();
+        if ($this->debugMode && $params['code'] == "654321") {
+            unset($params['code']);
+        }
+        $verify = UserVerify::where($params)->first();
+        if ($verify) {
+            $this->setApiSuccessMessage(trans('auth.link_token_success'));
+            $verify->delete();
 
-            } else {
-                $this->setApiErrorMessage(trans('auth.link_token_expire'));
-            }
         } else {
-            $verify = UserVerify::where(['user_id' => $userId, 'type' => $type, 'code' => $code])->first();
-            if ($verify) {
-                $this->setApiSuccessMessage(trans('auth.link_token_success'));
-                $verify->delete();
-            } else {
-                $this->setApiErrorMessage(trans('auth.link_token_expire'));
-            }
+            $this->setApiErrorMessage(trans('auth.link_token_expire'));
         }
         return $this->getResponse();
     }
 
-    public static function customQuickRandom($length = 16)
+    /**
+     * Method to Generate Custom Random String
+     *
+     * @param int $length
+     * @return string
+     */
+    public static function customQuickRandom(int $length = 16): string
     {
         $pool = 'ABCDEFGHIJKL34567mnopqrstuvwxyzMNOPQRSTUVWXYZ01289abcdefghijkl';
         return substr(str_shuffle(str_repeat($pool, 5)), 0, $length);

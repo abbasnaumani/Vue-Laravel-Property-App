@@ -29,7 +29,7 @@ export default [
         props: true,
     },
     {
-        path: '/reset/password/:encodedToken?',
+        path: '/reset/password/:encodedToken',
         name: 'reset-password',
         component: page('auth/ResetPassword'),
         meta: {login: true, meta_title: 'Reset Password'},

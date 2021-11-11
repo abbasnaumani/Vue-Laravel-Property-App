@@ -7,7 +7,7 @@ use App\Traits\CustomHash;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\ValidationException;
 
-class SendVerificationCodeRequest extends FormRequest
+class ResetPasswordRequest extends FormRequest
 {
     use CustomHash;
 
@@ -31,6 +31,7 @@ class SendVerificationCodeRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'verification_code'=>'required|numeric|min:6|max:6',
             'email' => 'required_without:token|nullable|exists:users,email',
             'token' => 'required_without:email'
         ];

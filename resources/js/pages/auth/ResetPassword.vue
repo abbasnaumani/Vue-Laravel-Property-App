@@ -14,13 +14,7 @@
                                 <p class="text-muted">
                                     Please provide 6 digit code that we have send on your email.
                                 </p>
-                                <!-- Reminder Form -->
-                                <!-- jQuery Validation (.js-validation-reminder class is initialized in js/pages/op_auth_reminder.min.js which was auto compiled from _js/pages/op_auth_reminder.js) -->
-                                <!-- For more info and examples you can check out https://github.com/jzaefferer/jquery-validation -->
                                 <form>
-                                    <!--                                        <x-input type="hidden" class="form-control form-control-lg form-control-alt"-->
-                                    <!--                                                 id="password" name="token" value="{{$request->token}}"-->
-                                    <!--                                                 placeholder="Password"/>-->
                                     <div class="form-group">
                                         <input
                                             type="text"
@@ -93,7 +87,9 @@
                                             </button>
                                         </div>
                                         <div class="col-sm-6 col-md-6 col-xl-5 text-center mt-1">
-                                            <a title="Not received code?" @click.prevent="handleResendVerificationCode" class="block-link-shadow" style="cursor: pointer;">
+                                            <a title="Not received code?"
+                                               @click.prevent="handleResendVerificationCode"
+                                               class="block-link-shadow" style="cursor: pointer;">
                                                 Resend Code
                                             </a>
                                         </div>
@@ -118,9 +114,7 @@ import {computed, ref} from "vue";
 import {minLength, required, sameAs} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
 import authService from "../../services/authService";
-import {ApiResponse, LocalStorageKeys} from "../../constants";
-import {useRouter} from "vue-router";
-import {useToast} from "vue-toastification";
+import {LocalStorageKeys} from "../../constants";
 import localStorageService from "../../services/localStorageService";
 
 export default {

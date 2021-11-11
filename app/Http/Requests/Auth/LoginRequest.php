@@ -18,7 +18,7 @@ class LoginRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -28,7 +28,7 @@ class LoginRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'email' => 'required|string|email',
@@ -88,17 +88,8 @@ class LoginRequest extends FormRequest
      *
      * @return string
      */
-    public function throttleKey()
+    public function throttleKey(): string
     {
         return Str::lower($this->input('email')) . '|' . $this->ip();
     }
-    /*
-
-        public function verifyCredentials()
-        {
-            $user = User::where('email', $username)->first();
-            if (!$user || !Hash::check($password, $user->password)) {
-                throw new AuthenticationException('These credentials do not match our records.');
-            }
-        }*/
 }
