@@ -12,6 +12,7 @@ class ResetPasswordRequest extends FormRequest
     use CustomHash;
 
     protected $email;
+    protected $userVerifyId;
 
     /**
      * Determine if the user is authorized to make this request.
@@ -31,16 +32,31 @@ class ResetPasswordRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'verification_code'=>'required|numeric|min:6|max:6',
+            'verification_code' => 'required|numeric|digits:6',
             'email' => 'required_without:token|nullable|exists:users,email',
             'token' => 'required_without:email'
         ];
     }
 
     /**
+     * Method to Get Email from the request inputs
+     * @throws ValidationException
+     */
+    public function getEmail()
+    {
+        $this->setEmailFromRequest();
+        if ($this->email) {
+            return $this->email;
+        }
+        throw ValidationException::withMessages([
+            'email' => __('auth.email_not_found'),
+        ]);
+    }
+
+    /**
      * Method to Set Email from the request inputs
      */
-    public function setEmailFromInput()
+    public function setEmailFromRequest()
     {
         if ($this->input('email')) {
             $this->email = $this->input('email');
@@ -49,22 +65,36 @@ class ResetPasswordRequest extends FormRequest
             if ($tokenData) {
                 $tokenDataArr = explode('|', $tokenData);
                 $this->email = $tokenDataArr[0] ?? null;
+                $this->userVerifyId = $tokenDataArr[1] ?? null;
             }
         }
     }
     /**
-     * Method to Get Email from the request inputs
+     * Method to Get User Verify ID from the request inputs
      * @throws ValidationException
      */
-    public function getEmail()
+    public function getUserVerifyId()
     {
-        $this->setEmailFromInput();
-        if ($this->email) {
-            return $this->email;
+        $this->setUserVerifyIdFromRequest();
+        if ($this->userVerifyId) {
+            return $this->userVerifyId;
         }
         throw ValidationException::withMessages([
-            'email' => __('auth.email_not_found'),
+            'email' => __('auth.link_token_expire'),
         ]);
+    }
+
+    /**
+     * Method to Set User Verify ID from the request inputs
+     */
+    public function setUserVerifyIdFromRequest()
+    {
+        $tokenData = $this->customDecode($this->input('token'));
+        if ($tokenData) {
+            $tokenDataArr = explode('|', $tokenData);
+            $this->email = $tokenDataArr[0] ?? null;
+            $this->userVerifyId = $tokenDataArr[1] ?? null;
+        }
     }
 
     /**

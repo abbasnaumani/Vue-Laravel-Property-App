@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
-use App\Http\Requests\Auth\SendVerificationCodeRequest;
 use App\Services\AuthService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -22,9 +20,9 @@ class LoginController extends Controller
      * Handle an incoming authentication request.
      *
      * @param \App\Http\Requests\Auth\LoginRequest $request
-     * @return array
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function login(LoginRequest $request)
+    public function login(LoginRequest $request): \Illuminate\Http\JsonResponse
     {
         $request->authenticate();
         $user = $this->getAuthUser();
@@ -40,10 +38,9 @@ class LoginController extends Controller
     /**
      * Destroy an authenticated session.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function logout(Request $request)
+    public function logout(): \Illuminate\Http\JsonResponse
     {
         $user = $this->getAuthUser();
         if ($user) {
@@ -57,36 +54,9 @@ class LoginController extends Controller
      * Destroy an authenticated session.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroySession()
     {
         Auth::guard('web')->logout();
-    }
-
-    /**
-     * @param Request $request
-     *
-     *  Method for sending Verification token to user email
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function sendVerificationCode(SendVerificationCodeRequest $request)
-    {
-        $this->authService->sendVerificationCode($request->getUserFromRequest());
-        return $this->getApiResponse();
-    }
-
-    /**
-     * @param Request $request
-     *
-     *  Method for Verify Email Token
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function resetPassword(Request $request)
-    {
-        $this->authService->resetPassword($request);
-        return $this->getApiResponse();
     }
 }

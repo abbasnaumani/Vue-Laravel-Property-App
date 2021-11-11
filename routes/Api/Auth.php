@@ -4,6 +4,7 @@ namespace Route\Api;
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use \Illuminate\Support\Facades\Route;
 
 class Auth
@@ -20,9 +21,9 @@ class Auth
             ->middleware('auth:sanctum');
 
         //password reset routes
-        Route::post( '/send/code', [LoginController::class, 'sendVerificationCode'])
+        Route::post( '/send/code', [ResetPasswordController::class, 'sendVerificationCode'])
             ->name('send.code');
-        Route::post('/reset/password', [LoginController::class,'resetPassword'])
+        Route::post('/reset/password', [ResetPasswordController::class,'resetPassword'])
             ->name('reset.password');
     }
 }

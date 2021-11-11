@@ -3,12 +3,11 @@
 namespace App\Traits;
 
 use App\Models\UserVerify;
-use Ramsey\Uuid\Type\Integer;
 
 trait VerificationToken
 {
-    protected $debugMode;
-    protected $status;
+    protected $debugMode = true;
+    protected $isTokenVerified;
 
     /**
      * Method for sending Verification code to user email
@@ -46,18 +45,18 @@ trait VerificationToken
      * Method to verify Code
      *
      * @param array $params
-     * @return array
+     * @return object
      */
-    public function verifyVerificationCode(array $params = []): array
+    public function verifyVerificationCode(array $params = []): object
     {
         if ($this->debugMode && $params['code'] == "654321") {
             unset($params['code']);
         }
         $verify = UserVerify::where($params)->first();
         if ($verify) {
+            $this->isTokenVerified = true;
             $this->setApiSuccessMessage(trans('auth.link_token_success'));
-            $verify->delete();
-
+            //$verify->delete();
         } else {
             $this->setApiErrorMessage(trans('auth.link_token_expire'));
         }

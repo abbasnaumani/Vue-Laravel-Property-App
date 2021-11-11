@@ -38,30 +38,12 @@ class AuthService extends BaseService
      */
     public function resetPassword(Request $request)
     {
-        $data = $request->all();
-        $codeData = $this->customDecode($request->encodedToken);
-        $codeDataArray = explode('|', $codeData);
-        $type = $codeDataArray[0] ?? null;
-        $userEmail = $codeDataArray[1] ?? null;
-        $user = User::where('email', $userEmail)->first();
-        if ($user != null) {
-            $userId = $user->id ?? 0;
-            $response = $this->verifyVerificationCode(['user_id' => $userId, 'type' => $type, 'code' => $request->verificationCode]);
-            if (isset($response->status) && trim($response->status) == ApiResponseEnum::SUCCESS_RESPONSE) {
-                if ($request->password === $request->password_confirmation) {
-                    $user->password = Hash::make($request->password);
-                    $user->save();
-                    $this->setApiSuccessMessage(trans('auth.password_updated'));
-                } else {
-                    $this->setApiErrorMessage(trans('auth.password_not_match'));
-                }
-            } else {
-                $this->setApiErrorMessage(trans('auth.password_not_updated'));
-            }
-        } else {
-            $this->setApiErrorMessage(trans('auth.user_not_found'));
+        $user = $request->getUserFromRequest();
+        $this->verifyVerificationCode(['user_id' => $user->id, 'id' => $request->getUserVerifyId(), 'code' => $request->verification_code]);
+        if ($this->isTokenVerified) {
+            $user->password = Hash::make($request->password);
+            $user->save();
+            $this->setApiSuccessMessage(trans('auth.password_updated'));
         }
-
     }
-
 }

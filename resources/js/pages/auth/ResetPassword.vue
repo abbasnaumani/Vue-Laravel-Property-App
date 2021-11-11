@@ -123,9 +123,9 @@ export default {
         encodedToken: String,
     },
     setup(props) {
-        const verificationCode = ref('');
-        const password = ref('');
-        const confirmPassword = ref('');
+        const verificationCode = ref('654321');
+        const password = ref('12345678');
+        const confirmPassword = ref('12345678');
         const validationRules = computed(() => {
             return {
                 verificationCode: {
@@ -153,8 +153,8 @@ export default {
         }
         const handleUpdatePassword = () => {
             authService.handleUpdatePassword({
-                verificationCode: verificationCode.value,
-                encodedToken: props.encodedToken,
+                verification_code: verificationCode.value,
+                token: props.encodedToken,
                 password: password.value,
                 password_confirmation: confirmPassword.value
             });
