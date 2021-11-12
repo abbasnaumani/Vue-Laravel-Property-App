@@ -18,9 +18,9 @@ class PropertySubType extends Model
     /**
      * Property Sub Type belongs to a Property
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function property(){
-        return $this->belongsTo(Property::class);
+        return $this->hasOne(Property::class);
     }
 }

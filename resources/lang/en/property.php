@@ -7,7 +7,7 @@ return [
     | Authentication Language Lines
     |--------------------------------------------------------------------------
     |
-    | The following language lines are used during authentication for various
+    | The following language lines are used during property operations for various
     | messages that we need to display to the user. You are free to modify
     | these language lines according to your application's requirements.
     |
@@ -29,8 +29,6 @@ return [
     'data_retrieved' => 'Data Retrieved Successfully.',
     'property_not_found' => 'Property Data Not Found.',
 
-    'registration_success' => 'Registered successfully.',
-    'registration_failed' => 'Registration Failed.',
 
 
 ];

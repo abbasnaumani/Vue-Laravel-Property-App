@@ -53,6 +53,32 @@ export default [
         meta: {public: false, meta_title: 'User List'},
         component: UserList,
     },
+    {
+        path: '/property',
+        name: 'property-dashboard',
+        meta: {public: false, meta_title: 'Property Dashboard'},
+        component: page('property/Dashboard'),
+    },
+    {
+        path: '/property/details/:propertyId',
+        name: 'user-list',
+        meta: {public: false, meta_title: 'Property Details'},
+        component: page('property/PropertyDetails'),
+        props: ({params}) => ({propertyId: params.propertyId || 0}),
+    },
+    {
+        path: '/property/add',
+        name: 'user-list',
+        meta: {public: false, meta_title: 'Add Property'},
+        component: page('property/AddProperty'),
+    },
+    {
+        path: '/property/edit/:propertyId',
+        name: 'user-list',
+        meta: {public: false, meta_title: 'Edit Property'},
+        component: page('property/EditProperty'),
+        props: ({params}) => ({propertyId: params.propertyId || 0}),
+    },
 
     {
         path: '/logout',

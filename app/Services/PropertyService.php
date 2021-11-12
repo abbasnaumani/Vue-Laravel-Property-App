@@ -20,14 +20,14 @@ class PropertyService extends BaseService
                 return ;
             }
         }else{
-            $property = Property::all() ?? [];
+            $property = Property::with('propertyDetail','user','city','areaUnit','propertySubType')->where('user_id',$this->getAuthUserId())->get();
         }
         $this->setApiSuccessMessage(trans('property.properties_retrieved'),$property);
     }
     /**
      * Create property Validation Rules.
      * @param $request
-     * @return Array
+     * @return void
      */
     public function propertyStoreValidation($request){
         $validator = Validator::make($request->all(), [
@@ -56,6 +56,10 @@ class PropertyService extends BaseService
      */
     public function propertyStore(Request $request)
     {
+//        $user = $this->getAuthUser();
+//        if($user){
+//
+//        }
         DB::beginTransaction();
         try {
             $propertyData = [

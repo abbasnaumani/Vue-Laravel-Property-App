@@ -13,11 +13,11 @@ class Property
         Route::group(['middleware' => ['auth:sanctum']], function(){
             Route::post('/properties', [PropertyController::class,'store'])
                 ->name('properties.store');
-            Route::put('/properties/{property_id}', [PropertyController::class,'update'])
+            Route::put('/properties/{propertyId}', [PropertyController::class,'update'])
                 ->name('properties.update');
-            Route::get('/properties/{property_id?}',[PropertyController::class, 'show'])
+            Route::get('/properties/{propertyId?}',[PropertyController::class, 'show'])
                 ->name('properties.show');
-            Route::delete('/properties/{property_id}',[PropertyController::class, 'destroy'])
+            Route::delete('/properties/{propertyId}',[PropertyController::class, 'destroy'])
                 ->name('properties.destroy');
         });
     }
