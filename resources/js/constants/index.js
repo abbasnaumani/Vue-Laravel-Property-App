@@ -1,12 +1,14 @@
 export const ApiResponse = {
-    SUCCESS: 'SUCCESS',
-    FAILED: 'FAILED',
-    ERROR: 'ERROR',
-    SUCCESS_CODE: 200
+  SUCCESS: 'SUCCESS',
+  FAILED: 'FAILED',
+  ERROR: 'ERROR',
+  SUCCESS_CODE: 200
 }
 
 export const LocalStorageKeys = {
-    LOGGED_IN: 'loggedIn',
-    USER_EMAIL: 'userEmail',
-    TTL: 5 * 60 * 1000
+  LOGGED_IN: 'loggedIn',
+  USER_EMAIL: 'userEmail',
+  PROFILE: 'profile',
+  ACCESS_TOKEN: 'accessToken',
+  TTL: 5 * 60 * 1000
 }

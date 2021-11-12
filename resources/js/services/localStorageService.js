@@ -9,7 +9,7 @@ const localStorageService = {
         }
         localStorage.setItem(key, JSON.stringify(item));
     },
-    getWithExpiry: async (key) => {
+    getWithExpiry: (key) => {
         const itemStr = localStorage.getItem(key);
         // if the item doesn't exist, return null
         if (!itemStr) {
@@ -21,10 +21,13 @@ const localStorageService = {
         if (now.getTime() > item.expiry) {
             // If the item is expired, delete the item from storage
             // and return null
-            localStorage.removeItem(key);
+            this.removeKey(key);
             return null;
         }
         return item.value;
+    },
+    removeKey: (key) => {
+        localStorage.removeItem(key);
     }
 }
 export default localStorageService;

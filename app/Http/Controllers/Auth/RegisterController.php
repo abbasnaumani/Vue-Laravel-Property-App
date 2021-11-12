@@ -6,20 +6,24 @@ use App\Enums\RoleUser;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
+use App\Services\AuthService;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use DB;
 
 class RegisterController extends Controller
 {
+    protected $authService;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(AuthService $authService)
     {
         $this->middleware('guest');
+        $this->authService = $authService;
     }
 
     /**
@@ -44,11 +48,10 @@ class RegisterController extends Controller
             $user->roles()->sync(RoleUser::AGENT);
             DB::commit();
             event(new Registered($user));
-            $this->setApiSuccessMessage(trans('auth.registration_success'), [
-                'token' => $this->authUserToken($user),
-                'user_data' => $user,
-                'expires_in' => null
-            ]);
+            $this->setApiSuccessMessage(
+                trans('auth.registration_success'),
+                $this->authService->getLoginPayload($user)
+            );
         } catch (\Exception $e) {
             DB::rollBack();
             $this->setApiErrorMessage(trans('auth.registration_failed'));

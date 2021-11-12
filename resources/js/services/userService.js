@@ -11,42 +11,30 @@ class UserService extends EventEmitter {
     async getUserList() {
         try {
             const response = await appApi.get('/user/list');
-            console.log(response,"response");
-            if (response.data.status == ApiResponse.SUCCESS) {
-                toast.success(response.data.message, { // successful registration will auto Logged-in the user
-                    timeout: 3500
-                });
-                await store.dispatch('setUsers', response.data.data);
+            if (response.data.status === ApiResponse.SUCCESS) {
+                toast.success(response.data.message);
+                await store.dispatch('setUsers', response.data.payload);
             } else {
-                toast.error(response.data.message, {
-                    timeout: 5000
-                });
+                toast.error(response.data.message);
             }
 
         } catch (err) {
             console.log(err, "err err")
-            toast.error(err.response.data.message, {
-                timeout: 5000
-            });
             const error = await errorHandlerService.errors.index(err);
-            console.log(error, "error catch")
+            toast.error(error.message);
         }
     }
 
     async getUserMenu() {
         try {
             const response = await appApi.get('/user/menu');
-            store.dispatch('actionUserMenu', response.data.data);
+            await store.dispatch('actionUserMenu', response.data.payload);
         } catch (err) {
-            console.log(err, "err err")
-            toast.error(err.response.data.message, {
-                timeout: 5000
-            });
+            console.log(err, "err err");
             const error = await errorHandlerService.errors.index(err);
-            console.log(error, "error catch")
+            toast.error(error.message);
         }
     }
-
 }
 
 const service = new UserService();

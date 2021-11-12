@@ -145,9 +145,9 @@ export default {
             validationRules,
             {verificationCode, password, confirmPassword}
         );
-        const handleResendVerificationCode = async () => {
-            await authService.handleSendVerificationCode({
-                email: await localStorageService.getWithExpiry(LocalStorageKeys.USER_EMAIL),
+        const handleResendVerificationCode = () => {
+            authService.handleSendVerificationCode({
+                email: localStorageService.getWithExpiry(LocalStorageKeys.USER_EMAIL),
                 token: props.encodedToken
             });
         }

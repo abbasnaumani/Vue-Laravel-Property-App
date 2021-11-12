@@ -16,7 +16,7 @@ trait AuthUser
 
     public function authUserToken($user = null)
     {
-        $user = $user ? $user : $this->getAuthUser();
+        $user = $user ?? $this->getAuthUser();
         return intval($user->id) > 0 ? $user->createToken($this->authTokenKey())->plainTextToken : null;
     }
 
@@ -53,11 +53,11 @@ trait AuthUser
 
     public function isSuperAdminRole()
     {
-        return $this->hasRoleAccess(RoleUser::SuperAdmin);
+        return $this->hasRoleAccess(RoleUser::SUPER_ADMIN);
     }
 
     public function isAdminRole()
     {
-        return $this->hasRoleAccess(RoleUser::Admin);
+        return $this->hasRoleAccess(RoleUser::ADMIN);
     }
 }

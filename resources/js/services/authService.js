@@ -12,11 +12,10 @@ const toast = useToast();
 class AuthService extends EventEmitter {
     async handleRegistration(newUser) {
         try {
-            const response = await appApi.post('/register', newUser)
+            const response = await appApi.post('/register', newUser);
             if (response.data.status === ApiResponse.SUCCESS) {
                 toast.success("Registration Completed!");
-                await this.onLogin(response.data.data.token,
-                    response.data.data.user_data, true);
+                await store.dispatch('actionAuthState', response.data.payload);
                 router.push({name: `user-dashboard`});
             } else {
                 toast.error(response.data.message);
@@ -31,10 +30,9 @@ class AuthService extends EventEmitter {
     async handleLogin(email, password, rememberMe) {
         let credentials = {email, password};
         try {
-            const response = await appApi.post('/login', credentials)
+            const response = await appApi.post('/login', credentials);
             if (response.data.status === ApiResponse.SUCCESS) {
-                await this.onLogin(response.data.data.token,
-                    response.data.data.user_data, rememberMe);
+                await store.dispatch('actionAuthState', response.data.payload);
                 router.push({name: `user-dashboard`});
             } else {
                 toast.error(response.data.message);
@@ -47,21 +45,12 @@ class AuthService extends EventEmitter {
 
     }
 
-    async onLogin(token, profile, rememberMe) {
-        try {
-            await store.dispatch('setAuthState', {profile, token});
-            localStorage.setItem(LocalStorageKeys.LOGGED_IN, "true");
-        } catch (e) {
-            console.log('Error on cache reset (login)', e.message)
-        }
-    }
-
     isAuthenticated() {
-        const accessToken = localStorage.getItem('accessToken');
+        const accessToken = store.getters.getAccessToken;
         if (!accessToken) {
-            localStorage.removeItem(LocalStorageKeys.LOGGED_IN);
+            return false;
         }
-        return (localStorage.getItem(LocalStorageKeys.LOGGED_IN) === "true");
+        return true;
     }
 
     async handleLogout() {
@@ -69,7 +58,6 @@ class AuthService extends EventEmitter {
             const response = await appApi.post('/logout');
             if (response.data.status === ApiResponse.SUCCESS) {
                 await this.onLogout();
-                router.push({name: `login`});
             } else {
                 toast.error(response.data.message);
             }
@@ -81,13 +69,8 @@ class AuthService extends EventEmitter {
     }
 
     async onLogout() {
-        try {
-            await store.dispatch('clearAuthState');
-            localStorage.removeItem(LocalStorageKeys.LOGGED_IN);
-            localStorage.clear();
-        } catch (e) {
-            console.log('Error on cache reset (logout)', e.message)
-        }
+        await store.dispatch('actionClearAuthState');
+        router.push({name: `login`});
     }
 
     async handleSendVerificationCode(payload) {

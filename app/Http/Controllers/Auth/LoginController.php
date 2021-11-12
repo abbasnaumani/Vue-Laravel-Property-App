@@ -25,12 +25,10 @@ class LoginController extends Controller
     public function login(LoginRequest $request): \Illuminate\Http\JsonResponse
     {
         $request->authenticate();
-        $user = $this->getAuthUser();
-        $this->setApiSuccessMessage(trans('auth.login_success'), [
-            'token' => $this->authUserToken($user),
-            'user_data' => $user,
-            'expires_in' => null
-        ]);
+        $this->setApiSuccessMessage(
+            trans('auth.login_success'),
+            $this->authService->getLoginPayload($this->getAuthUser())
+        );
         $this->destroySession(); // It's only for APIs to destroy session if any
         return $this->getApiResponse();
     }

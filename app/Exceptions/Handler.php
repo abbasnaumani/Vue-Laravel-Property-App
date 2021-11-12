@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
 use Kodestudio\ApiResponse\Traits\ApiResponseTrait;
@@ -47,24 +48,12 @@ class Handler extends ExceptionHandler
     {
         $this->renderable(function (Throwable $e) {
             if ($e instanceof ValidationException) {
-                $this->setApiErrorMessage($this->extractErrorMessage($e->errors()), ['errors' => [
-                    'getPrevious' => $e->getPrevious(),
-                    'getMessage' => $e->getMessage(),
-                    'getCode' => $e->getCode(),
-                    'getFile' => $e->getFile(),
-                    'getLine' => $e->getLine(),
-                    'getTrace' => $e->getTrace()
-                ]]);
-                return $this->getApiResponse();
+                $this->setApiErrorMessage($this->extractErrorMessage($e->errors()), ['errors' => $this->traceErrors($e)]);
+            } elseif ($e instanceof AuthenticationException) {
+                $this->setApiErrorMessage($e->getMessage(), ['errors' => $this->traceErrors($e)], 401);
+            } else {
+                $this->setApiErrorMessage($e->getMessage(), ['errors' => $this->traceErrors($e)]);
             }
-            $this->setApiErrorMessage($e->getMessage(), ['errors' => [
-                'getPrevious' => $e->getPrevious(),
-                'getMessage' => $e->getMessage(),
-                'getCode' => $e->getCode(),
-                'getFile' => $e->getFile(),
-                'getLine' => $e->getLine(),
-                'getTrace' => $e->getTrace()
-            ]]);
             return $this->getApiResponse();
         });
     }

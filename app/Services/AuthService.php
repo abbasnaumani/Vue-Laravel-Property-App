@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Enums\ApiResponseEnum;
 use App\Models\User;
 use App\Notifications\VerifyEmail;
 use App\Services\BaseService\BaseService;
@@ -12,6 +11,8 @@ use Illuminate\Support\Facades\Notification;
 
 class AuthService extends BaseService
 {
+    private $user;
+
     /**
      * @param User $user
      *
@@ -45,5 +46,32 @@ class AuthService extends BaseService
             $user->save();
             $this->setApiSuccessMessage(trans('auth.password_updated'));
         }
+    }
+
+    /**
+     * @param User $user
+     *
+     *  Method to get login payload
+     * @return array
+     */
+    public function getLoginPayload(User $user): array
+    {
+        $this->loadUserRelationsForPayload($user);
+        return [
+            'token' => $this->authUserToken($this->user),
+            'user' => $this->user,
+            'expires_in' => null
+        ];
+    }
+
+    /**
+     * @param User $user
+     *
+     *  Method to load User relations for login payload
+     */
+    public function loadUserRelationsForPayload(User $user)
+    {
+        $this->user = $user;
+        $this->user->roles;
     }
 }
