@@ -33,8 +33,15 @@ return [
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
+            'url' => env('APP_URL', 'http://127.0.0.1:8000/').'storage/app',
+            'visibility' => 'public'
         ],
-
+        'uploads' => [
+            'driver' => 'local',
+            'root'   => public_path('uploads'),
+            'url' => env('APP_URL', 'http://127.0.0.1:8000/').'uploads',
+            'visibility' => 'public'
+        ],
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
