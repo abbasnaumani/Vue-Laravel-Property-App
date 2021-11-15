@@ -9,16 +9,13 @@ class Property
 {
     static function register()
     {
-
         Route::group(['middleware' => ['auth:sanctum']], function(){
-            Route::post('/properties', [PropertyController::class,'store'])
-                ->name('properties.store');
-            Route::put('/properties/{propertyId}', [PropertyController::class,'update'])
-                ->name('properties.update');
-            Route::get('/properties/{propertyId?}',[PropertyController::class, 'show'])
-                ->name('properties.show');
-            Route::delete('/properties/{propertyId}',[PropertyController::class, 'destroy'])
-                ->name('properties.destroy');
+            Route::get('/properties', [PropertyController::class,'index'])->name('property.index');
+            Route::post('/properties', [PropertyController::class,'store'])->name('property.store');
+            Route::put('/properties/{propertyId}', [PropertyController::class,'update'])->name('property.update');
+            Route::get('/properties/{propertyId}',[PropertyController::class, 'show'])->name('property.show');
+            Route::get('/properties/{propertyId}/edit',[PropertyController::class, 'edit'])->name('property.edit');
+            Route::delete('/properties/{propertyId}',[PropertyController::class, 'destroy'])->name('property.destroy');
         });
     }
 }

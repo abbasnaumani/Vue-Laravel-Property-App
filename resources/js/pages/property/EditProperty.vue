@@ -10,7 +10,7 @@
                     <ol class="breadcrumb breadcrumb-alt">
                         <li class="breadcrumb-item">Property</li>
                         <li class="breadcrumb-item" aria-current="page">
-                            <router-link class="link-fx" to="/property/edit/">Edit</router-link>
+                            <router-link class="link-fx" to="/property/someid/edit/">Edit</router-link>
                         </li>
                     </ol>
                 </nav>

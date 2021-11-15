@@ -68,12 +68,12 @@ export default [
     },
     {
         path: '/property/add',
-        name: 'user-list',
+        name: 'property-add',
         meta: {public: false, meta_title: 'Add Property'},
         component: page('property/AddProperty'),
     },
     {
-        path: '/property/edit/:propertyId',
+        path: '/property/:propertyId/edit',
         name: 'user-list',
         meta: {public: false, meta_title: 'Edit Property'},
         component: page('property/EditProperty'),

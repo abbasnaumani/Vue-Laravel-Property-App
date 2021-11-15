@@ -14,17 +14,29 @@ class PropertyController extends Controller
     {
         $this->propertyService = $propertyService;
     }
-
     /**
-     * Give property data in response
+     * Display a listing of the resource.
+     *
      * @return JsonResponse
      */
-    public function show(Request $request){
-        $this->propertyService->show($request);
+    public function index($id){
+        $this->propertyService->getAllProperties($id);
+        return $this->getApiResponse();
+    }
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return JsonResponse
+     */
+    public function show($id){
+        $this->propertyService->getProperty($id);
         return $this->getApiResponse();
     }
     /**
-     * Create Property Method.
+     * Store a newly created resource in storage.
      * @param Request $request
      * @return JsonResponse
      */
@@ -37,24 +49,38 @@ class PropertyController extends Controller
         return $this->getApiResponse();
     }
     /**
-     * Property Update Method. That Update existing property.
-     * @param Request $request
-     * @return JsonResponse
+     * Get the data for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function edit($id)
     {
-        $this->propertyService->propertyUpdateValidation($request);
-        if(isset($this->getResponse()->status) && trim($this->getResponse()->status == ApiResponseEnum::SUCCESS_RESPONSE))
-            $this->propertyService->propertyUpdate($request);
+        $this->propertyService->getProperty($id);
         return $this->getApiResponse();
     }
     /**
-     * delete Property record from properties table
-     * @param $property_id
+     * Update the specified resource in storage.
+     *
+     * @param Request $request
+     * @param  int  $id
      * @return JsonResponse
      */
-    public function destroy($property_id){
-        $this->propertyService->destroy($property_id);
+    public function update(Request $request,$id)
+    {
+        $this->propertyService->propertyUpdateValidation($request);
+        if(isset($this->getResponse()->status) && trim($this->getResponse()->status == ApiResponseEnum::SUCCESS_RESPONSE))
+            $this->propertyService->propertyUpdate($request,$id);
+        return $this->getApiResponse();
+    }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return JsonResponse
+     */
+    public function destroy($id){
+        $this->propertyService->destroy($id);
         return $this->getApiResponse();
     }
 }

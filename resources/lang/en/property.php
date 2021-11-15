@@ -27,7 +27,7 @@ return [
     'property_delete' => 'Property Deleted Successfully.',
 
     'data_retrieved' => 'Data Retrieved Successfully.',
-    'property_not_found' => 'Property Data Not Found.',
+    'property_not_found' => 'Property Not Found.',
 
 
 

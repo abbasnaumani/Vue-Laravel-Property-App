@@ -5,31 +5,47 @@ namespace App\Services;
 
 use App\Services\BaseService\BaseService;
 use App\Models\Property;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class PropertyService extends BaseService
 {
-    public function show(Request $request){
-        $propertyId = $request->property_id ?? 0;
-        if(isset($propertyId) && !empty($propertyId)){
-            $property = Property::find($propertyId);
-            if($property==null || empty($property)){
-                $this->setApiErrorMessage(trans('property.properties_not_retrieved'), ['data'=>$property]);
-                return ;
-            }
-        }else{
-            $property = Property::with('propertyDetail','user','city','areaUnit','propertySubType')->where('user_id',$this->getAuthUserId())->get();
-        }
-        $this->setApiSuccessMessage(trans('property.properties_retrieved'),$property);
+    /**
+     * Give All Properties
+     * @return JsonResponse
+     */
+    public function getAllProperties(){
+        $property = Property::with('propertyDetail', 'user', 'city', 'areaUnit', 'propertySubType')
+            ->where('user_id', $this->getAuthUserId())->get();
+        $this->setApiSuccessMessage(trans('generic.record_found'), $property);
     }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return void
+     */
+    public function getProperty($id)
+    {
+        if ($id) {
+            $property = Property::with('propertyDetail', 'user', 'city', 'areaUnit', 'propertySubType')
+                ->where('user_id', $this->getAuthUserId())->where('id',$id)->get();
+            if ($property) {
+                $this->setApiSuccessMessage(trans('generic.record_found'), ['data' => $property]);
+            }else{
+                $this->setApiErrorMessage(trans('generic.record_not_found'));
+            }
+        }
+    }
+
     /**
      * Create property Validation Rules.
      * @param $request
      * @return void
      */
-    public function propertyStoreValidation($request){
+    public function propertyStoreValidation($request)
+    {
         $validator = Validator::make($request->all(), [
             'property_sub_type_id' => 'required|exists:property_sub_types,id',
             'area_unit_id' => 'required|exists:area_units,id',
@@ -44,22 +60,17 @@ class PropertyService extends BaseService
         ]);
         if ($validator->fails()) {
             $this->setApiErrorMessage(trans('property.validation_failed'), ['errors' => $validator->errors()]);
-            return;
+        }else{
+            $this->setApiSuccessMessage(trans('property.request_validated'));
         }
-        $this->setApiSuccessMessage(trans('property.request_validated'));
     }
-
     /**
-     * Create Property in Properties Table
+     * Store a newly created resource in storage.
      * @param Request $request
      * @return void
      */
     public function propertyStore(Request $request)
     {
-//        $user = $this->getAuthUser();
-//        if($user){
-//
-//        }
         DB::beginTransaction();
         try {
             $propertyData = [
@@ -74,19 +85,19 @@ class PropertyService extends BaseService
                 'location' => $request->input('location')
             ];
             $propertyDetailData = [
-                'description' => $request->input('description') ?? "",
-                'address' => $request->input('address') ?? "",
-                'bedrooms' => $request->input('bedrooms') ?? 0,
-                'bathrooms' => $request->input('bathrooms') ?? 0,
-                'is_occupancy_status' => $request->input('is_occupancy_status') ?? 0,
-                'is_installment_available' => $request->input('is_installment_available') ?? 0,
-                'is_possession_available' => $request->input('is_possession_available') ?? 0
+                'description' => $request->input('description'),
+                'address' => $request->input('address'),
+                'bedrooms' => $request->input('bedrooms'),
+                'bathrooms' => $request->input('bathrooms'),
+                'is_occupancy_status' => $request->input('is_occupancy_status'),
+                'is_installment_available' => $request->input('is_installment_available'),
+                'is_possession_available' => $request->input('is_possession_available')
             ];
-            $property= Property::create($propertyData);
+            $property = Property::create($propertyData);
             $propertyDetail = $property->propertyDetail()->create($propertyDetailData);
-            $data = [ 'property' =>$property, 'property_detail' =>$propertyDetail ];
+            $data = ['property' => $property, 'property_detail' => $propertyDetail];
             DB::commit();
-            $this->setApiSuccessMessage(trans('property.property_store'), ['data' => $data]);
+            $this->setApiSuccessMessage(trans('generic.record_inserted'), ['data' => $data]);
         } catch (\Exception $e) {
             DB::rollback();
             $this->setApiErrorMessage(trans('property.property_not_store'));
@@ -98,7 +109,8 @@ class PropertyService extends BaseService
      * @param $request
      * @return void
      */
-    public function propertyUpdateValidation($request){
+    public function propertyUpdateValidation($request)
+    {
         $validator = Validator::make($request->all(), [
             'property_id' => 'required|exists:properties,id',
             'property_sub_type_id' => 'required|exists:property_sub_types,id',
@@ -112,20 +124,23 @@ class PropertyService extends BaseService
         ]);
         if ($validator->fails()) {
             $this->setApiErrorMessage(trans('property.validation_failed'), ['errors' => $validator->errors()]);
-            return ;
         }
-        $this->setApiSuccessMessage(trans('property.request_validated'));
+        else{
+            $this->setApiSuccessMessage(trans('property.request_validated'));
+        }
     }
 
     /**
-     * Update Property in Properties Table
+     * Update the specified resource in storage.
+     *
      * @param Request $request
+     * @param  int  $id
      * @return void
      */
-    public function propertyUpdate(Request $request){
+    public function propertyUpdate(Request $request,$id)
+    {
         DB::beginTransaction();
         try {
-            $propertyId = $request->property_id ?? 0;
             $propertyData = [
                 'property_sub_type_id' => $request->input('property_sub_type_id'),
                 'area_unit_id' => $request->input("area_unit_id"),
@@ -145,28 +160,29 @@ class PropertyService extends BaseService
                 'is_installment_available' => $request->input('is_installment_available') ?? 0,
                 'is_possession_available' => $request->input('is_possession_available') ?? 0,
             ];
-            $property = Property::where(['id'=>$propertyId,'user_id'=> $request->input('user_id')])->update($propertyData);
+            $property = Property::where(['id' => $id, 'user_id' => $request->input('user_id')])->update($propertyData);
             $propertyDetail = $property->propertyDetail()->update($propertyDetailData);
-            $data = ['property'=>$property,'propertyDetail'=>$propertyDetail];
+            $data = ['property' => $property, 'propertyDetail' => $propertyDetail];
             DB::commit();
-            $this->setApiSuccessMessage(trans('property.property_updated'), ['data' => $data]);
+            $this->setApiSuccessMessage(trans('generic.record_updated'), ['data' => $data]);
         } catch (\Exception $e) {
             DB::rollback();
             $this->setApiErrorMessage(trans('property.property_not_updated'));
         }
     }
     /**
-     * delete Property record from properties table
-     * @param $property_id
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
      * @return void
      */
-    public function destroy($property_id){
-        $propertyId = $property_id ?? 0;
-        $property = Property::find($propertyId);
-        if($property){
+    public function destroy($id)
+    {
+        $property = Property::find($id);
+        if ($property) {
             $property->delete();
-            $this->setApiSuccessMessage(trans('property.property_delete'), ['data'=>$property]);
-        }else{
+            $this->setApiSuccessMessage(trans('property.property_delete'), ['data' => $property]);
+        } else {
             $this->setApiErrorMessage(trans("property.property_not_found"));
         }
     }
