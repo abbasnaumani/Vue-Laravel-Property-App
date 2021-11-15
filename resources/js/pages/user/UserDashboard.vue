@@ -2,26 +2,19 @@
     <main id="main-container">
         <div class="content">
             <div class="row">
-                <handy-uploader
-                    :documentAttachment.sync="handyAttachments"
-                    :fileUploaderType= "'simple'"
-                    :maxFileSize= "10240"
-                    :imageCompressor= "true"
-                    :imageCompressLevel= "0.8"
-                    :maxFileCount= "10"
-                    :badgeCounter= "true"
-                    :thumb= "false"
-                    :changeFileName="true"
-                    :addFileDescription="true"
-                    :addFileTag="true"
-                    :tags= "['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4']"
-                >
-                </handy-uploader>
                 <div class="col-12">
+                    <UploadImages
+                        url="/uploads"
+                        @changed="handleImages"
+                        :max="2"
+                        maxError="Max files exceed1"
+                        uploadMsg="upload product images1"
+                        fileError="images files only accepted1"
+                        clearAll="remove all images"
+                    />
                     <div class="block block-rounded">
                         <div class="block-header block-header-default">
                             <h3 class="block-title">Summary Overview</h3>
-
                             <div class="block-options">
                                 <button type="button" class="btn-block-option"
                                         data-toggle="block-option" data-action="state_toggle"
@@ -56,12 +49,20 @@
 
 <script>
 import myUpload from 'vue-image-crop-upload';
-import handyUploader from 'handy-uploader/src/components/handyUploader';
+import UploadImages from "vue-upload-drop-images"
 import {ref} from 'vue';
+import appApi from "~/api/index";
+import {ApiResponse} from "../../constants";
+import {useToast} from "vue-toastification";
 
 export default {
     name: "UserDashboard",
+    components: {
+        myUpload,
+        UploadImages
+    },
     setup() {
+        const toast = useToast()
         const show = ref(false);
         const imgDataUrl = ref('');
         const params = ref({
@@ -106,7 +107,36 @@ export default {
             console.log(status);
             console.log('field: ' + field);
         }
-        const handyAttachments = ref([]);
+
+        // #######################3
+        const handleImages = async (files)=>{
+            console.log(files[0])
+            var formData = new FormData();
+            formData.append("image", files[0]);
+            const response = await appApi.post('/uploads', formData,{
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            if (response.data.status === ApiResponse.SUCCESS) {
+                toast.success("Image Completed!");
+            } else {
+                toast.error(response.data.message);
+            }
+            //axios.post('upload_file', file, )
+            /*
+              [
+                {
+                    "name": "Screenshot from 2021-02-23 12-36-33.png",
+                    "size": 319775,
+                    "type": "image/png",
+                    "lastModified": 1614080193596
+                    ...
+                },
+                ...
+                ]
+             */
+        }
         return {
             show,
             headers,
@@ -116,14 +146,9 @@ export default {
             cropSuccess,
             cropUploadSuccess,
             cropUploadFail,
-            handyAttachments
+            handleImages
         }
 
-    },
-
-    components: {
-        myUpload,
-        handyUploader
     },
 }
 </script>

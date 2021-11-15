@@ -53,7 +53,12 @@ export default [
         meta: {public: false, meta_title: 'User List'},
         component: UserList,
     },
-
+    {
+        path: '/upload',
+        name: 'upload',
+        meta: {public: false, meta_title: 'Upload'},
+        component: page('Upload'),
+    },
     {
         path: '/logout',
         name: 'logout',

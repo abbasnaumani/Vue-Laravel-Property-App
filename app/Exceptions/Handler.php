@@ -48,13 +48,12 @@ class Handler extends ExceptionHandler
     {
         $this->renderable(function (Throwable $e) {
             if ($e instanceof ValidationException) {
-                $this->errorMessage = $this->extractErrorMessage($e->errors());
+                $this->setApiErrorMessage($this->extractErrorMessage($e->errors()), ['errors' => $this->traceErrors($e)]);
             } elseif ($e instanceof AuthenticationException) {
-                $this->errorMessage = $e->getMessage();
+                $this->setApiErrorMessage($e->getMessage(), ['errors' => $this->traceErrors($e)], 401);
             } else {
-                $this->errorMessage = $e->getMessage();
+                $this->setApiErrorMessage($e->getMessage(), ['errors' => $this->traceErrors($e)]);
             }
-            $this->setApiErrorMessage($this->errorMessage, ['errors' => $this->traceErrors($e)]);
             return $this->getApiResponse();
         });
     }
