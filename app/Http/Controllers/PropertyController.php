@@ -15,18 +15,17 @@ class PropertyController extends Controller
         $this->propertyService = $propertyService;
     }
     /**
-     * Display a listing of the resource.
+     * Display a listing of the property.
      *
      * @return JsonResponse
      */
-    public function index($id){
-        $this->propertyService->getAllProperties($id);
+    public function index(){
+        $this->propertyService->getAllProperties();
         return $this->getApiResponse();
     }
 
-
     /**
-     * Display the specified resource.
+     * Display the specified property.
      *
      * @param  int  $id
      * @return JsonResponse
@@ -36,7 +35,7 @@ class PropertyController extends Controller
         return $this->getApiResponse();
     }
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created property in storage.
      * @param Request $request
      * @return JsonResponse
      */
@@ -48,19 +47,9 @@ class PropertyController extends Controller
         }
         return $this->getApiResponse();
     }
+
     /**
-     * Get the data for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $this->propertyService->getProperty($id);
-        return $this->getApiResponse();
-    }
-    /**
-     * Update the specified resource in storage.
+     * Update the specified property in storage.
      *
      * @param Request $request
      * @param  int  $id
@@ -74,13 +63,31 @@ class PropertyController extends Controller
         return $this->getApiResponse();
     }
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified property from storage.
      *
      * @param  int  $id
      * @return JsonResponse
      */
     public function destroy($id){
         $this->propertyService->destroy($id);
+        return $this->getApiResponse();
+    }
+    /**
+     * Get all Property Types.
+     *
+     * @return JsonResponse
+     */
+    public function getPropertyTypes(){
+        $this->propertyService->getPropertyTypes();
+        return $this->getApiResponse();
+    }
+    /**
+     * Get all Property Area Units.
+     *
+     * @return JsonResponse
+     */
+    public function getPropertyAreaUnits(){
+        $this->propertyService->getPropertyAreaUnits();
         return $this->getApiResponse();
     }
 }

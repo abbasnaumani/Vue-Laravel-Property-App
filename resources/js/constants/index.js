@@ -16,3 +16,7 @@ export const UserRoles = {
     ADMIN: 2,
     AGENT: 3
 }
+export const PropertyPurpose = {
+    FOR_SALE: 1,
+    FOR_RENT: 2,
+}

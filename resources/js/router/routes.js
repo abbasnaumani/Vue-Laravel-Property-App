@@ -73,8 +73,8 @@ export default [
         component: page('property/AddProperty'),
     },
     {
-        path: '/property/:propertyId/edit',
-        name: 'user-list',
+        path: '/property/edit/:propertyId',
+        name: 'property-edit',
         meta: {public: false, meta_title: 'Edit Property'},
         component: page('property/EditProperty'),
         props: ({params}) => ({propertyId: params.propertyId || 0}),

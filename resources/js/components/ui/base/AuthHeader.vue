@@ -54,7 +54,7 @@
                             id="page-header-user-dropdown" data-toggle="dropdown"
                             aria-haspopup="true"
                             aria-expanded="false">
-                                                    <img class="rounded-circle" :src=" ('media/avatars/avatar10.jpg') " alt="Header Avatar"
+                                                    <img class="rounded-circle" :src=" ('/media/avatars/avatar10.jpg') " alt="Header Avatar"
                                                          style="width: 21px;">
                                                     <span class="d-none d-sm-inline-block ml-2">{{profile.first_name || ''}}</span>
                         <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block ml-1 mt-1"></i>
@@ -63,7 +63,7 @@
                          aria-labelledby="page-header-user-dropdown">
                         <div class="p-3 text-center bg-primary-dark rounded-top">
                             <img class="img-avatar img-avatar48 img-avatar-thumb"
-                                 :src=" ('media/avatars/avatar10.jpg')" alt="">
+                                 :src=" ('/media/avatars/avatar10.jpg')" alt="">
                             <p class="mt-2 mb-0 text-white font-w500">{{ profile.first_name +' '+ profile.last_name }}</p>
                             <p class="mb-0 text-white-50 font-size-sm">
                                 {{profile?.roles[0]?.name}}</p>

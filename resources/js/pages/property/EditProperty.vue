@@ -1,188 +1,413 @@
 <template>
-    <div class="bg-body-light">
-        <div class="content content-full">
-            <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-                <h1 class="flex-sm-fill h3 my-2">
-                    User
-                    <!-- <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted">Tables transformed with dynamic features.</small> -->
-                </h1>
-                <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
-                    <ol class="breadcrumb breadcrumb-alt">
-                        <li class="breadcrumb-item">Property</li>
-                        <li class="breadcrumb-item" aria-current="page">
-                            <router-link class="link-fx" to="/property/someid/edit/">Edit</router-link>
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div>
-    <div class="content">
-        <!-- Dynamic Table Full Pagination -->
-        <div id="property-dashboard-section" class="block block-rounded">
-            <div class="block-header">
-                <h3 class="block-title">Property Record </h3>
-            </div>
-            <div class="block-content block-content-full">
-                <div class="row">
-                    <div class="col-sm-10 offset-1">
-                        <form>
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="py-2">
-                                        <div class="form-group">
-                                            <label for="title">&nbsp Property Title</label>
-                                            <input id="title" class="form-control form-control-alt form-control-lg"
-                                                   type="text"
-                                                   v-model="title"  required
-                                                   autofocus/>
+    <main id="main-container">
+        <div class="content">
+            <div id="property-dashboard-section" class="block block-rounded">
+                <div class="block-header">
+                    <h3 class="block-title">Edit Property</h3>
+                </div>
+                <div class="block-content block-content-full" v-if="propertyData">
+                    {{propertyData}}
+                    <div class="row">
+                        <div class="col-sm-10 offset-1">
+                            <form>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="py-2 row">
+                                            <div class="form-group col-3">
+                                                <label for="title">&nbsp Property Title</label>
+                                                <input id="title" class="form-control form-control-alt form-control-lg"
+                                                       type="text"
+                                                       v-model="propertyData.title"
+                                                       @blur="v$.propertyData.title.$touch()"
+                                                />
+                                            </div>
+                                            <div class="text-left">
+                                                <div v-if="v$.propertyData.title.$dirty">
+                                                    <sub v-if="v$.propertyData.title.$error"
+                                                         class="px-2 py-2 text-danger">
+                                                        Title is Required
+                                                    </sub>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-3" v-if="propertyTypes">
+                                                <label>&nbsp Property Type</label>
+                                                <select id="property-type"
+                                                        class="form-control form-control-alt form-control-lg"
+                                                        v-model="propertyData.property_sub_type_id"
+                                                >
+                                                    <option
+                                                        v-for="propertyType in propertyTypes"
+                                                        :value="propertyType.id"
+                                                        :selected="propertyData.property_sub_type_id === propertyType.id"
+                                                    >{{propertyType.name}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-1">
+                                                <label for="area">&nbsp Area</label>
+                                                <input id="area" class="form-control form-control-alt form-control-lg"
+                                                       type="text"
+                                                       v-model="propertyData.area" required
+                                                       @blur="v$.propertyData.area.$touch()"
+                                                />
+                                            </div>
+                                            <div class="text-left">
+                                                <div v-if="v$.propertyData.area.$dirty">
+                                                    <sub v-if="v$.propertyData.area.$error"
+                                                         class="px-2 py-2 text-danger">
+                                                        Area is Required
+                                                    </sub>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-2" v-if="allAreaUnits">
+                                                <label for="area">&nbsp Unit</label>
+                                                <select
+                                                    class="form-control form-control-alt form-control-lg"
+                                                    v-model="propertyData.area_unit_id"
+                                                >
+                                                    <option v-for="unit in allAreaUnits"
+                                                            :value="unit.id"
+                                                            :selected="propertyData.area_unit_id === unit.id"
+                                                    >{{unit.name}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-3" v-if="allCities">
+                                                <label>&nbsp City</label>
+                                                <select id="cities"
+                                                        class="form-control form-control-alt form-control-lg"
+                                                        v-model="propertyData.city_id"
+                                                >
+                                                    <option v-for="city in allCities"
+                                                            :value="city.id"
+                                                            :selected="propertyData.city_id === city.id"
+                                                    >{{city.name}}</option>
+
+                                                </select>
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="type">&nbsp Property Type</label>
-                                            <select id="type" class="form-control form-control-alt form-control-lg" v-model="type">
-                                                <option value="1" >1</option>
-                                                <option value="2" >2</option>
-                                                <option value="3" >3</option>
-                                            </select>
+                                        <div class="py-2 row">
+                                            <div class="form-group col-3">
+                                                <label>&nbsp Purpose</label>
+                                                <select id="purpose" class="form-control form-control-alt form-control-lg"
+                                                        v-model="propertyData.purpose"
+                                                >
+                                                    <option value="1" :selected="propertyData.purpose">For Sale</option>
+                                                    <option value="2" :selected="propertyData.purpose">For Rent</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-3">
+                                                <label for="price">&nbsp Price</label>
+                                                <input id="price" class="form-control form-control-alt form-control-lg"
+                                                       type="text"
+                                                       v-model="propertyData.price"
+                                                       @blur="v$.propertyData.price.$touch()"
+                                                       required
+                                                />
+                                            </div>
+                                            <div class="text-left">
+                                                <div v-if="v$.propertyData.price.$dirty">
+                                                    <sub v-if="v$.propertyData.price.$error"
+                                                         class="px-2 py-2 text-danger">
+                                                        Price is Required
+                                                    </sub>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-3">
+                                                <label for="location">&nbsp Location</label>
+                                                <input id="location" class="form-control form-control-alt form-control-lg"
+                                                       type="text"
+                                                       v-model="propertyData.location"
+                                                       required
+                                                       @blur="v$.propertyData.location.$touch()"
+                                                />
+                                            </div>
+                                            <div class="text-left">
+                                                <div v-if="v$.propertyData.location.$dirty">
+                                                    <sub v-if="v$.propertyData.location.$error"
+                                                         class="px-2 py-2 text-danger">
+                                                        Location is Required
+                                                    </sub>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-3">
+                                                <label for="address">&nbsp Address</label>
+                                                <input id="address" class="form-control form-control-alt form-control-lg"
+                                                       type="text"
+                                                       v-model="propertyData.property_detail.address"
+                                                       @blur="v$.propertyData.property_detail.address.$touch()"
+                                                />
+                                            </div>
+                                            <div class="text-left">
+                                                <div v-if="v$.propertyData.property_detail.address.$dirty">
+                                                    <sub v-if="v$.propertyData.property_detail.address.$error"
+                                                         class="px-2 py-2 text-danger">
+                                                        Address is Required
+                                                    </sub>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="area">&nbsp Area</label>
-                                            <input id="area" class="form-control form-control-alt form-control-lg"
-                                                   type="text"
-                                                   v-model="area" required/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="area">&nbsp Unit</label>
-                                            <select class="form-control form-control-alt form-control-lg" v-model="areaUnit">
-                                                <option value="1" >1</option>
-                                                <option value="2" >2</option>
-                                                <option value="3" >3</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="city">&nbsp City</label>
-                                            <select id="city" class="form-control form-control-alt form-control-lg" v-model="city">
-                                                <option value="1" >1</option>
-                                                <option value="2" >2</option>
-                                                <option value="3" >3</option>
-                                            </select>
+                                        <div class="py-2 row">
+                                            <div class="form-group col-3">
+                                                <label for="bedrooms">&nbsp Bedrooms</label>
+                                                <input id="bedrooms" class="form-control form-control-alt form-control-lg"
+                                                       type="number"
+                                                       v-model="propertyData.property_detail.bedrooms"/>
+                                            </div>
+                                            <div class="form-group col-3">
+                                                <label for="bathrooms">&nbsp Bathrooms</label>
+                                                <input id="bathrooms" class="form-control form-control-alt form-control-lg"
+                                                       type="number"
+                                                       v-model="propertyData.property_detail.bathrooms"/>
+                                            </div>
+                                            <div class="form-group col-2">
+                                                <strong>&nbsp Occupancy Status</strong>
+                                                <label for="occupancy-status" class="switch">
+                                                    <input id="occupancy-status" class="form-control form-control-alt form-control-lg"
+                                                           type="checkbox"
+                                                           v-model="propertyData.is_occupancy_status"
+                                                           :checked="propertyData.property_detail.is_occupancy_status"
+                                                    />
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            </div>
+                                            <div class="form-group col-2">
+                                                <strong>&nbsp Installment Available</strong>
+                                                <label for="installment-available" class="switch">
+                                                    <input id="installment-available" class="form-control form-switch form-control-alt form-control-lg"
+                                                           type="checkbox"
+                                                           v-model="propertyData.is_installment_available"
+                                                           :checked="propertyData.property_detail.is_installment_available"
+                                                    />
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            </div>
+                                            <div class="form-group col-2">
+                                                <strong>&nbsp Possession Available</strong>
+                                                <label class="switch" for="possession-available">
+                                                    <input id="possession-available"
+                                                           type="checkbox"
+                                                           v-model="propertyData.is_possession_available"
+                                                           :checked="propertyData.property_detail.is_possession_available"
+                                                    />
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="py-3">
-                                        <div class="form-group">
-                                            <label for="purpose">&nbsp Purpose</label>
-                                            <select id="purpose" class="form-control form-control-alt form-control-lg" v-model="purpose">
-                                                <option value="1" >For Sale</option>
-                                                <option value="2" >Rent</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="price">&nbsp Price</label>
-                                            <input id="price" class="form-control form-control-alt form-control-lg"
-                                                   type="text"
-                                                   v-model="price" required/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="location">&nbsp Location</label>
-                                            <input id="location" class="form-control form-control-alt form-control-lg"
-                                                   type="text"
-                                                   v-model="location" required/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="address">&nbsp Address</label>
-                                            <input id="address" class="form-control form-control-alt form-control-lg"
-                                                   type="text"
-                                                   v-model="address" required/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="bedrooms">&nbsp Bedrooms</label>
-                                            <input id="bedrooms" class="form-control form-control-alt form-control-lg"
-                                                   type="number"
-                                                   v-model="bedrooms" required/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="bathrooms">&nbsp Bathrooms</label>
-                                            <input id="bathrooms" class="form-control form-control-alt form-control-lg"
-                                                   type="number"
-                                                   v-model="bathrooms" required/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="occupancy-status">&nbsp Occupancy Status</label>
-                                            <input id="occupancy-status" class="form-control form-control-alt form-control-lg"
-                                                   type="checkbox"
-                                                   v-model="isOccupancyStatus" required/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="installment-available">&nbsp Installment Available</label>
-                                            <input id="installment-available" class="form-control form-control-alt form-control-lg"
-                                                   type="checkbox"
-                                                   v-model="isInstallmentAvailable" required/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="possession-available">&nbsp Possession Available</label>
-                                            <input id="possession-available" class="form-control form-control-alt form-control-lg"
-                                                   type="checkbox"
-                                                   v-model="isPossessionAvailable" required/>
+                                    <div class="py-2 row">
+                                        <div class="form-group col-10 offset-1">
+                                            <label>&nbsp Description  </label>
+                                            <QuillEditor toolbar="minimal" theme="snow" v-model:content="propertyData.property_detail.description" contentType="html" :modules="modules"/>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="block-content block-content-full text-right border-top">
-                                <button type="button" class="btn btn-alt-primary mr-1" data-dismiss="modal">Cancel
-                                </button>
-                                <button class="btn btn-primary">
-                                    <i class="fa fa-fw fa-paper-plane mr-1"></i>Submit
-                                </button>
-                            </div>
-                        </form>
+                                <div class="block-content block-content-full text-right border-top">
+                                    <div class="form-group row">
+                                        <div class="col-md-6 col-xl-5">
+                                            <button
+                                                v-if="v$.$invalid"
+                                                type="submit"
+                                                class="btn btn-block btn-alt-primary cursor-not-allowed"
+                                                disabled
+                                            >
+                                                <i class="fa fa-fw fa-sign-in-alt mr-1"></i>Submit
+                                            </button>
+                                            <button v-else @click.prevent="handleAddProperty"
+                                                    type="submit"
+                                                    class="btn btn-primary"
+                                            >
+                                                <i class="fa fa-fw fa-paper-plane mr-1"></i>Submit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 </template>
 
 <script>
-import {ref} from "vue";
+import {computed,watch, ref} from "vue";
+import {integer, minValue, required} from "@vuelidate/validators";
+import useVuelidate from "@vuelidate/core";
+import {getAreaUnits, getProperty, getPropertyTypes} from "../../composables/property";
+import {getCities} from "../../composables/country";
+import propertyService from "../../services/propertyService";
+import { QuillEditor } from '@vueup/vue-quill'
+import BlotFormatter from 'quill-blot-formatter'
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
 
 export default {
     name: "EditProperty",
+    components: {
+        QuillEditor
+    },
+    props:{
+      propertyId: Number
+    },
     setup(props){
-        const title = ref('');
-        const type = ref('');
-        const areaUnit = ref('');
-        const area = ref('');
-        const city = ref('');
-        const purpose = ref('');
-        const price = ref('');
-        const location = ref('');
-        const address = ref('');
-        const bedrooms = ref('');
-        const bathrooms = ref('');
-        const isOccupancyStatus = ref('');
-        const isInstallmentAvailable = ref('');
-        const isPossessionAvailable = ref('');
-        return{
+        const modules = {
+            name: 'blotFormatter',
+            module: BlotFormatter,
+            options: {}
+        };
 
-            title,
-            type,
-            areaUnit,
-            area,
-            city,
-            purpose,
-            price,
-            location,
-            address,
-            bedrooms,
-            bathrooms,
-            isOccupancyStatus,
-            isInstallmentAvailable,
-            isPossessionAvailable
+        const propertyTypes = getPropertyTypes();
+        const allAreaUnits = getAreaUnits();
+        const allCities = getCities();
+
+        let propertyData = getProperty(props.propertyId);
+
+       const validationRules = computed(() => {
+            return {
+                propertyData:{
+                    title: {
+                        required,
+                    },
+                    property_sub_type_id: {
+                        required,
+                    },
+                    area_unit_id: {
+                        required,
+                    },
+                    area: {
+                        required,
+                        minValue: minValue(1)
+                    },
+                    city_id: {
+                        required
+                    },
+                    purpose: {
+                        required
+                    },
+                    price:{
+                        required,
+                        integer,
+                        minValue: minValue(1)
+                    },
+                    location:{
+                        required
+                    },
+                    property_detail:{
+                        address:{
+                            required
+                        },
+                        description:{
+                            required
+                        },
+                    }
+                    // bedrooms:{
+                    //     required: requiredIf(() => {
+                    //         return type === ;
+                    //     }),
+                    // },
+                    // bathrooms:{
+                    //     required
+                    // },
+                }
+            }
+        });
+        const v$ = useVuelidate(
+            validationRules,
+            {propertyData}
+        );
+        const handleUpdateProperty = () => {
+            propertyService.handleUpdateProperty({
+                title: propertyData.value.title,
+                property_sub_type_id: propertyData.value.property_sub_type_id,
+                area_unit_id: propertyData.value.area_unit_id,
+                area: propertyData.value.area,
+                city_id: propertyData.value.city_id,
+                purpose: propertyData.value.purpose,
+                price: propertyData.value.price,
+                location: propertyData.value.location,
+                address: propertyData.value.property_detail.address,
+                bedrooms: propertyData.value.property_detail.bedrooms,
+                description: propertyData.value.property_detail.description,
+                bathrooms: propertyData.value.property_detail.bathrooms,
+                occupancy_status: propertyData.value.is_possession_available,
+                installment_available: propertyData.value.is_installmentAvailable,
+                possession_available: propertyData.value.is_possessionAvailable,
+
+            },props.propertyId);
+        }
+        return{
+            v$,
+            propertyTypes,
+            allAreaUnits,
+            allCities,
+            handleUpdateProperty,
+            propertyData,
+            modules
         }
     }
 }
 </script>
 
 <style scoped>
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
 
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+.cursor-not-allowed {
+    cursor: not-allowed;
+}
 </style>

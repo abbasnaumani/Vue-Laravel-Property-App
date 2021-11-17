@@ -14,8 +14,10 @@ class Property
             Route::post('/properties', [PropertyController::class,'store'])->name('property.store');
             Route::put('/properties/{propertyId}', [PropertyController::class,'update'])->name('property.update');
             Route::get('/properties/{propertyId}',[PropertyController::class, 'show'])->name('property.show');
-            Route::get('/properties/{propertyId}/edit',[PropertyController::class, 'edit'])->name('property.edit');
             Route::delete('/properties/{propertyId}',[PropertyController::class, 'destroy'])->name('property.destroy');
+            Route::get('/property/types',[PropertyController::class, 'getPropertyTypes'])->name('property.types');
+            Route::get('/property/area/unit',[PropertyController::class, 'getPropertyAreaUnits'])->name('property.area.unit');
+
         });
     }
 }

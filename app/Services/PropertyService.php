@@ -3,6 +3,9 @@
 
 namespace App\Services;
 
+use App\Models\AreaUnit;
+use App\Models\PropertyDetail;
+use App\Models\PropertySubType;
 use App\Services\BaseService\BaseService;
 use App\Models\Property;
 use Illuminate\Http\JsonResponse;
@@ -17,9 +20,13 @@ class PropertyService extends BaseService
      * @return JsonResponse
      */
     public function getAllProperties(){
-        $property = Property::with('propertyDetail', 'user', 'city', 'areaUnit', 'propertySubType')
+        $property = Property::with( 'propertyDetail','user', 'city', 'areaUnit', 'propertySubType')
             ->where('user_id', $this->getAuthUserId())->get();
-        $this->setApiSuccessMessage(trans('generic.record_found'), $property);
+        if($property){
+            $this->setApiSuccessMessage(trans('property.properties_retrieved'), $property);
+        }else{
+            $this->setApiErrorMessage(trans('property.property_not_found'));
+        }
     }
     /**
      * Display a listing of the resource.
@@ -32,7 +39,7 @@ class PropertyService extends BaseService
             $property = Property::with('propertyDetail', 'user', 'city', 'areaUnit', 'propertySubType')
                 ->where('user_id', $this->getAuthUserId())->where('id',$id)->get();
             if ($property) {
-                $this->setApiSuccessMessage(trans('generic.record_found'), ['data' => $property]);
+                $this->setApiSuccessMessage(trans('generic.record_found'), $property);
             }else{
                 $this->setApiErrorMessage(trans('generic.record_not_found'));
             }
@@ -89,15 +96,16 @@ class PropertyService extends BaseService
                 'address' => $request->input('address'),
                 'bedrooms' => $request->input('bedrooms'),
                 'bathrooms' => $request->input('bathrooms'),
-                'is_occupancy_status' => $request->input('is_occupancy_status'),
-                'is_installment_available' => $request->input('is_installment_available'),
-                'is_possession_available' => $request->input('is_possession_available')
+                'is_occupancy_status' => $request->input('occupancy_status'),
+                'is_installment_available' => $request->input('installment_available'),
+                'is_possession_available' => $request->input('possession_available')
             ];
             $property = Property::create($propertyData);
             $propertyDetail = $property->propertyDetail()->create($propertyDetailData);
-            $data = ['property' => $property, 'property_detail' => $propertyDetail];
+//            $data = ['property' => $property, 'property_detail' => $propertyDetail];
+            $data = $this->getAllProperties();
             DB::commit();
-            $this->setApiSuccessMessage(trans('generic.record_inserted'), ['data' => $data]);
+            $this->setApiSuccessMessage(trans('property.property_store'),$data);
         } catch (\Exception $e) {
             DB::rollback();
             $this->setApiErrorMessage(trans('property.property_not_store'));
@@ -109,7 +117,7 @@ class PropertyService extends BaseService
      * @param $request
      * @return void
      */
-    public function propertyUpdateValidation($request)
+    public function propertyUpdateValidation(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'property_id' => 'required|exists:properties,id',
@@ -128,7 +136,7 @@ class PropertyService extends BaseService
         else{
             $this->setApiSuccessMessage(trans('property.request_validated'));
         }
-    }
+    }     //'property_id' => 'required|exists:properties,id',
 
     /**
      * Update the specified resource in storage.
@@ -141,30 +149,36 @@ class PropertyService extends BaseService
     {
         DB::beginTransaction();
         try {
-            $propertyData = [
-                'property_sub_type_id' => $request->input('property_sub_type_id'),
-                'area_unit_id' => $request->input("area_unit_id"),
-                'city_id' => $request->input('city_id'),
-                'title' => $request->input('title') ?? "",
-                'area' => $request->input('area') ?? 0,
-                'purpose' => $request->input('purpose'),
-                'price' => $request->input('price') ?? 0,
-                'location' => $request->input('location') ?? ""
-            ];
-            $propertyDetailData = [
-                'description' => $request->input('description') ?? "",
-                'address' => $request->input('address') ?? "",
-                'bedrooms' => $request->input('bedrooms') ?? 0,
-                'bathrooms' => $request->input('bathrooms') ?? 0,
-                'is_occupancy_status' => $request->input('is_occupancy_status') ?? 0,
-                'is_installment_available' => $request->input('is_installment_available') ?? 0,
-                'is_possession_available' => $request->input('is_possession_available') ?? 0,
-            ];
-            $property = Property::where(['id' => $id, 'user_id' => $request->input('user_id')])->update($propertyData);
-            $propertyDetail = $property->propertyDetail()->update($propertyDetailData);
-            $data = ['property' => $property, 'propertyDetail' => $propertyDetail];
-            DB::commit();
-            $this->setApiSuccessMessage(trans('generic.record_updated'), ['data' => $data]);
+            if($id) {
+                $propertyData = [
+                    'property_sub_type_id' => $request->input('property_sub_type_id'),
+                    'area_unit_id' => $request->input("area_unit_id"),
+                    'city_id' => $request->input('city_id'),
+                    'title' => $request->input('title'),
+                    'area' => $request->input('area'),
+                    'purpose' => $request->input('purpose'),
+                    'price' => $request->input('price'),
+                    'location' => $request->input('location')
+                ];
+                $propertyDetailData = [
+                    'description' => $request->input('description'),
+                    'address' => $request->input('address'),
+                    'bedrooms' => $request->input('bedrooms'),
+                    'bathrooms' => $request->input('bathrooms'),
+                    'is_occupancy_status' => $request->input('is_occupancy_status'),
+                    'is_installment_available' => $request->input('is_installment_available'),
+                    'is_possession_available' => $request->input('is_possession_available'),
+                ];
+                $property = Property::where(['id' => $id, 'user_id' => $this->getAuthUserId()])->update($propertyData);
+//              $propertyDetail = $property->propertyDetail()->update($propertyDetailData);
+//              $data = ['property' => $property, 'propertyDetail' => $propertyDetail];
+
+                $data = $this->getAllProperties();
+                DB::commit();
+                $this->setApiSuccessMessage(trans('property.property_updated'), $data);
+            }else{
+                $this->setApiErrorMessage(trans('property.property_not_found'));
+            }
         } catch (\Exception $e) {
             DB::rollback();
             $this->setApiErrorMessage(trans('property.property_not_updated'));
@@ -181,9 +195,27 @@ class PropertyService extends BaseService
         $property = Property::find($id);
         if ($property) {
             $property->delete();
-            $this->setApiSuccessMessage(trans('property.property_delete'), ['data' => $property]);
+            $this->setApiSuccessMessage(trans('property.property_delete'));
         } else {
             $this->setApiErrorMessage(trans("property.property_not_found"));
         }
+    }
+    /**
+     * Get all Property Types.
+     *
+     * @return JsonResponse
+     */
+    public function getPropertyTypes(){
+        $propertyTypes = PropertySubType::with('propertyType')->get();
+        $this->setApiSuccessMessage(trans('property.property_types_found'), $propertyTypes);
+    }
+    /**
+     * Get all Area Units.
+     *
+     * @return JsonResponse
+     */
+    public function getPropertyAreaUnits(){
+        $areaUnits = AreaUnit::all();
+        $this->setApiSuccessMessage(trans('property.area_units_found'), $areaUnits);
     }
 }
