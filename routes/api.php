@@ -21,6 +21,7 @@ Property::register();
 Country::register();
 User::register();
 \Route\Api\Test::register();
+\Route\Api\Upload::register();
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

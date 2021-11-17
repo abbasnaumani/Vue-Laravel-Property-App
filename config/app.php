@@ -175,7 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         Kodestudio\ApiResponse\ApiResponseServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        Plank\Mediable\MediableServiceProvider::class,
     ],
 
     /*
