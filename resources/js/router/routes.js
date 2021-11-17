@@ -60,6 +60,18 @@ export default [
         component: page('Upload'),
     },
     {
+        path: '/upload-composition',
+        name: 'upload-composition',
+        meta: {public: false, meta_title: 'UploadComposition'},
+        component: page('UploadComposition'),
+    },
+    {
+        path: '/upload-single-composition',
+        name: 'upload-single-composition',
+        meta: {public: false, meta_title: 'UploadSingleComposition'},
+        component: page('UploadSingleComposition'),
+    },
+    {
         path: '/logout',
         name: 'logout',
         meta: {logout: true, meta_title: 'Logout'},

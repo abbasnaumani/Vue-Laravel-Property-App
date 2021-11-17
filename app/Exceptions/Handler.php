@@ -3,9 +3,11 @@
 namespace App\Exceptions;
 
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
 use Kodestudio\ApiResponse\Traits\ApiResponseTrait;
+use Plank\Mediable\Exceptions\MediaUploadException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -48,11 +50,17 @@ class Handler extends ExceptionHandler
     {
         $this->renderable(function (Throwable $e) {
             if ($e instanceof ValidationException) {
-                $this->setApiErrorMessage($this->extractErrorMessage($e->errors()), ['errors' => $this->traceErrors($e)]);
+                $this->setApiErrorMessage($this->extractErrorMessage($e->errors()), ['errors' => $this->traceErrors($e)], $e->getStatusCode());
             } elseif ($e instanceof AuthenticationException) {
-                $this->setApiErrorMessage($e->getMessage(), ['errors' => $this->traceErrors($e)], 401);
+                $this->setApiErrorMessage($e->getMessage(), ['errors' => $this->traceErrors($e)], $e->getStatusCode());
+            } elseif ($e instanceof \Illuminate\Http\Exceptions\PostTooLargeException) {
+                $this->setApiErrorMessage("Post Size is too large.", ['errors' => $this->traceErrors($e)], $e->getStatusCode());
+            } elseif ($e instanceof ModelNotFoundException) {
+                $this->setApiErrorMessage("Modal Not Found", ['errors' => $this->traceErrors($e)], $e->getStatusCode());
+            } elseif ($e instanceof MediaUploadException) {
+                $this->setApiErrorMessage($e->getMessage(), ['errors' => $this->traceErrors($e)], $e->getStatusCode());
             } else {
-                $this->setApiErrorMessage($e->getMessage(), ['errors' => $this->traceErrors($e)]);
+                $this->setApiErrorMessage($e->getMessage(), ['errors' => $this->traceErrors($e)], $e->getStatusCode());
             }
             return $this->getApiResponse();
         });

@@ -1,114 +1,3 @@
-<script>
-export default {
-    name: "Upload", // vue component name
-    data() {
-        return {
-            error: "",
-            files: [],
-            dropped: 0,
-            Imgs: [],
-        };
-    },
-    props: {
-        max: Number,
-        uploadMsg: String,
-        maxError: String,
-        fileError: String,
-        clearAll: String,
-    },
-    methods: {
-        dragOver() {
-            this.dropped = 2;
-        },
-        dragLeave() {
-        },
-        drop(e) {
-            let status = true;
-            let files = Array.from(e.dataTransfer.files)
-            if (e && files) {
-                files.forEach((file) => {
-                    if (file.type.startsWith("image") === false) {
-                        status = false;
-                    }
-                });
-                if (status == true) {
-                    if (
-                        this.$props.max &&
-                        files.length + this.files.length > this.$props.max
-                    ) {
-                        this.error = this.$props.maxError
-                            ? this.$props.maxError
-                            : `Maximum files is` + this.$props.max;
-                    } else {
-                        this.files.push(...files);
-                        this.previewImgs();
-                    }
-                } else {
-                    this.error = this.$props.fileError
-                        ? this.$props.fileError
-                        : `Unsupported file type`;
-                }
-            }
-            this.dropped = 0;
-        },
-        append() {
-            this.$refs.uploadInput.click();
-        },
-        readAsDataURL(file) {
-            return new Promise(function (resolve, reject) {
-                let fr = new FileReader();
-                fr.onload = function () {
-                    resolve(fr.result);
-                };
-                fr.onerror = function () {
-                    reject(fr);
-                };
-                fr.readAsDataURL(file);
-            });
-        },
-        deleteImg(index) {
-            this.Imgs.splice(index, 1);
-            this.files.splice(index, 1);
-            this.$emit("changed", this.files);
-            this.$refs.uploadInput.value = null;
-        },
-        previewImgs(event) {
-            if (
-                this.$props.max &&
-                event &&
-                event.currentTarget.files.length + this.files.length > this.$props.max
-            ) {
-                this.error = this.$props.maxError
-                    ? this.$props.maxError
-                    : `Maximum files is` + this.$props.max;
-                return;
-            }
-            if (this.dropped == 0) {
-                this.files.push(...event.currentTarget.files);
-            }
-            this.error = "";
-            this.$emit("changed", this.files);
-            let readers = [];
-            if (!this.files.length) {
-                return;
-            }
-            for (let i = 0; i < this.files.length; i++) {
-                readers.push(this.readAsDataURL(this.files[i]));
-            }
-            Promise.all(readers).then((values) => {
-                this.Imgs = values;
-            });
-        },
-        reset() {
-            this.$refs.uploadInput.value = null;
-            this.Imgs = [];
-            this.files = [];
-            this.$emit("changed", this.files);
-        },
-    },
-};
-</script>
-
 <template>
     <main id="main-container">
         <div class="content">
@@ -237,8 +126,8 @@ export default {
 
                             <p class="mainMessage">
                                 {{
-                                    uploadMsg ? uploadMsg
-                                        : "Click to upload or drop your images here"
+                                uploadMsg ? uploadMsg
+                                : "Click to upload or drop your images here"
                                 }}
                             </p>
                         </div>
@@ -248,22 +137,23 @@ export default {
                             </button>
                             <div class="imageHolder" v-for="(img, i) in Imgs" :key="i">
                                 <img :src="img"/>
-                                <span class="delete" style="color: white" @click="deleteImg(--i)">
-          <svg
-              class="icon"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-          >
-            <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-            />
-          </svg>
-        </span>
+                                <span class="delete" style="color: white"
+                                      @click="deleteImg(--i)">
+                                    <svg
+                                        class="icon"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                        />
+                                    </svg>
+                                </span>
                                 <div class="plus" @click="append" v-if="++i == Imgs.length">+</div>
                             </div>
                         </div>
@@ -273,6 +163,133 @@ export default {
         </div>
     </main>
 </template>
+
+<script>
+import {ref, onMounted, watchEffect} from "vue";
+
+export default {
+    name: "UploadComposition",
+    props: {
+        max: Number,
+        uploadMsg: String,
+        maxError: String,
+        fileError: String,
+        clearAll: String,
+    },
+    setup(props, {emit}) {
+        const uploadInput = ref(null);
+        const error = ref("");
+        const dropped = ref(0);
+        const files = ref([]);
+        const Imgs = ref([]);
+        const dragOver = () => {
+            dropped.value = 2;
+        }
+        const dragLeave = () => {
+            dropped.value = 0;
+        }
+        const drop = (e) => {
+            let status = true;
+            let filesArray = Array.from(e.dataTransfer.files)
+            if (e && filesArray) {
+                filesArray.forEach((file) => {
+                    if (file.type.startsWith("image") === false) {
+                        status = false;
+                    }
+                });
+                if (status == true) {
+                    if (
+                        props.max &&
+                        filesArray.length + files.value.length > props.max
+                    ) {
+                        error.value = props.maxError
+                            ? props.maxError
+                            : `Maximum files is` + props.max;
+                    } else {
+                        files.value.push(...filesArray);
+                        previewImgs();
+                    }
+                } else {
+                    error.value = props.fileError
+                        ? props.fileError
+                        : `Unsupported file type`;
+                }
+            }
+            dropped.value = 0;
+        }
+        const append = () => {
+            uploadInput.value.click();
+        }
+        const readAsDataURL = (file) => {
+            return new Promise(function (resolve, reject) {
+                let fr = new FileReader();
+                fr.onload = function () {
+                    resolve(fr.result);
+                };
+                fr.onerror = function () {
+                    reject(fr);
+                };
+                fr.readAsDataURL(file);
+            });
+        }
+        const deleteImg = (index) => {
+            Imgs.value.splice(index, 1);
+            files.value.splice(index, 1);
+            emit("changed", files.value);
+            uploadInput.value = null;
+        }
+        const previewImgs = (event) => {
+            if (
+                props.max &&
+                event &&
+                event.currentTarget.files.length + files.value.length > props.max
+            ) {
+                error.value = props.maxError
+                    ? props.maxError
+                    : `Maximum files is` + props.max;
+                return;
+            }
+            if (dropped.value == 0) {
+                files.value.push(...event.currentTarget.files);
+            }
+            error.value = "";
+            emit("changed", files.value);
+            let readers = [];
+            if (!files.value.length) {
+                return;
+            }
+            for (let i = 0; i < files.value.length; i++) {
+                readers.push(readAsDataURL(files.value[i]));
+            }
+            Promise.all(readers).then((values) => {
+                Imgs.value = values;
+            });
+        }
+        const reset = () => {
+            uploadInput.value = null;
+            Imgs.value = [];
+            files.value = [];
+            emit("changed", files.value);
+        }
+
+        return {
+            error,
+            files,
+            dropped,
+            Imgs,
+            dragOver,
+            dragLeave,
+            drop,
+            append,
+            readAsDataURL,
+            deleteImg,
+            previewImgs,
+            reset,
+            uploadInput
+        }
+    },
+}
+</script>
 
 <style scoped>
 .container {

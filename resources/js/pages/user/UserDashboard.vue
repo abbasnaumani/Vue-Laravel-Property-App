@@ -3,15 +3,24 @@
         <div class="content">
             <div class="row">
                 <div class="col-12">
-                    <UploadImages
-                        url="/uploads"
+                    <upload-single-composition
                         @changed="handleImages"
-                        :max="2"
+                        v-model="dataFiles"
+                        :max="1"
+                        maxError="Max files exceed"
+                        uploadMsg="upload product images"
+                        fileError="images files only accepted"
+                        clearAll="remove all images"
+                    ></upload-single-composition>
+
+                    <UploadImages
+                        @changed="handleImages"
+                        :max="3"
                         maxError="Max files exceed1"
                         uploadMsg="upload product images1"
                         fileError="images files only accepted1"
                         clearAll="remove all images"
-                    />
+                    ></UploadImages>
                     <div class="block block-rounded">
                         <div class="block-header block-header-default">
                             <h3 class="block-title">Summary Overview</h3>
@@ -23,6 +32,14 @@
                                 </button>
                             </div>
                         </div>
+                        <upload-composition
+                            @changed="handleImages"
+                            :max="3"
+                            maxError="Max files exceed"
+                            uploadMsg="upload product images"
+                            fileError="images files only accepted"
+                            clearAll="remove all images"
+                        ></upload-composition>
                         <div class="block-content block-content-full">
                             <p>Details can be here...</p>
                             <a class="btn" @click="toggleShow">set avatar</a>
@@ -54,16 +71,22 @@ import {ref} from 'vue';
 import appApi from "~/api/index";
 import {ApiResponse} from "../../constants";
 import {useToast} from "vue-toastification";
+import errorHandlerService from "../../services/errorHandlerService";
+import UploadComposition from "../UploadComposition";
+import UploadSingleComposition from "../UploadSingleComposition";
 
 export default {
     name: "UserDashboard",
     components: {
+        UploadSingleComposition,
+        UploadComposition,
         myUpload,
         UploadImages
     },
     setup() {
         const toast = useToast()
         const show = ref(false);
+        const dataFiles = ref([]);
         const imgDataUrl = ref('');
         const params = ref({
             token: '123456798',
@@ -109,19 +132,26 @@ export default {
         }
 
         // #######################3
-        const handleImages = async (files)=>{
-            console.log(files[0])
-            var formData = new FormData();
-            formData.append("image", files[0]);
-            const response = await appApi.post('/uploads', formData,{
-                headers: {
-                    'Content-Type': 'multipart/form-data'
+        const handleImages = async (files) => {
+            try {
+                var formData = new FormData();
+                formData.append("image", files[0],'test.png');
+                const response = await appApi.post('/uploads', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+                console.log('_________________________________________');
+                console.log(response);
+                if (response.data.status === ApiResponse.SUCCESS) {
+                    toast.success("Image Uploaded!");
+                } else {
+                    toast.error(response.data.message);
                 }
-            });
-            if (response.data.status === ApiResponse.SUCCESS) {
-                toast.success("Image Completed!");
-            } else {
-                toast.error(response.data.message);
+            } catch (err) {
+                console.log(err, "catch error");
+                const error = await errorHandlerService.errors.index(err);
+                toast.error(error.message);
             }
             //axios.post('upload_file', file, )
             /*
@@ -146,7 +176,8 @@ export default {
             cropSuccess,
             cropUploadSuccess,
             cropUploadFail,
-            handleImages
+            handleImages,
+            dataFiles
         }
 
     },

@@ -1048,12 +1048,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/abbasnaumani/Kodestudio-ApiResponse.git",
-                "reference": "f0acf7913bc0943c76a6b6e42c7da8195c7a5132"
+                "reference": "5247f0698317e5c924384fd93f7be6897edd69a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/abbasnaumani/Kodestudio-ApiResponse/zipball/f0acf7913bc0943c76a6b6e42c7da8195c7a5132",
-                "reference": "f0acf7913bc0943c76a6b6e42c7da8195c7a5132",
+                "url": "https://api.github.com/repos/abbasnaumani/Kodestudio-ApiResponse/zipball/5247f0698317e5c924384fd93f7be6897edd69a8",
+                "reference": "5247f0698317e5c924384fd93f7be6897edd69a8",
                 "shasum": ""
             },
             "default-branch": true,
@@ -1083,7 +1083,7 @@
                 "issues": "https://github.com/abbasnaumani/Kodestudio-ApiResponse/issues",
                 "source": "https://github.com/abbasnaumani/Kodestudio-ApiResponse/tree/main"
             },
-            "time": "2021-11-12T14:09:56+00:00"
+            "time": "2021-11-16T08:33:09+00:00"
         },
         {
             "name": "laravel/framework",
