@@ -1048,12 +1048,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/abbasnaumani/Kodestudio-ApiResponse.git",
-                "reference": "aa367b341c41d1a2a801d887c1369fa12ccb9d20"
+                "reference": "16986ffc3484e714c520b495707c2199a11ee853"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/abbasnaumani/Kodestudio-ApiResponse/zipball/aa367b341c41d1a2a801d887c1369fa12ccb9d20",
-                "reference": "aa367b341c41d1a2a801d887c1369fa12ccb9d20",
+                "url": "https://api.github.com/repos/abbasnaumani/Kodestudio-ApiResponse/zipball/16986ffc3484e714c520b495707c2199a11ee853",
+                "reference": "16986ffc3484e714c520b495707c2199a11ee853",
                 "shasum": ""
             },
             "default-branch": true,
@@ -1083,20 +1083,20 @@
                 "issues": "https://github.com/abbasnaumani/Kodestudio-ApiResponse/issues",
                 "source": "https://github.com/abbasnaumani/Kodestudio-ApiResponse/tree/main"
             },
-            "time": "2021-11-16T08:37:10+00:00"
+            "time": "2021-11-18T12:12:41+00:00"
         },
         {
             "name": "laravel/framework",
-            "version": "v8.71.0",
+            "version": "v8.72.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "d822426d75ecf8e8ccd3ccd404db7202d1a9875e"
+                "reference": "5168f8589195a5f48b9c41ad2eec77a6c15f14f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/d822426d75ecf8e8ccd3ccd404db7202d1a9875e",
-                "reference": "d822426d75ecf8e8ccd3ccd404db7202d1a9875e",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/5168f8589195a5f48b9c41ad2eec77a6c15f14f3",
+                "reference": "5168f8589195a5f48b9c41ad2eec77a6c15f14f3",
                 "shasum": ""
             },
             "require": {
@@ -1255,7 +1255,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2021-11-16T15:00:50+00:00"
+            "time": "2021-11-17T15:15:08+00:00"
         },
         {
             "name": "laravel/sanctum",

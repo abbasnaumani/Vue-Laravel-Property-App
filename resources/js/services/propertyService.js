@@ -13,7 +13,6 @@ class PropertyService extends EventEmitter {
         try {
             const response = await appApi.get('/properties');
             if (response.data.status === ApiResponse.SUCCESS) {
-                toast.success(response.data.message, );
                 await store.dispatch('actionPropertyList', response.data.payload);
             } else {
                 toast.error(response.data.message);
@@ -97,7 +96,7 @@ class PropertyService extends EventEmitter {
         try {
             const response = await appApi.put('/properties/'+propertyId,dataToUpdate);
             if (response.data.status === ApiResponse.SUCCESS) {
-                toast.success(response.data.message, );
+                await store.dispatch('actionPropertyList', response.data.payload);
                 router.push({name: 'property-dashboard'});
             } else {
                 toast.error(response.data.message);

@@ -83,5 +83,7 @@ export default {
 </script>
 
 <style scoped>
-
+    div.modal.show {
+        background-color: rgba(0, 0, 0, 0.51);
+    }
 </style>

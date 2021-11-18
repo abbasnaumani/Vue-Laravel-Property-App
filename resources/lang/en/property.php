@@ -23,7 +23,7 @@ return [
 
     'property_store' => 'Property Saved Successfully.',
     'property_updated' => 'Property Updated Successfully.',
-    'property_not_updated' => 'Property Not Updated Successfully.',
+    'property_not_updated' => 'Property Not Updated.',
     'property_not_store' => 'Property Not Store Successfully.',
     'property_detail_not_store' => 'Property Details Not Store Successfully.',
     'property_delete' => 'Property Deleted Successfully.',

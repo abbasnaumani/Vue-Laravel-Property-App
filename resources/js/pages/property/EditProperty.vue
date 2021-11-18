@@ -7,12 +7,12 @@
                 </div>
                 <div class="block-content block-content-full" v-if="propertyData">
                     <div class="row">
-                        <div class="col-sm-10 offset-1">
+                        <div class="col-sm-12 col-lg-12">
                             <form>
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="py-2 row">
-                                            <div class="form-group col-3">
+                                            <div class="form-group col-6 col-lg-3 col-sm-6">
                                                 <label for="title">&nbsp Property Title</label>
                                                 <input id="title" class="form-control form-control-alt form-control-lg"
                                                        type="text"
@@ -29,7 +29,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-group col-3" v-if="propertyTypes">
+                                            <div class="form-group col-6 col-lg-3 col-sm-6" v-if="propertyTypes">
                                                 <label>&nbsp Property Type</label>
                                                 <select id="property-type"
                                                         class="form-control form-control-alt form-control-lg"
@@ -43,7 +43,7 @@
                                                     </option>
                                                 </select>
                                             </div>
-                                            <div class="form-group col-1">
+                                            <div class="form-group col-6 col-lg-1 col-sm-6">
                                                 <label for="area">&nbsp Area</label>
                                                 <input id="area" class="form-control form-control-alt form-control-lg"
                                                        type="text"
@@ -60,7 +60,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-group col-2" v-if="allAreaUnits">
+                                            <div class="form-group col-6 col-lg-2 col-sm-6" v-if="allAreaUnits">
                                                 <label for="area">&nbsp Unit</label>
                                                 <select
                                                     class="form-control form-control-alt form-control-lg"
@@ -73,7 +73,7 @@
                                                     </option>
                                                 </select>
                                             </div>
-                                            <div class="form-group col-3" v-if="allCities">
+                                            <div class="form-group col-6 col-lg-3 col-sm-6" v-if="allCities">
                                                 <label>&nbsp City</label>
                                                 <select id="cities"
                                                         class="form-control form-control-alt form-control-lg"
@@ -89,7 +89,7 @@
                                             </div>
                                         </div>
                                         <div class="py-2 row">
-                                            <div class="form-group col-3">
+                                            <div class="form-group col-6 col-lg-3 col-sm-6">
                                                 <label>&nbsp Purpose</label>
                                                 <select id="purpose"
                                                         class="form-control form-control-alt form-control-lg"
@@ -99,7 +99,7 @@
                                                     <option value="2" :selected="propertyData.purpose">For Rent</option>
                                                 </select>
                                             </div>
-                                            <div class="form-group col-3">
+                                            <div class="form-group col-6 col-lg-3 col-sm-6">
                                                 <label for="price">&nbsp Price</label>
                                                 <input id="price" class="form-control form-control-alt form-control-lg"
                                                        type="text"
@@ -117,7 +117,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-group col-3">
+                                            <div class="form-group col-6 col-lg-3 col-sm-6">
                                                 <label for="location">&nbsp Location</label>
                                                 <input id="location"
                                                        class="form-control form-control-alt form-control-lg"
@@ -136,7 +136,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-group col-3">
+                                            <div class="form-group col-6 col-lg-3 col-sm-6">
                                                 <label for="address">&nbsp Address</label>
                                                 <input id="address"
                                                        class="form-control form-control-alt form-control-lg"
@@ -156,7 +156,7 @@
 
                                         </div>
                                         <div class="py-2 row">
-                                            <div class="form-group col-3">
+                                            <div class="form-group col-6 col-lg-3 col-sm-6">
                                                 <label for="bedrooms">&nbsp Bedrooms</label>
                                                 <input id="bedrooms"
                                                        class="form-control form-control-alt form-control-lg"
@@ -166,7 +166,7 @@
                                                        oninput="validity.valid||(value=0)"
                                                 />
                                             </div>
-                                            <div class="form-group col-3">
+                                            <div class="form-group col-6 col-lg-3 col-sm-6">
                                                 <label for="bathrooms">&nbsp Bathrooms</label>
                                                 <input id="bathrooms"
                                                        class="form-control form-control-alt form-control-lg"
@@ -176,8 +176,8 @@
                                                        oninput="validity.valid||(value=0)"
                                                 />
                                             </div>
-                                            <div class="form-group col-2">
-                                                <strong>&nbsp Occupancy Status</strong>
+                                            <div class="form-group col-6 col-lg-2 col-sm-6">
+                                                <strong class="d-block">&nbsp Occupancy Status</strong>
                                                 <label for="occupancy-status" class="switch">
                                                     <input id="occupancy-status"
                                                            class="form-control form-control-alt form-control-lg"
@@ -188,8 +188,8 @@
                                                     <span class="slider round"></span>
                                                 </label>
                                             </div>
-                                            <div class="form-group col-2">
-                                                <strong>&nbsp Installment Available</strong>
+                                            <div class="form-group col-6 col-lg-2 col-sm-6">
+                                                <strong class="d-block">&nbsp Installment Available</strong>
                                                 <label for="installment-available" class="switch">
                                                     <input id="installment-available"
                                                            class="form-control form-switch form-control-alt form-control-lg"
@@ -200,8 +200,8 @@
                                                     <span class="slider round"></span>
                                                 </label>
                                             </div>
-                                            <div class="form-group col-2">
-                                                <strong>&nbsp Possession Available</strong>
+                                            <div class="form-group col-6 col-lg-2 col-sm-6">
+                                                <strong class="d-block">&nbsp Possession Available</strong>
                                                 <label class="switch" for="possession-available">
                                                     <input id="possession-available"
                                                            type="checkbox"
@@ -217,7 +217,19 @@
                                                 <label>&nbsp Description </label>
                                                 <QuillEditor toolbar="minimal" theme="snow"
                                                              v-model:content="propertyData.property_detail.description"
-                                                             contentType="html" :modules="modules"/>
+                                                             contentType="html" :modules="modules"
+                                                             ref="quillEditor"
+                                                             @blur="handleDescriptionValidation($event)"
+                                                             @input="handleDescriptionValidation($event)"
+                                                />
+                                                <div class="text-left">
+                                                    <div >
+                                                        <sub v-if="descriptionLength < 2"
+                                                             class="px-2 py-2 text-danger">
+                                                            Description is Required
+                                                        </sub>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -282,9 +294,15 @@ export default {
         const propertyTypes = getPropertyTypes();
         const allAreaUnits = getAreaUnits();
         const allCities = getCities();
-
-        let propertyData = getProperty(props.propertyId);
-
+        const quillEditor = ref();
+        const descriptionLength = ref();
+        let propertyData = ref(null);
+        let property = getProperty(props.propertyId);
+        watch(property,()=>{
+            if(property.value){
+                propertyData.value = {...property.value};
+            }
+        })
         const validationRules = computed(() => {
             return {
                 propertyData: {
@@ -329,6 +347,10 @@ export default {
             (checkBoxType === 'occupancy') ? isOccupancyStatus.value = e.target.checked:
             isPossessionAvailable.value = e.target.checked
         }
+        function handleDescriptionValidation(e){
+            let quill = quillEditor.value.getQuill()
+            descriptionLength.value = quill.getLength();
+        }
         const handleUpdateProperty = () => {
             propertyService.handleUpdateProperty({
                 title: propertyData.value.title,
@@ -361,6 +383,9 @@ export default {
             isInstallmentAvailable,
             isPossessionAvailable,
             handleCheckBoxInput,
+            handleDescriptionValidation,
+            quillEditor,
+            descriptionLength
         }
     }
 }

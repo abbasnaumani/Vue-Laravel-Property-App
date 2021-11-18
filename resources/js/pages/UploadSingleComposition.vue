@@ -16,7 +16,7 @@
                         </div>
 
                         <!-- To inform user how to upload image -->
-                        <div v-show="Imgs.length >0" class="beforeUpload">
+                        <div v-show="Imgs.length == 0" class="beforeUpload">
                             <input
                                 type="file"
                                 style="z-index: 1"
@@ -131,7 +131,7 @@
                                 }}
                             </p>
                         </div>
-                        <div class="imgsPreview" v-show="Imgs.length== 0">
+                        <div class="imgsPreview" v-show="Imgs.length> 0">
                             <button type="button" class="clearButton" @click="reset">
                                 {{ clearAll ? clearAll : "clear All" }}
                             </button>
@@ -157,6 +157,7 @@
                                 <div class="plus" @click="append" v-if="++i == Imgs.length">+</div>
                             </div>
                         </div>
+                        <div class="plus" @click="append">+</div>
                     </div>
                 </div>
             </div>
@@ -179,6 +180,7 @@ export default {
     },
     setup(props, {emit}) {
         const uploadInput = ref(null);
+        const filesData = ref([...props.modelValue]);
         const error = ref("");
         const dropped = ref(0);
         const Imgs = ref([]);
@@ -206,7 +208,8 @@ export default {
                             ? props.maxError
                             : `Maximum files is` + props.max;
                     } else {
-                        emit('update:modelValue', [...props.modelValue,...filesArray])
+                        filesData.value.push(...filesArray)
+                        emit('update:modelValue', filesData.value);
                         //files.value.push(...filesArray);
                         previewImgs();
                     }
@@ -251,16 +254,17 @@ export default {
                 return;
             }
             if (dropped.value == 0) {
-                emit('update:modelValue', [...props.modelValue,...event.currentTarget.files]);
+                filesData.value.push(...event.currentTarget.files);
+                //emit('update:modelValue', filesData.value);
             }
             error.value = "";
-            emit("changed", props.modelValue);
+            emit("changed", filesData.value);
             let readers = [];
-            if (!props.modelValue.length) {
+            if (!filesData.value) {
                 return;
             }
-            for (let i = 0; i < props.modelValue.length; i++) {
-                readers.push(readAsDataURL(props.modelValue[i]));
+            for (let i = 0; i < filesData.value.length; i++) {
+                readers.push(readAsDataURL(filesData.value[i]));
             }
             Promise.all(readers).then((values) => {
                 Imgs.value = values;
@@ -270,7 +274,7 @@ export default {
             uploadInput.value = null;
             Imgs.value = [];
             emit('update:modelValue', [])
-            emit("changed", props.modelValue);
+            emit("changed", filesData.value);
         }
 
         return {

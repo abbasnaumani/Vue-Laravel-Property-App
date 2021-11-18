@@ -3,24 +3,29 @@
         <div class="content">
             <div class="row">
                 <div class="col-12">
-                    <upload-single-composition
-                        @changed="handleImages"
-                        v-model="dataFiles"
-                        :max="1"
-                        maxError="Max files exceed"
-                        uploadMsg="upload product images"
-                        fileError="images files only accepted"
-                        clearAll="remove all images"
-                    ></upload-single-composition>
+                    <drop-zone v-model="dataFiles" @newFile="handleImages"></drop-zone>
+                    <upload-list :items="dataFiles"></upload-list>
+                    {{ dataFiles }}
+                    Progress {{ fileProgress }}
 
-                    <UploadImages
-                        @changed="handleImages"
-                        :max="3"
-                        maxError="Max files exceed1"
-                        uploadMsg="upload product images1"
-                        fileError="images files only accepted1"
-                        clearAll="remove all images"
-                    ></UploadImages>
+                    <!--                    <upload-single-composition-->
+                    <!--                        @changed="handleImages"-->
+                    <!--                        :max="2"-->
+                    <!--                        maxError="Max files exceed"-->
+                    <!--                        uploadMsg="upload product images"-->
+                    <!--                        fileError="images files only accepted"-->
+                    <!--                        clearAll="remove all images"-->
+                    <!--                    ></upload-single-composition>-->
+
+                    <!--                    <UploadImages-->
+                    <!--                        @changed="handleImages"-->
+                    <!--                        :max="3"-->
+                    <!--                        maxError="Max files exceed1"-->
+                    <!--                        uploadMsg="upload product images1"-->
+                    <!--                        fileError="images files only accepted1"-->
+                    <!--                        clearAll="remove all images"-->
+                    <!--                    ></UploadImages>-->
+
                     <div class="block block-rounded">
                         <div class="block-header block-header-default">
                             <h3 class="block-title">Summary Overview</h3>
@@ -32,14 +37,14 @@
                                 </button>
                             </div>
                         </div>
-                        <upload-composition
-                            @changed="handleImages"
-                            :max="3"
-                            maxError="Max files exceed"
-                            uploadMsg="upload product images"
-                            fileError="images files only accepted"
-                            clearAll="remove all images"
-                        ></upload-composition>
+                        <!--                        <upload-composition-->
+                        <!--                            @changed="handleImages"-->
+                        <!--                            :max="3"-->
+                        <!--                            maxError="Max files exceed"-->
+                        <!--                            uploadMsg="upload product images"-->
+                        <!--                            fileError="images files only accepted"-->
+                        <!--                            clearAll="remove all images"-->
+                        <!--                        ></upload-composition>-->
                         <div class="block-content block-content-full">
                             <p>Details can be here...</p>
                             <a class="btn" @click="toggleShow">set avatar</a>
@@ -67,17 +72,21 @@
 <script>
 import myUpload from 'vue-image-crop-upload';
 import UploadImages from "vue-upload-drop-images"
-import {ref} from 'vue';
+import {ref, watch, watchEffect} from 'vue';
 import appApi from "~/api/index";
 import {ApiResponse} from "../../constants";
 import {useToast} from "vue-toastification";
 import errorHandlerService from "../../services/errorHandlerService";
 import UploadComposition from "../UploadComposition";
 import UploadSingleComposition from "../UploadSingleComposition";
+import DropZone from "../dropzone/DropZone";
+import UploadList from "../dropzone/UploadList";
 
 export default {
     name: "UserDashboard",
     components: {
+        UploadList,
+        DropZone,
         UploadSingleComposition,
         UploadComposition,
         myUpload,
@@ -86,6 +95,7 @@ export default {
     setup() {
         const toast = useToast()
         const show = ref(false);
+        const fileProgress = ref({});
         const dataFiles = ref([]);
         const imgDataUrl = ref('');
         const params = ref({
@@ -131,41 +141,43 @@ export default {
             console.log('field: ' + field);
         }
 
-        // #######################3
+        // #######################
         const handleImages = async (files) => {
             try {
-                var formData = new FormData();
-                formData.append("image", files[0],'test.png');
-                const response = await appApi.post('/uploads', formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
+                for (let i = 0; i < files.length; i++) {
+                    var formData = new FormData();
+                    //console.log(`files`, files[i])
+                    formData.append("images", files[i], 'abc.png');
+                    const response = await appApi.post('/uploads', formData, {
+                        onUploadProgress: (progressEvent) => {
+                            console.log('progressEvent', progressEvent);
+                            const total = progressEvent.total;
+                            const totalLength = progressEvent.lengthComputable ? total : null;
+                            if (totalLength !== null) {
+                                fileProgress[i] = Math.round(progressEvent.loaded * 100)
+                                    / totalLength
+                            }
+                        },
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    });
+                    console.log('_________________________________________');
+                    console.log(response);
+                    if (response.data.status === ApiResponse.SUCCESS) {
+                        toast.success("Image Uploaded!");
+                    } else {
+                        toast.error(response.data.message);
                     }
-                });
-                console.log('_________________________________________');
-                console.log(response);
-                if (response.data.status === ApiResponse.SUCCESS) {
-                    toast.success("Image Uploaded!");
-                } else {
-                    toast.error(response.data.message);
                 }
             } catch (err) {
                 console.log(err, "catch error");
                 const error = await errorHandlerService.errors.index(err);
                 toast.error(error.message);
             }
-            //axios.post('upload_file', file, )
-            /*
-              [
-                {
-                    "name": "Screenshot from 2021-02-23 12-36-33.png",
-                    "size": 319775,
-                    "type": "image/png",
-                    "lastModified": 1614080193596
-                    ...
-                },
-                ...
-                ]
-             */
+        }
+        const handleNewFile = (newFile) => {
+            console.log('newFile', newFile)
         }
         return {
             show,
@@ -177,7 +189,9 @@ export default {
             cropUploadSuccess,
             cropUploadFail,
             handleImages,
-            dataFiles
+            dataFiles,
+            fileProgress,
+            handleNewFile
         }
 
     },

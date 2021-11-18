@@ -30,7 +30,11 @@ const mutations = {
     mutateAreaUnits(state, areaUnits) {
         state.areaUnits = areaUnits;
     },
-
+    mutateAddProperty(state, propertyData) {
+        let property = [...state.properties];
+        property = [...property,propertyData];
+        state.properties = [...property];
+    },
 }
 const actions = {
     actionPropertyList({commit, state},properties){
@@ -41,6 +45,9 @@ const actions = {
     },
     actionAreaUnits({commit, state},areaUnits){
         commit('mutateAreaUnits', areaUnits);
+    },
+    actionAddProperty({commit, state},propertyData){
+        commit('mutateAddProperty', propertyData);
     },
 }
 
