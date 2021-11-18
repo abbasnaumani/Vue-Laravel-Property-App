@@ -263,6 +263,7 @@ export default {
             }
             Promise.all(readers).then((values) => {
                 Imgs.value = values;
+                console.log(values,'++++++++++++++++++++++++++++')
             });
         }
         const reset = () => {

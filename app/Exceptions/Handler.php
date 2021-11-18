@@ -60,7 +60,8 @@ class Handler extends ExceptionHandler
             } elseif ($e instanceof MediaUploadException) {
                 $this->setApiErrorMessage($e->getMessage(), ['errors' => $this->traceErrors($e)], $e->getStatusCode());
             } else {
-                $this->setApiErrorMessage($e->getMessage(), ['errors' => $this->traceErrors($e)], $e->getStatusCode());
+                dd($e);
+                $this->setApiErrorMessage($e->getMessage(), ['errors' => $this->traceErrors($e)]);
             }
             return $this->getApiResponse();
         });

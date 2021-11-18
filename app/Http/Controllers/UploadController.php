@@ -52,17 +52,20 @@ class UploadController extends Controller
         return Download::make(Storage::disk('s3')->get($mediaBaseFolder . '/' . $file), Response::HTTP_OK, $headers);
     }
 
+
     public function store(Request $request, MediaUploader $mediaUploader)
     {
-        if ($request->hasFile('image')) {
+        if ($request->hasFile('images')) {
             try {
-                $mediaUploader->fromSource($request->file('image'))->upload();
+                $mediaUploader->onDuplicateIncrement();
+                $media = $mediaUploader->fromSource($request->file('images'))->upload();
                 $this->setApiSuccessMessage('Image Uploaded');
                 return $this->getApiResponse();
             } catch (MediaUploadException $e) {
                 throw $this->transformMediaUploadException($e);
             }
-
+        } else {
+            dd('Noe Imahge', $request->file('images'));
         }
     }
 }
