@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class PropertyDetail extends Model
 {
     protected $guarded = [];
+    protected $fillable = [
+'description',
+'address',
+'is_occupancy_status',
+'is_possession_available',
+'is_installment_available'];
 
     /**
      * A Property Detail belongs to a Property

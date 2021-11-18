@@ -63,7 +63,7 @@ class PropertyService extends EventEmitter {
             const response = await appApi.post('/properties',newProperty);
             console.log(response,"response");
             if (response.data.status === ApiResponse.SUCCESS) {
-                // await store.dispatch('actionAddProperty', response.data.payload);
+                await store.dispatch('actionPropertyList', response.data.payload);
                  router.push({name: 'property-dashboard'});
             } else {
                 toast.error(response.data.message);

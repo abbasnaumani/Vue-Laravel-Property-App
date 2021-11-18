@@ -120,7 +120,6 @@ class PropertyService extends BaseService
     public function propertyUpdateValidation(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'property_id' => 'required|exists:properties,id',
             'property_sub_type_id' => 'required|exists:property_sub_types,id',
             'area_unit_id' => 'required|exists:area_units,id',
             'city_id' => 'required|exists:cities,id',
@@ -128,7 +127,9 @@ class PropertyService extends BaseService
             'area' => 'required|numeric',
             'purpose' => 'required',
             'price' => 'required|integer|min:0',
-            'location' => 'required|string'
+            'location' => 'required|string',
+            'description' => 'required',
+            'address' => 'required'
         ]);
         if ($validator->fails()) {
             $this->setApiErrorMessage(trans('property.validation_failed'), ['errors' => $validator->errors()]);
@@ -169,9 +170,11 @@ class PropertyService extends BaseService
                     'is_installment_available' => $request->input('is_installment_available'),
                     'is_possession_available' => $request->input('is_possession_available'),
                 ];
+
                 $property = Property::where(['id' => $id, 'user_id' => $this->getAuthUserId()])->update($propertyData);
-//              $propertyDetail = $property->propertyDetail()->update($propertyDetailData);
-//              $data = ['property' => $property, 'propertyDetail' => $propertyDetail];
+                $propertyDetail = $property->propertyDetail()->update($propertyDetailData);
+
+                //              $data = ['property' => $property, 'propertyDetail' => $propertyDetail];
 
                 $data = $this->getAllProperties();
                 DB::commit();
@@ -181,7 +184,7 @@ class PropertyService extends BaseService
             }
         } catch (\Exception $e) {
             DB::rollback();
-            $this->setApiErrorMessage(trans('property.property_not_updated'));
+            $this->setApiErrorMessage(trans('property.property_not_updated'),$e->getMessage());
         }
     }
     /**

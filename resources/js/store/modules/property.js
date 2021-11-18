@@ -5,7 +5,7 @@ const state = {
 }
 const getters = {
     getPropertyList(state) {
-        return state.properties ? JSON.parse(JSON.stringify(state.properties)): null;
+        return state.properties;
     },
     getPropertyDetails:(state) => (propertyId) => {
         return state.properties !== null ?  state.properties.find(property => property.id == propertyId)?.property_detail : null;
@@ -30,11 +30,7 @@ const mutations = {
     mutateAreaUnits(state, areaUnits) {
         state.areaUnits = areaUnits;
     },
-    mutateAddProperty(state, propertyData) {
-        let property = [...state.properties];
-        property = [...property,propertyData];
-        state.properties = [...property];
-    },
+
 }
 const actions = {
     actionPropertyList({commit, state},properties){
@@ -45,9 +41,6 @@ const actions = {
     },
     actionAreaUnits({commit, state},areaUnits){
         commit('mutateAreaUnits', areaUnits);
-    },
-    actionAddProperty({commit, state},propertyData){
-        commit('mutateAddProperty', propertyData);
     },
 }
 

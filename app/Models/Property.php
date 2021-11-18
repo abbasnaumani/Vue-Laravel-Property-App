@@ -7,6 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Property extends Model
 {
     protected $guarded = [];
+    protected $fillable = ['property_sub_type_id',
+'area_unit_id',
+'city_id',
+'title',
+'area',
+'purpose',
+'price',
+'location'];
 
     /**
      * Property has a Property Detail

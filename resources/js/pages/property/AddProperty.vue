@@ -19,13 +19,13 @@
                                                        v-model="title"
                                                        @blur="v$.title.$touch()"
                                                        />
-                                            </div>
-                                            <div class="text-left">
-                                                <div v-if="v$.title.$dirty">
-                                                    <sub v-if="v$.title.$error"
-                                                         class="px-2 py-2 text-danger">
-                                                        Title is Required
-                                                    </sub>
+                                                <div class="text-left">
+                                                    <div v-if="v$.title.$dirty">
+                                                        <sub v-if="v$.title.$error"
+                                                             class="px-2 py-2 text-danger">
+                                                            Title is Required
+                                                        </sub>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="form-group col-3" v-if="propertyTypes">
@@ -34,7 +34,7 @@
                                                         class="form-control form-control-alt form-control-lg"
                                                         v-model="type"
                                                 >
-                                                    <option v-for="propertyType in propertyTypes" :value="propertyType.id">{{propertyType.name}}</option>
+                                                    <option v-for="propertyType in propertyTypes" :value="propertyType.id" :selected="propertyType.id===type">{{propertyType.name}}</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-1">
@@ -44,13 +44,13 @@
                                                        v-model="area" required
                                                        @blur="v$.area.$touch()"
                                                 />
-                                            </div>
-                                            <div class="text-left">
-                                                <div v-if="v$.area.$dirty">
-                                                    <sub v-if="v$.area.$error"
-                                                         class="px-2 py-2 text-danger">
-                                                        Area is Required
-                                                    </sub>
+                                                <div class="text-left">
+                                                    <div v-if="v$.area.$dirty">
+                                                        <sub v-if="v$.area.$error"
+                                                             class="px-2 py-2 text-danger">
+                                                            Area is Required
+                                                        </sub>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="form-group col-2" v-if="allAreaUnits">
@@ -59,7 +59,7 @@
                                                     class="form-control form-control-alt form-control-lg"
                                                     v-model="areaUnit"
                                                 >
-                                                    <option v-for="unit in allAreaUnits" :value="unit.id">{{unit.name}}</option>
+                                                    <option v-for="unit in allAreaUnits" :value="unit.id" :selected="unit.id===areaUnit">{{unit.name}}</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-3" v-if="allCities">
@@ -68,7 +68,7 @@
                                                         class="form-control form-control-alt form-control-lg"
                                                         v-model="city"
                                                 >
-                                                    <option v-for="city in allCities" :value="city.id">{{city.name}}</option>
+                                                    <option v-for="city in allCities" :value="city.id" :selected="city.id===city">{{city.name}}</option>
 
                                                 </select>
                                             </div>
@@ -79,7 +79,7 @@
                                                 <select id="purpose" class="form-control form-control-alt form-control-lg"
                                                         v-model="purpose"
                                                 >
-                                                    <option value="1" >For Sale</option>
+                                                    <option value="1" selected>For Sale</option>
                                                     <option value="2" >For Rent</option>
                                                 </select>
                                             </div>
@@ -91,15 +91,16 @@
                                                        @blur="v$.price.$touch()"
                                                        required
                                                 />
-                                            </div>
-                                            <div class="text-left">
-                                                <div v-if="v$.price.$dirty">
-                                                    <sub v-if="v$.price.$error"
-                                                         class="px-2 py-2 text-danger">
-                                                        Price is Required
-                                                    </sub>
+                                                <div class="text-left">
+                                                    <div v-if="v$.price.$dirty">
+                                                        <sub v-if="v$.price.$error"
+                                                             class="px-2 py-2 text-danger">
+                                                            Price is Required
+                                                        </sub>
+                                                    </div>
                                                 </div>
                                             </div>
+
                                             <div class="form-group col-3">
                                                 <label for="location">&nbsp Location</label>
                                                 <input id="location" class="form-control form-control-alt form-control-lg"
@@ -108,15 +109,16 @@
                                                        required
                                                        @blur="v$.location.$touch()"
                                                 />
-                                            </div>
-                                            <div class="text-left">
-                                                <div v-if="v$.location.$dirty">
-                                                    <sub v-if="v$.location.$error"
-                                                         class="px-2 py-2 text-danger">
-                                                        Location is Required
-                                                    </sub>
+                                                <div class="text-left">
+                                                    <div v-if="v$.location.$dirty">
+                                                        <sub v-if="v$.location.$error"
+                                                             class="px-2 py-2 text-danger">
+                                                            Location is Required
+                                                        </sub>
+                                                    </div>
                                                 </div>
                                             </div>
+
                                             <div class="form-group col-3">
                                                 <label for="address">&nbsp Address</label>
                                                 <input id="address" class="form-control form-control-alt form-control-lg"
@@ -124,28 +126,35 @@
                                                        v-model="address"
                                                        @blur="v$.address.$touch()"
                                                 />
-                                            </div>
-                                            <div class="text-left">
-                                                <div v-if="v$.address.$dirty">
-                                                    <sub v-if="v$.address.$error"
-                                                         class="px-2 py-2 text-danger">
-                                                        Address is Required
-                                                    </sub>
+                                                <div class="text-left">
+                                                    <div v-if="v$.address.$dirty">
+                                                        <sub v-if="v$.address.$error"
+                                                             class="px-2 py-2 text-danger">
+                                                            Address is Required
+                                                        </sub>
+                                                    </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                         <div class="py-2 row">
                                             <div class="form-group col-3">
                                                 <label for="bedrooms">&nbsp Bedrooms</label>
                                                 <input id="bedrooms" class="form-control form-control-alt form-control-lg"
                                                        type="number"
-                                                       v-model="bedrooms"/>
+                                                       v-model="bedrooms"
+                                                       min="0"
+                                                       oninput="validity.valid||(value=0)"
+                                                />
                                             </div>
                                             <div class="form-group col-3">
                                                 <label for="bathrooms">&nbsp Bathrooms</label>
                                                 <input id="bathrooms" class="form-control form-control-alt form-control-lg"
                                                        type="number"
-                                                       v-model="bathrooms"/>
+                                                       v-model="bathrooms"
+                                                       min="0"
+                                                       oninput="validity.valid||(value=0)"
+                                                />
                                             </div>
                                             <div class="form-group col-2">
                                                 <strong>&nbsp Occupancy Status</strong>
@@ -175,31 +184,29 @@
                                                 </label>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="py-2 row">
-                                        <div class="form-group col-10 offset-1">
-                                            <label >&nbsp Description  </label>
-                                            <QuillEditor toolbar="minimal" theme="snow" v-model:content="description" contentType="html" :modules="modules"/>
+                                        <div class="py-2 row">
+                                            <div class="form-group col-10 offset-1">
+                                                <label >&nbsp Description  </label>
+                                                <QuillEditor toolbar="minimal" theme="snow" v-model:content="description" contentType="html" :modules="modules"/>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="block-content block-content-full text-right border-top">
-                                    <div class="form-group row">
-                                        <div class="col-md-6 col-xl-5">
-                                            <button
-                                                v-if="v$.$invalid"
-                                                type="submit"
-                                                class="btn btn-block btn-alt-primary cursor-not-allowed"
-                                                disabled
-                                            >
-                                                <i class="fa fa-fw fa-sign-in-alt mr-1"></i>Submit
-                                            </button>
-                                            <button v-else @click.prevent="handleAddProperty"
+                                        <div class="form-group row my-6">
+                                            <div class="col-4 offset-4">
+                                                <button
+                                                    v-if="v$.$invalid"
                                                     type="submit"
-                                                    class="btn btn-primary"
-                                            >
-                                                <i class="fa fa-fw fa-paper-plane mr-1"></i>Submit
-                                            </button>
+                                                    class="btn btn-block btn-alt-primary cursor-not-allowed"
+                                                    disabled
+                                                >
+                                                    <i class="fa fa-fw fa-sign-in-alt mr-1"></i>Submit
+                                                </button>
+                                                <button v-else @click.prevent="handleAddProperty"
+                                                        type="submit"
+                                                        class="btn btn-primary"
+                                                >
+                                                    <i class="fa fa-fw fa-paper-plane mr-1"></i>Submit
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -235,11 +242,11 @@ export default {
             options: {}
         };
         const title = ref('');
-        const type = ref('');
+        const type = ref(1);
         const area = ref('');
-        const areaUnit = ref('');
-        const city = ref('');
-        const purpose = ref([]);
+        const areaUnit = ref(1);
+        const city = ref(1);
+        const purpose = ref(1);
         const price = ref('');
         const location = ref('');
         const description = ref('');
@@ -260,21 +267,9 @@ export default {
                 title: {
                     required,
                 },
-                type: {
-                    required,
-                },
-                areaUnits: {
-                    required,
-                },
                 area: {
                     required,
                     minValue: minValue(1)
-                },
-                city: {
-                    required
-                },
-                purpose: {
-                    required
                 },
                 price:{
                     required,
@@ -287,22 +282,11 @@ export default {
                 address:{
                     required
                 },
-                description:{
-                    required
-                },
-                // bedrooms:{
-                //     required: requiredIf(() => {
-                //         return type === ;
-                //     }),
-                // },
-                // bathrooms:{
-                //     required
-                // },
             }
         });
         const v$ = useVuelidate(
             validationRules,
-            {title, area, price, description,location, address}
+            {title, area, price,location, address}
         );
         const handleAddProperty = () => {
             propertyService.handleAddProperty({
