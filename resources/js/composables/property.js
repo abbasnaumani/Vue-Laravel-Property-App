@@ -60,3 +60,15 @@ export const getAreaUnits = () => {
     }
     return areaUnits;
 }
+export const getLocationsByCityId =  (cityId) => {
+    const locations = computed(() => {
+        return (store.getters.getLocationsByCityId)
+            ? store.getters.getLocationsByCityId(cityId)
+            : null;
+    });
+    if (!locations.value) {
+        propertyService.getLocationsByCityId(cityId);
+    }
+
+    return locations;
+}

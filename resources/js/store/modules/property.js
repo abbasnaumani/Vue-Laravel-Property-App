@@ -2,6 +2,7 @@ const state = {
     properties: null,
     propertyTypes: null,
     areaUnits: null,
+    locations:null
 }
 const getters = {
     getPropertyList(state) {
@@ -18,6 +19,9 @@ const getters = {
     },
     getAreaUnits(state){
         return state.areaUnits;
+    },
+    getLocationsByCityId:(state) => (cityId) => {
+        return state.locations !== null ?  state.locations.filter(location => location.city_id == cityId) : null;
     }
 }
 const mutations = {
@@ -35,6 +39,9 @@ const mutations = {
         property = [...property,propertyData];
         state.properties = [...property];
     },
+    mutateLocationByCityId(state,locations){
+        state.locations = locations;
+    }
 }
 const actions = {
     actionPropertyList({commit, state},properties){
@@ -48,6 +55,9 @@ const actions = {
     },
     actionAddProperty({commit, state},propertyData){
         commit('mutateAddProperty', propertyData);
+    },
+    actionGetLocationsByCityId({commit, state},locations){
+        commit('mutateLocationByCityId', locations);
     },
 }
 

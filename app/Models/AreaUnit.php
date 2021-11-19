@@ -8,11 +8,11 @@ class AreaUnit extends Model
 {
     protected $guarded = [];
     /**
-     * Area Unit belongs to a Property
+     * Area Unit has many a Properties
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function property(){
-        return $this->hasOne(Property::class);
+    public function properties(){
+        return $this->hasMany(Property::class);
     }
 }

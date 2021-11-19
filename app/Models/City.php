@@ -8,11 +8,19 @@ class City extends Model
 {
     protected $guarded = [];
     /**
-     * City belongs to a Property
+     * City Has many  Property
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function property(){
-        return $this->hasOne(Property::class);
+    public function properties(){
+        return $this->hasMany(Property::class);
+    }
+    /**
+     * City Has many  Locations
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function locations(){
+        return $this->hasMany(Location::class);
     }
 }

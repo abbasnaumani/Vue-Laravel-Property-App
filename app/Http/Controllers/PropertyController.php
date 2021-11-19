@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\ApiResponseEnum;
+use App\Models\Location;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Services\PropertyService;
@@ -89,5 +90,12 @@ class PropertyController extends Controller
     public function getPropertyAreaUnits(){
         $this->propertyService->getPropertyAreaUnits();
         return $this->getApiResponse();
+    }
+    public function getPropertyLocationsByCity($cityId){
+        $locations = Location::where('city_id',$cityId)->get();
+        $this->setApiSuccessMessage("", $locations);
+        return $this->getApiResponse();
+
+
     }
 }

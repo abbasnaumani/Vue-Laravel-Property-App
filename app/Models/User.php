@@ -55,11 +55,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
     /**
-     * User belongs to a Property
+     * User has many Properties
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function property(){
-        return $this->hasOne(Property::class);
+    public function properties(){
+        return $this->hasMany(Property::class);
     }
 }

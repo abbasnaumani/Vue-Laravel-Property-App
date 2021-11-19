@@ -16,11 +16,11 @@ class PropertySubType extends Model
         return $this->belongsTo(PropertyType::class);
     }
     /**
-     * Property Sub Type belongs to a Property
+     * Property Sub Type has many Properties
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function property(){
-        return $this->hasOne(Property::class);
+    public function properties(){
+        return $this->hasMany(Property::class);
     }
 }

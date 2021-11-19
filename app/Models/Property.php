@@ -25,7 +25,7 @@ class Property extends Model
         return $this->hasOne(PropertyDetail::class);
     }
     /**
-     * Property has a Property SubType
+     * Property belongs to a Property SubType
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -33,7 +33,7 @@ class Property extends Model
         return $this->belongsTo(PropertySubType::class);
     }
     /**
-     * Property has an Area Unit
+     * Property belongs to a Area Unit
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -41,7 +41,7 @@ class Property extends Model
         return $this->belongsTo(AreaUnit::class);
     }
     /**
-     * Property has a City
+     * Property belongs to a City
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -49,7 +49,7 @@ class Property extends Model
         return $this->belongsTo(City::class);
     }
     /**
-     * Property has a user
+     * Property belongs to a user
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

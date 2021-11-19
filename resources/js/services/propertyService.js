@@ -109,6 +109,23 @@ class PropertyService extends EventEmitter {
             console.log(error, "error catch")
         }
     }
+    async  getLocationsByCityId(cityId){
+        try {
+            const response = await appApi.get('/property/locations/'+cityId);
+            if (response.data.status === ApiResponse.SUCCESS) {
+                await store.dispatch('actionGetLocationsByCityId', response.data.payload);
+                return response.data.payload;
+            } else {
+                toast.error(response.data.message);
+            }
+
+        } catch (err) {
+            console.log(err, "err err")
+            toast.error(err.response.data.message);
+            const error = await errorHandlerService.errors.index(err);
+            console.log(error, "error catch")
+        }
+    }
 }
 
 const service = new PropertyService();

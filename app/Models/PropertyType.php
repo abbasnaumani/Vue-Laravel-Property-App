@@ -8,11 +8,11 @@ class PropertyType extends Model
 {
     protected $guarded = [];
     /**
-     * Property Type belongs to a Property Sub Type
+     * Property Type has Mnay Property Sub Types
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function propertySubType(){
-        return $this->hasOne(PropertySubType::class);
+    public function propertySubTypes(){
+        return $this->hasMany(PropertySubType::class);
     }
 }

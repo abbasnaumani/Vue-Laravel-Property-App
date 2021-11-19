@@ -17,6 +17,7 @@ class Property
             Route::delete('/properties/{propertyId}',[PropertyController::class, 'destroy'])->name('property.destroy');
             Route::get('/property/types',[PropertyController::class, 'getPropertyTypes'])->name('property.types');
             Route::get('/property/area/unit',[PropertyController::class, 'getPropertyAreaUnits'])->name('property.area.unit');
+            Route::get('/property/locations/{cityId}',[PropertyController::class, 'getPropertyLocationsByCity'])->name('property.locations.city');
 
         });
     }

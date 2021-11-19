@@ -79,6 +79,12 @@ export default [
         component: page('property/EditProperty'),
         props: ({params}) => ({propertyId: params.propertyId || 0}),
     },
+    {
+        path: '/property/search',
+        name: 'property-search',
+        meta: {public: false, meta_title: 'Search Property'},
+        component: page('property/SearchProperty'),
+    },
 
     {
         path: '/upload',

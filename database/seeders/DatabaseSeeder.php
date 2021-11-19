@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PropertyTypeTableSeeder::class);
         $this->call(PropertySubTypeTableSeeder::class);
         $this->call(CitySeeder::class);
+        $this->call(LocationSeeder::class);
         $this->call(MenusTableSeeder::class);
         $this->call(MenuRoleTableSeeder::class);
     }
