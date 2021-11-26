@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ActionEvent;
 use App\Models\MenuRole;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -51,4 +52,5 @@ class UserController extends Controller
         $this->setApiSuccessMessage(trans('user.get_user_menu'),$prepareMenus);
         return $this->getApiResponse();
     }
+
 }

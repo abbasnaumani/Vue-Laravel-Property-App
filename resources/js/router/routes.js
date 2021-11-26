@@ -1,3 +1,5 @@
+import UserChat from "../pages/user/UserChat";
+
 function page(path) {
     return () => import(/* webpackChunkName: '' */ `~/pages/${path}`).then(
         m => m.default || m)
@@ -52,6 +54,12 @@ export default [
         name: 'user-list',
         meta: {public: false, meta_title: 'User List'},
         component: UserList,
+    },
+    {
+        path: '/user/chat',
+        name: 'user-chat',
+        meta: {public: false, meta_title: 'User Chat'},
+        component: UserChat,
     },
     {
         path: '/property',

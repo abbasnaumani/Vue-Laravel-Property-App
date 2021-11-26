@@ -11,6 +11,6 @@ export const getUserList = () => {
     if (!users.value) {
         userService.getUserList();
     }
-    return {users};
+    return users;
 
 }

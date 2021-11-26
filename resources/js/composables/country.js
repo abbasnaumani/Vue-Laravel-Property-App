@@ -14,3 +14,15 @@ export const getCities = () => {
     return cities;
 
 }
+export const getAllLocationsByCItyId = (cityId) => {
+    const cityLocations = computed(() => {
+        return (store.getters.getAllLocationsByCItyId)
+            ? store.getters.getAllLocationsByCItyId(cityId)
+            : null;
+    });
+    if (!cityLocations.value) {
+        countryService.getAllLocationsByCItyId(cityId);
+    }
+    return cityLocations;
+
+}

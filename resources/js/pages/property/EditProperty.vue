@@ -81,7 +81,7 @@
                                                 >
                                                     <option v-for="city in allCities"
                                                             :value="city.id"
-                                                            :selected="propertyData.city_id === city.id"
+                                                            :selected="propertyData.location.city.id === city.id"
                                                     >{{ city.name }}
                                                     </option>
 
@@ -118,22 +118,18 @@
                                             </div>
 
                                             <div class="form-group col-6 col-lg-3 col-sm-6">
-                                                <label for="location">&nbsp Location</label>
-                                                <input id="location"
-                                                       class="form-control form-control-alt form-control-lg"
-                                                       type="text"
-                                                       v-model="propertyData.location"
-                                                       required
-                                                       @blur="v$.propertyData.location.$touch()"
-                                                />
-                                                <div class="text-left">
-                                                    <div v-if="v$.propertyData.location.$dirty">
-                                                        <sub v-if="v$.propertyData.location.$error"
-                                                             class="px-2 py-2 text-danger">
-                                                            Location is Required
-                                                        </sub>
-                                                    </div>
-                                                </div>
+                                                <label >&nbsp Location</label>
+                                                <select id="cities"
+                                                        class="form-control form-control-alt form-control-lg"
+                                                        v-model="propertyData.location_id"
+                                                >
+                                                    <option v-for="location in allCityLocations"
+                                                            :value="location.id"
+                                                            :selected="propertyData.location_id === location.id"
+                                                    >{{ location.name }}
+                                                    </option>
+
+                                                </select>
                                             </div>
 
                                             <div class="form-group col-6 col-lg-3 col-sm-6">
@@ -264,11 +260,11 @@
 </template>
 
 <script>
-import {computed, watch, ref} from "vue";
+import {computed, watchEffect, ref} from "vue";
 import {integer, minValue, required} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
 import {getAreaUnits, getProperty, getPropertyTypes} from "../../composables/property";
-import {getCities} from "../../composables/country";
+import {getAllLocationsByCItyId, getCities} from "../../composables/country";
 import propertyService from "../../services/propertyService";
 import {QuillEditor} from '@vueup/vue-quill'
 import BlotFormatter from 'quill-blot-formatter'
@@ -293,15 +289,24 @@ export default {
         const isPossessionAvailable = ref();
         const propertyTypes = getPropertyTypes();
         const allAreaUnits = getAreaUnits();
+        const allCityLocations = getAllLocationsByCItyId(4);
+
         const allCities = getCities();
         const quillEditor = ref();
         const descriptionLength = ref();
         let propertyData = ref(null);
         let property = getProperty(props.propertyId);
-        watch(property,()=>{
+
+        watchEffect(()=>{
             if(property.value){
                 propertyData.value = {...property.value};
             }
+            if(propertyData.value && propertyData.value.property_detail) {
+                isInstallmentAvailable.value = propertyData.value.property_detail.is_installment_available;
+                isOccupancyStatus.value = propertyData.value.property_detail.is_occupancy_status;
+                isPossessionAvailable.value = propertyData.value.property_detail.is_possession_available;
+            }
+            console.log(propertyData.value,"propertyData.value");
         })
         const validationRules = computed(() => {
             return {
@@ -318,9 +323,6 @@ export default {
                         integer,
                         minValue: minValue(1)
                     },
-                    location: {
-                        required
-                    },
                     property_detail: {
                         address: {
                             required
@@ -333,14 +335,6 @@ export default {
             validationRules,
             {propertyData}
         );
-
-        watch(() =>{
-            if(propertyData.value && propertyData.value.property_detail) {
-                isInstallmentAvailable.value = propertyData.value.property_detail.is_installment_available;
-                isOccupancyStatus.value = propertyData.value.property_detail.is_occupancy_status;
-                isPossessionAvailable.value = propertyData.value.property_detail.is_possession_available;
-            }
-        })
 
         function handleCheckBoxInput(checkBoxType,e){
             (checkBoxType === 'installment') ?  isInstallmentAvailable.value = e.target.checked :
@@ -357,10 +351,9 @@ export default {
                 property_sub_type_id: propertyData.value.property_sub_type_id,
                 area_unit_id: propertyData.value.area_unit_id,
                 area: propertyData.value.area,
-                city_id: propertyData.value.city_id,
                 purpose: propertyData.value.purpose,
                 price: propertyData.value.price,
-                location: propertyData.value.location,
+                location_id: propertyData.value.location_id,
                 address: propertyData.value.property_detail.address,
                 bedrooms: propertyData.value.property_detail.bedrooms,
                 description: propertyData.value.property_detail.description,
@@ -385,7 +378,8 @@ export default {
             handleCheckBoxInput,
             handleDescriptionValidation,
             quillEditor,
-            descriptionLength
+            descriptionLength,
+            allCityLocations
         }
     }
 }

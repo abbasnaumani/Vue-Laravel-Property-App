@@ -21,7 +21,7 @@ class PropertyService extends BaseService
      */
     public function getAllProperties()
     {
-        $property = Property::with('propertyDetail', 'user', 'city', 'areaUnit', 'propertySubType')
+        $property = Property::with('propertyDetail', 'user', 'city','location.city', 'areaUnit', 'propertySubType')
             ->where('user_id', $this->getAuthUserId())->get();
         if ($property) {
             $this->setApiSuccessMessage(trans('property.properties_retrieved'), $property);

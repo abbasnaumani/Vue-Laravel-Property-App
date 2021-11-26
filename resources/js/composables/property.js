@@ -36,6 +36,7 @@ export const getProperty = (propertyId) => {
     if (!property.value) {
         propertyService.getPropertyList();
     }
+    console.log(property,"saddique")
     return property;
 }
 export const getPropertyTypes = () => {

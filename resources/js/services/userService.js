@@ -35,6 +35,18 @@ class UserService extends EventEmitter {
             toast.error(error.message);
         }
     }
+    async handleUserChat(data){
+        try {
+            console.log(data,"Asdsadas");
+            const response = await appApi.post('/user/chat/send/message',data);
+            toast.success(response.data.message);
+            // await store.dispatch('actionUserMenu', response.data.payload);
+        } catch (err) {
+            console.log(err, "err err");
+            const error = await errorHandlerService.errors.index(err);
+            toast.error(error.message);
+        }
+    }
 }
 
 const service = new UserService();

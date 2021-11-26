@@ -103,20 +103,11 @@
 
                                             <div class="form-group col-6 col-lg-3 col-sm-6">
                                                 <label for="location">&nbsp Location</label>
-                                                <input id="location" class="form-control form-control-alt form-control-lg"
-                                                       type="text"
-                                                       v-model="location"
-                                                       required
-                                                       @blur="v$.location.$touch()"
-                                                />
-                                                <div class="text-left">
-                                                    <div v-if="v$.location.$dirty">
-                                                        <sub v-if="v$.location.$error"
-                                                             class="px-2 py-2 text-danger">
-                                                            Location is Required
-                                                        </sub>
-                                                    </div>
-                                                </div>
+                                                <select id="purpose" class="form-control form-control-alt form-control-lg"
+                                                        v-model="location"
+                                                >
+                                                    <option v-for="location in allCityLocations" :value="location.id" :selected="location.id===location">{{location.name}}</option>
+                                                </select>
                                             </div>
 
                                             <div class="form-group col-6 col-lg-3 col-sm-6">
@@ -232,7 +223,7 @@ import {computed, ref} from "vue";
 import {integer, minValue, required, requiredIf} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
 import {getAreaUnits, getPropertyTypes} from "../../composables/property";
-import {getCities} from "../../composables/country";
+import {getAllLocationsByCItyId, getCities} from "../../composables/country";
 import propertyService from "../../services/propertyService";
 import { QuillEditor } from '@vueup/vue-quill'
 import BlotFormatter from 'quill-blot-formatter'
@@ -256,7 +247,7 @@ export default {
         const city = ref(1);
         const purpose = ref(1);
         const price = ref('');
-        const location = ref('');
+        const location = ref(1);
         const description = ref('');
         const address = ref('');
         const bedrooms = ref(0);
@@ -268,6 +259,7 @@ export default {
         const propertyTypes = getPropertyTypes();
         const allAreaUnits = getAreaUnits();
         const allCities = getCities();
+        const allCityLocations = getAllLocationsByCItyId(4);
 
         const validationRules = computed(() => {
             return {
@@ -282,9 +274,6 @@ export default {
                     required,
                     integer,
                     minValue: minValue(1)
-                },
-                location:{
-                    required
                 },
                 address:{
                     required
@@ -344,7 +333,8 @@ export default {
             modules,
             handleDescriptionValidation,
             quillEditor,
-            descriptionLength
+            descriptionLength,
+            allCityLocations
         }
     }
 }

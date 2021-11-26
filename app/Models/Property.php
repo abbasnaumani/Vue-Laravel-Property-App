@@ -7,14 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Property extends Model
 {
     protected $guarded = [];
-    protected $fillable = ['property_sub_type_id',
-'area_unit_id',
-'city_id',
-'title',
-'area',
-'purpose',
-'price',
-'location'];
+    protected $fillable = ['property_sub_type_id', 'area_unit_id', 'title', 'area', 'purpose', 'price', 'location_id'];
 
     /**
      * Property has a Property Detail
@@ -47,6 +40,14 @@ class Property extends Model
      */
     public function city(){
         return $this->belongsTo(City::class);
+    }
+    /**
+     * Property belongs to a Location
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function location(){
+        return $this->belongsTo(Location::class);
     }
     /**
      * Property belongs to a user

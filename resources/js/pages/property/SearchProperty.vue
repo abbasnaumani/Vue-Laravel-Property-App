@@ -20,6 +20,16 @@
                                     <h3 class="block-title">Search Property</h3>
                                 </div>
                                 <div class="block-content block-content-full">
+                                    <input list="browsers" name="browser" id="browser">
+                                    <datalist id="browsers">
+                                        <option v-for="location in locations">{{location.name}}</option>
+                                    </datalist>
+                                    <br>
+                                    <select data-show-subtext="true" data-live-search="true"
+                                            >
+                                        <option v-for="location in locations">{{location.name}}</option>
+                                    </select>
+                                    <br>
                                     <div class="dropdown">
                                         <button @click="myFunction" class="dropbtn">Dropdown</button>
                                         <div id="myDropdown" class="dropdown-content" v-if="locations">
@@ -33,6 +43,29 @@
 <!--                                            <a href="#support">Support</a>-->
 <!--                                            <a href="#tools">Tools</a>-->
                                         </div>
+                                        <br>
+                                        <br>
+<!--                                        <vue-select v-if="options"-->
+<!--                                            v-model="model"-->
+<!--                                            :options="options"-->
+<!--                                            :visible-options="visibleOptions"-->
+<!--                                            label-by="name"-->
+<!--                                            track-by="name"-->
+<!--                                            searchable-->
+<!--                                            close-on-select-->
+<!--                                            @input="hanldeSearchInput"-->
+<!--                                        ></vue-select>-->
+                                        {{myOptions}}
+                                        <Select2  v-if="options"
+                                            v-model="myValue"
+                                                 :options="myOptions"
+                                                 :settings="{ settingOption: value, settingOption: value }"
+                                                 @change="myChangeEvent($event)"
+                                                 @select="mySelectEvent($event)"
+                                        />
+                                        <h4>Value: {{ myValue }}</h4>
+<!--                                        <Select2 v-model="myValue" :options="myOptions" :settings="{ settingOption: value, settingOption: value }" @change="myChangeEvent($event)" @select="mySelectEvent($event)" />-->
+<!--                                        <h4>Value: {{ myValue }}</h4>-->
                                     </div>
 
                                 </div>
@@ -46,12 +79,70 @@
 </template>
 
 <script>
+import {ref, computed, watchEffect} from 'vue'
 import {getLocationsByCityId} from "../../composables/property";
+import VueSelect from 'vue-next-select'
+import 'vue-next-select/dist/index.min.css'
+import Select2 from 'vue3-select2-component';
 
 export default {
     name: "SearchProperty",
+    components:{
+      VueSelect,
+        Select2
+    },
     setup(){
         const locations = getLocationsByCityId(4);
+        const myValue = ref('');
+       function myChangeEvent(val){
+            console.log(val);
+        }
+        function  mySelectEvent({id, text}){
+            console.log({id, text})
+        }
+        const options = getLocationsByCityId(4);
+        const myOptions = ref([]);
+        const model = ref();
+        // if(options.value){
+        //
+        // }
+
+        // const visibleOptions = ref();
+        watchEffect(()=>{
+            if(options.value){
+                myOptions.value = [];
+                model.value = options.value[0];
+                options.value.forEach(function (option){
+                    myOptions.value = [{id:option.id,text:option.name},...myOptions.value];
+
+                })
+            }
+        })
+        // const displayOptions = computed(() => {
+        //      return options.value.forEach(function (option){
+        //          myOptions.value = [{id:option.id,text:option.name},...myOptions.value];
+        //      })
+        //  })
+        // console.log(displayOptions,"displayOptionsdisplayOptionsdisplayOptions");
+
+        const searchInput = ref('')
+        const hanldeSearchInput = event => {
+            searchInput.value = event.target.value.toLowerCase();
+        }
+        const visibleOptions = computed(() => {
+            const re = new RegExp(searchInput.value)
+            if(options.value) {
+                return options.value.filter(option => re.test(option.name.toLowerCase()))
+            }else{
+                return null;
+            }
+
+        })
+
+
+
+        // const options = getLocationsByCityId(4);
+        // options.value = locations;
         function myFunction() {
             document.getElementById("myDropdown").classList.toggle("show");
         }
@@ -74,7 +165,17 @@ export default {
         return{
             locations,
             myFunction,
-            filterFunction
+            filterFunction,
+
+            model,
+            options,
+            hanldeSearchInput,
+            visibleOptions,
+
+            myChangeEvent,
+            mySelectEvent,
+            myValue,
+            myOptions
         }
     }
 }

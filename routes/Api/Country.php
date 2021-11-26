@@ -12,5 +12,8 @@ class Country
         Route::group(['middleware' => ['auth:sanctum']], function(){
             Route::get('/country/cities', [CountryController::class,'getAllCities'])->name('country.cities');
         });
+        Route::group(['middleware' => ['auth:sanctum']], function(){
+            Route::get('/country/{cityId}/locations', [CountryController::class,'getAllLocationsByCItyId'])->name('country.city.locations');
+        });
     }
 }

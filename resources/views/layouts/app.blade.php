@@ -14,11 +14,13 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
     <link rel="stylesheet" id="css-main" href="{{ asset('assets/css/oneui.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/oneui.css') }}" >
+
 </head>
 <body class="font-sans antialiased">
 <div id="app">
 </div>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.socket.io/4.4.0/socket.io.min.js"></script>
 <script src="{{ asset('assets/js/oneui.core.min.js') }}"></script>
 <script src="{{ asset('js/main/js/oneui.app.js') }}"></script>
 <script src="{{ asset('js/main/vendors.js') }}" type="text/javascript"></script>

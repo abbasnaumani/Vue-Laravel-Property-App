@@ -46,10 +46,10 @@
                                                 <td class="font-w600 font-size-sm">{{property.user.first_name +' '+property.user.last_name}} </td>
                                                 <td class="font-w600 font-size-sm">{{property.property_sub_type.name}}</td>
                                                 <td class="font-w600 font-size-sm">{{property.area}} {{property.area_unit.name}}</td>
-                                                <td class="font-w600 font-size-sm">{{property.city.name}}</td>
+                                                <td class="font-w600 font-size-sm">{{property.location.city.name}}</td>
                                                 <td class="font-w600 font-size-sm">{{property.purpose}}</td>
                                                 <td class="font-w600 font-size-sm">{{property.price}}</td>
-                                                <td class="font-w600 font-size-sm">{{property.location}}</td>
+                                                <td class="font-w600 font-size-sm">{{property.location.name}}</td>
                                                 <td class="btn-group text-center font-w600 font-size-sm">
                                                     <router-link :to="{path:'/property/edit/'+property.id}" class="btn btn-primary "><i class="fa fa-pencil-alt"></i></router-link>
                                                     <button @click="openDeleteModal(property)" class="btn btn-danger mx-2"><i class="far fa-trash-alt"></i></button>
