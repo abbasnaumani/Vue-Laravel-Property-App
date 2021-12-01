@@ -104,9 +104,9 @@
                                             <div class="form-group col-6 col-lg-3 col-sm-6">
                                                 <label for="location">&nbsp Location</label>
                                                 <select id="purpose" class="form-control form-control-alt form-control-lg"
-                                                        v-model="location"
+                                                        v-model="location_id"
                                                 >
-                                                    <option v-for="location in allCityLocations" :value="location.id" :selected="location.id===location">{{location.name}}</option>
+                                                    <option v-for="location in allCityLocations" :value="location.id" :selected="location.id===location_id">{{location.name}}</option>
                                                 </select>
                                             </div>
 
@@ -247,7 +247,7 @@ export default {
         const city = ref(1);
         const purpose = ref(1);
         const price = ref('');
-        const location = ref(1);
+        const location_id = ref(1);
         const description = ref('');
         const address = ref('');
         const bedrooms = ref(0);
@@ -282,7 +282,7 @@ export default {
         });
         const v$ = useVuelidate(
             validationRules,
-            {title, area, price,location, address}
+            {title, area, price,location_id, address}
         );
         const descriptionLength = ref();
         function handleDescriptionValidation(e){
@@ -298,14 +298,14 @@ export default {
                 city_id: city.value,
                 purpose: purpose.value,
                 price: price.value,
-                location: location.value,
+                location_id: location_id.value,
                 address: address.value,
                 bedrooms: bedrooms.value,
                 description: description.value,
                 bathrooms: bathrooms.value,
-                occupancy_status: isOccupancyStatus.value,
-                installment_available: isInstallmentAvailable.value,
-                possession_available: isPossessionAvailable.value,
+                is_occupancy_status: isOccupancyStatus.value,
+                is_installment_available: isInstallmentAvailable.value,
+                is_possession_available: isPossessionAvailable.value,
             });
         }
 
@@ -318,7 +318,7 @@ export default {
             city,
             purpose,
             price,
-            location,
+            location_id,
             address,
             bedrooms,
             bathrooms,

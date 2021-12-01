@@ -91,6 +91,8 @@ class PropertyController extends Controller
         $this->propertyService->getPropertyAreaUnits();
         return $this->getApiResponse();
     }
+
+    // Extra code for just checking searchable selectbox it will do in Country Controller
     public function getPropertyLocationsByCity($cityId){
         $locations = Location::where('city_id',$cityId)->get();
         $this->setApiSuccessMessage("", $locations);

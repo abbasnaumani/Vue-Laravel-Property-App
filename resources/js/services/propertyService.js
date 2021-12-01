@@ -109,6 +109,7 @@ class PropertyService extends EventEmitter {
             console.log(error, "error catch")
         }
     }
+    // extra for checking searchable select box
     async  getLocationsByCityId(cityId){
         try {
             const response = await appApi.get('/property/locations/'+cityId);

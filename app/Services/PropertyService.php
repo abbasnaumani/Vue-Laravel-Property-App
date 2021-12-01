@@ -17,7 +17,7 @@ class PropertyService extends BaseService
 {
     /**
      * Give All Properties
-     * @return JsonResponse
+     *
      */
     public function getAllProperties()
     {
@@ -63,7 +63,7 @@ class PropertyService extends BaseService
             'area' => 'required|numeric',
             'purpose' => 'required',
             'price' => 'required|integer|min:0',
-            'location' => 'required|string',
+            'location_id' => 'required',
             'description' => 'required',
             'address' => 'required'
         ]);
@@ -83,35 +83,15 @@ class PropertyService extends BaseService
     {
         DB::beginTransaction();
         try {
-            $propertyData = [
-                'user_id' => $this->getAuthUserId(),
-                'property_sub_type_id' => $request->input('property_sub_type_id'),
-                'area_unit_id' => $request->input("area_unit_id"),
-                'city_id' => $request->input('city_id'),
-                'title' => $request->input('title'),
-                'area' => $request->input('area'),
-                'purpose' => $request->input('purpose'),
-                'price' => $request->input('price'),
-                'location' => $request->input('location')
-            ];
-            $propertyDetailData = [
-                'description' => $request->input('description'),
-                'address' => $request->input('address'),
-                'bedrooms' => $request->input('bedrooms'),
-                'bathrooms' => $request->input('bathrooms'),
-                'is_occupancy_status' => $request->input('occupancy_status'),
-                'is_installment_available' => $request->input('installment_available'),
-                'is_possession_available' => $request->input('possession_available')
-            ];
-            $property = Property::create($propertyData);
-            $propertyDetail = $property->propertyDetail()->create($propertyDetailData);
+            $property = Property::create($this->propertyData($request));
+            $propertyDetail = $property->propertyDetail()->create($this->propertyDetailsData($request));
 
             $data = $this->getAllProperties();
             DB::commit();
             $this->setApiSuccessMessage(trans('property.property_store'), $data);
         } catch (\Exception $e) {
             DB::rollback();
-            $this->setApiErrorMessage(trans('property.property_not_store'));
+            $this->setApiErrorMessage(trans('property.property_not_store').$e->getMessage());
         }
     }
 
@@ -125,15 +105,14 @@ class PropertyService extends BaseService
         $validator = Validator::make($request->all(), [
             'property_sub_type_id' => 'required|exists:property_sub_types,id',
             'area_unit_id' => 'required|exists:area_units,id',
-            'city_id' => 'required|exists:cities,id',
             'title' => 'required|string|min:3|max:128',
             'area' => 'required|numeric',
             'purpose' => 'required',
             'price' => 'required|integer|min:0',
-            'location' => 'required|string',
+            'location_id' => 'required',
             'description' => 'required',
             'address' => 'required'
-        ]);
+        ]); // 'city_id' => 'required|exists:cities,id',
         if ($validator->fails()) {
             $this->setApiErrorMessage(trans('property.validation_failed'), ['errors' => $validator->errors()]);
         } else {
@@ -148,39 +127,19 @@ class PropertyService extends BaseService
      * @param int $id
      * @return void
      */
-    public function propertyUpdate(Request $request, $id)
+    public function propertyUpdate(Request $request, int $id)
     {
         DB::beginTransaction();
         try {
             if ($id) {
-                $propertyData = [
-                    'property_sub_type_id' => $request->input('property_sub_type_id'),
-                    'area_unit_id' => $request->input("area_unit_id"),
-                    'city_id' => $request->input('city_id'),
-                    'title' => $request->input('title'),
-                    'area' => $request->input('area'),
-                    'purpose' => $request->input('purpose'),
-                    'price' => $request->input('price'),
-                    'location' => $request->input('location')
-                ];
-                $propertyDetailData = [
-                    'description' => $request->input('description'),
-                    'address' => $request->input('address'),
-                    'bedrooms' => $request->input('bedrooms'),
-                    'bathrooms' => $request->input('bathrooms'),
-                    'is_occupancy_status' => $request->input('is_occupancy_status'),
-                    'is_installment_available' => $request->input('is_installment_available'),
-                    'is_possession_available' => $request->input('is_possession_available'),
-                ];
                 $property = Property::where(['id' => $id, 'user_id' => $this->getAuthUserId()])->first();
-                $property->update($propertyData);
+                $property->update($this->propertyData($request));
                 $propertyDetail = $property->propertyDetail()->first();
-                $propertyDetail->update($propertyDetailData);
+                $propertyDetail->update( $this->propertyDetailsData($request));
 
                 $data = $this->getAllProperties();
                 DB::commit();
                 $this->setApiSuccessMessage(trans('property.property_updated'),$data);
-//                dd($this->getApiResponse());
             } else {
                 $this->setApiErrorMessage(trans('property.property_not_found'));
             }
@@ -191,12 +150,53 @@ class PropertyService extends BaseService
     }
 
     /**
+     * Prepare Property Data for storing.
+     * @param Request $request
+     *
+     * @return array
+     */
+    private function propertyData(Request $request): array
+    {
+        return [
+            'user_id' => $this->getAuthUserId(),
+            'property_sub_type_id' => $request->input('property_sub_type_id'),
+            'area_unit_id' => $request->input("area_unit_id"),
+            'city_id' => $request->input('city_id'),
+            'title' => $request->input('title'),
+            'area' => $request->input('area'),
+            'purpose' => $request->input('purpose'),
+            'price' => $request->input('price'),
+            'location_id' => $request->input('location_id')
+        ];
+
+    }
+
+    /**
+     * Prepare Property Details Data for storing.
+     * @param Request $request
+     *
+     * @return array
+     */
+    private function propertyDetailsData(Request $request): array
+    {
+        return [
+            'description' => $request->input('description'),
+            'address' => $request->input('address'),
+            'bedrooms' => $request->input('bedrooms'),
+            'bathrooms' => $request->input('bathrooms'),
+            'is_occupancy_status' => $request->input('is_occupancy_status'),
+            'is_installment_available' => $request->input('is_installment_available'),
+            'is_possession_available' => $request->input('is_possession_available')
+        ];
+
+    }
+    /**
      * Remove the specified resource from storage.
      *
      * @param int $id
      * @return void
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $property = Property::find($id);
         if ($property) {
@@ -210,7 +210,7 @@ class PropertyService extends BaseService
     /**
      * Get all Property Types.
      *
-     * @return JsonResponse
+     * @return void
      */
     public function getPropertyTypes()
     {
@@ -221,7 +221,7 @@ class PropertyService extends BaseService
     /**
      * Get all Area Units.
      *
-     * @return JsonResponse
+     * @return void
      */
     public function getPropertyAreaUnits()
     {

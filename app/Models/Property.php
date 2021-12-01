@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Property extends Model
 {
     protected $guarded = [];
-    protected $fillable = ['property_sub_type_id', 'area_unit_id', 'title', 'area', 'purpose', 'price', 'location_id'];
+    protected $fillable = ['property_sub_type_id','user_id', 'area_unit_id', 'title', 'area', 'purpose', 'price', 'location_id'];
 
     /**
      * Property has a Property Detail

@@ -362,7 +362,7 @@ export default {
                 is_installment_available: isInstallmentAvailable.value,
                 is_possession_available: isPossessionAvailable.value,
 
-            }, props.propertyId);
+            }, props.propertyId);  // city_id: propertyData.value.city_id,
         }
         return {
             v$,

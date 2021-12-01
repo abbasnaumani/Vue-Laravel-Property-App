@@ -36,7 +36,6 @@ export const getProperty = (propertyId) => {
     if (!property.value) {
         propertyService.getPropertyList();
     }
-    console.log(property,"saddique")
     return property;
 }
 export const getPropertyTypes = () => {
@@ -61,6 +60,7 @@ export const getAreaUnits = () => {
     }
     return areaUnits;
 }
+// extra for checking searchable select box
 export const getLocationsByCityId =  (cityId) => {
     const locations = computed(() => {
         return (store.getters.getLocationsByCityId)
