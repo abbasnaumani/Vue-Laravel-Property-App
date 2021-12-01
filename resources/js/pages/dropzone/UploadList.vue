@@ -12,6 +12,8 @@
                 <div class="flex justify-content-between secondary:text bottom:margin-2">
                     <div>Last Modified: {{ getFileDate(file.lastModified) }}</div>
                     <div>File type:{{ getFileType(file.type, 'format') }}</div>
+                    <div>File progress:{{ file.progress || 0 }}</div>
+                    <div>File progress:{{ itemsProgress[index] || 0 }}</div>
                 </div>
             </div>
         </li>
@@ -32,7 +34,7 @@ import {
 
 export default {
     name: "UploadList",
-    props: ['items'],
+    props: ['items','itemsProgress'],
     setup() {
         return {
             getFileSize,
@@ -47,6 +49,7 @@ export default {
     },
     computed: {
         files() {
+            console.log("uperuper", this);
             return this.items.reverse();
         }
     }

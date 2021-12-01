@@ -3775,7 +3775,7 @@ jquery.appear@^1.0.1:
   resolved "https://registry.npmjs.org/jquery.appear/-/jquery.appear-1.0.1.tgz"
   integrity sha1-tWlP2sa7q62vR9j+vFSu3PdhlUU=
 
-jquery@^3.5.1:
+jquery@^3.3.1, jquery@^3.5.1:
   version "3.6.0"
   resolved "https://registry.npmjs.org/jquery/-/jquery-3.6.0.tgz"
   integrity sha512-JVzAR/AjBvVt2BmYhxRCSYysDsPcssdmTFnzyLEts9qNwmjmu4JTAMYubEfwVOSwpQ1I1sKKFcxhZCI2buerfw==
@@ -5353,6 +5353,11 @@ select-hose@^2.0.0:
   resolved "https://registry.npmjs.org/select-hose/-/select-hose-2.0.0.tgz"
   integrity sha1-Yl2GWPhlr0Psliv8N2o3NZpJlMo=
 
+select2@^4.0.7-rc.0:
+  version "4.0.13"
+  resolved "https://registry.yarnpkg.com/select2/-/select2-4.0.13.tgz#0dbe377df3f96167c4c1626033e924372d8ef44d"
+  integrity sha512-1JeB87s6oN/TDxQQYCvS5EFoQyvV6eYMZZ0AeA4tdFDYWN3BAGZ8npr17UBFddU0lgAt3H0yjX3X6/ekOj1yjw==
+
 selfsigned@^1.10.11:
   version "1.10.11"
   resolved "https://registry.npmjs.org/selfsigned/-/selfsigned-1.10.11.tgz"
@@ -6151,6 +6156,14 @@ vue-upload-drop-images@^1.0.7:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/vue-upload-drop-images/-/vue-upload-drop-images-1.0.7.tgz#25618e874fef37ddd55d29575c0a4e4d53d39068"
   integrity sha512-O1G+iy0oTK9EaD6XHI5vjZQzdy+PeVCui7ty5Ja8ipw3bBWcY1o5+7JxofMZSXPQbr++Go0hWHtyb7xwQZOpQA==
+
+vue3-select2-component@^0.1.7:
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/vue3-select2-component/-/vue3-select2-component-0.1.7.tgz#74fb1b989f22ced3aca133b23d7d753d5256b215"
+  integrity sha512-8UPZmFl02I47XwW+j8ICmHyAND8wfbavlvMrqh10wwdSVER1aF2kI9XCmfIrNlVQvxSbvc0mJjWQAHHSCW9dkw==
+  dependencies:
+    jquery "^3.3.1"
+    select2 "^4.0.7-rc.0"
 
 vue@^3.2.12:
   version "3.2.20"
