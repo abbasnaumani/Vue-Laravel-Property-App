@@ -4,7 +4,7 @@ const getFileSize = (bytes, decimalPoint) => {
     }
     let k = 1000;
     let dm = decimalPoint || 1;
-    let sizes = ['Bytes', 'KB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+    let sizes = ['Bytes', 'KB', 'MB','GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
     let i = Math.floor(Math.log(bytes) / Math.log(k));
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 }
@@ -48,7 +48,7 @@ const formatFileSize = (file) => {
     return sOutput;
 }
 const humanFileSize = (bytes, si = false, dp = 1) => {
-    const thresh = si ? 100 : 1024;
+    const thresh = si ? 1000 : 1024;
     if (Math.abs(bytes) < thresh) {
         return bytes + ' B';
     }

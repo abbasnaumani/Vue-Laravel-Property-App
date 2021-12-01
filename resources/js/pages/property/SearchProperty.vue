@@ -35,27 +35,9 @@
                                         <div id="myDropdown" class="dropdown-content" v-if="locations">
                                             <input type="text" placeholder="Search.." id="myInput" @keyup="filterFunction">
                                             <router-link to="" v-for="location in locations">{{location.name}}</router-link>
-<!--                                            <a href="#about">About</a>-->
-<!--                                            <a href="#base">Base</a>-->
-<!--                                            <a href="#blog">Blog</a>-->
-<!--                                            <a href="#contact">Contact</a>-->
-<!--                                            <a href="#custom">Custom</a>-->
-<!--                                            <a href="#support">Support</a>-->
-<!--                                            <a href="#tools">Tools</a>-->
                                         </div>
                                         <br>
                                         <br>
-<!--                                        <vue-select v-if="options"-->
-<!--                                            v-model="model"-->
-<!--                                            :options="options"-->
-<!--                                            :visible-options="visibleOptions"-->
-<!--                                            label-by="name"-->
-<!--                                            track-by="name"-->
-<!--                                            searchable-->
-<!--                                            close-on-select-->
-<!--                                            @input="hanldeSearchInput"-->
-<!--                                        ></vue-select>-->
-                                        {{myOptions}}
                                         <Select2  v-if="options"
                                             v-model="myValue"
                                                  :options="myOptions"
@@ -81,14 +63,11 @@
 <script>
 import {ref, computed, watchEffect} from 'vue'
 import {getLocationsByCityId} from "../../composables/property";
-import VueSelect from 'vue-next-select'
-import 'vue-next-select/dist/index.min.css'
 import Select2 from 'vue3-select2-component';
 
 export default {
     name: "SearchProperty",
     components:{
-      VueSelect,
         Select2
     },
     setup(){
@@ -126,7 +105,7 @@ export default {
         // console.log(displayOptions,"displayOptionsdisplayOptionsdisplayOptions");
 
         const searchInput = ref('')
-        const hanldeSearchInput = event => {
+        const handleSearchInput = event => {
             searchInput.value = event.target.value.toLowerCase();
         }
         const visibleOptions = computed(() => {
@@ -169,7 +148,7 @@ export default {
 
             model,
             options,
-            hanldeSearchInput,
+            handleSearchInput,
             visibleOptions,
 
             myChangeEvent,

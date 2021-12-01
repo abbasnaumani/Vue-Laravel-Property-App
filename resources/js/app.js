@@ -6,7 +6,6 @@ import Child from "~/components/utilities/Child";
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 import VueElementLoading from "vue-element-loading";
-
 const app = createApp({
     ...App
 })

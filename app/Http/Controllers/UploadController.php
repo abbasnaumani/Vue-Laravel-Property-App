@@ -57,8 +57,7 @@ class UploadController extends Controller
     {
         if ($request->hasFile('images')) {
             try {
-                $mediaUploader->onDuplicateIncrement();
-                $media = $mediaUploader->fromSource($request->file('images'))->upload();
+                $media = $mediaUploader->onDuplicateIncrement()->fromSource($request->file('images'))->upload();
                 $this->setApiSuccessMessage('Image Uploaded');
                 return $this->getApiResponse();
             } catch (MediaUploadException $e) {
