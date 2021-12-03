@@ -3,7 +3,7 @@
         <div class="content">
             <div class="row">
                 <div class="col-12">
-                    <drop-zone v-model="dataFiles" @newFile="handleImages"></drop-zone>
+                    <drop-zone v-model="dataFiles" ></drop-zone>
                     <upload-list :items="dataFiles" :itemsProgress="fileProgress"></upload-list>
                     <div class="block block-rounded">
                         <div class="block-header block-header-default">
@@ -16,23 +16,6 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="block-content block-content-full">
-                            <p>Details can be here...</p>
-                            <a class="btn" @click="toggleShow">set avatar</a>
-                            <my-upload field="img"
-                                       langType="en"
-                                       @crop-success="cropSuccess"
-                                       @crop-upload-success="cropUploadSuccess"
-                                       @crop-upload-fail="cropUploadFail"
-                                       v-model="show"
-                                       :width="300"
-                                       :height="300"
-                                       url="/upload"
-                                       :params="params"
-                                       :headers="headers"
-                                       img-format="png"></my-upload>
-                            <img :src="imgDataUrl">
-                        </div>
                     </div>
                 </div>
             </div>
@@ -41,15 +24,12 @@
 </template>
 
 <script>
-// import myUpload from 'vue-image-crop-upload';
-// import UploadImages from "vue-upload-drop-images"
-import {ref, watch, watchEffect} from 'vue';
+import {ref} from 'vue';
 import appApi from "~/api/index";
 import {ApiResponse} from "../../constants";
 import {useToast} from "vue-toastification";
 import errorHandlerService from "../../services/errorHandlerService";
-// import UploadComposition from "../UploadComposition";
-// import UploadSingleComposition from "../UploadSingleComposition";
+
 import DropZone from "../dropzone/DropZone";
 import UploadList from "../dropzone/UploadList";
 
@@ -58,10 +38,6 @@ export default {
     components: {
         UploadList,
         DropZone,
-        // UploadSingleComposition,
-        // UploadComposition,
-        // myUpload,
-        // UploadImages
     },
     setup() {
         const toast = useToast()
@@ -113,7 +89,11 @@ export default {
         }
 
         // #######################
-        const handleImages = async (files) => {
+        const handleImages = async () => {
+
+            // ## Save Property data
+
+            const files=dataFiles.value;
             try {
                 for (let i = 0; i < files.length; i++) {
                     var formData = new FormData();

@@ -1572,14 +1572,6 @@ babel-plugin-polyfill-regenerator@^0.2.2:
   dependencies:
     "@babel/helper-define-polyfill-provider" "^0.2.2"
 
-babel-runtime@^6.11.6:
-  version "6.26.0"
-  resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
-  integrity sha1-llxwWGaOgrVde/4E/yM3vItWR/4=
-  dependencies:
-    core-js "^2.4.0"
-    regenerator-runtime "^0.11.0"
-
 backo2@1.0.2:
   version "1.0.2"
   resolved "https://registry.npmjs.org/backo2/-/backo2-1.0.2.tgz"
@@ -2253,11 +2245,6 @@ core-js-compat@^3.16.0, core-js-compat@^3.16.2:
   dependencies:
     browserslist "^4.17.5"
     semver "7.0.0"
-
-core-js@^2.4.0:
-  version "2.6.12"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.12.tgz#d9333dfa7b065e347cc5682219d6f690859cc2ec"
-  integrity sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==
 
 core-js@^3.0.1:
   version "3.19.0"
@@ -5107,11 +5094,6 @@ regenerate@^1.4.2:
   resolved "https://registry.npmjs.org/regenerate/-/regenerate-1.4.2.tgz"
   integrity sha512-zrceR/XhGYU/d/opr2EKO7aRHUeiBI8qjtfHqADTwZd6Szfy16la6kqD0MIUs5z5hx6AaKa+PixpPrR289+I0A==
 
-regenerator-runtime@^0.11.0:
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
-  integrity sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==
-
 regenerator-runtime@^0.13.4:
   version "0.13.9"
   resolved "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.13.9.tgz"
@@ -6108,13 +6090,6 @@ vue-element-loading@^3.0.1:
   resolved "https://registry.npmjs.org/vue-element-loading/-/vue-element-loading-3.0.1.tgz"
   integrity sha512-WzQJKTmOWBEfKzVoRr9Mk2aLYVxJNEatWYTNuOTG8SwWGvNI9ZfnJBxVwqTpBPclGLG7bZqTLfco+BP3ebu5Sw==
 
-vue-image-crop-upload@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/vue-image-crop-upload/-/vue-image-crop-upload-3.0.3.tgz#0183cf8ebee30c08afba09a6fcb0a8fcd395e236"
-  integrity sha512-VeBsU0oI1hXeCvdpnu19DM/r3KTlI8SUXTxsHsU4MhDXR0ahRziiL9tf4FbILGx+gRVNZhGbl32yuM6TiaGNhA==
-  dependencies:
-    babel-runtime "^6.11.6"
-
 vue-loader@^16.6.0:
   version "16.8.2"
   resolved "https://registry.npmjs.org/vue-loader/-/vue-loader-16.8.2.tgz"
@@ -6151,11 +6126,6 @@ vue-toastification@^2.0.0-rc.5:
   version "2.0.0-rc.5"
   resolved "https://registry.npmjs.org/vue-toastification/-/vue-toastification-2.0.0-rc.5.tgz"
   integrity sha512-q73e5jy6gucEO/U+P48hqX+/qyXDozAGmaGgLFm5tXX4wJBcVsnGp4e/iJqlm9xzHETYOilUuwOUje2Qg1JdwA==
-
-vue-upload-drop-images@^1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/vue-upload-drop-images/-/vue-upload-drop-images-1.0.7.tgz#25618e874fef37ddd55d29575c0a4e4d53d39068"
-  integrity sha512-O1G+iy0oTK9EaD6XHI5vjZQzdy+PeVCui7ty5Ja8ipw3bBWcY1o5+7JxofMZSXPQbr++Go0hWHtyb7xwQZOpQA==
 
 vue3-select2-component@^0.1.7:
   version "0.1.7"
