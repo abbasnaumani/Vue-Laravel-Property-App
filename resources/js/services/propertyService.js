@@ -60,10 +60,10 @@ class PropertyService extends EventEmitter {
     async handleAddProperty(newProperty){
         try {
             const response = await appApi.post('/properties',newProperty);
-            console.log(response,"response");
             if (response.data.status === ApiResponse.SUCCESS) {
-                await store.dispatch('actionPropertyList', response.data.payload);
-                 router.push({name: 'property-dashboard'});
+                await store.dispatch('actionPropertyList', response.data.payload.data);
+                return response.data;
+                 // router.push({name: 'property-dashboard'});
             } else {
                 toast.error(response.data.message);
             }
@@ -125,6 +125,43 @@ class PropertyService extends EventEmitter {
             toast.error(err.response.data.message);
             const error = await errorHandlerService.errors.index(err);
             console.log(error, "error catch")
+        }
+    }
+    async handleImages(dataFiles,fileProgress,propertyId){
+        const files = dataFiles.value;
+        try {
+            for (let i = 0; i < files.length; i++) {
+                var formData = new FormData();
+                //console.log(`files`, files[i])
+                formData.append("images", files[i]);
+                formData.append('property_id',propertyId);
+                const response = await appApi.post('/uploads', formData, {
+                    onUploadProgress: async (progressEvent) => {
+                        console.log('progressEvent', progressEvent);
+                        const total = progressEvent.total;
+                        const totalLength = progressEvent.lengthComputable ? total : null;
+                        if (totalLength !== null) {
+                            fileProgress.value[i] = Math.round(
+                                (Math.round(progressEvent.loaded * 100) / totalLength));
+                        }
+                    },
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+                console.log('_________________________________________');
+                console.log(response);
+                if (response.data.status === ApiResponse.SUCCESS) {
+                    // toast.success("Image Uploaded!");
+                    router.push({name: 'property-dashboard'})
+                } else {
+                    toast.error(response.data.message);
+                }
+            }
+        } catch (err) {
+            console.log(err, "catch error");
+            const error = await errorHandlerService.errors.index(err);
+            toast.error(error.message);
         }
     }
 }

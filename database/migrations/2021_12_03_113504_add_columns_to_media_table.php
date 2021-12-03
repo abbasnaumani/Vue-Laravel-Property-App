@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCustomPropertiesColumnToMediaTable extends Migration
+class AddColumnsToMediaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,9 @@ class AddCustomPropertiesColumnToMediaTable extends Migration
     public function up()
     {
         Schema::table('media', function (Blueprint $table) {
+            $table->unsignedBigInteger('user_id')->after('id');
             $table->json('custom_properties')->nullable()->after('original_media_id');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -26,7 +28,8 @@ class AddCustomPropertiesColumnToMediaTable extends Migration
     public function down()
     {
         Schema::table('media', function (Blueprint $table) {
-            $table->dropColumn(['custom_properties']);
+            $table->dropForeign(['user_id']);
+            $table->dropColumn(['user_id','custom_properties']);
         });
     }
 }

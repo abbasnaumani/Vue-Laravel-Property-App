@@ -21,7 +21,7 @@ class PropertyService extends BaseService
      */
     public function getAllProperties()
     {
-        $property = Property::with('propertyDetail', 'user', 'city','location.city', 'areaUnit', 'propertySubType')
+        $property = Property::with('propertyDetail','media', 'user', 'city','location.city', 'areaUnit', 'propertySubType')
             ->where('user_id', $this->getAuthUserId())->get();
         if ($property) {
             $this->setApiSuccessMessage(trans('property.properties_retrieved'), $property);
@@ -86,9 +86,10 @@ class PropertyService extends BaseService
             $property = Property::create($this->propertyData($request));
             $propertyDetail = $property->propertyDetail()->create($this->propertyDetailsData($request));
 
-            $data = $this->getAllProperties();
+            $this->getAllProperties();
+            $data = $this->getResponse()->payload;
             DB::commit();
-            $this->setApiSuccessMessage(trans('property.property_store'), $data);
+            $this->setApiSuccessMessage(trans('property.property_store'), ['data'=>$data,'property_id'=>$property->id]);
         } catch (\Exception $e) {
             DB::rollback();
             $this->setApiErrorMessage(trans('property.property_not_store').$e->getMessage());

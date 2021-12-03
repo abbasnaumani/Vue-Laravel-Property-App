@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\MyMedia;
+use App\Models\Property;
+use App\Models\PropertyFile;
 use App\Models\User;
 use App\Services\MediaService;
 use Illuminate\Http\Request;
@@ -57,7 +59,16 @@ class UploadController extends Controller
     {
         if ($request->hasFile('images')) {
             try {
-                $media = $mediaUploader->onDuplicateIncrement()->fromSource($request->file('images'))->upload();
+                $user = $this->getAuthUser();
+                $property = Property::find($request->property_id);
+                if($property && $user){
+                    $media = $mediaUploader->onDuplicateIncrement()->fromSource($request->file('images'))->beforeSave(function (Media $media) use ($user) {
+                        $media->user_id = $this->getAuthUserId() ?? 0;
+//                        $media->custom_properties = new \stdClass();
+                    })->toDirectory('property')->upload();
+                    $property->attachMedia($media, 'property');
+                }
+
                 $this->setApiSuccessMessage('Image Uploaded');
                 return $this->getApiResponse();
             } catch (MediaUploadException $e) {

@@ -1,3 +1,5 @@
+import {getPropertyMedia} from "../../composables/property";
+
 const state = {
     properties: null,
     propertyTypes: null,
@@ -10,6 +12,9 @@ const getters = {
     },
     getPropertyDetails:(state) => (propertyId) => {
         return state.properties !== null ?  state.properties.find(property => property.id == propertyId)?.property_detail : null;
+    },
+    getPropertyMedia:(state) => (propertyId) => {
+        return state.properties !== null ?  state.properties.find(property => property.id == propertyId)?.media : null;
     },
     getProperty:(state) => (propertyId) => {
         return state.properties !== null ?  JSON.parse(JSON.stringify(state.properties.find(property => property.id == propertyId))): null;

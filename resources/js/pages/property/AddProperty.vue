@@ -177,6 +177,17 @@
                                         </div>
                                         <div class="py-2 row">
                                             <div class="form-group col-10 offset-1">
+                                                <label >&nbsp Property Images  </label>
+                                                <drop-zone v-model="dataFiles" ></drop-zone>
+                                            </div>
+                                        </div>
+                                        <div class="py-2 row">
+                                            <div class="form-group col-4">
+                                                <upload-list :items="dataFiles" :itemsProgress="fileProgress"></upload-list>
+                                            </div>
+                                        </div>
+                                        <div class="py-2 row">
+                                            <div class="form-group col-10 offset-1">
                                                 <label >&nbsp Description  </label>
                                                 <QuillEditor ref="quillEditor" @blur="handleDescriptionValidation($event)" @input="handleDescriptionValidation($event)"  toolbar="minimal" theme="snow" v-model:content="description" contentType="html" :modules="modules"/>
                                                 <div class="text-left">
@@ -228,10 +239,16 @@ import propertyService from "../../services/propertyService";
 import { QuillEditor } from '@vueup/vue-quill'
 import BlotFormatter from 'quill-blot-formatter'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
+import DropZone from "../dropzone/DropZone";
+import {ApiResponse} from "../../constants";
+import errorHandlerService from "../../services/errorHandlerService";
+import UploadList from "../dropzone/UploadList";
 
 export default {
     name: "AddProperty",
     components: {
+        UploadList,
+        DropZone,
         QuillEditor
     },
     setup(props){
@@ -246,7 +263,7 @@ export default {
         const areaUnit = ref(1);
         const city = ref(1);
         const purpose = ref(1);
-        const price = ref('');
+        const price = ref();
         const location_id = ref(1);
         const description = ref('');
         const address = ref('');
@@ -260,7 +277,8 @@ export default {
         const allAreaUnits = getAreaUnits();
         const allCities = getCities();
         const allCityLocations = getAllLocationsByCItyId(4);
-
+        const dataFiles = ref([]);
+        const fileProgress = ref([]);
         const validationRules = computed(() => {
             return {
                 title: {
@@ -289,8 +307,8 @@ export default {
             let quill = quillEditor.value.getQuill()
             descriptionLength.value = quill.getLength();
         }
-        const handleAddProperty = () => {
-            propertyService.handleAddProperty({
+        const handleAddProperty =  async () => {
+            const response = await propertyService.handleAddProperty({
                 title: title.value,
                 property_sub_type_id: type.value,
                 area_unit_id: areaUnit.value,
@@ -307,6 +325,9 @@ export default {
                 is_installment_available: isInstallmentAvailable.value,
                 is_possession_available: isPossessionAvailable.value,
             });
+            if (response.status === ApiResponse.SUCCESS) {
+                propertyService.handleImages(dataFiles, fileProgress, response.payload.property_id);
+            }
         }
 
         return{
@@ -334,7 +355,10 @@ export default {
             handleDescriptionValidation,
             quillEditor,
             descriptionLength,
-            allCityLocations
+            allCityLocations,
+            dataFiles,
+            fileProgress
+
         }
     }
 }

@@ -43,24 +43,33 @@
             </div>
             <!-- END Dynamic Table Full Pagination -->
         </div>
+        <div class="py-2 row">
+            <div class="form-group col-4" v-if="propertyMedia" >
+                <upload-list :items="[]" :propertyMedia="propertyMedia"></upload-list>
+            </div>
+        </div>
 
     </main>
 </template>
 
 <script>
 import {ref} from "vue";
-import {getPropertyDetails} from "../../composables/property";
+import {getPropertyDetails, getPropertyMedia} from "../../composables/property";
+import UploadList from "../dropzone/UploadList";
 
 export default {
     name: "PropertyDetails",
+    components: {UploadList},
     props:{
         propertyId:Number,
     },
     setup(props){
         const propertyDetails = getPropertyDetails(props.propertyId);
-        console.log(propertyDetails,"propertyDetails");
+        const propertyMedia = getPropertyMedia(props.propertyId);
+        console.log(propertyDetails,"propertyDetails",propertyMedia);
         return{
-            propertyDetails
+            propertyDetails,
+            propertyMedia
         }
     }
 }

@@ -114,6 +114,7 @@ export default {
 
         // #######################
         const handleImages = async (files) => {
+            // const files = dataFiles.value;
             try {
                 for (let i = 0; i < files.length; i++) {
                     var formData = new FormData();

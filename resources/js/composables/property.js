@@ -27,6 +27,17 @@ export const getPropertyDetails = (propertyId) => {
     }
     return propertyDetails;
 }
+export const getPropertyMedia = (propertyId) => {
+    const propertyDetails = computed(() => {
+        return (store.getters.getPropertyMedia)
+            ? store.getters.getPropertyMedia(propertyId)
+            : null;
+    });
+    if (!propertyDetails.value) {
+        propertyService.getPropertyList();
+    }
+    return propertyDetails;
+}
 export const getProperty = (propertyId) => {
     const property = computed(() => {
         return (store.getters.getProperty)

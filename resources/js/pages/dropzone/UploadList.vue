@@ -17,6 +17,21 @@
                 </div>
             </div>
         </li>
+        <li class="card" v-for="(media,index) in mediaFiles" :key="index">
+            <figure v-if="media.aggregate_type=='image'" class="card-figure">
+                <img :src="'/'+media.disk+'/'+media.directory+'/'+media.filename+'.'+media.extension"  :alt="media.filename"
+                     width="200" height="200"
+                     class="card-image">
+                <figcaption class="card-caption">{{ getFileSize(media.size) }}</figcaption>
+            </figure>
+            <div class="card-body">
+                <h4 class="title">{{ getFileName(media.filename) }}</h4>
+                <div class="flex justify-content-between secondary:text bottom:margin-2">
+                    <div>Last Modified: {{ getFileDate(media.updated_at) }}</div>
+                    <div>File type:{{ media.mime_type }}</div>
+                </div>
+            </div>
+        </li>
     </ul>
 </template>
 
@@ -34,7 +49,7 @@ import {
 
 export default {
     name: "UploadList",
-    props: ['items','itemsProgress'],
+    props: ['items','itemsProgress','propertyMedia'],
     setup() {
         return {
             getFileSize,
@@ -51,6 +66,11 @@ export default {
         files() {
             console.log("uperuper", this);
             return this.items.reverse();
+        },
+        mediaFiles() {
+            console.log("propertyMedia", this);
+            if(this.propertyMedia)
+            return this.propertyMedia.reverse();
         }
     }
 }

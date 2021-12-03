@@ -107,7 +107,7 @@ export default {
         const modalProperty = ref();
         const responseIcon = ref('');
         const properties = getPropertyList();
-
+        console.log(properties,"propertiespropertiesproperties");
         function openDeleteModal(property){
             modalProperty.value = property;
             openConfirmDeleteModal.value = true;
