@@ -89,7 +89,7 @@
 </template>
 
 <script>
-import {getPropertyList,updatePropertyData} from "../../composables/property";
+import {getUserPropertyList,updatePropertyData} from "../../composables/property";
 import {ref} from "vue";
 import propertyService from "../../services/propertyService";
 import AppModal from "../../components/ui/base/AppModal";
@@ -106,8 +106,7 @@ export default {
         const isConfirmButtonDisabled = ref(false);
         const modalProperty = ref();
         const responseIcon = ref('');
-        const properties = getPropertyList();
-        console.log(properties,"propertiespropertiesproperties");
+        const properties = getUserPropertyList();
         function openDeleteModal(property){
             modalProperty.value = property;
             openConfirmDeleteModal.value = true;

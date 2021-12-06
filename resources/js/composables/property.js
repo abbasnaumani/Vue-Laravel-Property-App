@@ -2,19 +2,19 @@ import {computed} from "vue";
 import store from "../store";
 import propertyService from "../services/propertyService";
 
-export const getPropertyList = () => {
+export const getUserPropertyList = () => {
     const properties = computed(() => {
-        return (store.getters.getPropertyList)
-            ? store.getters.getPropertyList
+        return (store.getters.getUserPropertyList)
+            ? store.getters.getUserPropertyList
             : null;
     });
     if (!properties.value) {
-        propertyService.getPropertyList();
+        propertyService.getUserPropertyList();
     }
     return properties;
 }
 export const updatePropertyData = () => {
-    propertyService.getPropertyList();
+    propertyService.getUserPropertyList();
 }
 export const getPropertyDetails = (propertyId) => {
     const propertyDetails = computed(() => {
@@ -23,7 +23,7 @@ export const getPropertyDetails = (propertyId) => {
             : null;
     });
     if (!propertyDetails.value) {
-        propertyService.getPropertyList();
+        propertyService.getUserPropertyList();
     }
     return propertyDetails;
 }
@@ -34,7 +34,7 @@ export const getPropertyMedia = (propertyId) => {
             : null;
     });
     if (!propertyDetails.value) {
-        propertyService.getPropertyList();
+        propertyService.getUserPropertyList();
     }
     return propertyDetails;
 }
@@ -45,7 +45,7 @@ export const getProperty = (propertyId) => {
             : null;
     })
     if (!property.value) {
-        propertyService.getPropertyList();
+        propertyService.getUserPropertyList();
     }
     return property;
 }
@@ -70,17 +70,4 @@ export const getAreaUnits = () => {
         propertyService.getAreaUnits();
     }
     return areaUnits;
-}
-// extra for checking searchable select box
-export const getLocationsByCityId =  (cityId) => {
-    const locations = computed(() => {
-        return (store.getters.getLocationsByCityId)
-            ? store.getters.getLocationsByCityId(cityId)
-            : null;
-    });
-    if (!locations.value) {
-        propertyService.getLocationsByCityId(cityId);
-    }
-
-    return locations;
 }

@@ -7,7 +7,7 @@ const state = {
     locations:null
 }
 const getters = {
-    getPropertyList(state) {
+    getUserPropertyList(state) {
         return state.properties;
     },
     getPropertyDetails:(state) => (propertyId) => {

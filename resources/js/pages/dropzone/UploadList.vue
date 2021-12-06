@@ -43,7 +43,7 @@ import {
 
 export default {
     name: "UploadList",
-    props: ['items','itemsProgress','propertyMedia'],
+    props: ['items','itemsProgress'],
     setup() {
         return {
             getFileSize,
@@ -61,11 +61,6 @@ export default {
             console.log("uperuper", this);
             return this.items.reverse();
         },
-        mediaFiles() {
-            console.log("propertyMedia", this);
-            if(this.propertyMedia)
-            return this.propertyMedia.reverse();
-        }
     }
 }
 </script>

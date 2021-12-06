@@ -1,6 +1,4 @@
 <template>
-    <Select2 v-model="myValue" :options="myOptions" :settings="{ settingOption: value, settingOption: value }" @change="myChangeEvent($event)" @select="mySelectEvent($event)" />
-    <h4>Value: {{ myValue }}</h4>
     <div class="dropzone">
         <input type="file" id="dropzone-file" class="dropzone-file" multiple accept="image/*"
                ref="dropzoneFile" @change="handleFiles">
@@ -28,17 +26,14 @@
 </template>
 
 <script>
-import Select2 from 'vue3-select2-component';
 export default {
     name: "DropZone",
     props: ['modelValue'],
     emits: ['update:modelValue', 'newFile'],
-    components: {Select2},
     data() {
         return {
             files: [],
             myValue: '',
-            myOptions: ['op1', 'op2', 'op3'] // or [{id: key, text: value}, {id: key, text: value}]
         }
     },
     methods: {

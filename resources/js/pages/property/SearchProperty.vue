@@ -62,8 +62,8 @@
 
 <script>
 import {ref, computed, watchEffect} from 'vue'
-import {getLocationsByCityId} from "../../composables/property";
 import Select2 from 'vue3-select2-component';
+import {getAllLocationsByCItyId} from "../../composables/country";
 
 export default {
     name: "SearchProperty",
@@ -71,7 +71,7 @@ export default {
         Select2
     },
     setup(){
-        const locations = getLocationsByCityId(4);
+        const locations = getAllLocationsByCItyId() (4);
         const myValue = ref('');
        function myChangeEvent(val){
             console.log(val);
@@ -79,14 +79,10 @@ export default {
         function  mySelectEvent({id, text}){
             console.log({id, text})
         }
-        const options = getLocationsByCityId(4);
+        const options = getAllLocationsByCItyId(4);
         const myOptions = ref([]);
         const model = ref();
-        // if(options.value){
-        //
-        // }
 
-        // const visibleOptions = ref();
         watchEffect(()=>{
             if(options.value){
                 myOptions.value = [];
@@ -97,12 +93,6 @@ export default {
                 })
             }
         })
-        // const displayOptions = computed(() => {
-        //      return options.value.forEach(function (option){
-        //          myOptions.value = [{id:option.id,text:option.name},...myOptions.value];
-        //      })
-        //  })
-        // console.log(displayOptions,"displayOptionsdisplayOptionsdisplayOptions");
 
         const searchInput = ref('')
         const handleSearchInput = event => {
@@ -118,10 +108,6 @@ export default {
 
         })
 
-
-
-        // const options = getLocationsByCityId(4);
-        // options.value = locations;
         function myFunction() {
             document.getElementById("myDropdown").classList.toggle("show");
         }

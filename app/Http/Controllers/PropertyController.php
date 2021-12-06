@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\ApiResponseEnum;
 use App\Http\Requests\Property\StorePropertyRequest;
-use App\Models\Location;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use App\Services\PropertyService;
 class PropertyController extends Controller
 {
     protected $propertyService;
-
+    /**
+     * Initialize the Property Service in Constructor.
+     *
+     */
     public function __construct(PropertyService $propertyService)
     {
         $this->propertyService = $propertyService;
@@ -23,7 +23,7 @@ class PropertyController extends Controller
      */
     public function index(): JsonResponse
     {
-        $this->propertyService->getAllProperties();
+        $this->propertyService->getUserPropertyList();
         return $this->getApiResponse();
     }
 
@@ -45,10 +45,6 @@ class PropertyController extends Controller
      */
     public function store(StorePropertyRequest $request): JsonResponse
     {
-        /*$this->propertyService->propertyStoreValidation($request);
-        if(isset($this->getResponse()->status) && trim($this->getResponse()->status == ApiResponseEnum::SUCCESS_RESPONSE)) {
-
-        }*/
         $this->propertyService->propertyStore($request);
         return $this->getApiResponse();
     }
@@ -56,15 +52,13 @@ class PropertyController extends Controller
     /**
      * Update the specified property in storage.
      *
-     * @param Request $request
+     * @param StorePropertyRequest $request
      * @param int $id
      * @return JsonResponse
      */
-    public function update(Request $request, int $id): JsonResponse
+    public function update(StorePropertyRequest $request, int $id): JsonResponse
     {
-        $this->propertyService->propertyUpdateValidation($request);
-        if(isset($this->getResponse()->status) && trim($this->getResponse()->status == ApiResponseEnum::SUCCESS_RESPONSE))
-            $this->propertyService->propertyUpdate($request,$id);
+        $this->propertyService->propertyUpdate($request,$id);
         return $this->getApiResponse();
     }
     /**

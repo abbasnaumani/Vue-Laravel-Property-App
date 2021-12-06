@@ -9,7 +9,7 @@ import router from "~/router";
 const toast = useToast();
 
 class PropertyService extends EventEmitter {
-    async getPropertyList() {
+    async getUserPropertyList() {
         try {
             const response = await appApi.get('/properties');
             if (response.data.status === ApiResponse.SUCCESS) {
@@ -61,7 +61,7 @@ class PropertyService extends EventEmitter {
         try {
             const response = await appApi.post('/properties',newProperty);
             if (response.data.status === ApiResponse.SUCCESS) {
-                await store.dispatch('actionPropertyList', response.data.payload.data);
+                // await store.dispatch('actionPropertyList', response.data.payload.data);
                 return response.data;
                  // router.push({name: 'property-dashboard'});
             } else {
@@ -109,24 +109,7 @@ class PropertyService extends EventEmitter {
             console.log(error, "error catch")
         }
     }
-    // extra for checking searchable select box
-    async  getLocationsByCityId(cityId){
-        try {
-            const response = await appApi.get('/property/locations/'+cityId);
-            if (response.data.status === ApiResponse.SUCCESS) {
-                await store.dispatch('actionGetLocationsByCityId', response.data.payload);
-                return response.data.payload;
-            } else {
-                toast.error(response.data.message);
-            }
 
-        } catch (err) {
-            console.log(err, "err err")
-            toast.error(err.response.data.message);
-            const error = await errorHandlerService.errors.index(err);
-            console.log(error, "error catch")
-        }
-    }
     async handleImages(dataFiles,fileProgress,propertyId){
         const files = dataFiles.value;
         try {
@@ -153,6 +136,7 @@ class PropertyService extends EventEmitter {
                 console.log(response);
                 if (response.data.status === ApiResponse.SUCCESS) {
                     // toast.success("Image Uploaded!");
+                    await this.getUserPropertyList();
                     router.push({name: 'property-dashboard'})
                 } else {
                     toast.error(response.data.message);
