@@ -49,11 +49,11 @@ class UserChatEvent implements ShouldBroadcast
      *
      * @return array
      */
-    public function broadcastWith()
+    public function broadcastWith(): array
     {
         return [
-            $data['message'] = $this->message,
-            $data['user_id'] = $this->userId,
+            'message' => $this->message,
+            'user_id' => $this->userId,
 
         ];
     }

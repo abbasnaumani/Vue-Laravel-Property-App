@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card card-default">
-                    <div class="card-header"><h5>Simple Public Chat <small>({{ users - 1 }} users online)</small></h5>
+                    <div class="card-header"><h5>Simple Public Chat <small>({{  1 }} users online)</small></h5>
                     </div>
 
                     <div class="form-group">
@@ -49,18 +49,26 @@ export default {
         const message = ref('');
         const userId = ref(1);
         const userName = ref('');
-        const users = ref('');
+        // const users = ref('');
         const error = ref('');
         const allUsers = getUserList();
 
         var socket = io.connect('http://127.0.0.1:3000');
-        socket.on('userCount', function (data) {
-            users.value = data.userCount;
-        }.bind());
+        console.log("connect",socket.id,socket);
+
+        // socket.on('userCount', function (data) {
+        //     users.value = data.userCount;
+        // }.bind());
         socket.on('user-chat:user-chat-event', function (data){
             console.log(data,"hello");
-            dataMessages.value.push(data[1] + ' : ' + data[0]);
+            dataMessages.value.push(data['user_id'] + ' : ' + data['message']);
         }.bind());
+
+        socket.on('askForUserId', () => {
+            let user_id = userId.value; // receiver id
+            socket.emit('askForUserId',user_id);
+            // $("#user_id").html(user_id);
+        });
 
         function sendMessage() {
             if (message.value === "" || userId.value === "") {
@@ -86,7 +94,7 @@ export default {
             dataMessages,
             message,
             userId,
-            users,
+            // users,
             error,
             sendMessage,
             allUsers,
