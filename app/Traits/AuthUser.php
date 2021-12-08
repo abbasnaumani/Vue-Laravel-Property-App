@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\Models\RoleUser;
+use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
 
 trait AuthUser
@@ -53,11 +53,11 @@ trait AuthUser
 
     public function isSuperAdminRole()
     {
-        return $this->hasRoleAccess(RoleUser::SUPER_ADMIN);
+        return $this->hasRoleAccess(Role::SUPER_ADMIN);
     }
 
     public function isAdminRole()
     {
-        return $this->hasRoleAccess(RoleUser::ADMIN);
+        return $this->hasRoleAccess(Role::AGENCY_ADMIN);
     }
 }

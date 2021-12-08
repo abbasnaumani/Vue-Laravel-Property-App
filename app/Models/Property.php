@@ -58,4 +58,12 @@ class Property extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+    /**
+     * Property belongs to a user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function agency(){
+        return $this->belongsTo(Agency::class);
+    }
 }

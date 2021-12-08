@@ -15,9 +15,10 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call(ActivityStatementTableSeeder::class);
+        $this->call(AgencyTableSeeder::class);
         $this->call(RolesTableSeeder::class);
         $this->call(UsersTableSeeder::class);
-        $this->call(UserRoleTableSeeder::class);
+        $this->call(AgencyUserTableSeeder::class);
         $this->call(AreaUnitTableSeeder::class);
         $this->call(PropertyTypeTableSeeder::class);
         $this->call(PropertySubTypeTableSeeder::class);

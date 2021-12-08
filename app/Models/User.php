@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -44,15 +45,36 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
+    /**
+     * A user belongs to one or more agencies.
+     *
+     * @return BelongsToMany
+     */
+    public function agencies()
+    {
+        return $this->belongsToMany(Agency::class)->withPivot('role_id')->withTimestamps();
+    }
     /**
      * User Roles Relation it will return the all user assigned roles
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function roles(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+//    public function roles(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+//    {
+//        return $this->belongsToMany(Role::class);
+//    }
+    public function roles(): BelongsToMany
     {
-        return $this->belongsToMany(Role::class);
+        return $this->belongsToMany(Role::class, 'agency_user', 'user_id', 'role_id')->withPivot('agency_id')->withTimestamps();
+    }
+    /**
+     * Helper method to return the full name of the user.
+     *
+     * @return string
+     */
+    public function fullName()
+    {
+        return $this->first_name . ' ' . $this->last_name;
     }
     /**
      * User has many Properties
@@ -62,5 +84,17 @@ class User extends Authenticatable
     public function properties(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Property::class);
+    }
+    /**
+     * Is user agency admin.
+     *
+     * @param int $agencyId
+     *
+     * @return bool
+     */
+    public function isAgencyAdmin(int $agencyId): bool
+    {
+        return AgencyUser::where(['user_id' => $this->id, 'agency_id' => $agencyId, 'role_id' => Role::AGENCY_ADMIN])->exists();
+
     }
 }

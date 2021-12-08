@@ -9,6 +9,13 @@ class Role extends Model
 {
     protected $table = 'roles';
     public $fillable = ['name'];
+    /**
+     * Defining Constants
+     *
+     */
+    const SUPER_ADMIN = 1;
+    const AGENCY_ADMIN = 2;
+    const AGENT = 3;
 
     public function users()
     {

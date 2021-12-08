@@ -19,6 +19,7 @@ class CreatePropertiesTable extends Migration
             $table->unsignedBigInteger('property_sub_type_id');
             $table->unsignedBigInteger('area_unit_id');
             $table->unsignedBigInteger('location_id');
+            $table->tinyInteger('is_featured');
             $table->string('title');
             $table->double('area');
             $table->tinyInteger('purpose');
@@ -39,6 +40,8 @@ class CreatePropertiesTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('properties');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

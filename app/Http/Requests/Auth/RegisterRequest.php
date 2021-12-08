@@ -32,7 +32,11 @@ class RegisterRequest extends FormRequest
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'agency_name' => 'required',
+            'agency_email' => 'required|string|email|max:255',
             'phone_number' => 'required',
+            'agency_phone_number' => 'required',
+            'agency_address' => 'required',
             'password' => 'required|string|confirmed|min:8',
         ];
     }

@@ -3,6 +3,7 @@
 
 namespace App\Services;
 
+use App\Models\Agency;
 use App\Models\AreaUnit;
 use App\Models\PropertySubType;
 use App\Services\BaseService\BaseService;
@@ -17,17 +18,31 @@ class PropertyService extends BaseService
      */
     public function getPropertyList()
     {
+        // limit and offset
         $property = Property::with('propertyDetail', 'media', 'user', 'city', 'location.city', 'areaUnit', 'propertySubType')->paginate(6);
         $this->setApiSuccessMessage(trans('property.properties_retrieved'), $property);
     }
     /**
-     * Get All User Properties
+     * Get All User Properties of Agency
+     * @param int $agencyId
      */
-    public function getUserPropertyList()
+    public function getUserPropertyList(int $agencyId = 1)
     {
-        $property = Property::with('propertyDetail', 'media', 'user', 'city', 'location.city', 'areaUnit', 'propertySubType')
-            ->where('user_id', $this->getAuthUserId())->get();
-        $this->setApiSuccessMessage(trans('property.properties_retrieved'), $property);
+        try {
+            $agency = Agency::find($agencyId);
+            $agencyUsers = $agency->users ?? null;
+
+            if ($agencyUsers) {
+                $agencyUserIds = array_column($agencyUsers->toArray(), 'id');
+                if ($agencyUserIds) {
+                    $properties = Property::with('propertyDetail', 'media', 'user', 'city', 'location.city', 'areaUnit', 'propertySubType')
+                        ->whereIn('user_id', $agencyUserIds)->get();
+                }
+            }
+            $this->setApiSuccessMessage(trans('property.properties_retrieved'), $properties ?? null);
+        } catch (\Exception $e) {
+            throw $e;
+        }
     }
 
     /**
