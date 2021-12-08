@@ -23,6 +23,16 @@ class PropertyController extends Controller
      */
     public function index(): JsonResponse
     {
+        $this->propertyService->getPropertyList();
+        return $this->getApiResponse();
+    }
+    /**
+     * Display a listing of the user property.
+     *
+     * @return JsonResponse
+     */
+    public function getUserPropertyList(): JsonResponse
+    {
         $this->propertyService->getUserPropertyList();
         return $this->getApiResponse();
     }

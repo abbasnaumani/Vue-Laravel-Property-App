@@ -10,7 +10,7 @@ class Property
     static function register()
     {
         Route::group(['middleware' => ['auth:sanctum']], function(){
-            Route::get('/properties', [PropertyController::class,'index'])->name('property.index');
+            Route::get('/user/properties', [PropertyController::class,'getUserPropertyList'])->name('property.user.list');
             Route::post('/properties', [PropertyController::class,'store'])->name('property.store');
             Route::put('/properties/{propertyId}', [PropertyController::class,'update'])->name('property.update');
             Route::get('/properties/{propertyId}',[PropertyController::class, 'show'])->name('property.show');
@@ -18,5 +18,7 @@ class Property
             Route::get('/property/types',[PropertyController::class, 'getPropertyTypes'])->name('property.types');
             Route::get('/property/area/unit',[PropertyController::class, 'getPropertyAreaUnits'])->name('property.area.unit');
         });
+        Route::get('/properties', [PropertyController::class,'index'])->name('property.index');
+
     }
 }

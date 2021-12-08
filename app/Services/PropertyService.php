@@ -15,6 +15,14 @@ class PropertyService extends BaseService
     /**
      * Get All Properties
      */
+    public function getPropertyList()
+    {
+        $property = Property::with('propertyDetail', 'media', 'user', 'city', 'location.city', 'areaUnit', 'propertySubType')->paginate(6);
+        $this->setApiSuccessMessage(trans('property.properties_retrieved'), $property);
+    }
+    /**
+     * Get All User Properties
+     */
     public function getUserPropertyList()
     {
         $property = Property::with('propertyDetail', 'media', 'user', 'city', 'location.city', 'areaUnit', 'propertySubType')
@@ -48,7 +56,7 @@ class PropertyService extends BaseService
             $this->setApiSuccessMessage(trans('property.property_store'), ['property_id' => $property->id]);
         } catch (\Exception $e) {
             DB::rollback();
-            $this->setApiErrorMessage(trans('property.property_not_store') . $e->getMessage());
+            $this->setApiErrorMessage(trans('property.property_not_store'));
         }
     }
     /**

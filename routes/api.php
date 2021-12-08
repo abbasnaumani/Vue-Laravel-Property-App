@@ -3,7 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Route\Api\Auth;
+use Route\Api\ContactUs;
 use Route\Api\Property;
+use Route\Api\Subscribe;
 use Route\Api\User;
 use Route\Api\Country;
 /*
@@ -20,6 +22,8 @@ Auth::register();
 Property::register();
 Country::register();
 User::register();
+Subscribe::register();
+ContactUs::register();
 \Route\Api\Test::register();
 \Route\Api\Upload::register();
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

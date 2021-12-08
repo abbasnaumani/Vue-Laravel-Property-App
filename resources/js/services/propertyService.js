@@ -11,7 +11,7 @@ const toast = useToast();
 class PropertyService extends EventEmitter {
     async getUserPropertyList() {
         try {
-            const response = await appApi.get('/properties');
+            const response = await appApi.get('/user/properties');
             if (response.data.status === ApiResponse.SUCCESS) {
                 await store.dispatch('actionPropertyList', response.data.payload);
             } else {
