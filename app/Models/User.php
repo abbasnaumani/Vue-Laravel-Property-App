@@ -46,11 +46,11 @@ class User extends Authenticatable
     ];
 
     /**
-     * User Roles Relation it will retuen the all user assigned roles
+     * User Roles Relation it will return the all user assigned roles
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function roles()
+    public function roles(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Role::class);
     }
@@ -59,7 +59,8 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function properties(){
+    public function properties(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
         return $this->hasMany(Property::class);
     }
 }

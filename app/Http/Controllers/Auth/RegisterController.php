@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Enums\RoleUser;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Models\RoleUser;
 use App\Models\User;
 use App\Services\AuthService;
 use Illuminate\Auth\Events\Registered;
