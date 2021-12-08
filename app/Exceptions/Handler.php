@@ -53,15 +53,15 @@ class Handler extends ExceptionHandler
                 return response()->json(['Error' => 'Unable to retrieve a list of customer ship addresses.'], $e->getCode());
             }
             if ($e instanceof ValidationException) {
-                $this->setApiErrorMessage($this->extractErrorMessage($e->errors()), ['errors' => $this->traceErrors($e)], $e->getStatusCode());
+                $this->setApiErrorMessage($this->extractErrorMessage($e->errors()), ['errors' => $this->traceErrors($e)]);
             } elseif ($e instanceof AuthenticationException) {
                 $this->setApiErrorMessage($e->getMessage(), ['errors' => $this->traceErrors($e)],401);
             } elseif ($e instanceof \Illuminate\Http\Exceptions\PostTooLargeException) {
                 $this->setApiErrorMessage("Post Size is too large.", ['errors' => $this->traceErrors($e)], $e->getStatusCode());
             } elseif ($e instanceof ModelNotFoundException) {
-                $this->setApiErrorMessage("Modal Not Found", ['errors' => $this->traceErrors($e)], $e->getStatusCode());
+                $this->setApiErrorMessage("Modal Not Found", ['errors' => $this->traceErrors($e)]);
             } elseif ($e instanceof MediaUploadException) {
-                $this->setApiErrorMessage($e->getMessage(), ['errors' => $this->traceErrors($e)], $e->getStatusCode());
+                $this->setApiErrorMessage($e->getMessage(), ['errors' => $this->traceErrors($e)]);
             } else {
                 $this->setApiErrorMessage($e->getMessage(), ['errors' => $this->traceErrors($e)]);
             }
