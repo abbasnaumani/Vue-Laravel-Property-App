@@ -21,16 +21,16 @@ class Menu extends Model
         'is_count',
         'is_active'];
 
-    public function menusRole()
+    public function menusRole(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Role::class);
     }
-    public function parent()
+    public function parent(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
         return $this->hasOne('App\Models\Menu', 'id', 'parent_id')->orderBy('sort_order');
     }
 
-    public function children()
+    public function children(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany('App\Models\Menu', 'parent_id', 'id')->orderBy('sort_order');
     }

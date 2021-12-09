@@ -18,7 +18,8 @@ class Property
             Route::get('/property/types',[PropertyController::class, 'getPropertyTypes'])->name('property.types');
             Route::get('/property/area/unit',[PropertyController::class, 'getPropertyAreaUnits'])->name('property.area.unit');
         });
-        Route::get('/properties', [PropertyController::class,'index'])->name('property.index');
+        Route::get('{slug}/properties', [PropertyController::class,'getPropertyListBySlug'])->name('property.agency.list');
+        Route::get('property/{propertyId}', [PropertyController::class,'getPropertyById'])->name('property.by.id');
 
     }
 }

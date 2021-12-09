@@ -14,7 +14,8 @@ class PropertyDetail extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function property(){
+    public function property(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
         return $this->belongsTo(Property::class);
     }
 }

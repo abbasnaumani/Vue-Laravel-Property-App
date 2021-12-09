@@ -13,7 +13,8 @@ class Location extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function city(){
+    public function city(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
         return $this->belongsTo(City::class);
     }
 }

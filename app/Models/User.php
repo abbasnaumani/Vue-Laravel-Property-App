@@ -50,7 +50,7 @@ class User extends Authenticatable
      *
      * @return BelongsToMany
      */
-    public function agencies()
+    public function agencies(): BelongsToMany
     {
         return $this->belongsToMany(Agency::class)->withPivot('role_id')->withTimestamps();
     }
@@ -72,7 +72,7 @@ class User extends Authenticatable
      *
      * @return string
      */
-    public function fullName()
+    public function fullName(): string
     {
         return $this->first_name . ' ' . $this->last_name;
     }

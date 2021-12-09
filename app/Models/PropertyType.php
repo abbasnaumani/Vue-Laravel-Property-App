@@ -12,7 +12,8 @@ class PropertyType extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function propertySubTypes(){
+    public function propertySubTypes(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
         return $this->hasMany(PropertySubType::class);
     }
 }

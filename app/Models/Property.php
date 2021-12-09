@@ -15,8 +15,18 @@ class Property extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function propertyDetail(){
+    public function propertyDetail(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
         return $this->hasOne(PropertyDetail::class);
+    }
+    /**
+     * Property has a Property Feature
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function propertyFeature(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(PropertyFeature::class);
     }
     /**
      * Property belongs to a Property SubType
@@ -31,7 +41,8 @@ class Property extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function areaUnit(){
+    public function areaUnit(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
         return $this->belongsTo(AreaUnit::class);
     }
     /**
@@ -39,7 +50,8 @@ class Property extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function city(){
+    public function city(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
         return $this->belongsTo(City::class);
     }
     /**
@@ -47,7 +59,8 @@ class Property extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function location(){
+    public function location(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
         return $this->belongsTo(Location::class);
     }
     /**
@@ -55,7 +68,8 @@ class Property extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user(){
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
     /**
@@ -63,7 +77,8 @@ class Property extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function agency(){
+    public function agency(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
         return $this->belongsTo(Agency::class);
     }
 }

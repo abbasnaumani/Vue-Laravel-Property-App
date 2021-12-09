@@ -17,13 +17,13 @@ class PropertyController extends Controller
         $this->propertyService = $propertyService;
     }
     /**
-     * Display a listing of the property.
+     * Display a listing of the property by agency slug.
      *
      * @return JsonResponse
      */
-    public function index(): JsonResponse
+    public function getPropertyListBySlug(string $slug): JsonResponse
     {
-        $this->propertyService->getPropertyList();
+        $this->propertyService->getPropertyListBySlug($slug);
         return $this->getApiResponse();
     }
     /**
@@ -37,6 +37,17 @@ class PropertyController extends Controller
         return $this->getApiResponse();
     }
 
+    /**
+     * Display the specified property.
+     *
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function getPropertyById(int $id): JsonResponse
+    {
+        $this->propertyService->getPropertyById($id);
+        return $this->getApiResponse();
+    }
     /**
      * Display the specified property.
      *

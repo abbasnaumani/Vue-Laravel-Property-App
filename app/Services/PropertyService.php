@@ -15,12 +15,23 @@ class PropertyService extends BaseService
 {
     /**
      * Get All Properties
+     * @param string $slug
      */
-    public function getPropertyList()
+    public function getPropertyListBySlug(string $slug)
     {
-        // limit and offset
-        $property = Property::with('propertyDetail', 'media', 'user', 'city', 'location.city', 'areaUnit', 'propertySubType')->paginate(6);
-        $this->setApiSuccessMessage(trans('property.properties_retrieved'), $property);
+
+        $agency = Agency::where('slug', $slug)->first();
+        $agencyUsers = $agency->users ?? null;
+
+        if ($agencyUsers) {
+            $agencyUserIds = array_column($agencyUsers->toArray(), 'id');
+            if ($agencyUserIds) {
+                $properties = Property::with('propertyDetail','propertyFeature', 'media', 'user', 'city', 'location.city', 'areaUnit', 'propertySubType')
+                    ->whereIn('user_id', $agencyUserIds)->paginate(6);            // limit and offset
+                $this->setApiSuccessMessage(trans('property.properties_retrieved'), $properties ?? null);
+            }
+        }
+
     }
     /**
      * Get All User Properties of Agency
@@ -28,30 +39,39 @@ class PropertyService extends BaseService
      */
     public function getUserPropertyList(int $agencyId = 1)
     {
-        try {
-            $agency = Agency::find($agencyId);
-            $agencyUsers = $agency->users ?? null;
 
-            if ($agencyUsers) {
-                $agencyUserIds = array_column($agencyUsers->toArray(), 'id');
-                if ($agencyUserIds) {
-                    $properties = Property::with('propertyDetail', 'media', 'user', 'city', 'location.city', 'areaUnit', 'propertySubType')
-                        ->whereIn('user_id', $agencyUserIds)->get();
-                }
+        $agency = Agency::find($agencyId);
+        $agencyUsers = $agency->users ?? null;
+
+        if ($agencyUsers) {
+            $agencyUserIds = array_column($agencyUsers->toArray(), 'id');
+            if ($agencyUserIds) {
+                $properties = Property::with('propertyDetail','propertyFeature', 'media', 'user', 'location.city', 'areaUnit', 'propertySubType')
+                    ->whereIn('user_id', $agencyUserIds)->get();
+                $this->setApiSuccessMessage(trans('property.properties_retrieved'), $properties ?? null);
             }
-            $this->setApiSuccessMessage(trans('property.properties_retrieved'), $properties ?? null);
-        } catch (\Exception $e) {
-            throw $e;
         }
+
+
     }
 
     /**
      * Display a listing of the resource.
      * @param int $id
      */
+    public function getPropertyById(int $id)
+    {
+        $property = Property::with('propertyDetail','propertyFeature','media', 'user','location.city', 'areaUnit', 'propertySubType')
+            ->where('id', $id)->get();
+        $this->setApiSuccessMessage(trans('generic.record_found'), $property);
+    }
+    /**
+     * Display a listing of the resource.
+     * @param int $id
+     */
     public function getProperty(int $id)
     {
-        $property = Property::with('propertyDetail', 'user', 'city', 'areaUnit', 'propertySubType')
+        $property = Property::with('propertyDetail','propertyFeature','media', 'user','location.city', 'areaUnit', 'propertySubType')
             ->where('user_id', $this->getAuthUserId())->where('id', $id)->get();
         $this->setApiSuccessMessage(trans('generic.record_found'), $property);
     }
@@ -66,7 +86,7 @@ class PropertyService extends BaseService
         try {
             $property = Property::create($this->propertyData($request));
             $propertyDetail = $property->propertyDetail()->create($this->propertyDetailsData($request));
-
+            $propertyFeature = $property->propertyFeature()->create($this->propertyFeaturesData($request));
             DB::commit();
             $this->setApiSuccessMessage(trans('property.property_store'), ['property_id' => $property->id]);
         } catch (\Exception $e) {
@@ -89,7 +109,8 @@ class PropertyService extends BaseService
             $property->update($this->propertyData($request));
             $propertyDetail = $property->propertyDetail()->first();
             $propertyDetail->update($this->propertyDetailsData($request));
-
+            $propertyFeature = $property->propertyFeature()->first();
+            $propertyFeature->update($this->propertyFeaturesData($request));
             DB::commit();
             $this->setApiSuccessMessage(trans('property.property_updated'), ['property_id' => $id]);
         } catch (\Exception $e) {
@@ -135,6 +156,21 @@ class PropertyService extends BaseService
             'is_occupancy_status' => $request->input('is_occupancy_status'),
             'is_installment_available' => $request->input('is_installment_available'),
             'is_possession_available' => $request->input('is_possession_available')
+        ];
+    }
+    /**
+     * Prepare Property Features Data for storing.
+     * @param Request $request
+     *
+     * @return array
+     */
+    private function propertyFeaturesData(Request $request): array
+    {
+        return [
+            'is_central_air_conditioning' => $request->input('is_central_air_conditioning'),
+            'is_central_heating' => $request->input('is_central_heating'),
+            'is_furnished' => $request->input('is_furnished'),
+            'other_facilities' => $request->input('other_facilities'),
         ];
     }
 

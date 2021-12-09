@@ -10,13 +10,19 @@ class User
 {
     static function register()
     {
-            Route::get('/user/list', [UserController::class, 'userList'])
-                ->name('user.list')
-                ->middleware('auth:sanctum');
-            Route::get('/user/menu', [UserController::class, 'userMenu'])
-                ->name('user.menu')
-                ->middleware('auth:sanctum');
+        Route::get('/user/list', [UserController::class, 'userList'])
+            ->name('user.list')
+            ->middleware('auth:sanctum');
+        Route::get('/user/menu', [UserController::class, 'userMenu'])
+            ->name('user.menu')
+            ->middleware('auth:sanctum');
         Route::post('/user/chat/send/message', [UserChatController::class, 'store'])
+            ->middleware('auth:sanctum');
+        Route::get('/user/edit/profile', [UserController::class, 'editUserProfile'])->name('user.edit.profile')
+            ->middleware('auth:sanctum');
+        Route::get('/user/update/profile', [UserController::class, 'updateUserProfile'])->name('user.update.profile')
+            ->middleware('auth:sanctum');
+        Route::post('/user/update/password', [UserController::class, 'updateUserPassword'])->name('user.update.password')
             ->middleware('auth:sanctum');
 
     }

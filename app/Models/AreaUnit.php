@@ -12,7 +12,8 @@ class AreaUnit extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function properties(){
+    public function properties(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
         return $this->hasMany(Property::class);
     }
 }

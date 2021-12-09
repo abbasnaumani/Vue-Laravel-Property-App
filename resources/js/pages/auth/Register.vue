@@ -100,6 +100,78 @@
                                         </div>
                                         <div class="form-group">
                                             <input
+                                                type="tel"
+                                                class="form-control form-control-lg form-control-alt"
+                                                id="agency-name"
+                                                v-model="agencyName"
+                                                @blur="v$.agencyName.$touch()"
+                                                placeholder="Agency Name"
+                                            />
+                                        </div>
+                                        <div class="text-left">
+                                            <div v-if="v$.agencyName.$dirty">
+                                                <sub v-if="v$.agencyName.$error"
+                                                     class="px-2 py-2 text-danger">
+                                                    Agency Name is Required
+                                                </sub>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input
+                                                type="tel"
+                                                class="form-control form-control-lg form-control-alt"
+                                                id="agency-email"
+                                                v-model="agencyEmail"
+                                                @blur="v$.agencyEmail.$touch()"
+                                                placeholder="Agency Email"
+                                            />
+                                        </div>
+                                        <div class="text-left">
+                                            <div v-if="v$.agencyEmail.$dirty">
+                                                <sub v-if="v$.agencyEmail.$error"
+                                                     class="px-2 py-2 text-danger">
+                                                    Please enter a valid Agency Email address
+                                                </sub>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input
+                                                type="tel"
+                                                class="form-control form-control-lg form-control-alt"
+                                                id="agency-phone"
+                                                v-model="agencyPhoneNumber"
+                                                @blur="v$.agencyPhoneNumber.$touch()"
+                                                placeholder="Agency Phone Number"
+                                            />
+                                        </div>
+                                        <div class="text-left">
+                                            <div v-if="v$.agencyPhoneNumber.$dirty">
+                                                <sub v-if="v$.agencyPhoneNumber.$error"
+                                                     class="px-2 py-2 text-danger">
+                                                    Agency Phone Number is Required
+                                                </sub>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input
+                                                type="tel"
+                                                class="form-control form-control-lg form-control-alt"
+                                                id="agency-address"
+                                                v-model="agencyAddress"
+                                                @blur="v$.agencyAddress.$touch()"
+                                                placeholder="Agency Address"
+                                            />
+                                        </div>
+                                        <div class="text-left">
+                                            <div v-if="v$.agencyAddress.$dirty">
+                                                <sub v-if="v$.agencyAddress.$error"
+                                                     class="px-2 py-2 text-danger">
+                                                    Agency Address is Required
+                                                </sub>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input
                                                 type="password"
                                                 class="form-control form-control-lg form-control-alt"
                                                 id="password"
@@ -182,6 +254,10 @@ export default {
         const lastName = ref('');
         const userEmail = ref('');
         const phoneNumber = ref('');
+        const agencyName = ref('');
+        const agencyEmail = ref('');
+        const agencyPhoneNumber = ref('');
+        const agencyAddress = ref('');
         const password = ref('');
         const confirmPassword = ref('');
         const handleRegistration = () => {
@@ -191,7 +267,11 @@ export default {
                 password_confirmation: confirmPassword.value,
                 phone_number: phoneNumber.value,
                 first_name: firstName.value,
-                last_name: lastName.value
+                last_name: lastName.value,
+                agency_name: agencyName.value,
+                agency_email: agencyEmail.value,
+                agency_phone_number: agencyPhoneNumber.value,
+                agency_address: agencyAddress.value
             });
         }
         const validationRules = computed(() => {
@@ -216,12 +296,25 @@ export default {
                 },
                 phoneNumber: {
                     required
+                },
+                agencyName: {
+                    required
+                },
+                agencyEmail: {
+                    email,
+                    required
+                },
+                agencyPhoneNumber: {
+                    required
+                },
+                agencyAddress: {
+                    required
                 }
             }
         });
         const v$ = useVuelidate(
             validationRules,
-            {userEmail, password, lastName, firstName, phoneNumber, confirmPassword}
+            {userEmail, password, lastName, firstName, phoneNumber, confirmPassword, agencyName, agencyEmail, agencyPhoneNumber, agencyAddress}
         );
         return {
             v$,
@@ -231,6 +324,10 @@ export default {
             phoneNumber,
             password,
             confirmPassword,
+            agencyName,
+            agencyEmail,
+            agencyPhoneNumber,
+            agencyAddress,
             handleRegistration
         }
     },

@@ -3,15 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Events\ActionEvent;
+use App\Http\Requests\User\UpdatePasswordRequest;
+use App\Http\Requests\User\UserProfileRequest;
 use App\Models\MenuRole;
 use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function __construct()
+    protected $userService;
+    /**
+     * Initialize the user service in constructor
+     * @param UserService $userService
+     */
+    public function __construct(UserService $userService)
     {
         $this->middleware('auth');
+        $this->userService = $userService;
     }
 
     /**
@@ -24,9 +33,34 @@ class UserController extends Controller
         $this->setApiSuccessMessage(trans('user.get_user_list'), $users);
         return $this->getApiResponse();
     }
-
     /**
-     * Display a listing of the users
+     * Edit the user profile
+     *
+     */
+    public function editUserProfile(){
+        $usersId = $this->getAuthUserId();
+        $user = User::find($usersId);
+        $this->setApiSuccessMessage(trans('user.user_found'), $user);
+        return $this->getApiResponse();
+    }
+    /**
+     * Update the user profile
+     * @param UserProfileRequest $request
+     */
+    public function updateUserProfile(UserProfileRequest $request){
+        $this->userService->updateUserProfile($request);
+        return $this->getApiResponse();
+    }
+    /**
+     * Update the user password
+     * @param UpdatePasswordRequest $request
+     */
+    public function updateUserPassword(UpdatePasswordRequest $request){
+        $this->userService->updateUserPassword($request);
+        return $this->getApiResponse();
+    }
+    /**
+     * Display a listing of the side bar menus
      *
      */
     public function userMenu()

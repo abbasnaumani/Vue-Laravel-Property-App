@@ -17,22 +17,22 @@ class Role extends Model
     const AGENCY_ADMIN = 2;
     const AGENT = 3;
 
-    public function users()
+    public function users(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(User::class);
     }
 
-    public function menus()
+    public function menus(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Menu::class);
     }
 
-    public function parentMenus()
+    public function parentMenus(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Menu::class)->where('parent_id', 0)->orderBy('sort_order');
     }
 
-    public function childMenusByParentId($parentId)
+    public function childMenusByParentId($parentId): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Menu::class)->where('parent_id', $parentId)->orderBy('sort_order');
     }
