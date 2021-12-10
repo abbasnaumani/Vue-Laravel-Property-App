@@ -25,6 +25,28 @@ class PropertyService extends EventEmitter {
             console.log(error, "error catch")
         }
     }
+    async getPropertiesBySlug(slug,paginateData) {
+        try {
+            const response = await appApi.get('/'+slug+'/properties', {
+                params: {
+                    current_page: paginateData.currentPage,
+                    per_page: paginateData.perPage
+                }
+                });
+            if (response.data.status === ApiResponse.SUCCESS) {
+                // await store.dispatch('actionPropertiesBySlug', response.data.payload);
+                return response.data.payload;
+            } else {
+                toast.error(response.data.message);
+            }
+
+        } catch (err) {
+            console.log(err, "err err")
+            toast.error(err.response.data.message);
+            const error = await errorHandlerService.errors.index(err);
+            console.log(error, "error catch")
+        }
+    }
     async getPropertyTypes() {
         try {
             const response = await appApi.get('/property/types');

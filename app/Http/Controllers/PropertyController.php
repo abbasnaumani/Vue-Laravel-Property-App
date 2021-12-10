@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Property\StorePropertyRequest;
 use Illuminate\Http\JsonResponse;
 use App\Services\PropertyService;
+use Illuminate\Http\Request;
+
 class PropertyController extends Controller
 {
     protected $propertyService;
@@ -18,12 +20,13 @@ class PropertyController extends Controller
     }
     /**
      * Display a listing of the property by agency slug.
-     *
+     * @param Request $request
+     * @param string $slug
      * @return JsonResponse
      */
-    public function getPropertyListBySlug(string $slug): JsonResponse
+    public function getPropertyListBySlug(Request $request,string $slug): JsonResponse
     {
-        $this->propertyService->getPropertyListBySlug($slug);
+        $this->propertyService->getPropertyListBySlug($request,$slug);
         return $this->getApiResponse();
     }
     /**

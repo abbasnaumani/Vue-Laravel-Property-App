@@ -60,4 +60,14 @@ class AgencyService extends BaseService
         }
 //        $agency->image_path = $request->image_file;   // images will done separately
     }
+    /**
+     * Get all agency users by agency slug.
+     * @param string $slug
+     *
+     */
+    public function getAgencyUsersBySlug(string $slug){
+        $agency = Agency::where('slug', $slug)->first();
+        $agencyUsers = $agency->users ?? null;
+        $this->setApiSuccessMessage(trans('agency.agency_users_found'), $agencyUsers);
+    }
 }

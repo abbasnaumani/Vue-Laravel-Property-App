@@ -13,7 +13,8 @@ return [
     |
     */
 
-    'agency_found' => 'User Found Successfully.',
+    'agency_found' => 'Agency Found Successfully.',
+    'agency_users_found' => 'Agency Users Found Successfully.',
     'update_profile' => 'Agency Profile Updated Successfully.',
 
 ];

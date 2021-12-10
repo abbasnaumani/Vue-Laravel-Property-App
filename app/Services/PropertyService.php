@@ -17,21 +17,18 @@ class PropertyService extends BaseService
      * Get All Properties
      * @param string $slug
      */
-    public function getPropertyListBySlug(string $slug)
+    public function getPropertyListBySlug(Request $request,string $slug)
     {
-
         $agency = Agency::where('slug', $slug)->first();
         $agencyUsers = $agency->users ?? null;
-
         if ($agencyUsers) {
             $agencyUserIds = array_column($agencyUsers->toArray(), 'id');
             if ($agencyUserIds) {
-                $properties = Property::with('propertyDetail','propertyFeature', 'media', 'user', 'city', 'location.city', 'areaUnit', 'propertySubType')
-                    ->whereIn('user_id', $agencyUserIds)->paginate(6);            // limit and offset
+                $properties = Property::with('propertyDetail','propertyFeature', 'media', 'user', 'location.city', 'areaUnit', 'propertySubType')
+                ->whereIn('user_id', $agencyUserIds)->orderBy('id')->simplePaginate((int)$request->per_page+3, ['*'],'page',(int)$request->current_page);            // limit and offset
                 $this->setApiSuccessMessage(trans('property.properties_retrieved'), $properties ?? null);
             }
         }
-
     }
     /**
      * Get All User Properties of Agency

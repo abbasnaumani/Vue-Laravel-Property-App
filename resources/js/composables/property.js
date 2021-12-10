@@ -49,6 +49,17 @@ export const getProperty = (propertyId) => {
     }
     return property;
 }
+export const getPropertiesBySlug = (slug) => {
+    const properties = computed(() => {
+        return (store.getters.getPropertiesBySlug)
+            ? store.getters.getPropertiesBySlug(slug)
+            : null;
+    })
+    if (!properties.value) {
+        propertyService.getPropertiesBySlug(slug);
+    }
+    return properties;
+}
 export const getPropertyTypes = () => {
     const propertyTypes = computed(() => {
         return (store.getters.getPropertyTypes)

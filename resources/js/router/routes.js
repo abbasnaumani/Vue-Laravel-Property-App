@@ -119,4 +119,11 @@ export default [
         meta: {logout: true, meta_title: 'Logout'},
         component: page('auth/Logout')
     },
+    {
+        path: '/:slug/main',
+        name: 'front-header',
+        meta: {public: true, meta_title: 'KS Property'},
+        component: page('frontsite/Main'),
+        props: ({params}) => ({slug: params.slug || ''}),
+    }
 ];

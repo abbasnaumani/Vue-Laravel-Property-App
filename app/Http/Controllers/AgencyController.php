@@ -17,17 +17,17 @@ class AgencyController extends Controller
      */
     public function __construct(AgencyService $agencyService)
     {
-        $this->middleware('auth');
         $this->agencyService = $agencyService;
     }
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Get all agency users by agency slug.
+     * @param string $slug
+     * @return JsonResponse
      */
-    public function index()
+    public function getAgencyUsersBySlug(string $slug): JsonResponse
     {
-        //
+        $this->agencyService->getAgencyUsersBySlug($slug);
+        return $this->getApiResponse();
     }
 
     /**

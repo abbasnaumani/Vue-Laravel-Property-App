@@ -13,6 +13,6 @@ class Agency
             Route::get('/agency/edit/{agencyId}',[AgencyController::class, 'edit'])->name('agency.edit');
             Route::put('/agency/{agencyId}', [AgencyController::class,'update'])->name('agency.update');
         });
-
+        Route::get('{slug}/agency/users', [AgencyController::class,'getAgencyUsersBySlug'])->name('agency.users.by.slug');
     }
 }

@@ -19,6 +19,9 @@ const getters = {
     getProperty:(state) => (propertyId) => {
         return state.properties !== null ?  JSON.parse(JSON.stringify(state.properties.find(property => property.id == propertyId))): null;
     },
+    getPropertiesBySlug:(state) => (slug) => {
+        return state.properties !== null ?  JSON.parse(JSON.stringify(state.properties.filter(property => console.log(property,"store console.",slug)))): null;
+    },
     getPropertyTypes(state){
         return state.propertyTypes;
     },
@@ -31,6 +34,9 @@ const getters = {
 }
 const mutations = {
     mutatePropertyList(state, properties) {
+        state.properties = properties;
+    },
+    mutatePropertiesBySlug(state, properties) {
         state.properties = properties;
     },
     mutatePropertyTypes(state, propertyTypes) {
@@ -63,6 +69,10 @@ const actions = {
     },
     actionGetLocationsByCityId({commit, state},locations){
         commit('mutateLocationByCityId', locations);
+    },
+    actionPropertiesBySlug({commit, state},properties){
+        console.log(properties,"action store")
+        commit('mutatePropertiesBySlug', properties);
     },
 }
 
