@@ -1,6 +1,7 @@
 *{
     box-sizing: border-box;
-    font-family: 'Poppins',arial,sans-serif;
+    font-family: "Poppins",arial,sans-serif !important;
+    letter-spacing: -.05em !important;
 }
 body{
     list-style: 1.8 !important;
@@ -624,7 +625,9 @@ body{
     line-height: 26px;
     margin: 0;
 }
-
+.form-control::-webkit-input-placeholder {
+    color: rgba(128, 128, 128, 0.5) !important;
+}
 .login-card {
     background: #fff;
     box-sizing: border-box;
