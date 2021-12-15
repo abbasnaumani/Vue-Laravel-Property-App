@@ -10,7 +10,7 @@
                 </ul>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="imggg" src="/assets/images/img-1.jpg" alt="Los Angeles" height="700" width="100%">
+                        <img class="imggg" src="img-1.jpg" alt="Los Angeles" height="700" width="100%">
                         <div class="carousel-caption d-flex justify-content-start card-animation">
                             <!-- slider card  -->
                             <div class="container">
@@ -53,7 +53,7 @@
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img class="imggg" src="/assets/images/img-2.jpg" alt="Chicago" height="700" width="100%">
+                        <img class="imggg" src="img-2.jpg" alt="Chicago" height="700" width="100%">
                         <div class="carousel-caption d-flex justify-content-end align-items-start card-animation-second">
                             <!-- slider card  -->
                             <div class="container">
