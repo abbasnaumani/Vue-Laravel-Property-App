@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Events\ActionEvent;
 use App\Http\Requests\User\UpdatePasswordRequest;
 use App\Http\Requests\User\UserProfileRequest;
+use App\Http\Requests\User\UserStoreRequest;
+use App\Models\Agency;
 use App\Models\MenuRole;
+use App\Models\Role;
 use App\Models\User;
 use App\Services\UserService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -27,9 +31,11 @@ class UserController extends Controller
      * Display a listing of the users
      *
      */
-    public function userList()
+    public function getAgencyUsersList()
     {
-        $users = $this->getAllUsers();
+        $user = $this->getAuthUser();
+        $agency = $user->agencies()->first();
+        $users = $agency->users()->with('roles')->get();
         $this->setApiSuccessMessage(trans('user.get_user_list'), $users);
         return $this->getApiResponse();
     }
@@ -59,6 +65,26 @@ class UserController extends Controller
         $this->userService->updateUserPassword($request);
         return $this->getApiResponse();
     }
+    /**
+     * Store a newly created property in storage.
+     * @param UserStoreRequest $request
+     * @return JsonResponse
+     */
+    public function store(UserStoreRequest $request): JsonResponse
+    {
+        $this->userService->addAgencyUser($request);
+        return $this->getApiResponse();
+    }
+    /**
+     * Get all roles
+     */
+    public function getAllRoles()
+    {
+        $roles = Role::all();
+        $this->setApiSuccessMessage(trans('user.get_all_roles'), $roles);
+        return $this->getApiResponse();
+    }
+
     /**
      * Display a listing of the side bar menus
      *

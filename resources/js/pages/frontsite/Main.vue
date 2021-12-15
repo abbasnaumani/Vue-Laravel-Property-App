@@ -18,7 +18,7 @@
                             <div class="row" v-if="properties.data">
                                 <div class="col-lg-4 col-md-6 col-sm-12 mb-5" v-for="property in properties.data">
                                     <!-- card  -->
-                                    <div class="card border-0 hover-card">
+                                    <router-link  :to="{path:'/'+slug+'/'+property.id+'/detail'}" class="link-card card border-0 hover-card">
                                         <div class="position-relative h-card">
                                             <img class="card-img-top" src="/assets/images/listing-1-thumb.jpg"
                                                  alt="Image of a Property to sale or rent." height="200">
@@ -29,7 +29,7 @@
                                         </div>
                                         <div class="py-3 d-flex justify-content-between align-items-baseline">
                                             <div>
-                                                <h5 class="heading-font-weight">{{property.price}}</h5>
+                                                <h5 class="heading-font-weight text-dark">{{property.price}}</h5>
                                             </div>
                                             <div class="px-2">
                                                 <i style="color: #00a4f2; font-size: 25px;"
@@ -37,13 +37,13 @@
                                             </div>
                                         </div>
                                         <hr>
-                                        <h5 class="font-weight-bold px-2">{{ property.title }}</h5>
+                                        <h5 class="font-weight-bold px-2 text-dark">{{ property.title }}</h5>
                                         <div class="d-flex justify-content-between flex-wrap">
                                             <div class="text-secondary heading-span-weight">BEDS:{{property.property_detail.bedrooms}}</div>
                                             <div class="text-secondary heading-span-weight">BATHS:{{property.property_detail.bathrooms}}</div>
                                             <div class="text-secondary heading-span-weight">{{property.area+' '+property.area_unit_id.name}}</div>
                                         </div>
-                                    </div>
+                                    </router-link>
                                 </div>
                             </div>
                             <!-- new row in col-9 -->
@@ -52,7 +52,7 @@
                                     <div>
                                         <a class="btn btn-lg btn-blow text-white text-center font-weight-semibold border-0 p-relative text-2 text-uppercase mt-2 py-3 px-5 button-color"
                                            href="" @click.prevent="getProperty(properties.current_page,properties.per_page)">
-                                            <span style="font-size: 15px;font-weight: 600;">View Morelll</span>
+                                            <span style="font-size: 15px;font-weight: 600;">View More</span>
                                         </a>
                                     </div>
                                 </div>
@@ -164,12 +164,11 @@
                                     </div>
                                 </div>
                                 <!-- 3rd div  -->
-                                <div class="col-12 col-sm-6 col-lg-12">
+                                <div class="col-12 col-sm-6 col-lg-12" >
                                     <div class="owl-crousal mt-4">
                                         <div class="card card-crousel mt-2" style="width:100%;height: 345px;">
                                             <div class="card-body">
                                                 <h4 class="text-white text-center">Our Agents</h4>
-                                                {{agencyUsers}}
                                                 <div id="demo" class="carousel slide mt-4" data-ride="carousel">
 
                                                     <!-- Indicators -->
@@ -177,45 +176,32 @@
                                                         <li data-target="#demo" data-slide-to="0" class="active test">
                                                         </li>
                                                         <li data-target="#demo" data-slide-to="1" class="test"></li>
-                                                        <li data-target="#demo" data-slide-to="2" class="test"></li>
                                                     </ul>
 
                                                     <!-- The slideshow -->
-                                                    <div class="carousel-inner">
+                                                    <div class="carousel-inner" v-if="agencyUsers">
                                                         <div class="carousel-item active text-center">
                                                             <img style="max-width: 110px;border-radius: 100%;" id="img"
                                                                  src="/assets/images/img-13.jpg" alt="Los Angeles" width="100%"
                                                                  height="100px">
-                                                            <h5 class="text-white mt-3">John Doe</h5>
+                                                            <h5 class="text-white mt-3"></h5>
                                                             <a href="#"
                                                                class="text-white carousel-a  d-lg-block d-md-block d-sm-block d-block">(800)
                                                                 123-4567</a>
                                                             <a href="#"
                                                                class="text-white carousel-a d-lg-block d-md-block d-sm-block d-block">you@domain.com</a>
                                                         </div>
-                                                        <div class="carousel-item text-center">
+                                                        <div class="carousel-item  text-center" v-for="user in agencyUsers">
                                                             <img style="max-width: 110px;border-radius: 100%;"
                                                                  src="/assets/images/img-11.jpg" alt="Chicago" width="100%"
                                                                  height="100px">
-                                                            <h5 class="text-white mt-3">Janice Doe</h5>
+                                                            <h5 class="text-white mt-3">{{user.first_name+' '+user.last_name}}</h5>
                                                             <a href="#"
-                                                               class="text-white carousel-a d-lg-block d-md-block d-sm-block d-block">(800)
-                                                                123-4567</a>
+                                                               class="text-white carousel-a d-lg-block d-md-block d-sm-block d-block">{{user.phone_number}}</a>
                                                             <a href="#"
-                                                               class="text-white carousel-a d-lg-block d-md-block d-sm-block d-block">you@domain.com</a>
+                                                               class="text-white carousel-a d-lg-block d-md-block d-sm-block d-block">{{user.email}}</a>
                                                         </div>
-                                                        <div class="carousel-item text-center">
-                                                            <img style="max-width: 110px;border-radius: 100%;"
-                                                                 src="/assets/images/img-12.jpg" alt="New York" width="100%"
-                                                                 height="100px">
-                                                            <h5 class="text-white mt-3">Lisa Doe</h5>
-                                                            <a href="#"
-                                                               class="text-white carousel-a d-lg-block d-md-block d-sm-block d-block">(800)
-                                                                123-4567</a>
-                                                            <a href="#"
-                                                               class="text-white carousel-a d-lg-block d-md-block d-sm-block d-block">you@domain.com</a>
 
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -230,16 +216,24 @@
                                             <div class="card-body">
                                                 <h4>Newsletter</h4>
                                                 <p>Subscribe and be the first to know about our best offers</p>
-                                                <form action="/action_page.php">
+                                                <form>
                                                     <div class="form-group">
-                                                        <input type="email" class="form-control" id="email"
-                                                               placeholder="Your Name *" name="email">
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               placeholder="Your Name *"
+                                                               v-model="name"
+                                                               required
+                                                        />
                                                     </div>
                                                     <div class="form-group">
-                                                        <input type="password" class="form-control" id="pwd"
-                                                               placeholder="Your Email Address *" name="pswd">
+                                                        <input type="email"
+                                                               class="form-control"
+                                                               placeholder="Your Email Address *"
+                                                               v-model="email"
+                                                               required
+                                                        />
                                                     </div>
-                                                    <button type="submit" class="btn btn-color btn-primary w-100">Submit</button>
+                                                    <button @click.prevent="handleSubscription"  class="btn btn-color btn-primary w-100">Submit</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -253,7 +247,7 @@
         </div>
     </section>
     <!-- Card End -->
-    <FrontFooter></FrontFooter>
+    <front-footer></front-footer>
 </template>
 
 <script>
@@ -263,9 +257,10 @@ import FrontFooter from "../../components/ui/frontsite/base/FrontFooter";
 import {getPropertiesBySlug} from "../../composables/property";
 import propertyService from "../../services/propertyService";
 import {ref} from "vue";
-import {PropertyPurpose} from "../../constants";
+import {ApiResponse, PropertyPurpose} from "../../constants";
 import {preventDefault} from "../../../../public/assets/plugins/fullcalendar";
 import {getAgencyUsersBySlug} from "../../composables/agency";
+import subscribeService from "../../services/subscribeService";
 export default {
     name: "Main",
     components: {FrontFooter, Carousel, FrontHeader},
@@ -274,18 +269,31 @@ export default {
     },
     setup(props){
 
+        const name = ref('');
+        const email = ref('');
+
         const agencyUsers = getAgencyUsersBySlug(props.slug);
         let properties = ref([]);
         getProperty()
         async function getProperty(currentPage,perPage) {
              properties.value = await propertyService.getPropertiesBySlug(props.slug, {currentPage,perPage});
-            // console.log(properties.value, "asdjksahdksahdksa");
+        }
+        async function handleSubscription() {
+            const response = await subscribeService.handleSubscription({name: name.value, email: email.value});
+            console.log(response, "asdsad");
+            if (response.status === ApiResponse.SUCCESS) {
+                name.value = '';
+                email.value = '';
+            }
         }
         return{
             PropertyPurpose,
+            name,
+            email,
             properties,
             getProperty,
-            agencyUsers
+            agencyUsers,
+            handleSubscription
         }
     }
 }

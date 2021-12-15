@@ -54,7 +54,7 @@
                                     class="header-row d-flex align-items-center justify-content-between flex-grow-1 h-100 py-2">
                                     <div class="brand-logo px-1">
                                         <div class="web-image logo-h">
-                                            <img src="/assets/images/logo.png" alt="The logo of web-page porto" height="100%">
+                                            <img src="/assets/images/logo.png" alt="The logo of web-page porto" >
                                         </div>
                                     </div>
                                     <div class="secondary-nav-links">
@@ -91,11 +91,14 @@
                                                 </li>
                                                 <li class="px-3">
                                                     <div class="dropdown-mega">
-                                                        <a class="secondary-nav-li text-decoration-none py-4" href="">
+                                                        <a class="secondary-nav-li text-decoration-none py-4"
+                                                           href="javascript:void(0)"
+
+                                                        >
                                                             <i class="fas fa-search px-1"></i>
                                                             Search
                                                         </a>
-                                                        <div class="dropdown-mega-menu">
+                                                        <div class="dropdown-mega-menu" v-if="showSearchDropdown">
                                                             <div
                                                                 class="d-flex align-items-center justify-content-center mt-5 mb-5">
                                                                 <!-- 1st child select tag -->
@@ -110,14 +113,14 @@
                                                                 </div>
                                                                 <!-- 2nd child select tag -->
                                                                 <div class="px-3">
-                                                                    <select class="select form-control" name="Location"
-                                                                            id="Location">
-                                                                        <option value="Location">Location</option>
-                                                                        <option value="Miami">Miami</option>
-                                                                        <option value="New York">New York</option>
-                                                                        <option value="Houston">Houston</option>
-                                                                        <option value="Los Angeles">Los Angeles</option>
-                                                                    </select>
+                                                                    <Select2 class="form-control vue-bs-select2"  v-if="options" style="width: 220px"
+                                                                             id="Location"
+                                                                             v-model="location"
+                                                                              :options="myOptions"
+                                                                              :settings="{ settingOption: value, settingOption: value }"
+                                                                              @change="myChangeEvent($event)"
+                                                                              @select="mySelectEvent($event)"
+                                                                    />
                                                                 </div>
                                                                 <!-- 3rd child select tag -->
                                                                 <div class="px-3">
@@ -349,13 +352,15 @@
                                                     </select>
                                                 </div>
                                                 <div class="mt-2 ">
-                                                    <select class="select px py-2" name="Location" id="Location">
-                                                        <option value="Location">Location</option>
-                                                        <option value="Miami">Miami</option>
-                                                        <option value="New York">New York</option>
-                                                        <option value="Houston">Houston</option>
-                                                        <option value="Los Angeles">Los Angeles</option>
-                                                    </select>
+                                                    <Select2
+                                                        class="vue-bs-select2 select px py-2"
+                                                        v-if="options"
+                                                              v-model="location"
+                                                              :options="myOptions"
+                                                              :settings="{ settingOption: value, settingOption: value }"
+                                                              @change="myChangeEvent($event)"
+                                                              @select="mySelectEvent($event)"
+                                                    />
                                                 </div>
                                                 <div class="mt-2">
                                                     <select class="select px py-2" name="beds" id="beds">
@@ -472,11 +477,68 @@
 </template>
 
 <script>
+import {getAllLocationsByCItyId} from "../../../../composables/country";
+import {ref, watchEffect} from "vue";
+import Select2 from "vue3-select2-component";
+
 export default {
-    name: "FrontHeader"
+    name: "FrontHeader",
+    components:{
+        Select2
+    },
+    setup(){
+        const options = getAllLocationsByCItyId(4);
+        const location = ref(1);
+        const showSearchDropdown = ref(false);
+        const myOptions = ref([]);
+        const model = ref();
+        function openSearchDropDown(){
+            showSearchDropdown.value = !showSearchDropdown.value;
+        }
+        watchEffect(()=>{
+            if(options.value){
+                myOptions.value = [];
+                model.value = options.value[0];
+                options.value.forEach(function (option){
+                    myOptions.value = [{id:option.id,text:option.name},...myOptions.value];
+
+                })
+            }
+        })
+        function myChangeEvent(val){
+            console.log(val);
+        }
+        function  mySelectEvent({id, text}){
+            console.log({id, text})
+        }
+        return{
+            options,
+            myOptions,
+            location,
+            myChangeEvent,
+            mySelectEvent,
+            model,
+            openSearchDropDown,
+            showSearchDropdown
+        }
+    }
 }
 </script>
 
 <style scoped>
-
+    /*@media only screen and (max-width: 480px) {*/
+    /*    .vue-bs-select2 {*/
+    /*        width: 120px;*/
+    /*    }*/
+    /*}*/
+    /*@media only screen and (max-width: 768px) {*/
+    /*    .vue-bs-select2 {*/
+    /*        width: 160px;*/
+    /*    }*/
+    /*}*/
+    @media only screen and (min-width: 768px) {
+        .vue-bs-select2 {
+            width: auto;
+        }
+    }
 </style>

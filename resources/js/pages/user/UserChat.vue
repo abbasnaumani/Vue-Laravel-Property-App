@@ -38,7 +38,7 @@
 <script>
 import {ref} from 'vue';
 import axios from "axios";
-import {getUserList} from "../../composables/user";
+import {getAgencyUsersList} from "../../composables/user";
 import userService from "../../services/userService";
 import appApi from "../../api";
 export default {
@@ -51,7 +51,7 @@ export default {
         const userName = ref('');
         // const users = ref('');
         const error = ref('');
-        const allUsers = getUserList();
+        const allUsers = getAgencyUsersList();
 
         var socket = io.connect('http://127.0.0.1:3000');
         console.log("connect",socket.id,socket);

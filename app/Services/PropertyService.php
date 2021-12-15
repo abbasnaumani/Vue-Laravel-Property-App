@@ -59,7 +59,7 @@ class PropertyService extends BaseService
     public function getPropertyById(int $id)
     {
         $property = Property::with('propertyDetail','propertyFeature','media', 'user','location.city', 'areaUnit', 'propertySubType')
-            ->where('id', $id)->get();
+            ->where('id', $id)->first();
         $this->setApiSuccessMessage(trans('generic.record_found'), $property);
     }
     /**
@@ -88,7 +88,7 @@ class PropertyService extends BaseService
             $this->setApiSuccessMessage(trans('property.property_store'), ['property_id' => $property->id]);
         } catch (\Exception $e) {
             DB::rollback();
-            $this->setApiErrorMessage(trans('property.property_not_store'));
+            $this->setApiErrorMessage(trans('property.property_not_store').$e->getMessage());
         }
     }
     /**
@@ -133,7 +133,8 @@ class PropertyService extends BaseService
             'area' => $request->input('area'),
             'purpose' => $request->input('purpose'),
             'price' => $request->input('price'),
-            'location_id' => $request->input('location_id')
+            'location_id' => $request->input('location_id'),
+            'is_featured' => 0
         ];
     }
 

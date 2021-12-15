@@ -15,3 +15,8 @@ export const getAgencyUsersBySlug = (slug) => {
     return agencyUsers;
 
 }
+export const getCurrentAgency = () => {
+    return computed(()=> {
+        return store.getters.getCurrentAgency;
+    })
+}

@@ -38,7 +38,7 @@
                                         </div>
                                         <br>
                                         <br>
-                                        <Select2  v-if="options"
+                                        <Select2 class="form-control"  v-if="options"
                                             v-model="myValue"
                                                  :options="myOptions"
                                                  :settings="{ settingOption: value, settingOption: value }"
@@ -71,7 +71,7 @@ export default {
         Select2
     },
     setup(){
-        const locations = getAllLocationsByCItyId() (4);
+        const locations = getAllLocationsByCItyId(4);
         const myValue = ref('');
        function myChangeEvent(val){
             console.log(val);

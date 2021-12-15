@@ -11,8 +11,15 @@ import UserDashboard from "../pages/user/UserDashboard";
 export default [
     {
         path: '/login',
-        name: 'login',
+        name: 'admin-login',
         component: page('auth/Login'),
+        meta: {login: true, meta_title: 'Admin Login'},
+        props: true,
+    },
+    {
+        path: '/main/login',
+        name: 'login',
+        component: page('frontsite/auth/Login'),
         meta: {login: true, meta_title: 'User Login'},
         props: true,
     },
@@ -56,10 +63,22 @@ export default [
         component: UserList,
     },
     {
+        path: '/user/add',
+        name: 'user-add',
+        meta: {public: false, meta_title: 'User Add'},
+        component: page('user/AddAgencyUser'),
+    },
+    {
         path: '/user/chat',
         name: 'user-chat',
         meta: {public: false, meta_title: 'User Chat'},
         component: UserChat,
+    },
+    {
+        path: '/properties',
+        name: 'properties',
+        meta: {public: true, meta_title: 'KS Properties'},
+        component: page('frontsite/property/Properties'),
     },
     {
         path: '/property',
@@ -69,7 +88,7 @@ export default [
     },
     {
         path: '/property/details/:propertyId',
-        name: 'user-list',
+        name: 'property-list',
         meta: {public: false, meta_title: 'Property Details'},
         component: page('property/PropertyDetails'),
         props: ({params}) => ({propertyId: params.propertyId || 0}),
@@ -121,9 +140,16 @@ export default [
     },
     {
         path: '/:slug/main',
-        name: 'front-header',
+        name: 'front-main',
         meta: {public: true, meta_title: 'KS Property'},
         component: page('frontsite/Main'),
         props: ({params}) => ({slug: params.slug || ''}),
+    },
+    {
+        path: '/:slug/:propertyId/detail',
+        name: 'front-detail',
+        meta: {public: true, meta_title: 'KS Property Detail'},
+        component: page('frontsite/property/PropertyDetail'),
+        props: ({params}) => ({slug: params.slug || '' , propertyId:params.propertyId || 0}),
     }
 ];

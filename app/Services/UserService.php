@@ -2,14 +2,65 @@
 
 namespace App\Services;
 
+use App\Models\AgencyUser;
+use App\Models\Role;
 use App\Models\User;
 use App\Services\BaseService\BaseService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 
 class UserService extends BaseService
 {
+    /** Add the Agency user
+     * @param Request $request
+     *
+     */
+    public function addAgencyUser(Request $request){
+        DB::beginTransaction();
+        try {
+            $user = $this->getAuthUser();
+            $userData = User::create($this->userData($request));
+            $agencyUser = $userData->agencyUsers()->create($this->agencyUsersData($user->agencies()->first()->id,$user->id,$request->role_id));
+            DB::commit();
+            $this->setApiSuccessMessage(trans('user.user_store'));
+        } catch (\Exception $e) {
+            DB::rollback();
+            $this->setApiErrorMessage(trans('user.user_not_store'));
+        }
+    }
+    /**
+     * Prepare User Data for agency.
+     * @param Request $request
+     *
+     * @return array
+     */
+    private function userData(Request $request): array
+    {
+        return [
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'phone_number' =>  $request->phone_number,
+            'password' => Hash::make('12345678'),
+        ];
+    }
+    /**
+     * Prepare User Data for agency.
+     * @param int $userId
+     * @param int $agencyId
+     * @param int $roleId
+     * @return array
+     */
+    private function agencyUsersData(int $agencyId,int $userId,int $roleId): array
+    {
+        return [
+            'user_id' => $userId,
+            'agency_id' => $agencyId,
+            'role_id' => $roleId,
+        ];
+    }
     /** Update the user password
      * @param Request $request
      *

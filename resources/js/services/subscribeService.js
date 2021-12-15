@@ -1,21 +1,18 @@
+import {useToast} from "vue-toastification";
 import EventEmitter from "events";
+import router from "~/router";
 import appApi from "../api";
 import {ApiResponse} from "../constants";
 import errorHandlerService from "./errorHandlerService";
-import {useToast} from "vue-toastification";
-import router from "~/router";
-import store from "../store";
+
 const toast = useToast();
 
-class AgencyService extends EventEmitter {
-
-    async getAgencyUsersBySlug(slug) {
+class SubscribeService extends EventEmitter {
+    async handleSubscription(subscriptionData){
         try {
-            console.log(slug,"slug")
-            const response = await appApi.get('/'+slug+'/agency/users');
+            const response = await appApi.post('/subscribers',subscriptionData);
             if (response.data.status === ApiResponse.SUCCESS) {
-                await store.dispatch('actionAgencyUsersBySlug', response.data.payload);
-                // return response.data.payload;
+                return response.data;
             } else {
                 toast.error(response.data.message);
             }
@@ -28,5 +25,5 @@ class AgencyService extends EventEmitter {
         }
     }
 }
-const service = new AgencyService();
+const service = new SubscribeService();
 export default service;

@@ -51,7 +51,7 @@
                                                 <td class="font-w600 font-size-sm">{{property.price}}</td>
                                                 <td class="font-w600 font-size-sm">{{property.location.name}}</td>
                                                 <td class="btn-group text-center font-w600 font-size-sm">
-                                                    <router-link :to="{path:'/property/edit/'+property.id}" class="btn btn-primary "><i class="fa fa-pencil-alt"></i></router-link>
+                                                    <router-link :to="{path:'/property/edit/'+property.id}" class="btn btn-primary "><i class="fa fa-pencil"></i></router-link>
                                                     <button @click="openDeleteModal(property)" class="btn btn-danger mx-2"><i class="far fa-trash-alt"></i></button>
                                                     <router-link :to="{path:'/property/details/'+property.id}" class="btn btn-info mx-2"><i class="far fa-eye"></i></router-link>
                                                 </td>

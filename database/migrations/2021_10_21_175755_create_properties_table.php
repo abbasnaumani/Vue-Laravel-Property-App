@@ -19,7 +19,7 @@ class CreatePropertiesTable extends Migration
             $table->unsignedBigInteger('property_sub_type_id');
             $table->unsignedBigInteger('area_unit_id');
             $table->unsignedBigInteger('location_id');
-            $table->tinyInteger('is_featured');
+            $table->tinyInteger('is_featured')->default(0);
             $table->string('title');
             $table->double('area');
             $table->tinyInteger('purpose');
