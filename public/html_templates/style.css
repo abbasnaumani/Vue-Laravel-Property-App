@@ -1,15 +1,10 @@
 *{
     box-sizing: border-box;
-<<<<<<< HEAD
     font-family: "Poppins",arial,sans-serif ;
 }
 :root{
     --ks-letter-spacing:-.05em;
     --ks-primary-color:#1C5FA8;
-=======
-    font-family: "Poppins",arial,sans-serif;
-    letter-spacing: -.05em !important;
->>>>>>> ea8e76f5c272b57741ef9c441f8e5143c9094728
 }
 body{
     /*list-style: 1.8 !important;*/
