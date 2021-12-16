@@ -629,7 +629,7 @@ body{
 .form-control::-webkit-input-placeholder {
     color: rgba(128, 128, 128, 0.5) !important;
 }
-.auth-card {
+.login-card {
     background: #fff;
     box-sizing: border-box;
     border-bottom: 1px solid #dfdfdf;
@@ -648,7 +648,7 @@ body{
     border-top: 4px solid #08c;
 }
 
-.auth-text {
+.login-text {
     color: #08c;
     font-weight: 600;
     letter-spacing: -.7px;
@@ -673,13 +673,13 @@ body{
 /* Media query */
 
 @media only screen and (max-width: 768px) {
-    .auth-text {
+    .login-text {
         font-size: 1.1em;
     }
 }
 
 @media only screen and (max-width: 768px) {
-    .auth-text {
+    .login-text {
         font-size: 1em;
     }
 }

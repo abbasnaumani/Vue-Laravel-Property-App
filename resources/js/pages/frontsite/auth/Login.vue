@@ -1,10 +1,10 @@
 <template>
     <front-header></front-header>
     <div class="container mt-8">
-        <div class="card-signup shadow-sm auth-card w-50 text-left">
+        <div class="card-signup shadow-sm login-card w-50 text-left">
             <div class="card-header bg-white border-bottom-0 mt-4">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h4 class="auth-text text-uppercase">I'm a Returning Customer</h4>
+                    <h4 class="login-text text-uppercase">I'm a Returning Customer</h4>
 <!--                    <a class="float-end btn" href="#">Create Account</a>-->
                     <router-link to="/signup"
                                  class="float-end btn">
