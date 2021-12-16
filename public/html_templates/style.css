@@ -1,10 +1,10 @@
 *{
     box-sizing: border-box;
-    font-family: "Poppins",arial,sans-serif !important;
+    font-family: "Poppins",arial,sans-serif;
     letter-spacing: -.05em !important;
 }
 body{
-    list-style: 1.8 !important;
+    /*list-style: 1.8 !important;*/
 }
 .hide {
     opacity:0;
@@ -26,6 +26,7 @@ body{
 .logo-h{
     height: 48px !important;
 }
+
 .logo-h > img {
     width: inherit;
     height: inherit;
