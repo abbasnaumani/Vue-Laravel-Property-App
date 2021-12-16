@@ -25,8 +25,15 @@ export default [
     },
     {
         path: '/signup',
-        name: 'register',
+        name: 'admin-register',
         component: page('auth/Register'),
+        meta: {login: true, meta_title: 'Admin Registration'},
+        props: true,
+    },
+    {
+        path: '/main/signup',
+        name: 'register',
+        component: page('frontsite/auth/Register'),
         meta: {login: true, meta_title: 'User Registration'},
         props: true,
     },
