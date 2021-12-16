@@ -7,18 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css">
+    <link href="https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-            crossorigin="anonymous"></script>
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-            crossorigin="anonymous"></script>
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
     <script>
         topHeader = document.getElementById("top-header");
 
@@ -54,22 +54,22 @@
                                             <li class="float-left">
                                                 <i style="font-size: 15px;color: #00a4f2;" class="fal fa-phone-alt"></i>
                                                 <a class="text-decoration-none nav-links font-weight-medium"
-                                                   href="#"><span class="px-1">(800)
-                                                            123-4567</span></a>
+                                                    href="#"><span class="px-1">(800)
+                                                        123-4567</span></a>
                                             </li>
                                             <li class="float-left px-3">
                                                 <i style="font-size: 15px;color: #00a4f2;"
-                                                   class="fal fa-map-marker-alt d-lg-inline d-md-none d-sm-none d-none"></i>
+                                                    class="fal fa-map-marker-alt d-lg-inline d-md-none d-sm-none d-none"></i>
                                                 <a class="text-decoration-none nav-links font-weight-medium"
-                                                   href="#"><span
+                                                    href="#"><span
                                                         class="px-1 d-lg-inline d-md-none d-sm-none d-none">1234 Porto
-                                                            Street,Los Angeles / LA</span></a>
+                                                        Street,Los Angeles / LA</span></a>
                                             </li>
                                             <li class="float-left px-3">
                                                 <i style="font-size: 15px;color: #00a4f2;"
-                                                   class="fal fa-envelope d-lg-inline d-md-inline d-sm-none d-none"></i>
+                                                    class="fal fa-envelope d-lg-inline d-md-inline d-sm-none d-none"></i>
                                                 <a class="text-decoration-none nav-links font-weight-medium"
-                                                   href=""><span
+                                                    href=""><span
                                                         class="px-1 d-lg-inline d-md-inline d-sm-none d-none">porto@portotheme.com</span></a>
                                             </li>
                                         </ul>
@@ -79,10 +79,27 @@
                                     <div class="right-nav-links d-flex align-items-center">
                                         <ul class="list-unstyled">
                                             <li class="float-left px-2"><a class="text-decoration-none right-navs"
-                                                                           href="">BLOG</a></li>
-                                            <li class="float-left px-2"><a class="text-decoration-none right-navs"
-                                                                           href="">LOGIN<span
-                                                        style="font-size: 15px;">/</span>REGISTER</a>
+                                                    href="">BLOG</a></li>
+                                            <li class="float-left px-2">
+                                                <div class="container">
+                                                <div class="dropdown dropleft">
+                                                    <i style="font-size:14px;" class="fas fa-user p-1" data-toggle="dropdown"></i>
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item" href="#" >
+                                                            <p class="font-weight-bold mb-0">Hassan Khalid</p>
+                                                        </a>
+                                                        <a class="dropdown-item" href="#">
+                                                                <p class="mb-0 mt-0 header-dropdown-links px-2">My Account</p>
+                                                        </a>
+                                                        <a class="dropdown-item" href="#">
+                                                                <p class="mb-0 mt-0 header-dropdown-links px-2">Manage Alerts</p>
+                                                        </a>
+                                                        <a class="dropdown-item" href="#">
+                                                                <p class="mb-0 mt-0 header-dropdown-links px-2">Log Out</p>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                </div>
                                             </li>
                                         </ul>
                                     </div>
@@ -105,21 +122,23 @@
                                             <ul class="list-unstyled d-lg-flex d-md-none d-sm-none d-none m-0">
                                                 <li class="px-3">
                                                     <a class="secondary-nav-li text-decoration-none active py-4"
-                                                       href="">Home</a>
+                                                        href="">Home</a>
                                                 </li>
                                                 <li class="px-3">
                                                     <a class="secondary-nav-li text-decoration-none py-4"
-                                                       href="">Properties</a>
+                                                        href="">Properties</a>
                                                 </li>
                                                 <li class="px-3">
-                                                    <div class="dropdown">
+                                                    <div class="dropdown-primary">
                                                         <a class="secondary-nav-li text-decoration-none py-4"
-                                                           href="">About</a>
-                                                        <div class="dropdown-menu">
+                                                            href="">About</a>
+                                                        <div class="dropdown-primary-menu">
                                                             <ul class="list-unstyled">
-                                                                <li><a class="text-dark dropdown-li" href="#">Agents</a>
+                                                                <li><a class="text-dark dropdown-primary-li"
+                                                                        href="#">Agents</a>
                                                                 </li>
-                                                                <li><a class="text-dark dropdown-li" href="#">Who we
+                                                                <li><a class="text-dark dropdown-primary-li"
+                                                                        href="#">Who we
                                                                         are</a></li>
                                                             </ul>
                                                         </div>
@@ -130,7 +149,7 @@
                                                 </li>
                                                 <li class="px-3">
                                                     <a class="secondary-nav-li text-decoration-none py-4"
-                                                       href="">Elements</a>
+                                                        href="">Elements</a>
                                                 </li>
                                                 <li class="px-3">
                                                     <div class="dropdown-mega">
@@ -144,7 +163,7 @@
                                                                 <!-- 1st child select tag -->
                                                                 <div class="px-3">
                                                                     <select class="select form-control" name="property"
-                                                                            id="property">
+                                                                        id="property">
                                                                         <option value="property type">Property type
                                                                         </option>
                                                                         <option value="Apartment">Apartment</option>
@@ -154,7 +173,7 @@
                                                                 <!-- 2nd child select tag -->
                                                                 <div class="px-3">
                                                                     <select class="select form-control" name="Location"
-                                                                            id="Location">
+                                                                        id="Location">
                                                                         <option value="Location">Location</option>
                                                                         <option value="Miami">Miami</option>
                                                                         <option value="New York">New York</option>
@@ -165,7 +184,7 @@
                                                                 <!-- 3rd child select tag -->
                                                                 <div class="px-3">
                                                                     <select class="select form-control" name="beds"
-                                                                            id="beds">
+                                                                        id="beds">
                                                                         <option value="Min Beds">Min Beds</option>
                                                                         <option value="1">1</option>
                                                                         <option value="2">2</option>
@@ -176,7 +195,7 @@
                                                                 <!-- 4rd child select tag -->
                                                                 <div class="px-3">
                                                                     <select class="select form-control" name="min Price"
-                                                                            id="min price">
+                                                                        id="min price">
                                                                         <option value="Min price">Min Price</option>
                                                                         <option value="150000">$150,000</option>
                                                                         <option value="200000">$200,000</option>
@@ -222,7 +241,7 @@
                                                                 <!-- 5rd child select tag -->
                                                                 <div class="px-3">
                                                                     <select class="select form-control" name="min Price"
-                                                                            id="min price">
+                                                                        id="min price">
                                                                         <option value="Min price">Min Price</option>
                                                                         <option value="150000">$150,000</option>
                                                                         <option value="200000">$200,000</option>
@@ -286,21 +305,21 @@
                                     <div class="d-flex align-items-center justify-content-end">
                                         <ul class="list-unstyled d-flex align-items-center m-0">
                                             <li class="py-4">
-                                                <a id="fac" class="d-lg-inline d-md-inline d-sm-none d-none "
-                                                   href="#"><i class="fa fa-facebook px-2"></i></a>
+                                                <a class="d-lg-inline d-md-inline d-sm-none d-none facebook" href="#"><i
+                                                        class="fa fa-facebook px-1"></i></a>
                                             </li>
                                             <li class="py-4">
-                                                <a id="twit" class="d-lg-inline d-md-inline d-sm-none d-none "
-                                                   href="#"><i class="fab fa-twitter p-1"></i></a>
+                                                <a class="d-lg-inline d-md-inline d-sm-none d-none twitter-header"
+                                                    href="#"><i class="fab fa-twitter p-1"></i></a>
                                             </li>
                                             <li class="py-4">
-                                                <a id="inst" class="d-lg-inline d-md-inline d-sm-none d-none "
-                                                   href="#"><i class="fab fa-instagram p-1"></i></a>
+                                                <a class="d-lg-inline d-md-inline d-sm-none d-none instagram"
+                                                    href="#"><i class="fab fa-instagram p-1"></i></a>
                                             </li>
                                             <li class="d-lg-none d-md-inline d-sm-inline d-inline py-3 px-2">
                                                 <button style="background-color: #1C5FA8;color: white;" type="button"
-                                                        data-toggle="collapse" data-target="#accordion"
-                                                        class="btn btn-md navbar-toggler-collapsed border border-0"><i
+                                                    data-toggle="collapse" data-target="#accordion"
+                                                    class="btn btn-md navbar-toggler-collapsed border border-0"><i
                                                         class="fa fa-navicon"></i></button>
                                             </li>
                                         </ul>
@@ -313,7 +332,7 @@
                                         <div class="card-header card-padding">
                                             <div class="active-2 py-2">
                                                 <a class="card-link px-2  text-white accordian-collapse "
-                                                   data-toggle="collapse" href="#collapseOne">
+                                                    data-toggle="collapse" href="#collapseOne">
                                                     Home
                                                 </a>
                                             </div>
@@ -322,7 +341,7 @@
                                     <div class="card border border-0">
                                         <div class="card-header card-padding">
                                             <a class="collapsed px-2  accordian-collapse accordian-collapse card-link"
-                                               data-toggle="collapse" href="#collapseTwo">
+                                                data-toggle="collapse" href="#collapseTwo">
                                                 Properties
                                             </a>
                                         </div>
@@ -330,7 +349,7 @@
                                     <div class="card border border-0">
                                         <div class="card-header card-padding">
                                             <a class="collapsed accordian-collapse card-link" data-toggle="collapse"
-                                               href="#collapseThree">
+                                                href="#collapseThree">
                                                 <div class="d-flex align-items-center justify-content-between">
                                                     <div class="px-2">About</div>
                                                     <div><i class="fas fa-angle-down px-2"></i></div>
@@ -355,7 +374,7 @@
                                     <div class="card border border-0">
                                         <div class="card-header card-padding">
                                             <a class="collapsed px-2 accordian-collapse card-link"
-                                               data-toggle="collapse" href="#collapsefour">
+                                                data-toggle="collapse" href="#collapsefour">
                                                 Contact
                                             </a>
                                         </div>
@@ -363,7 +382,7 @@
                                     <div class="card border border-0">
                                         <div class="card-header card-padding">
                                             <a class="collapsed px-2 accordian-collapse card-link"
-                                               data-toggle="collapse" href="#collapsefive">
+                                                data-toggle="collapse" href="#collapsefive">
                                                 Elements
                                             </a>
                                         </div>
@@ -371,7 +390,7 @@
                                     <div class="card border border-0">
                                         <div class="card-header card-padding">
                                             <a class="collapsed accordian-collapse card-link" data-toggle="collapse"
-                                               href="#collapseSix">
+                                                href="#collapseSix">
                                                 <div class="d-flex align-items-center justify-content-between">
                                                     <div>
                                                         <i class="fas fa-search px-2"></i>
@@ -500,7 +519,7 @@
                                                 </div>
                                                 <div class="mt-1">
                                                     <button style="background-color: #19B5FF;" type="button"
-                                                            class="btn btn-primary w-100 ">Search Now
+                                                        class="btn btn-primary w-100 ">Search Now
                                                     </button>
                                                 </div>
                                             </div>
