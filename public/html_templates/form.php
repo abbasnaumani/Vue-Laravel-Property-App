@@ -3,7 +3,7 @@
     <div class="card shadow-sm login-card w-100">
         <div class="card-header bg-white border-bottom-0 mt-3">
             <div class="d-flex justify-content-center align-items-center">
-                <h4 class="auth-text text-uppercase">Register Form</h4>
+                <h4 class="login-text text-uppercase">Register Form</h4>
             </div>
         </div>
         <div class="card-body">
@@ -13,7 +13,7 @@
                         <div class="card shadow-sm login-card w-100">
                             <div class="card-header bg-white border-bottom-0 mt-3">
                                 <div class="d-flex justify-content-center align-items-center">
-                                    <h4 class="auth-text text-uppercase">User Information</h4>
+                                    <h4 class="login-text text-uppercase">User Information</h4>
                                 </div>
                             </div>
                             <div class="card-body text-left">
@@ -30,10 +30,10 @@
                         </div>
                     </div>
                     <div class="col-6">
-                        <div class="card shadow-sm auth-card w-100">
+                        <div class="card shadow-sm login-card w-100">
                             <div class="card-header bg-white border-bottom-0 mt-3">
                                 <div class="d-flex justify-content-center align-items-center">
-                                    <h4 class="auth-text text-uppercase">Property Information</h4>
+                                    <h4 class="login-text text-uppercase">Property Information</h4>
                                 </div>
                             </div>
                             <div class="card-body text-left">
