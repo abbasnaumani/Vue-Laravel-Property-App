@@ -4,18 +4,15 @@
             <div class="container py-3 position-relative z-index-2">
                 <div class="row py-4 pb-3 mt-4 mb-4 d-flex flex-wrap-reverse">
                     <div
-                        class="col-md-8 order-2 order-md-1 d-flex align-self-center justify-content-md-start justify-content-sm-center justify-content-center">
-                        <div class="main-heading text-lg-start">
-                            <h2 class="font-weight-bold text-light mb-0">Agents</h2>
-                            <div class="d-flex justify-content-md-start justify-content-center">
-                                <p style="opacity: 0.5;" class="text-white mb-0 px-1">
-                                Sed consequat euismod diam, eu ultrices nulla ullamcorper ac.
-                            </p>
-                            </div>
+                        class="col-md-8 order-2 order-md-1 ">
+                        <div class="main-heading text-lg-start d-flex align-self-center justify-content-md-start justify-content-sm-center justify-content-center">
+                            
+                                <h2 class="font-weight-bold text-light mb-0">Agents</h2>
+                            
                         </div>
                     </div>
                     <div
-                        class="col-md-4 order-2 order-md-1 d-flex align-self-center justify-content-md-end justify-content-sm-center justify-content-center">
+                        class="col-md-4 order-2 order-md-1 d-flex align-self-center justify-content-md-end justify-content-sm-center justify-content-center px-5">
                         <div class="main-links">
                             <ul class="list-unstyled text-white">
                                 <li><span style="font-size:11.5px;">HOME</span> <span
@@ -376,4 +373,5 @@
         </div>
     </div>
 </section>
+<?php include "bottom_banner.php" ?>
 <?php include "footer.php" ?>
