@@ -16,7 +16,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-
+Route::prefix('admin')->group(function () {
+    Route::get('/{any?}', function () {
+        return view('layouts.admin');
+    })->where('any', '.*');
+});
 
 Route::get('/{any?}', function () {
     return view('layouts.app');
