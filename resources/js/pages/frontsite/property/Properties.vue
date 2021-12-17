@@ -38,14 +38,14 @@
                         </div>
                         <div class="col-lg-2 mb-2 mb-lg-0">
                             <div class="">
-                                <select class="select-properites py-3 px-1 btn-block rounded" name="Location"
-                                        id="Location">
-                                    <option value="Location">Location</option>
-                                    <option value="Miami">Miami</option>
-                                    <option value="New York">New York</option>
-                                    <option value="Houston">Houston</option>
-                                    <option value="Los Angeles">Los Angeles</option>
-                                </select>
+                                <Select2 class="select-test"  v-if="options"
+                                         id="Location"
+                                         v-model="location"
+                                         :options="myOptions"
+                                         :settings="{ settingOption: value, settingOption: value }"
+                                         @change="myChangeEvent($event)"
+                                         @select="mySelectEvent($event)"
+                                />
                             </div>
                         </div>
                         <div class="col-lg-2 mb-2 mb-lg-0">
@@ -175,20 +175,21 @@
                         or
                         <span class="text-primary">Rent</span>
                     </h2>
-                    <div class="row">
-                        <div class="col-12 col-sm-6 col-md-3 pb-4 mb-1">
-                            <a class="text-decoration-none link-card" href="/cards.html">
+                    <div class="row" v-if="properties.data">
+                        <div class="col-12 col-sm-6 col-md-3 pb-4 mb-1" v-for="property in properties.data">
+                            <router-link :to="{path:'/'+slug+'/'+property.id+'/detail'}" class="text-decoration-none link-card" href="javascript:void(0)">
                                 <div class="card border-1 hover-card">
                                     <div class="position-relative h-card">
                                         <img class="card-img-top h-image" src="/assets/images/listing-3-thumb.jpg"
                                              alt="Image of a Property to sale or rent.">
                                         <div class="card-tag position-absolute left-1">
-                                            <span class="text-white font-weight-bold">FOR SALE</span>
+                                            <span class="text-white font-weight-bold" v-if="property.purpose == PropertyPurpose.FOR_SALE">FOR SALE</span>
+                                            <span class="text-white font-weight-bold" v-else>FOR RENT</span>
                                         </div>
                                     </div>
                                     <div class="py-3 d-flex justify-content-between align-items-baseline">
                                         <div>
-                                            <h6 class="head text-dark px-2">$ 1.250.000</h6>
+                                            <h6 class="head text-dark px-2">{{property.price}}</h6>
                                         </div>
                                         <div class="px-2">
                                             <i style="color: #00a4f2; font-size: 25px;"
@@ -196,225 +197,22 @@
                                         </div>
                                     </div>
                                     <hr>
-                                    <h5 class="font-weight-bold px-2 text-dark">South Miami</h5>
+                                    <h5 class="font-weight-bold px-2 text-dark">{{ property.title }}</h5>
                                     <div class="d-flex justify-content-between flex-wrap">
-                                        <div class="text-secondary heading-div-weight px-2">BEDS:3</div>
-                                        <div class="text-secondary heading-div-weight">BATHS:2</div>
-                                        <div class="text-secondary heading-div-weight px-2">SQ FT:500</div>
+                                        <div class="text-secondary heading-div-weight px-2">BEDS:{{property.property_detail.bedrooms}}</div>
+                                        <div class="text-secondary heading-div-weight">BATHS:{{property.property_detail.bathrooms}}</div>
+                                        <div class="text-secondary heading-div-weight px-2">SQ FT:{{property.area+' '+property.area_unit_id.name}}</div>
                                     </div>
                                 </div>
-                            </a>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-3 pb-4 mb-1">
-                            <a class="text-decoration-none link-card" href="/cards.html">
-                                <div class="card border-1 hover-card">
-                                    <div class="position-relative h-card">
-                                        <img class="card-img-top h-image" src="/assets/images/img-4.jpg"
-                                             alt="Image of a Property to sale or rent.">
-                                        <div class="card-tag position-absolute left-1">
-                                            <span class="text-white font-weight-bold">FOR SALE</span>
-                                        </div>
-                                    </div>
-                                    <div class="py-3 d-flex justify-content-between align-items-baseline">
-                                        <div>
-                                            <h6 class="head text-dark">$ 1.250.000</h6>
-                                        </div>
-                                        <div class="px-2">
-                                            <i style="color: #00a4f2; font-size: 25px;"
-                                               class="fal fa-long-arrow-right icon-hov"></i>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <h5 class="font-weight-bold px-2 text-dark">South Miami</h5>
-                                    <div class="d-flex justify-content-between flex-wrap">
-                                        <div class="text-secondary heading-div-weight px-2">BEDS:3</div>
-                                        <div class="text-secondary heading-div-weight">BATHS:2</div>
-                                        <div class="text-secondary heading-div-weight px-2">SQ FT:500</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-3 pb-4 mb-1">
-                            <a class="text-decoration-none link-card" href="/cards.html">
-                                <div class="card border-1 hover-card">
-                                    <div class="position-relative h-card">
-                                        <img class="card-img-top h-image" src="/assets/images/img-5.jpg"
-                                             alt="Image of a Property to sale or rent.">
-                                        <div class="card-tag position-absolute left-1">
-                                            <span class="text-white font-weight-bold">FOR SALE</span>
-                                        </div>
-                                    </div>
-                                    <div class="py-3 d-flex justify-content-between align-items-baseline">
-                                        <div>
-                                            <h6 class="head text-dark">$ 1.250.000</h6>
-                                        </div>
-                                        <div class="px-2">
-                                            <i style="color: #00a4f2; font-size: 25px;"
-                                               class="fal fa-long-arrow-right icon-hov"></i>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <h5 class="font-weight-bold px-2 text-dark">South Miami</h5>
-                                    <div class="d-flex justify-content-between flex-wrap">
-                                        <div class="text-secondary heading-div-weight px-2">BEDS:3</div>
-                                        <div class="text-secondary heading-div-weight">BATHS:2</div>
-                                        <div class="text-secondary heading-div-weight px-2">SQ FT:500</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-3 pb-4 mb-1">
-                            <a class="text-decoration-none link-card" href="/cards.html">
-                                <div class="card border-1 hover-card">
-                                    <div class="position-relative h-card">
-                                        <img class="card-img-top h-image" src="/assets/images/listing-3-thumb.jpg"
-                                             alt="Image of a Property to sale or rent.">
-                                        <div class="card-tag position-absolute left-1">
-                                            <span class="text-white font-weight-bold">FOR SALE</span>
-                                        </div>
-                                    </div>
-                                    <div class="py-3 d-flex justify-content-between align-items-baseline">
-                                        <div>
-                                            <h6 class="head text-dark">$ 1.250.000</h6>
-                                        </div>
-                                        <div class="px-2">
-                                            <i style="color: #00a4f2; font-size: 25px;"
-                                               class="fal fa-long-arrow-right icon-hov"></i>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <h5 class="font-weight-bold px-2 text-dark">South Miami</h5>
-                                    <div class="d-flex justify-content-between flex-wrap">
-                                        <div class="text-secondary heading-div-weight px-2">BEDS:3</div>
-                                        <div class="text-secondary heading-div-weight">BATHS:2</div>
-                                        <div class="text-secondary heading-div-weight px-2">SQ FT:500</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-3 pb-4 mb-1">
-                            <a class="text-decoration-none link-card" href="/cards.html">
-                                <div class="card border-1 hover-card">
-                                    <div class="position-relative h-card">
-                                        <img class="card-img-top h-image" src="/assets/images/img-7.jpg"
-                                             alt="Image of a Property to sale or rent.">
-                                        <div class="card-tag position-absolute left-1">
-                                            <span class="text-white font-weight-bold">FOR SALE</span>
-                                        </div>
-                                    </div>
-                                    <div class="py-3 d-flex justify-content-between align-items-baseline">
-                                        <div>
-                                            <h6 class="head text-dark">$ 1.250.000</h6>
-                                        </div>
-                                        <div class="px-2">
-                                            <i style="color: #00a4f2; font-size: 25px;"
-                                               class="fal fa-long-arrow-right icon-hov"></i>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <h5 class="font-weight-bold px-2 text-dark">South Miami</h5>
-                                    <div class="d-flex justify-content-between flex-wrap">
-                                        <div class="text-secondary heading-div-weight px-2">BEDS:3</div>
-                                        <div class="text-secondary heading-div-weight">BATHS:2</div>
-                                        <div class="text-secondary heading-div-weight px-2">SQ FT:500</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-3 pb-4 mb-1">
-                            <a class="text-decoration-none link-card" href="/cards.html">
-                                <div class="card border-1 hover-card">
-                                    <div class="position-relative h-card">
-                                        <img class="card-img-top h-image" src="/assets/images/img-8.jpg"
-                                             alt="Image of a Property to sale or rent.">
-                                        <div class="card-tag position-absolute left-1">
-                                            <span class="text-white font-weight-bold">FOR SALE</span>
-                                        </div>
-                                    </div>
-                                    <div class="py-3 d-flex justify-content-between align-items-baseline">
-                                        <div>
-                                            <h6 class="head text-dark">$ 1.250.000</h6>
-                                        </div>
-                                        <div class="px-2">
-                                            <i style="color: #00a4f2; font-size: 25px;"
-                                               class="fal fa-long-arrow-right icon-hov"></i>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <h5 class="font-weight-bold px-2 text-dark">South Miami</h5>
-                                    <div class="d-flex justify-content-between flex-wrap">
-                                        <div class="text-secondary heading-div-weight px-2">BEDS:3</div>
-                                        <div class="text-secondary heading-div-weight">BATHS:2</div>
-                                        <div class="text-secondary heading-div-weight px-2">SQ FT:500</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-3 pb-4 mb-1">
-                            <a class="text-decoration-none link-card" href="/cards.html">
-                                <div class="card border-1 hover-card">
-                                    <div class="position-relative h-card">
-                                        <img class="card-img-top h-image" src="/assets/images/listing-3-thumb.jpg"
-                                             alt="Image of a Property to sale or rent.">
-                                        <div class="card-tag position-absolute left-1">
-                                            <span class="text-white font-weight-bold">FOR SALE</span>
-                                        </div>
-                                    </div>
-                                    <div class="py-3 d-flex justify-content-between align-items-baseline">
-                                        <div>
-                                            <h6 class="head text-dark">$ 1.250.000</h6>
-                                        </div>
-                                        <div class="px-2">
-                                            <i style="color: #00a4f2; font-size: 25px;"
-                                               class="fal fa-long-arrow-right icon-hov"></i>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <h5 class="font-weight-bold px-2 text-dark">South Miami</h5>
-                                    <div class="d-flex justify-content-between flex-wrap">
-                                        <div class="text-secondary heading-div-weight px-2">BEDS:3</div>
-                                        <div class="text-secondary heading-div-weight">BATHS:2</div>
-                                        <div class="text-secondary heading-div-weight px-2">SQ FT:500</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-3 pb-4 mb-1">
-                            <a class="text-decoration-none link-card" href="/cards.html">
-                                <div class="card border-1 hover-card">
-                                    <div class="position-relative h-card">
-                                        <img class="card-img-top h-image" src="/assets/images/img-4.jpg"
-                                             alt="Image of a Property to sale or rent.">
-                                        <div class="card-tag position-absolute left-1">
-                                            <span class="text-white font-weight-bold">FOR SALE</span>
-                                        </div>
-                                    </div>
-                                    <div class="py-3 d-flex justify-content-between align-items-baseline">
-                                        <div>
-                                            <h6 class="head text-dark">$ 1.250.000</h6>
-                                        </div>
-                                        <div class="px-2">
-                                            <i style="color: #00a4f2; font-size: 25px;"
-                                               class="fal fa-long-arrow-right icon-hov"></i>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <h5 class="font-weight-bold px-2 text-dark">South Miami</h5>
-                                    <div class="d-flex justify-content-between flex-wrap">
-                                        <div class="text-secondary heading-div-weight px-2">BEDS:3</div>
-                                        <div class="text-secondary heading-div-weight">BATHS:2</div>
-                                        <div class="text-secondary heading-div-weight px-2">SQ FT:500</div>
-                                    </div>
-                                </div>
-                            </a>
+                            </router-link>
                         </div>
                     </div>
                     <div class="row">
                         <div class="d-flex mx-auto pt-3">
                             <div>
                                 <a class="btn btn-lg btn-blow text-white text-center font-weight-semibold
-                                border-0 p-relative text-2 text-uppercase mt-2 py-3 px-5 button-color">
-<!--                                   href="" @click.prevent="getProperty(properties.current_page,properties.per_page)">-->
+                                border-0 p-relative text-2 text-uppercase mt-2 py-3 px-5 button-color"
+                                   href="javascript:void(0)" @click.prevent="getPropertiesBySlug(properties.current_page,properties.per_page)">
                                     <span style="font-size: 15px;font-weight: 600;">View More</span>
                                 </a>
                             </div>
@@ -466,12 +264,74 @@
 <script>
 import FrontHeader from "../../../components/ui/frontsite/base/FrontHeader";
 import FrontFooter from "../../../components/ui/frontsite/base/FrontFooter";
+import propertyService from "../../../services/propertyService";
+import {ref, watchEffect} from "vue";
+import {PropertyPurpose} from "../../../constants";
+import Select2 from "vue3-select2-component";
+import {getAllLocationsByCItyId} from "../../../composables/country";
 export default {
     name: "Properties",
-    components: {FrontFooter, FrontHeader}
+    components: {FrontFooter, FrontHeader,Select2},
+    props:{
+        slug:String,
+    },
+    setup(props){
+        const type = ref(1);
+        const location = ref(1);
+        const beds = ref(1);
+        const minPrice = ref(1);
+        const maxPrice = ref(1);
+        let properties = ref([]);
+        const options = getAllLocationsByCItyId(4);
+        const myOptions = ref([]);
+        const model = ref();
+        watchEffect(()=>{
+            if(options.value){
+                myOptions.value = [];
+                model.value = options.value[0];
+                options.value.forEach(function (option){
+                    myOptions.value = [{id:option.id,text:option.name},...myOptions.value];
+
+                })
+            }
+        })
+        function myChangeEvent(val){
+            console.log(val);
+        }
+        function  mySelectEvent({id, text}){
+            console.log({id, text})
+        }
+        getPropertiesBySlug(type, location, beds, minPrice, maxPrice)
+        async function getPropertiesBySlug(currentPage,perPage) {
+            const addMore = 4;
+            properties.value = await propertyService.getPropertiesBySlug(props.slug, {currentPage,perPage,addMore,type,
+                location,
+                beds,
+                minPrice,
+                maxPrice});
+        }
+        return {
+            options,
+            myOptions,
+            myChangeEvent,
+            mySelectEvent,
+            model,
+            type,
+            location,
+            beds,
+            minPrice,
+            maxPrice,
+            PropertyPurpose,
+            properties,
+            getPropertiesBySlug
+        }
+    }
 }
 </script>
 
 <style scoped>
+.select-test{
+ height: 40px !important;
 
+}
 </style>

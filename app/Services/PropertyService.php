@@ -17,15 +17,43 @@ class PropertyService extends BaseService
      * Get All Properties
      * @param string $slug
      */
+//    public function getPropertyListBySlug(Request $request,string $slug)
+//    {
+//        $agency = Agency::where('slug', $slug)->first();
+//        $agencyUsers = $agency->users ?? null;
+//        if ($agencyUsers) {
+//            $agencyUserIds = array_column($agencyUsers->toArray(), 'id');
+//            if ($agencyUserIds) {
+//                $properties = Property::with('propertyDetail','propertyFeature', 'media', 'user', 'location.city', 'areaUnit', 'propertySubType')
+//                ->whereIn('user_id', $agencyUserIds)->orderBy('id')->simplePaginate((int)$request->per_page + $request->add_more, ['*'],'page',(int)$request->current_page);            // limit and offset
+//                $this->setApiSuccessMessage(trans('property.properties_retrieved'), $properties ?? null);
+//            }
+//        }
+//    }
     public function getPropertyListBySlug(Request $request,string $slug)
     {
+//        dd($request->type);
         $agency = Agency::where('slug', $slug)->first();
         $agencyUsers = $agency->users ?? null;
         if ($agencyUsers) {
             $agencyUserIds = array_column($agencyUsers->toArray(), 'id');
             if ($agencyUserIds) {
-                $properties = Property::with('propertyDetail','propertyFeature', 'media', 'user', 'location.city', 'areaUnit', 'propertySubType')
-                ->whereIn('user_id', $agencyUserIds)->orderBy('id')->simplePaginate((int)$request->per_page+3, ['*'],'page',(int)$request->current_page);            // limit and offset
+                $properties = Property::with('propertyDetail','propertyFeature', 'media', 'user', 'location.city', 'areaUnit', 'propertySubType');
+                if($request->location || $request->location !=''){
+                    $properties =  $properties->where(['location_id'=>$request->location]);
+                }
+                if($request->type){
+                    $properties =  $properties->where(['property_sub_type_id' => $request->type]);
+                }
+                if($request->beds){
+                    $properties =  $properties->whereHas('propertyDetail',function($query) use ($request){
+                        $query->where('bedrooms','>=',$request->beds);
+                    });
+                }
+                if($request->min_price && $request->max_price){
+                    $properties =  $properties->whereBetween('price', [$request->min_price, $request->max_price]);
+                }
+                $properties = $properties->whereIn('user_id', $agencyUserIds)->orderBy('id')->simplePaginate((int)$request->per_page + $request->add_more, ['*'],'page',(int)$request->current_page);            // limit and offset
                 $this->setApiSuccessMessage(trans('property.properties_retrieved'), $properties ?? null);
             }
         }

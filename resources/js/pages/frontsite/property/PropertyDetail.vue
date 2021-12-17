@@ -423,24 +423,68 @@
                                     <form>
                                         <div class="form-group">
                                             <input type="text" class="form-control" id="text" placeholder="Name *"
-                                                   v-model="name">
+                                                   v-model="name"
+                                                   @blur="v$.name.$touch()"
+                                            >
+                                            <div class="text-left">
+                                                <div v-if="v$.name.$dirty">
+                                                    <sub v-if="v$.name.$error"
+                                                         class="px-2 py-2 text-danger">
+                                                        Name is Required
+                                                    </sub>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" class="form-control" id="email" placeholder="E-mail *"
-                                                   v-model="email">
+                                            <input type="email" class="form-control" id="userEmail" placeholder="E-mail *"
+                                                   v-model="userEmail" @blur="v$.userEmail.$touch()">
+                                            <div class="text-left">
+                                                <div v-if="v$.userEmail.$dirty">
+                                                    <sub v-if="v$.userEmail.$error"
+                                                         class="px-2 py-2 text-danger">
+                                                        Please enter a valid Email address
+                                                    </sub>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <input type="tel" class="form-control" id="phone" placeholder="Phone *"
-                                                   v-model="phone_number">
+                                                   v-model="phone_number" @blur="v$.phone_number.$touch()">
+                                            <div class="text-left">
+                                                <div v-if="v$.phone_number.$dirty">
+                                                    <sub v-if="v$.phone_number.$error"
+                                                         class="px-2 py-2 text-danger">
+                                                         Phone Number is Required
+                                                    </sub>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <textarea class="form-control" rows="5" id="comment" placeholder="Message *"
-                                                      v-model="message"></textarea>
+                                                      v-model="message" @blur="v$.message.$touch()"></textarea>
+                                            <div class="text-left">
+                                                <div v-if="v$.message.$dirty">
+                                                    <sub v-if="v$.message.$error"
+                                                         class="px-2 py-2 text-danger">
+                                                        Message is Required
+                                                    </sub>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <button type="submit"
-                                                @click.prevent="handleContactUs"
-                                                class="btn border-0 btn-primary btn-block font-weight-bold btn-color py-2">Send
-                                            Messages</button>
+                                        <button
+                                            v-if="v$.$invalid"
+                                            type="submit"
+                                            class="btn border-0 btn-primary btn-block font-weight-bold btn-color py-2 cursor-not-allowed"
+                                            disabled
+                                        >
+                                            <i class="fal fa-fw fa-sign-in-alt mr-1"></i>Send Message
+                                        </button>
+                                        <button v-else @click.prevent="handleContactUs"
+                                                type="submit"
+                                                class="btn border-0 btn-primary btn-block font-weight-bold btn-color py-2"
+                                        >
+                                            <i class="fal fa-fw fa-sign-in-alt mr-1"></i>Send Message
+                                        </button>
                                     </form>
                                 </div>
                             </div>
@@ -493,11 +537,13 @@
 import FrontHeader from "../../../components/ui/frontsite/base/FrontHeader";
 import FrontFooter from "../../../components/ui/frontsite/base/FrontFooter";
 import {getAgencyUsersBySlug} from "../../../composables/agency";
-import {ref} from "vue";
+import {computed, ref} from "vue";
 import propertyService from "../../../services/propertyService";
 import PropertyFilesList from "../../property/PropertyFilesList";
 import {ApiResponse} from "../../../constants";
 import contactUsService from "../../../services/contactUsService";
+import {email, minLength, required, sameAs} from "@vuelidate/validators";
+import useVuelidate from "@vuelidate/core";
 export default {
     name: "PropertyDetail",
     components: {PropertyFilesList, FrontFooter, FrontHeader},
@@ -507,7 +553,7 @@ export default {
     },
     setup(props){
         const name = ref('');
-        const email = ref('');
+        const userEmail = ref('');
         const phone_number = ref('');
         const message = ref('');
         const agencyUsers = getAgencyUsersBySlug(props.slug);
@@ -517,19 +563,46 @@ export default {
             property.value = await propertyService.getPropertyById(props.propertyId);
         }
         async function handleContactUs(){
-            const response = await contactUsService.handleContactUs({name: name.value, email: email.value,phone_number:phone_number.value,message:message.value});
+            const response = await contactUsService.handleContactUs({name: name.value, email: userEmail.value,phone_number:phone_number.value,message:message.value});
             if (response.status === ApiResponse.SUCCESS) {
                 name.value = '';
-                email.value = '';
+                userEmail.value = '';
                 phone_number.value = '';
                 message.value = '';
             }
         }
+        const validationRules = computed(() => {
+            return {
+                userEmail: {
+                    required,
+                    email
+                },
+                phone_number: {
+                    required,
+                },
+                name: {
+                    required
+                },
+                message: {
+                    required
+                },
+            }
+        });
+        const v$ = useVuelidate(
+            validationRules,
+            {
+                userEmail,
+                phone_number,
+                name,
+                message
+            }
+        );
         return{
+            v$,
             property,
             handleContactUs,
             name,
-            email,
+            userEmail,
             phone_number,
             message
         }
@@ -538,5 +611,7 @@ export default {
 </script>
 
 <style scoped>
-
+.cursor-not-allowed {
+    cursor: not-allowed;
+}
 </style>

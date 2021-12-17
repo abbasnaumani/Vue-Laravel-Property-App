@@ -30,7 +30,13 @@ class PropertyService extends EventEmitter {
             const response = await appApi.get('/'+slug+'/properties', {
                 params: {
                     current_page: paginateData.currentPage,
-                    per_page: paginateData.perPage
+                    per_page: paginateData.perPage,
+                    add_more: paginateData.addMore,
+                    type: paginateData.type.value,
+                    location: paginateData.location.value,
+                    beds: paginateData.beds.value,
+                    min_price: paginateData.minPrice.value,
+                    max_price: paginateData.maxPrice.value
                 }
                 });
             if (response.data.status === ApiResponse.SUCCESS) {

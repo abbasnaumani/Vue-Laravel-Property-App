@@ -153,6 +153,13 @@ export default [
         props: ({params}) => ({slug: params.slug || ''}),
     },
     {
+        path: '/:slug/properties',
+        name: 'front-properties',
+        meta: {public: true, meta_title: 'KS Property'},
+        component: page('frontsite/property/Properties'),
+        props: ({params}) => ({slug: params.slug || ''}),
+    },
+    {
         path: '/:slug/:propertyId/detail',
         name: 'front-detail',
         meta: {public: true, meta_title: 'KS Property Detail'},

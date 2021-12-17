@@ -51,7 +51,7 @@
                                 <div class="col-4">
                                     <div>
                                         <a class="btn btn-lg btn-blow text-white text-center font-weight-semibold border-0 p-relative text-2 text-uppercase mt-2 py-3 px-5 button-color"
-                                           href="" @click.prevent="getProperty(properties.current_page,properties.per_page)">
+                                           href="" @click.prevent="getPropertiesBySlug(properties.current_page,properties.per_page)">
                                             <span style="font-size: 15px;font-weight: 600;">View More</span>
                                         </a>
                                     </div>
@@ -223,17 +223,48 @@
                                                                placeholder="Your Name *"
                                                                v-model="name"
                                                                required
+                                                               @blur="v$.name.$touch()"
                                                         />
+                                                        <div class="text-left">
+                                                            <div v-if="v$.name.$dirty">
+                                                                <sub v-if="v$.name.$error"
+                                                                     class="px-2 py-2 text-danger">
+                                                                    Name is Required
+                                                                </sub>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <input type="email"
                                                                class="form-control"
                                                                placeholder="Your Email Address *"
-                                                               v-model="email"
+                                                               v-model="userEmail"
                                                                required
+                                                               @blur="v$.userEmail.$touch()"
                                                         />
+                                                        <div class="text-left">
+                                                            <div v-if="v$.userEmail.$dirty">
+                                                                <sub v-if="v$.userEmail.$error"
+                                                                     class="px-2 py-2 text-danger">
+                                                                    Please enter a valid Email address
+                                                                </sub>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <button @click.prevent="handleSubscription"  class="btn btn-color btn-primary w-100">Submit</button>
+                                                    <button
+                                                        v-if="v$.$invalid"
+                                                        type="submit"
+                                                        class="btn btn-color btn-primary w-100 cursor-not-allowed"
+                                                        disabled
+                                                    >
+                                                        <i class="fal fa-fw fa-sign-in-alt mr-1"></i>Submit
+                                                    </button>
+                                                    <button v-else @click.prevent="handleSubscription"
+                                                            type="submit"
+                                                            class="btn btn-color btn-primary w-100"
+                                                    >
+                                                        <i class="fal fa-fw fa-sign-in-alt mr-1"></i>Submit
+                                                    </button>
                                                 </form>
                                             </div>
                                         </div>
@@ -256,11 +287,13 @@ import Carousel from "../../components/utilities/Carousel";
 import FrontFooter from "../../components/ui/frontsite/base/FrontFooter";
 import {getPropertiesBySlug} from "../../composables/property";
 import propertyService from "../../services/propertyService";
-import {ref} from "vue";
+import {computed, ref} from "vue";
 import {ApiResponse, PropertyPurpose} from "../../constants";
 import {preventDefault} from "../../../../public/assets/plugins/fullcalendar";
 import {getAgencyUsersBySlug} from "../../composables/agency";
 import subscribeService from "../../services/subscribeService";
+import {email, required} from "@vuelidate/validators";
+import useVuelidate from "@vuelidate/core";
 export default {
     name: "Main",
     components: {FrontFooter, Carousel, FrontHeader},
@@ -270,28 +303,48 @@ export default {
     setup(props){
 
         const name = ref('');
-        const email = ref('');
+        const userEmail = ref('');
 
         const agencyUsers = getAgencyUsersBySlug(props.slug);
         let properties = ref([]);
-        getProperty()
-        async function getProperty(currentPage,perPage) {
-             properties.value = await propertyService.getPropertiesBySlug(props.slug, {currentPage,perPage});
+        getPropertiesBySlug()
+        async function getPropertiesBySlug(currentPage,perPage) {
+            const addMore = 3;
+             properties.value = await propertyService.getPropertiesBySlug(props.slug, {currentPage,perPage,addMore});
         }
         async function handleSubscription() {
-            const response = await subscribeService.handleSubscription({name: name.value, email: email.value});
+            const response = await subscribeService.handleSubscription({name: name.value, email: userEmail.value});
             console.log(response, "asdsad");
             if (response.status === ApiResponse.SUCCESS) {
                 name.value = '';
-                email.value = '';
+                userEmail.value = '';
             }
         }
+        const validationRules = computed(() => {
+            return {
+                userEmail: {
+                    required,
+                    email
+                },
+                name: {
+                    required
+                },
+            }
+        });
+        const v$ = useVuelidate(
+            validationRules,
+            {
+                userEmail,
+                name,
+            }
+        );
         return{
+            v$,
             PropertyPurpose,
             name,
-            email,
+            userEmail,
             properties,
-            getProperty,
+            getPropertiesBySlug,
             agencyUsers,
             handleSubscription
         }
