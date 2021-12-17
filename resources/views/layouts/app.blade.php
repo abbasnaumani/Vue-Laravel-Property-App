@@ -10,11 +10,6 @@
     <link rel="icon" sizes="192x192" type="image/png" href="{{ asset('assets/images/ks-logo.png') }}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/ks-logo.png') }}">
 
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-    <link rel="stylesheet" id="css-main" href="{{ asset('assets/css/oneui.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/oneui.css') }}" >
-
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

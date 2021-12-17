@@ -22,6 +22,7 @@ mix
 /* JS */
 .js('resources/js/vendors.js', 'public')
 .js('resources/js/app.js', 'public')
+.js('resources/js/admin/admin.js', 'public')
 .js('resources/js/oneui/app.js', 'public/js/oneui.app.js').vue()
 .disableNotifications();
 mix.webpackConfig({
