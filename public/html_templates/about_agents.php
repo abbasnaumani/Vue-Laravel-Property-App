@@ -233,10 +233,10 @@
                                             <li data-target="#demo" data-slide-to="0"
                                                 class="active crousal-circle-link-agents"></li>
                                             <li data-target="#demo" data-slide-to="1"
-                                                class=" crousal-circle-link-agents">
+                                                class="crousal-circle-link-agents">
                                             </li>
                                             <li data-target="#demo" data-slide-to="2"
-                                                class=" crousal-circle-link-agents">
+                                                class="crousal-circle-link-agents">
                                             </li>
                                         </ul>
                                         <div class="carousel-inner">
@@ -253,7 +253,7 @@
                                                         class="mt-3 d-flex justify-content-between align-items-baseline">
                                                         <div>
                                                             <h4
-                                                                class="heading-font-weight text-dark font-weight-bold m-0 px-3">
+                                                                class="heading-font-weight text-dark font-weight-bold m-0 px-2">
                                                                 $ 1.250.000</h4>
                                                         </div>
                                                         <div class="px-2">
@@ -262,7 +262,7 @@
                                                         </div>
                                                     </div>
                                                     <hr>
-                                                    <h4 class="font-weight-bold text-dark px-3">South Miami</h4>
+                                                    <h4 class="font-weight-bold text-dark px-2">South Miami</h4>
                                                     <div class="d-flex justify-content-between flex-wrap pb-5">
                                                         <div class="text-secondary heading-div-weight px-2">BEDS:3</div>
                                                         <div class="text-secondary heading-div-weight">BATHS:2</div>
@@ -284,7 +284,7 @@
                                                         class="mt-3 d-flex justify-content-between align-items-baseline">
                                                         <div>
                                                             <h4
-                                                                class="font-weight-bold heading-font-weight text-dark m-0 px-3">
+                                                                class="font-weight-bold heading-font-weight text-dark m-0 px-2">
                                                                 $ 1.250.000</h4>
                                                         </div>
                                                         <div class="px-2">
@@ -293,7 +293,7 @@
                                                         </div>
                                                     </div>
                                                     <hr>
-                                                    <h4 class="font-weight-bold px-3 text-dark">South Miami</h4>
+                                                    <h4 class="font-weight-bold px-2 text-dark">South Miami</h4>
                                                     <div class="d-flex justify-content-between flex-wrap pb-5">
                                                         <div class="text-secondary heading-div-weight px-2">BEDS:3</div>
                                                         <div class="text-secondary heading-div-weight">BATHS:2</div>
@@ -315,7 +315,7 @@
                                                         class="mt-3 d-flex justify-content-between align-items-baseline">
                                                         <div>
                                                             <h4
-                                                                class="font-weight-bold heading-font-weight text-dark m-0 px-3">
+                                                                class="font-weight-bold heading-font-weight text-dark m-0 px-2">
                                                                 $ 1.250.000</h4>
                                                         </div>
                                                         <div class="px-2">
@@ -324,7 +324,7 @@
                                                         </div>
                                                     </div>
                                                     <hr>
-                                                    <h4 class="font-weight-bold px-3 text-dark">South Miami</h4>
+                                                    <h4 class="font-weight-bold px-2 text-dark">South Miami</h4>
                                                     <div class="d-flex justify-content-between flex-wrap pb-5">
                                                         <div class="text-secondary heading-div-weight px-2">BEDS:3</div>
                                                         <div class="text-secondary heading-div-weight">BATHS:2</div>
