@@ -136,7 +136,7 @@
                                     class="header-row d-flex align-items-center justify-content-between flex-grow-1 h-100 py-2">
                                     <div class="brand-logo px-1">
                                         <div class="web-image logo-h">
-                                            <img src="logo.png" alt="The logo of web-page porto" height="100%">
+                                            <img src="ks-logo.png" alt="The logo of web-page porto" height="100%">
                                         </div>
                                     </div>
                                     <div class="secondary-nav-links">

@@ -3,15 +3,15 @@
     font-family: "Poppins", arial, sans-serif;
 }
 
-:root{
-    --ks-letter-spacing:-.05em;
-    --ks-bg-primary-color:#1C5FA8;
-    --ks-bg-secondary-color:#00a4f2;
-    --ks-bg-tertiary-color:#1877F2;
-    --ks-text-primary-color:#777777;
-    --ks-text-secondary-color:#444444;
-    --ks-btn-primary-color:#19B5FF;
-    --ks-btn-secondary-color:#2172C9;
+:root {
+    --ks-letter-spacing: -.05em;
+    --ks-bg-primary-color: #1C5FA8;
+    --ks-bg-secondary-color: #00a4f2;
+    --ks-bg-tertiary-color: #1877F2;
+    --ks-text-primary-color: #777777;
+    --ks-text-secondary-color: #444444;
+    --ks-btn-primary-color: #19B5FF;
+    --ks-btn-secondary-color: #2172C9;
 }
 
 body {
@@ -76,7 +76,7 @@ body {
 
 .secondary-nav-li:hover {
     text-decoration: none;
-    color:var(--ks-bg-primary-color);
+    color: var(--ks-bg-primary-color);
 }
 
 .facebook {
@@ -203,7 +203,8 @@ body {
     text-decoration: none;
     color: #777777;
 }
-.accordian-collapse{
+
+.accordian-collapse {
     color: var(--ks-bg-primary-color);
     font-weight: 700;
 }
@@ -227,10 +228,12 @@ body {
     background-color: rgba(128, 128, 128, 0.3);
     width: 100%;
 }
-.active:active{
-    background-color: var(--ks-bg-primary-color) ;
+
+.active:active {
+    background-color: var(--ks-bg-primary-color);
 }
-.active-2{
+
+.active-2 {
     background-color: var(--ks-bg-primary-color);
     color: white;
 }
@@ -335,8 +338,9 @@ body {
     opacity: 0.8;
     transition: all 1s ease-out;
 }
-.card-crousel{
-    background-color:var(--ks-bg-primary-color) !important;
+
+.card-crousel {
+    background-color: var(--ks-bg-primary-color) !important;
 }
 
 .test {
@@ -528,7 +532,8 @@ body {
 .footer-divider {
     opacity: 0.2 !important;
 }
-.top-banner{
+
+.top-banner {
     background-color: var(--ks-bg-primary-color) !important;
 }
 
@@ -552,7 +557,8 @@ body {
         z-index: 1;
     }
 }
-.top-banner{
+
+.top-banner {
     background-color: var(--ks-bg-primary-color);
 }
 
@@ -773,7 +779,7 @@ body {
     position: relative;
     text-align: center;
     z-index: 1;
-    border-top: 4px solid #08c;
+    border-top: 4px solid #08c !important;
 }
 
 .login-text {
@@ -819,8 +825,9 @@ body {
 
 
 /*/ genneric banner  /*/
-.page-top-banner{
-    background-color:var(--ks-bg-primary-color) !important;
+
+.page-top-banner {
+    background-color: var(--ks-bg-primary-color) !important;
 }
 
 .heading-font {
@@ -863,7 +870,8 @@ body {
 .h-image {
     height: 200px !important;
 }
-.active-accordian{
+
+.active-accordian {
     background-color: var(--ks-bg-primary-color);
     color: white;
 }
@@ -874,7 +882,8 @@ body {
 .opacity-text {
     opacity: 0.7;
 }
-.bottom-banner{
+
+.bottom-banner {
     background-color: var(--ks-bg-secondary-color);
 }
 
@@ -885,14 +894,15 @@ body {
 
 
 /* for bottom-banner  */
+
 @media screen and (max-width:595px) {
-    .h-image{
+    .h-image {
         height: 320px !important;
     }
-    .h-card{
+    .h-card {
         height: 320px !important;
     }
-    .detail-h-card{
+    .detail-h-card {
         height: 320px !important;
     }
 }
@@ -958,14 +968,19 @@ body {
     top: 20px !important;
     border-radius: 5px !important;
 }
+
+
 /* Contact-page styling  */
+
 .contact-heading {
     letter-spacing: var(--ks-letter-spacing);
 }
+
 .contact-form-card {
     background-color: rgba(128, 128, 128, 0.1) !important;
     max-width: 100% !important;
 }
+
 .map-heading-contact {
     letter-spacing: var(--ks-letter-spacing);
 }
@@ -973,15 +988,21 @@ body {
 .contact-info-heading {
     letter-spacing: var(--ks-letter-spacing);
 }
+
+
 /* agent-info  */
-.agent-info-paragraph{
+
+.agent-info-paragraph {
     font-size: 1.2em!important;
     font-weight: 500;
 }
-.info-agent-text{
+
+.info-agent-text {
     font-size: 17px !important;
     line-height: 1.9 !important;
 }
+
+
 /* User Profile Page */
 
 .font-weight-normal {
@@ -1007,7 +1028,10 @@ body {
 .text-3 {
     font-size: 1em!important;
 }
+
+
 /* wo we are  */
+
 .tick-2 {
     color: #1c5fa8 !important;
 }
