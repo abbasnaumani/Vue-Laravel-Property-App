@@ -1,122 +1,111 @@
 <template>
-    <div class="hero-static">
-        <div class="content">
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-6 col-xl-5">
-                    <!-- Sign In Block -->
-                    <div class="block block-rounded block-themed mb-0">
-                        <div class="block-header bg-primary-dark">
-                            <h3 class="block-title">Sign In</h3>
-                        </div>
-                        <div class="block-content">
-                            <div class="p-sm-3 px-lg-4 py-lg-5">
-                                <h1 class="h2 mb-1">KodeStudio</h1>
-                                <div class="text-muted">
-                                    Welcome, please login. Or
-                                    <router-link to="/signup"
-                                                 class="btn-block-option js-bs-tooltip-enabled"
-                                                 data-bs-toggle="tooltip" data-bs-placement="left"
-                                                 title="" data-bs-original-title="New Account">
-                                        <i class="fa fa-user-plus"></i>
-                                        <p class="text-muted">Create An Account</p>
-                                    </router-link>
+    <div class="container py-5">
+        <div class="card-signup shadow-sm form-card w-50 text-left mt-5">
+            <div class="card-header bg-white border-bottom-0 mt-4">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h4 class="login-text text-uppercase">I'm a Returning Customer</h4>
+                    <!--                    <a class="float-end btn" href="#">Create Account</a>-->
+                    <router-link to="/signup"
+                                 class="float-end btn">
+                        Create An Account
+                    </router-link>
+                </div>
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label class="form-label">Username or E-mail Address</label>
+                            <div class="position-relative">
+                                <i class="fal fa-envelope position-absolute p-3 text-primary"></i>
+                                <input
+                                    class="form-control form-control-lg pl-5"
+                                    id="email"
+                                    type="email"
+                                    v-model="userEmail"
+                                    @blur="v$.userEmail.$touch()"
+                                    required
+                                    autofocus
+                                >
+                                <div class="text-left">
+                                    <div v-if="v$.userEmail.$dirty">
+                                        <sub
+                                            v-if="v$.userEmail.$invalid"
+                                            class="px-2 py-2 text-danger">
+                                            Please enter a valid Email address
+                                        </sub>
+                                    </div>
                                 </div>
-                                <form>
-                                    <div class="py-3">
-                                        <div class="form-group">
-                                            <input
-                                                id="email"
-                                                class="form-control form-control-alt form-control-lg"
-                                                type="email"
-                                                v-model="userEmail"
-                                                @blur="v$.userEmail.$touch()"
-                                                required
-                                                autofocus
-                                            />
-                                        </div>
-                                        <div class="text-left">
-                                            <div v-if="v$.userEmail.$dirty">
-                                                <sub
-                                                    v-if="v$.userEmail.$invalid"
-                                                    class="px-2 py-2 text-danger">
-                                                    Please enter a valid Email address
-                                                </sub>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <input
-                                                id="password"
-                                                class="form-control form-control-alt form-control-lg"
-                                                type="password"
-                                                v-model="password"
-                                                required
-                                                autocomplete="current-password"
-                                                @blur="v$.password.$touch()"
-                                            />
-                                        </div>
-                                        <div class="text-left">
-                                            <div v-if="v$.password.$dirty">
-                                                <sub v-if="v$.password.$error"
-                                                     class="px-2 py-2 text-danger">
-                                                    Password is Required
-                                                </sub>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="form-group row">
-                                            <div class="form-check col-md-6 col-xl-5">
-                                                <input class="form-check-input" type="checkbox"
-                                                       value="" id="login-remember"
-                                                       v-model="rememberMe">
-                                                <label class="form-check-label"
-                                                       for="login-remember">Remember Me</label>
-                                            </div>
-                                            <div class="col-md-6 col-xl-5 text-right">
-                                                <router-link to="/forgot/password"
-                                                             class="btn-block-option font-size-sm">
-                                                    <p class="text-muted">Forgot Password</p>
-                                                </router-link>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-md-6 col-xl-5">
-                                            <button type="submit"
-                                                    class="btn btn-block btn-alt-primary cursor-not-allowed"
-                                                    v-if="v$.$invalid" disabled>
-                                                <i class="fa fa-fw fa-sign-in-alt mr-1"></i>Sign In
-                                            </button>
-                                            <button v-else @click.prevent="handleLogin"
-                                                    type="submit"
-                                                    class="btn btn-block btn-alt-primary"
-                                            >
-                                                <i class="fa fa-fw fa-sign-in-alt mr-1"></i>Sign In
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                                <!-- END Sign In Form -->
                             </div>
                         </div>
                     </div>
-                    <!-- END Sign In Block -->
-                </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            <router-link to="/forgot/password"
+                                         class="float-end">
+                                (Lost Password)
+                            </router-link>
+                            <!--                            <a class="float-end" href="#">(Lost Password?)</a>-->
+                            <label class="form-label">Password</label>
+                            <div class="position-relative">
+                                <i class="fal fa-key position-absolute p-3 text-primary"></i>
+                                <input
+                                    id="password"
+                                    type="password"
+                                    v-model="password"
+                                    required
+                                    autocomplete="current-password"
+                                    @blur="v$.password.$touch()"
+                                    class="form-control form-control-lg pl-5"
+                                >
+                                <div class="text-left">
+                                    <div v-if="v$.password.$dirty">
+                                        <sub v-if="v$.password.$error"
+                                             class="px-2 py-2 text-danger">
+                                            Password is Required
+                                        </sub>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-8 col-12 text-md-left text-center">
+                            <div class="d-inline-block mt-2">
+                                <input type="checkbox" name="rememberme" class="" id="rememberme">
+                                <label class="form-label" for="rememberme">Remember Me</label>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4 col-12 text-md-right text-center">
+                            <button type="submit"
+                                    class="btn btn-primary btn-modern cursor-not-allowed"
+                                    v-if="v$.$invalid" disabled>
+                                <i class="fal fa-fw fa-sign-in-alt mr-1"></i>Sign In
+                            </button>
+                            <button v-else @click.prevent="handleLogin"
+                                    type="submit"
+                                    class="btn btn-primary btn-modern"
+                            >
+                                <i class="fal fa-fw fa-sign-in-alt mr-1"></i>Sign In
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </div>
-        <div class="content content-full font-size-sm text-muted text-center">
-            <strong>KodeStudio.net</strong> &copy; <span data-toggle="year-copy"></span>
         </div>
     </div>
 </template>
 
 <script>
 import {computed, ref} from "vue";
-import authService from "../../services/authService";
+import authService from "~/services/authService";
 import {email, minLength, required} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
-
+import FrontHeader from "~/components/ui/frontsite/base/FrontHeader";
 export default {
     name: "Login",
+    components: {FrontHeader},
     props: {
         token: String,
     },

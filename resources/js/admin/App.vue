@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Default from "./layouts/Default";
+import Default from "~/admin/layouts/Default";
 
 const requireContext = require.context('./layouts', false, /.*\.vue$/)
 

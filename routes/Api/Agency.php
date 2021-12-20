@@ -9,6 +9,9 @@ class Agency
 {
     static function register()
     {
+        Route::get('/agency/list', [AgencyController::class, 'getAgencyList'])
+            ->name('agency.list')
+            ->middleware('auth:sanctum');
         Route::group(['middleware' => ['auth:sanctum']], function(){
             Route::get('/agency/edit/{agencyId}',[AgencyController::class, 'edit'])->name('agency.edit');
             Route::put('/agency/{agencyId}', [AgencyController::class,'update'])->name('agency.update');

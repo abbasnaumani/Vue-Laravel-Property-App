@@ -31,15 +31,28 @@ class AgencyController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Get All Agencies and their users.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
-    public function create()
+    public function getAgencyList(): JsonResponse
     {
-        //
+        $agencies = Agency::with('users.roles')->get();
+        $this->setApiSuccessMessage(trans('agency.agency_found'), $agencies);
+        return $this->getApiResponse();
     }
-
+    /**
+     * Display a listing of the users
+     *
+     */
+    public function getAgencyUsersList()
+    {
+        $user = $this->getAuthUser();
+        $agency = $user->agencies()->first();
+        $users = $agency->users()->with('roles')->get();
+        $this->setApiSuccessMessage(trans('user.get_user_list'), $users);
+        return $this->getApiResponse();
+    }
     /**
      * Store a newly created resource in storage.
      *

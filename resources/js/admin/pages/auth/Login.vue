@@ -121,8 +121,8 @@ export default {
         token: String,
     },
     setup() {
-        const userEmail = ref('abbasnaumani+1@gmail.com');
-        const password = ref('12345678');
+        const userEmail = ref('');
+        const password = ref('');
         const rememberMe = ref(false);
         const handleLogin = () => {
             authService.handleLogin(userEmail.value, password.value, rememberMe.value);

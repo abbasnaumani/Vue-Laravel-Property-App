@@ -1,13 +1,13 @@
 import {createRouter, createWebHistory} from 'vue-router';
 import {nextTick} from "vue";
-import routes from './routes';
+import routes from './routes'
 
 // The middleware for every page of the application.
 const globalMiddleware = ['checkAuth'];
 //
 // // Load middleware modules dynamically.
 const routeMiddleware = resolveMiddleware(
-    require.context('../middleware', false, /.*\.js$/));
+    require.context('~/admin/middleware', false, /.*\.js$/));
 
 const router = createMyRouter();
 

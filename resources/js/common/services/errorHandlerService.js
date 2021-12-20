@@ -1,4 +1,4 @@
-import authService from "./authService";
+import authService from "~/admin/services/authService";
 
 const errorHandlerService = {
   errors: {

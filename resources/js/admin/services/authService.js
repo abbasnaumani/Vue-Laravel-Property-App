@@ -1,31 +1,31 @@
 import EventEmitter from 'events';
 import appApi from "~/api/index";
-import store from "~/store";
-import errorHandlerService from '~/services/errorHandlerService';
+import store from "~/admin/store";
+import errorHandlerService from '~/common/services/errorHandlerService';
 import {useToast} from "vue-toastification";
 import {ApiResponse, LocalStorageKeys} from "~/constants";
-import router from "~/router";
-import localStorageService from "./localStorageService";
+import router from "~/admin/router";
+import localStorageService from "~/common/services/localStorageService";
 
 const toast = useToast();
 
 class AuthService extends EventEmitter {
-    async handleRegistration(newUser) {
-        try {
-            const response = await appApi.post('/register', newUser);
-            if (response.data.status === ApiResponse.SUCCESS) {
-                toast.success("Registration Completed!");
-                await store.dispatch('actionAuthState', response.data.payload);
-                router.push({name: `user-dashboard`});
-            } else {
-                toast.error(response.data.message);
-            }
-        } catch (err) {
-            console.log(err, "catch error");
-            const error = await errorHandlerService.errors.index(err);
-            toast.error(error.message);
-        }
-    }
+    // async handleRegistration(newUser) {
+    //     try {
+    //         const response = await appApi.post('/register', newUser);
+    //         if (response.data.status === ApiResponse.SUCCESS) {
+    //             toast.success("Registration Completed!");
+    //             await store.dispatch('actionAuthState', response.data.payload);
+    //             router.push({name: `user-dashboard`});
+    //         } else {
+    //             toast.error(response.data.message);
+    //         }
+    //     } catch (err) {
+    //         console.log(err, "catch error");
+    //         const error = await errorHandlerService.errors.index(err);
+    //         toast.error(error.message);
+    //     }
+    // }
 
     async handleLogin(email, password, rememberMe) {
         let credentials = {email, password};
@@ -33,7 +33,7 @@ class AuthService extends EventEmitter {
             const response = await appApi.post('/login', credentials);
             if (response.data.status === ApiResponse.SUCCESS) {
                 await store.dispatch('actionAuthState', response.data.payload);
-                router.push({name: `user-dashboard`});
+                router.push({name: 'user-dashboard'});
             } else {
                 toast.error(response.data.message);
             }
@@ -70,7 +70,7 @@ class AuthService extends EventEmitter {
 
     async onLogout() {
         await store.dispatch('actionClearAuthState');
-        router.push({name: `login`});
+        router.push({name: `admin-login`});
     }
 
     async handleSendVerificationCode(payload) {

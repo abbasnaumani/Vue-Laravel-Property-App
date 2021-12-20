@@ -113,9 +113,9 @@
 import {computed, ref} from "vue";
 import {minLength, required, sameAs} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
-import authService from "../../services/authService";
-import {LocalStorageKeys} from "../../constants";
-import localStorageService from "../../services/localStorageService";
+import authService from "~/services/authService";
+import {LocalStorageKeys} from "~/constants";
+import localStorageService from "~/common/services/localStorageService";
 
 export default {
     name: "ResetPassword",

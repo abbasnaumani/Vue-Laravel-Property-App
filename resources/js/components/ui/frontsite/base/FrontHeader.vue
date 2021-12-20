@@ -245,15 +245,15 @@
                                     <div class="d-flex align-items-center justify-content-end">
                                         <ul class="list-unstyled d-flex align-items-center m-0">
                                             <li class="py-4">
-                                                <a id="fac" class="d-lg-inline d-md-inline d-sm-none d-none "
+                                                <a  class="d-lg-inline d-md-inline d-sm-none d-none facebook "
                                                    href="#"><i class="fa fa-facebook px-2"></i></a>
                                             </li>
                                             <li class="py-4">
-                                                <a id="twit" class="d-lg-inline d-md-inline d-sm-none d-none "
+                                                <a  class="d-lg-inline d-md-inline d-sm-none d-none twitter-header"
                                                    href="#"><i class="fab fa-twitter p-1"></i></a>
                                             </li>
                                             <li class="py-4">
-                                                <a id="inst" class="d-lg-inline d-md-inline d-sm-none d-none "
+                                                <a  class="d-lg-inline d-md-inline d-sm-none d-none instagram"
                                                    href="#"><i class="fab fa-instagram p-1"></i></a>
                                             </li>
                                             <li class="d-lg-none d-md-inline d-sm-inline d-inline py-3 px-2">

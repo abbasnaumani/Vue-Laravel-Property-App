@@ -1,4 +1,4 @@
-import auth from "../services/authService";
+import auth from "~/admin/services/authService";
 
 export default async (to, from, next) => {
     //document.title = to.meta.meta_title || 'BCBooth';
@@ -45,9 +45,9 @@ export default async (to, from, next) => {
     // take the user back to the Login page.
     if (to.meta.logout) {
         auth.onLogout();
-        return next({name: 'login'});
+        return next({name: 'admin-login'});
     }
     localStorage.setItem('url.intended', to.path);
 
-    next({name: 'login'});
+    next({name: 'admin-login'});
 }

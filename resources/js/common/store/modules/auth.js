@@ -1,4 +1,4 @@
-import {LocalStorageKeys} from "../../constants";
+import {LocalStorageKeys} from "../../../constants";
 
 const state = {
     profile: JSON.parse(localStorage.getItem(LocalStorageKeys.PROFILE)) || null,

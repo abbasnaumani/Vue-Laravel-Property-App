@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import authService from "../../services/authService";
+import authService from "~/admin/services/authService";
 
 export default {
     name: "Logout",

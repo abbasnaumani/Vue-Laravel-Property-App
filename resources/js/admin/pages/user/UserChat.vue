@@ -38,9 +38,8 @@
 <script>
 import {ref} from 'vue';
 import axios from "axios";
-import {getAgencyUsersList} from "../../composables/user";
+import {getAgencyUsersList} from "~/admin/composables/user";
 import userService from "../../services/userService";
-import appApi from "../../api";
 export default {
     name: "UserChat",
     setup(props) {

@@ -73,5 +73,6 @@ class AuthService extends BaseService
     {
         $this->user = $user;
         $this->user->roles;
+        $this->user->agencies;
     }
 }

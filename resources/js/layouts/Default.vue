@@ -11,23 +11,23 @@
     />
     <div id="page-container"
          :class='{"sidebar-o enable-page-overlay sidebar-dark side-scroll page-header-fixed main-content-narrow side-trans-enabled":isAuthenticated}'>
-        <div v-if="isAuthenticated">
-            <auth-header/>
-            <sidebar/>
-        </div>
+<!--        <div v-if="isAuthenticated">-->
+<!--            <auth-header/>-->
+<!--            <sidebar/>-->
+<!--        </div>-->
+        <front-header></front-header>
         <child/>
     </div>
 </template>
 
 <script>
-import AuthHeader from "../components/ui/base/AuthHeader";
-import Sidebar from "../components/ui/base/Sidebar";
-import store from "../store";
+import store from "~/store";
 import {computed} from "vue";
+import FrontHeader from "../components/ui/frontsite/base/FrontHeader";
 
 export default {
     name: "Default",
-    components: {Sidebar, AuthHeader},
+    components: {FrontHeader},
     setup() {
         const isAuthenticated = computed(() => {
             return store.getters.isAuthenticated ? store.getters.isAuthenticated : null;

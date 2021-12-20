@@ -241,7 +241,6 @@ import BlotFormatter from 'quill-blot-formatter'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import DropZone from "../dropzone/DropZone";
 import {ApiResponse} from "../../constants";
-import errorHandlerService from "../../services/errorHandlerService";
 import UploadList from "../dropzone/UploadList";
 
 export default {

@@ -630,7 +630,7 @@ body{
 .form-control::-webkit-input-placeholder {
     color: rgba(128, 128, 128, 0.5) !important;
 }
-.login-card {
+.form-card {
     background: #fff;
     box-sizing: border-box;
     border-bottom: 1px solid #dfdfdf;
@@ -646,7 +646,7 @@ body{
     position: relative;
     text-align: center;
     z-index: 1;
-    border-top: 4px solid #08c;
+    border-top: 4px solid #08c !important;
 }
 
 .login-text {

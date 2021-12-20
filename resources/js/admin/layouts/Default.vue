@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import AuthHeader from "../components/ui/base/AuthHeader";
-import Sidebar from "../components/ui/base/Sidebar";
-import store from "../store";
+import AuthHeader from "~/admin/components/ui/base/AuthHeader";
+import Sidebar from "~/admin/components/ui/base/Sidebar";
+import store from "~/admin/store";
 import {computed} from "vue";
 
 export default {

@@ -1,11 +1,12 @@
 import EventEmitter from 'events';
 import appApi from "~/api/index";
 import store from "~/store";
-import errorHandlerService from '~/services/errorHandlerService';
+import errorHandlerService from '~/common/services/errorHandlerService';
 import {useToast} from "vue-toastification";
 import {ApiResponse, LocalStorageKeys} from "~/constants";
 import router from "~/router";
-import localStorageService from "./localStorageService";
+import localStorageService from "~/common/services/localStorageService";
+import {UserRoles} from "~/constants";
 
 const toast = useToast();
 
@@ -16,7 +17,8 @@ class AuthService extends EventEmitter {
             if (response.data.status === ApiResponse.SUCCESS) {
                 toast.success("Registration Completed!");
                 await store.dispatch('actionAuthState', response.data.payload);
-                router.push({name: `user-dashboard`});
+                if(response.data.payload.user.roles[0].id !== UserRoles.SUPER_ADMIN)
+                    router.push({path: '/'+response.data.payload.user.agencies[0].slug+'/main'});
             } else {
                 toast.error(response.data.message);
             }
@@ -32,8 +34,10 @@ class AuthService extends EventEmitter {
         try {
             const response = await appApi.post('/login', credentials);
             if (response.data.status === ApiResponse.SUCCESS) {
+                console.log(response.data,"login success");
                 await store.dispatch('actionAuthState', response.data.payload);
-                router.push({name: `user-dashboard`});
+                if(response.data.payload.user.roles[0].id !== UserRoles.SUPER_ADMIN)
+                router.push({path: '/'+response.data.payload.user.agencies[0].slug+'/main'});
             } else {
                 toast.error(response.data.message);
             }
