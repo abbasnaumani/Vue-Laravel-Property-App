@@ -38,9 +38,9 @@
             <p class="text-secondary paragraph-agents">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed imperdiet libero id nisi euismod, sed porta est consectetur. Vestibulum auctor felis eget orci semper vestibulum.</p>
 
             <ul class="list list-unstyled list-icons text-secondary paragraph-agents list-primary my-4">
-                <li><i class="fas fa-check"></i> Fusce sit amet orci quis arcu vestibulum.</li>
-                <li><i class="fas fa-check"></i> Fusce sit amet orci quis arcu vestibulum stibulum.</li>
-                <li><i class="fas fa-check"></i> Fusce sit amet orci q vestibulum vestibulum.</li>
+                <li><i class="fas fa-check tick-2"></i> Fusce sit amet orci quis arcu vestibulum.</li>
+                <li><i class="fas fa-check tick-2"></i> Fusce sit amet orci quis arcu vestibulum stibulum.</li>
+                <li><i class="fas fa-check tick-2"></i> Fusce sit amet orci q vestibulum vestibulum.</li>
             </ul>
 
             <p class="text-secondary paragraph-agents">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed imperdiet libero id nisi euismod, sed porta est consectetur. Vestibulum auctor felis eget orci semper vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed imperdiet libero id nisi euismod, sed porta est consectetur. Vestibulum auctor felis eget orci semper vestibulum.</p>
