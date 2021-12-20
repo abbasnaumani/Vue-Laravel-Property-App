@@ -1035,3 +1035,15 @@ body {
 .tick-2 {
     color: #1c5fa8 !important;
 }
+/* Add Propert  */
+#add_property{
+    /* background-color: #777; */
+}
+.add_property_page{
+    /* background: white !important;
+    padding: 2%;
+    width: 96%; */
+}
+.add_property{
+    color: var(--ks-bg-primary-color);
+}
