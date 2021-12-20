@@ -112,7 +112,7 @@
                 <div class="col-12 col-sm-6 col-lg-12">
                     <h3 class="mt-2 mb-3 font-weight-bold text-5">Featured Properties</h3>
                     <div class="crousal-card mb-5 border border-0 ">
-                        <div class="card" style="width:100%;height: auto;">
+                        <div class="card border-0" style="width:100%;height: auto;">
                             <div id="card" class="carousel slide" data-ride="carousel">
                                 <ul class="carousel-indicators circle-2">
                                     <li data-target="#demo" data-slide-to="0" class="active crousal-circle-link-agents"></li>

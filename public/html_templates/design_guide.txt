@@ -1,0 +1,42 @@
+---Guide lines for generic_classes---
+
+--text font-sizing
+.text-1:0.8em
+.text-2:0.9em
+.text-3:1em
+.text-4:1.2em
+.text-5:1.5em
+.text-6:1.8em
+.text-7:2.3em
+
+--font sizing h1 to h6
+h1:2.5rem
+h2:2rem
+h3:1.75rem
+h4:1.5rem
+h5:1.25rem
+h6:1rem
+
+--Font weights
+Medium: 500
+Semi-bold: 600
+Bold: 700
+extra-bold:800
+
+--Variables
+
+(TEXT-COLOR)
+text-primary-color:#777777
+text-secondary-color:#444444
+
+(BTN-COLOR)
+btn-primary-color:#19B5FF
+btn-secondary-color:#2172C9
+
+(background-color)
+bg-primary-color:#1C5FA8
+bg-secondary-color:#00a4f2
+bg-tertiary-color:#1877F2
+
+(LETTER-SPACING)
+letter-spacing:-.05em

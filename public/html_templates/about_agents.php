@@ -53,15 +53,15 @@
                                             Listed Properties: 3</h3>
                                         <ul class="list-unstyled d-flex py-2">
                                             <li class="py-4">
-                                                <a class="d-lg-inline d-md-inline d-sm-none d-none facebook"
+                                                <a class="facebook"
                                                     href="#"><i class="fa fa-facebook px-1"></i></a>
                                             </li>
                                             <li class="py-4">
-                                                <a class="d-lg-inline d-md-inline d-sm-none d-none twitter-header"
+                                                <a class="twitter-header"
                                                     href="#"><i class="fab fa-twitter p-1"></i></a>
                                             </li>
                                             <li class="py-4">
-                                                <a class="d-lg-inline d-md-inline d-sm-none d-none instagram"
+                                                <a class="instagram"
                                                     href="#"><i class="fab fa-instagram p-1"></i></a>
                                             </li>
                                         </ul>
@@ -98,15 +98,15 @@
                                             Listed Properties: 3</h3>
                                         <ul class="list-unstyled d-flex py-2">
                                             <li class="py-4">
-                                                <a class="d-lg-inline d-md-inline d-sm-none d-none facebook"
+                                                <a class="facebook"
                                                     href="#"><i class="fa fa-facebook px-1"></i></a>
                                             </li>
                                             <li class="py-4">
-                                                <a class="d-lg-inline d-md-inline d-sm-none d-none twitter-header"
+                                                <a class="twitter-header"
                                                     href="#"><i class="fab fa-twitter p-1"></i></a>
                                             </li>
                                             <li class="py-4">
-                                                <a class="d-lg-inline d-md-inline d-sm-none d-none instagram"
+                                                <a class="instagram"
                                                     href="#"><i class="fab fa-instagram p-1"></i></a>
                                             </li>
                                         </ul>
@@ -143,15 +143,15 @@
                                             Listed Properties: 3</h3>
                                         <ul class="list-unstyled d-flex py-2">
                                             <li class="py-4">
-                                                <a class="d-lg-inline d-md-inline d-sm-none d-none facebook"
+                                                <a class="facebook"
                                                     href="#"><i class="fa fa-facebook px-1"></i></a>
                                             </li>
                                             <li class="py-4">
-                                                <a class="d-lg-inline d-md-inline d-sm-none d-none twitter-header"
+                                                <a class="twitter-header"
                                                     href="#"><i class="fab fa-twitter p-1"></i></a>
                                             </li>
                                             <li class="py-4">
-                                                <a class="d-lg-inline d-md-inline d-sm-none d-none instagram"
+                                                <a class="instagram"
                                                     href="#"><i class="fab fa-instagram p-1"></i></a>
                                             </li>
                                         </ul>
@@ -188,15 +188,15 @@
                                             Listed Properties: 3</h3>
                                         <ul class="list-unstyled d-flex py-2">
                                             <li class="py-4">
-                                                <a class="d-lg-inline d-md-inline d-sm-none d-none facebook"
+                                                <a class="facebook"
                                                     href="#"><i class="fa fa-facebook px-1"></i></a>
                                             </li>
                                             <li class="py-4">
-                                                <a class="d-lg-inline d-md-inline d-sm-none d-none twitter-header"
+                                                <a class="twitter-header"
                                                     href="#"><i class="fab fa-twitter p-1"></i></a>
                                             </li>
                                             <li class="py-4">
-                                                <a class="d-lg-inline d-md-inline d-sm-none d-none instagram"
+                                                <a class="instagram"
                                                     href="#"><i class="fab fa-instagram p-1"></i></a>
                                             </li>
                                         </ul>
@@ -224,7 +224,7 @@
                     <div class="row">
                         <div class="col-12 col-md-6 col-lg-12">
                             <div class="crousal-card ">
-                                <div class="card" style="width:100%;height: auto;">
+                                <div class="card border-0" style="width:100%;height: auto;">
                                     <div id="card" class="carousel slide" data-ride="carousel">
                                         <ul class="carousel-indicators circle-2">
                                             <li data-target="#demo" data-slide-to="0"
@@ -240,7 +240,7 @@
                                             <div class="carousel-item active">
                                                 <div class="card border-0 hover-card">
                                                     <div class="position-relative detail-h-card">
-                                                        <img class="card-img-top" src="img-4.jpg"
+                                                        <img class="card-img-top h-image" src="img-4.jpg"
                                                             alt="Image of a Property to sale or rent.">
                                                         <div class="card-tag position-absolute left-1">
                                                             <span class="text-white font-weight-bold">FOR SALE</span>
@@ -271,8 +271,8 @@
                                             <div class="carousel-item">
                                                 <div class="card border-0 hover-card">
                                                     <div class="position-relative detail-h-card">
-                                                        <img class="card-img-top" src="img-4.jpg"
-                                                            alt="Image of a Property to sale or rent.">
+                                                        <img class="card-img-top h-image" src="img-4.jpg"
+                                                            alt="Image of a Property to sale or rent." >
                                                         <div class="card-tag position-absolute left-1">
                                                             <span class="text-white font-weight-bold">FOR SALE</span>
                                                         </div>
@@ -302,14 +302,14 @@
                                             <div class="carousel-item">
                                                 <div class="card border-0 hover-card">
                                                     <div class="position-relative detail-h-card">
-                                                        <img class="card-img-top" src="img-4.jpg"
+                                                        <img class="card-img-top h-image" src="img-4.jpg"
                                                             alt="Image of a Property to sale or rent.">
                                                         <div class="card-tag position-absolute left-1">
                                                             <span class="text-white font-weight-bold">FOR SALE</span>
                                                         </div>
                                                     </div>
                                                     <div
-                                                        class="mt-3 d-flex justify-content-between align-items-baseline">
+                                                        class="mt-3 mt-lg-3 mt-md-5 d-flex justify-content-between align-items-baseline">
                                                         <div>
                                                             <h4
                                                                 class="font-weight-bold heading-font-weight text-dark m-0 px-2">
@@ -373,5 +373,4 @@
         </div>
     </div>
 </section>
-<?php include "bottom_banner.php" ?>
 <?php include "footer.php" ?>
