@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,6 +20,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
+        async></script>
     <script>
         topHeader = document.getElementById("top-header");
 
@@ -37,7 +40,22 @@
         };
 
         window.addEventListener("scroll", myScrollFunc);
+        function initMap() {
+            // The location of Uluru
+            const uluru = { lat: -25.344, lng: 131.036 };
+            // The map, centered at Uluru
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 4,
+                center: uluru,
+            });
+            // The marker, positioned at Uluru
+            const marker = new google.maps.Marker({
+                position: uluru,
+                map: map,
+            });
+        }
     </script>
+
 </head>
 
 <body>
@@ -82,23 +100,27 @@
                                                     href="">BLOG</a></li>
                                             <li class="float-left px-2">
                                                 <div class="container">
-                                                <div class="dropdown dropleft">
-                                                    <i style="font-size:14px;" class="fas fa-user p-1" data-toggle="dropdown"></i>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="#" >
-                                                            <p class="font-weight-bold mb-0">Hassan Khalid</p>
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                                <p class="mb-0 mt-0 header-dropdown-links px-2">My Account</p>
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                                <p class="mb-0 mt-0 header-dropdown-links px-2">Manage Alerts</p>
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                                <p class="mb-0 mt-0 header-dropdown-links px-2">Log Out</p>
-                                                        </a>
+                                                    <div class="dropdown dropleft">
+                                                        <i style="font-size:14px;" class="fas fa-user p-1"
+                                                            data-toggle="dropdown"></i>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" href="#">
+                                                                <p class="font-weight-bold mb-0">Hassan Khalid</p>
+                                                            </a>
+                                                            <a class="dropdown-item" href="#">
+                                                                <p class="mb-0 mt-0 header-dropdown-links px-2">My
+                                                                    Account</p>
+                                                            </a>
+                                                            <a class="dropdown-item" href="#">
+                                                                <p class="mb-0 mt-0 header-dropdown-links px-2">Manage
+                                                                    Alerts</p>
+                                                            </a>
+                                                            <a class="dropdown-item" href="#">
+                                                                <p class="mb-0 mt-0 header-dropdown-links px-2">Log Out
+                                                                </p>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                </div>
                                                 </div>
                                             </li>
                                         </ul>
