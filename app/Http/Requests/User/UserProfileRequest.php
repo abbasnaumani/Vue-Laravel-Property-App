@@ -25,11 +25,11 @@ class UserProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name' => 'required|string|min:3|max:50',
-            'last_name' => 'required|string|min:3|max:50',
-            'email' => 'required|email',
-            'phone_number' => 'required|min:11',
-            'password' => 'required|string|confirmed|min:8',
+            'profile_data.first_name' => 'required|string|min:3|max:50',
+            'profile_data.last_name' => 'required|string|min:3|max:50',
+            'profile_data.user_email' => 'required|email',
+            'profile_data.phone_number' => 'required|min:11',
+            'profile_data.password' => 'required|string|min:8',
         ];
     }
 

@@ -68,13 +68,18 @@ class UserService extends BaseService
     public function updateUserPassword(Request $request){
         $userId = $this->getAuthUserId();
         $user = User::find($userId);
-        if (!Hash::check($request->current_password, $user->password)) {
-            $user->password = Hash::make($request->new_password);
-            $user->save();
-            $this->setApiSuccessMessage(trans('user.update_password'), $user);
+        if (Hash::check($request->password_data['current_password'], $user->password)){
+            if (!Hash::check($request->password_data['new_password'], $user->password)) {
+                $user->password = Hash::make($request->password_data['new_password']);
+                $user->save();
+                $this->setApiSuccessMessage(trans('user.update_password'), $user);
+            }else{
+                $this->setApiErrorMessage(trans('user.password_match'));
+            }
         }else{
-            $this->setApiErrorMessage(trans('user.password_match'));
+            $this->setApiErrorMessage(trans('user.current_password_not_match'));
         }
+
 
     }
     /** Update the user profile
@@ -83,14 +88,13 @@ class UserService extends BaseService
      */
     public function updateUserProfile(Request $request)
     {
-
         $userId = $this->getAuthUserId();
         $user = User::find($userId);
-        if (Hash::check($request->password, $user->password)) {
-            $user->first_name = $request->first_name;
-            $user->last_name = $request->last_name;
-            $user->email = $request->email;
-            $user->phone_number = $request->phone_number;
+        if (Hash::check($request->profile_data['password'], $user->password)) {
+            $user->first_name = $request->profile_data['first_name'];
+            $user->last_name = $request->profile_data['last_name'];
+            $user->email = $request->profile_data['user_email'];
+            $user->phone_number = $request->profile_data['phone_number'];
             $user->save();
             $this->setApiSuccessMessage(trans('user.update_profile'), $user);
         }else{

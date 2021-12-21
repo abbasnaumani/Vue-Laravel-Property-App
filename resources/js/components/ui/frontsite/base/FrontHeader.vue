@@ -80,7 +80,7 @@
                                     class="header-row d-flex align-items-center justify-content-between flex-grow-1 h-100 py-2">
                                     <div class="brand-logo px-1">
                                         <div class="web-image logo-h">
-                                            <img src="/assets/images/logo.png" alt="The logo of web-page porto" >
+                                            <img src="/assets/images/ks-logo.png" alt="The logo of web-page porto" >
                                         </div>
                                     </div>
                                     <div class="secondary-nav-links">
@@ -504,8 +504,9 @@
 
 <script>
 import {getAllLocationsByCItyId} from "../../../../composables/country";
-import {ref, watchEffect} from "vue";
+import {computed, ref, watchEffect} from "vue";
 import Select2 from "vue3-select2-component";
+import store from "~/store";
 
 export default {
     name: "FrontHeader",
@@ -514,10 +515,12 @@ export default {
     },
     props:{
         isAuthenticated:String,
-        profile:Object
+
     },
     setup(){
-
+        const profile = computed(() => {
+            return store.getters.getProfile ? store.getters.getProfile : null;
+        });
         const options = getAllLocationsByCItyId(4);
         const location = ref(1);
         const showSearchDropdown = ref(false);
@@ -550,7 +553,8 @@ export default {
             mySelectEvent,
             model,
             openSearchDropDown,
-            showSearchDropdown
+            showSearchDropdown,
+            profile
         }
     }
 }

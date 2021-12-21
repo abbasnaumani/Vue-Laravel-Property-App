@@ -71,6 +71,9 @@ class AuthService extends EventEmitter {
             toast.error(error.message);
         }
     }
+    user() {
+        return store.getters['getProfile'];
+    }
 
     async onLogout() {
         await store.dispatch('actionClearAuthState');

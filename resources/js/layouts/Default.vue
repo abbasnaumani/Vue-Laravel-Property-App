@@ -15,7 +15,7 @@
 <!--            <auth-header/>-->
 <!--            <sidebar/>-->
 <!--        </div>-->
-        <front-header :isAuthenticated="isAuthenticated" :profile="profile"></front-header>
+        <front-header :isAuthenticated="isAuthenticated"></front-header>
         <child/>
     </div>
 </template>
@@ -32,16 +32,13 @@ export default {
         const isAuthenticated = computed(() => {
             return store.getters.isAuthenticated ? store.getters.isAuthenticated : null;
         });
-        const profile = computed(() => {
-            return store.getters.getProfile ? store.getters.getProfile : null;
-        });
+
         const getLoaderState = computed(() => {
             return store.getters.getLoaderState ? store.getters.getLoaderState : null;
         });
         return {
             isAuthenticated,
             getLoaderState,
-            profile
         }
     }
 }

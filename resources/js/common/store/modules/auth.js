@@ -33,6 +33,9 @@ const mutations = {
         state.profile = null;
         state.accessToken = null;
     },
+    setProfile({user}){
+        state.profile = user;
+    }
 }
 const actions = {
     actionAuthState({commit}, {user, token}) {
@@ -45,6 +48,11 @@ const actions = {
         localStorage.removeItem(LocalStorageKeys.PROFILE);
         localStorage.removeItem(LocalStorageKeys.ACCESS_TOKEN);
         localStorage.clear();
+    },
+    setProfile({commit}, {user}){
+        commit('setProfile', {user});
+        console.log(user,"sadhaskjhdkashkdahskjdhaskhdkashdkashdk")
+        localStorage.setItem(LocalStorageKeys.PROFILE, JSON.stringify(user));
     }
 }
 export default {

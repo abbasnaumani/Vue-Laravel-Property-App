@@ -97,9 +97,27 @@ class UserService extends EventEmitter {
             console.log(error, "error catch")
         }
     }
-    async updateProfile(userData){
+    async updateUserProfile(profileData){
         try {
-            const response = await appApi.delete('/users/'+userId);
+            const response = await appApi.put('/user/update/profile',profileData);
+            if (response.data.status === ApiResponse.SUCCESS) {
+                await store.dispatch('setProfile', response.data.payload);
+                toast.success(response.data.message, );
+                return response.data;
+            } else {
+                toast.error(response.data.message);
+            }
+
+        } catch (err) {
+            console.log(err, "err err")
+            toast.error(err.response.data.message);
+            const error = await errorHandlerService.errors.index(err);
+            console.log(error, "error catch")
+        }
+    }
+    async updatePassword(passwordData){
+        try {
+            const response = await appApi.put('/user/update/password',passwordData);
             if (response.data.status === ApiResponse.SUCCESS) {
                 toast.success(response.data.message, );
                 return response.data;
@@ -114,7 +132,6 @@ class UserService extends EventEmitter {
             console.log(error, "error catch")
         }
     }
-
 }
 
 const service = new UserService();

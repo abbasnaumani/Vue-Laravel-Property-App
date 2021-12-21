@@ -20,6 +20,7 @@ return [
     'update_password' => 'Password Updated Successfully.',
     'password_match' => 'New Password and Old Password Cant be Same.',
     'password_not_match' => 'You Have Entered Invalid Password.',
+    'current_password_not_match' => 'Current Password is Invalid.',
     'user_store' => 'User Added to Agency Successfully.',
     'user_not_store' => 'User adding Failed.',
     'get_all_roles' => 'Roles Fetch Successfully.',
