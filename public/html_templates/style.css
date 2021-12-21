@@ -1035,7 +1035,10 @@ body {
 .tick-2 {
     color: #1c5fa8 !important;
 }
+
+
 /* Add Propert  */
+
 
 .main_subheader {
     background-color: var(--ks-bg-primary-color) !important;
@@ -1049,3 +1052,60 @@ body {
         width: 99.6%;
 }
 
+.add_property {
+    color: var(--ks-bg-primary-color);
+}
+
+
+/* User Profile Page */
+
+.profile-image-outer-container {
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+    border-radius: 50% !important;
+    position: relative !important;
+    cursor: pointer !important;
+}
+
+.profile-image-outer-container {
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+    border-radius: 50% !important;
+    position: relative !important;
+    cursor: pointer !important;
+}
+
+.bg-color-primary {
+    background-color: #08c!important;
+}
+
+.profile-image-outer-container .profile-image-inner-container .profile-image-button {
+    position: absolute !important;
+    z-index: 2 !important;
+    bottom: 15px !important;
+    right: 15px !important;
+    width: 40px !important;
+    height: 40px !important;
+    text-align: center !important;
+    border-radius: 50% !important;
+    line-height: 38px !important;
+    transition: ease all .1s !important;
+}
+
+.bg-color-dark {
+    background-color: #212529!important;
+}
+
+.profile-image-outer-container .profile-image-input {
+    position: absolute !important;
+    top: 0 !important;
+    height: 100% !important;
+    opacity: 0 !important;
+    z-index: 3 !important;
+    cursor: pointer !important;
+}
+
+.profile-image-outer-container .profile-image-inner-container {
+    border-radius: 50% !important;
+    padding: 5px !important;
+}
