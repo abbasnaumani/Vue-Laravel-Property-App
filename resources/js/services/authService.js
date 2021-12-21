@@ -74,7 +74,7 @@ class AuthService extends EventEmitter {
 
     async onLogout() {
         await store.dispatch('actionClearAuthState');
-        router.push({name: `login`});
+        router.push({name: `user-login`});
     }
 
     async handleSendVerificationCode(payload) {

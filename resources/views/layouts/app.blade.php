@@ -11,7 +11,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/ks-logo.png') }}">
 
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
-    <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css">
+    <link  href="https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -29,11 +29,7 @@
 <body class="font-sans antialiased">
 <div id="app">
 </div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.socket.io/4.4.0/socket.io.min.js"></script>
-<script src="{{ asset('assets/js/oneui.core.min.js') }}"></script>
-<script src="{{ asset('js/main/js/oneui.app.js') }}"></script>
-<script src="{{ asset('js/main/vendors.js') }}" type="text/javascript"></script>
+{{--<script src="{{ asset('js/main/vendors.js') }}" type="text/javascript"></script> --}}{{-- Making conflict on user drop down--}}
 <script src="{{ asset('js/main/app.js') }}" type="text/javascript"></script>
 </body>
 </html>

@@ -175,8 +175,9 @@
                         or
                         <span class="text-primary">Rent</span>
                     </h2>
-                    <div class="row" v-if="properties.data">
-                        <div class="col-12 col-sm-6 col-md-3 pb-4 mb-1" v-for="property in properties.data">
+                    {{properties}}
+                    <div class="row" v-if="properties">
+                        <div class="col-12 col-sm-6 col-md-3 pb-4 mb-1" v-for="property in properties">
                             <router-link :to="{path:'/'+slug+'/'+property.id+'/detail'}" class="text-decoration-none link-card" href="javascript:void(0)">
                                 <div class="card border-1 hover-card">
                                     <div class="position-relative h-card">
@@ -304,7 +305,8 @@ export default {
         getPropertiesBySlug(type, location, beds, minPrice, maxPrice)
         async function getPropertiesBySlug(currentPage,perPage) {
             const addMore = 4;
-            properties.value = await propertyService.getPropertiesBySlug(props.slug, {currentPage,perPage,addMore,type,
+            properties.value = await propertyService.getPropertiesBySlug(props.slug, {currentPage,perPage,addMore,
+                type,
                 location,
                 beds,
                 minPrice,

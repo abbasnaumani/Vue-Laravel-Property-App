@@ -33,13 +33,39 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="top-right-navs">
+                                <div class="top-right-navs" v-if="isAuthenticated">
                                     <div class="right-nav-links d-flex align-items-center">
                                         <ul class="list-unstyled">
                                             <li class="float-left px-2"><a class="text-decoration-none right-navs"
                                                                            href="">BLOG</a></li>
+                                            <li class="float-left px-2">
+                                                <div class="container">
+                                                    <div class="dropdown dropleft">
+                                                        <i style="font-size:14px;" class="cursor-pointer fas fa-user p-1" data-toggle="dropdown"></i>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" href="#" >
+                                                                <p class="font-weight-bold mb-0">{{ profile.first_name+' '+profile.last_name }}</p>
+                                                            </a>
+                                                            <a class="dropdown-item" href="#">
+                                                                <p class="mb-0 mt-0 header-dropdown-links px-2">My Account</p>
+                                                            </a>
+                                                            <router-link to="/logout" class="dropdown-item">
+                                                                <p class="mb-0 mt-0 header-dropdown-links px-2">Log Out</p>
+                                                            </router-link>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="top-right-navs" v-else>
+                                    <div class="right-nav-links d-flex align-items-center">
+                                        <ul class="list-unstyled">
                                             <li class="float-left px-2"><a class="text-decoration-none right-navs"
-                                                                           href="">LOGIN<span style="font-size: 15px;">/</span>REGISTER</a>
+                                                                           href="">BLOG</a></li>
+                                            <li class="float-left px-2"><router-link to="/" class="text-decoration-none right-navs"
+                                                                           >LOGIN<span style="font-size: 15px;">/</span>REGISTER</router-link>
                                             </li>
                                         </ul>
                                     </div>
@@ -69,14 +95,14 @@
                                                        href="">Properties</a>
                                                 </li>
                                                 <li class="px-3">
-                                                    <div class="dropdown">
+                                                    <div class="dropdown-primary">
                                                         <a class="secondary-nav-li text-decoration-none py-4"
                                                            href="">About</a>
-                                                        <div class="dropdown-menu">
+                                                        <div class="dropdown-primary-menu">
                                                             <ul class="list-unstyled">
-                                                                <li><a class="text-dark dropdown-li" href="#">Agents</a>
+                                                                <li><a class="text-dark dropdown-primary-li" href="#">Agents</a>
                                                                 </li>
-                                                                <li><a class="text-dark dropdown-li" href="#">Who we
+                                                                <li><a class="text-dark dropdown-primary-li" href="#">Who we
                                                                     are</a></li>
                                                             </ul>
                                                         </div>
@@ -486,7 +512,12 @@ export default {
     components:{
         Select2
     },
+    props:{
+        isAuthenticated:String,
+        profile:Object
+    },
     setup(){
+
         const options = getAllLocationsByCItyId(4);
         const location = ref(1);
         const showSearchDropdown = ref(false);
@@ -540,5 +571,8 @@ export default {
         .vue-bs-select2 {
             width: auto;
         }
+    }
+    .cursor-pointer{
+        cursor: pointer;
     }
 </style>

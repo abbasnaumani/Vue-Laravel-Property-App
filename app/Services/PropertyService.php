@@ -32,7 +32,7 @@ class PropertyService extends BaseService
 //    }
     public function getPropertyListBySlug(Request $request,string $slug)
     {
-//        dd($request->type);
+//        dd($request->all());
         $agency = Agency::where('slug', $slug)->first();
         $agencyUsers = $agency->users ?? null;
         if ($agencyUsers) {

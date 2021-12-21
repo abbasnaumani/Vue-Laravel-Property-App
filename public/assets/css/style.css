@@ -23,7 +23,7 @@ body{
     left: 0;
     top: 40px;
     width: 100%;
-    z-index: 1;
+    z-index: 99;
     transition: all 0.4s;
 }
 .logo-h{
@@ -630,7 +630,7 @@ body{
 .form-control::-webkit-input-placeholder {
     color: rgba(128, 128, 128, 0.5) !important;
 }
-.form-card {
+.login-card {
     background: #fff;
     box-sizing: border-box;
     border-bottom: 1px solid #dfdfdf;
@@ -795,4 +795,29 @@ body{
 .dropdown-menu{
     top: 20px !important;
     border-radius: 5px !important;
+}
+/* User Profile Page */
+
+.font-weight-normal {
+    font-weight: 400!important;
+}
+
+.text-7 {
+    font-size: 2em!important;
+}
+
+.font-weight-extra-bold {
+    font-weight: 800!important;
+}
+
+.line-height-9 {
+    line-height: 1.9!important;
+}
+
+.text-2 {
+    font-size: .9em!important;
+}
+
+.text-3 {
+    font-size: 1em!important;
 }

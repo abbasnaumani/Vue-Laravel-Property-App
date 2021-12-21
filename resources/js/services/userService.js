@@ -97,6 +97,23 @@ class UserService extends EventEmitter {
             console.log(error, "error catch")
         }
     }
+    async updateProfile(userData){
+        try {
+            const response = await appApi.delete('/users/'+userId);
+            if (response.data.status === ApiResponse.SUCCESS) {
+                toast.success(response.data.message, );
+                return response.data;
+            } else {
+                toast.error(response.data.message);
+            }
+
+        } catch (err) {
+            console.log(err, "err err")
+            toast.error(err.response.data.message);
+            const error = await errorHandlerService.errors.index(err);
+            console.log(error, "error catch")
+        }
+    }
 
 }
 

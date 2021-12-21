@@ -31,6 +31,13 @@ export default [
         props: true,
     },
     {
+        path: '/user/profile',
+        name: 'user-profile',
+        meta: {public: false, meta_title: 'User Profile'},
+        component: page('user/UserProfile'),
+        // props: ({params}) => ({slug: params.slug || ''}),
+    },
+    {
         path: '/logout',
         name: 'logout',
         meta: {logout: true, meta_title: 'Logout'},
@@ -43,6 +50,7 @@ export default [
         component: page('frontsite/Main'),
         props: ({params}) => ({slug: params.slug || ''}),
     },
+
     // {
     //     path: '/main/login',
     //     name: 'login',
