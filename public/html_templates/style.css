@@ -1090,14 +1090,16 @@ body {
 
 /* Add Propert  */
 
-#add_property {
-    /* background-color: #777; */
-}
-
-.add_property_page {
-    /* background: white !important;
-    padding: 2%;
-    width: 96%; */
+.main_subheader {
+    background-color: var(--ks-bg-primary-color) !important;
+    border-radius: 3px;
+    color: #ffffff;
+    margin-bottom: 7px;
+    margin-top: 8px;
+    padding: 7px 0;
+    text-indent: 9px;
+    text-transform: uppercase;
+    width: 99.6%;
 }
 
 .add_property {
