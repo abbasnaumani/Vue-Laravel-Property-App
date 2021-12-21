@@ -1029,33 +1029,6 @@ body {
     font-size: 1em!important;
 }
 
-
-/* wo we are  */
-
-.tick-2 {
-    color: #1c5fa8 !important;
-}
-
-
-/* Add Propert  */
-
-#add_property {
-    /* background-color: #777; */
-}
-
-.add_property_page {
-    /* background: white !important;
-    padding: 2%;
-    width: 96%; */
-}
-
-.add_property {
-    color: var(--ks-bg-primary-color);
-}
-
-
-/* User Profile Page */
-
 .profile-image-outer-container {
     margin-top: auto !important;
     margin-bottom: auto !important;
@@ -1105,4 +1078,28 @@ body {
 .profile-image-outer-container .profile-image-inner-container {
     border-radius: 50% !important;
     padding: 5px !important;
+}
+
+
+/* wo we are  */
+
+.tick-2 {
+    color: #1c5fa8 !important;
+}
+
+
+/* Add Propert  */
+
+#add_property {
+    /* background-color: #777; */
+}
+
+.add_property_page {
+    /* background: white !important;
+    padding: 2%;
+    width: 96%; */
+}
+
+.add_property {
+    color: var(--ks-bg-primary-color);
 }
