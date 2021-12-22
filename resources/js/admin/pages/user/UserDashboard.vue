@@ -28,7 +28,7 @@ import {ref} from 'vue';
 import appApi from "~/api/index";
 import {ApiResponse} from "~/constants";
 import {useToast} from "vue-toastification";
-import errorHandlerService from "~/services/errorHandlerService";
+import errorHandlerService from "~/admin/services/errorHandlerService";
 
 import DropZone from "../dropzone/DropZone";
 import UploadList from "../dropzone/UploadList";

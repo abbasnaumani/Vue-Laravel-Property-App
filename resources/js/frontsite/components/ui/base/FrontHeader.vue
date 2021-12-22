@@ -34,7 +34,6 @@
                                     </div>
                                 </div>
                                 <div class="top-right-navs" v-if="isAuthenticated">
-                                    {{profile }}
                                     <div class="right-nav-links d-flex align-items-center">
                                         <ul class="list-unstyled">
                                             <li class="float-left px-2"><a class="text-decoration-none right-navs"

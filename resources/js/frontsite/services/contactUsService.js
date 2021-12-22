@@ -2,7 +2,7 @@ import {useToast} from "vue-toastification";
 import EventEmitter from "events";
 import appApi from "../../api";
 import {ApiResponse} from "../../constants";
-import errorHandlerService from "../../services/errorHandlerService";
+import errorHandlerService from "~/frontsite/services/errorHandlerService";
 
 const toast = useToast();
 
@@ -11,6 +11,7 @@ class ContactUs extends EventEmitter {
         try {
             const response = await appApi.post('/contact/us',contactUsData);
             if (response.data.status === ApiResponse.SUCCESS) {
+                toast.success(response.data.message);
                 return response.data;
             } else {
                 toast.error(response.data.message);

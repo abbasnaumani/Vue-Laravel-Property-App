@@ -13,8 +13,8 @@ return [
     |
     */
 
-    'contactus_store' => 'Subscribe Successfully.',
-    'contactus_found' => 'Subscribers Found Successfully.',
+    'contactus_store' => 'Your message has sent to us.',
+    'contactus_found' => 'Contact us Messages Found Successfully.',
     'contactus_failed' => 'Subscription Failed.',
 
 

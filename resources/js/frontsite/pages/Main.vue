@@ -15,35 +15,78 @@
                             </h2>
                             <!-- row in col-9  -->
                             <div class="row" v-if="properties.data">
-                                <div class="col-lg-4 col-md-6 col-sm-12 mb-5" v-for="property in properties.data">
-                                    <!-- card  -->
-                                    <router-link  :to="{path:'/'+slug+'/'+property.id+'/detail'}" class="link-card card border-0 hover-card">
-                                        <div class="position-relative h-card">
-                                            <img class="card-img-top" src="/assets/images/listing-1-thumb.jpg"
-                                                 alt="Image of a Property to sale or rent." height="200">
-                                            <div class="card-tag position-absolute left-1">
-                                                <span class="text-white font-weight-bold" v-if="property.purpose == PropertyPurpose.FOR_SALE">FOR SALE</span>
-                                                <span class="text-white font-weight-bold" v-else>FOR RENT</span>
+                                <div class="col-12 col-sm-6 col-md-4 pb-4 mb-1">
+                                    <div class="card custom-card move-svg  border-0">
+                                        <div class="card-interior overflow-hidden position-relative z-index-1">
+                                            <router-link :to="{path:'/'+slug+'/'+property.id+'/detail'}" class="text-decoration-none card-anchor">
+                                    <span
+                                        class="custom-card-info-type text-light py-2 px-3 text-1 font-weight-bold letter-spacing text-uppercase position-absolute top-8 left-8">For
+                                        Sale</span>
+                                                <div class="custom-card-info-img d-block">
+                                                    <img src="/assets/images/img-3.jpg" class="img-fluid rounded">
+                                                </div>
+                                                <span
+                                                    class="custom-card-info-header d-flex justify-content-between align-items-center p-relative">
+                                        <strong class="text-dark text-4 px-3 letter-spacing">{{property.price}}</strong>
+                                        <div class="px-3 arrow-move">
+                                        <svg class="svg-color" version="1.1" viewBox="0 0 50 50"
+                                             xmlns="http://www.w3.org/2000/svg"
+                                             xmlns:xlink="http://www.w3.org/1999/xlink" id="icon_131640173528885"
+                                             data-filename="arrow-right.svg" width="27" height="27">
+	                                     <polygon
+                                             points="1,26 44.586,26 38.293,32.293 39.707,33.707 48.414,25 39.707,16.293 38.293,17.707 44.586,24 1,24  "></polygon>
+                                            </svg>
                                             </div>
+                                    </span>
+                                                <span class="custom-card-info-content d-block">
+                                        <h4 class="text-dark mb-1 text-5 px-3 font-weight-bold letter-spacing">{{ property.title }}</h4>
+                                        <ul
+                                            class="list-unstyled d-flex mb-0 px-1 py-1 justify-content-between flex-wrap">
+                                            <li class="mb-0 px-3">
+                                                <strong class="text-secondary text-uppercase text-2">Beds: {{property.property_detail.bedrooms}}</strong>
+                                            </li>
+                                            <li class="mb-0 px-2">
+                                                <strong class="text-secondary text-uppercase text-2">Baths: {{property.property_detail.bathrooms}}</strong>
+                                            </li>
+                                            <li class="mb-0 px-3">
+                                                <strong class="text-secondary text-uppercase text-2">{{property.area+' '+property.area_unit_id.name}}</strong>
+                                            </li>
+                                        </ul>
+                                    </span>
+                                            </router-link>
                                         </div>
-                                        <div class="py-3 d-flex justify-content-between align-items-baseline">
-                                            <div>
-                                                <h5 class="heading-font-weight text-dark">{{property.price}}</h5>
-                                            </div>
-                                            <div class="px-2">
-                                                <i style="color: #00a4f2; font-size: 25px;"
-                                                   class="fal fa-long-arrow-right icon-hov"></i>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <h5 class="font-weight-bold px-2 text-dark">{{ property.title }}</h5>
-                                        <div class="d-flex justify-content-between flex-wrap">
-                                            <div class="text-secondary heading-span-weight">BEDS:{{property.property_detail.bedrooms}}</div>
-                                            <div class="text-secondary heading-span-weight">BATHS:{{property.property_detail.bathrooms}}</div>
-                                            <div class="text-secondary heading-span-weight">{{property.area+' '+property.area_unit_id.name}}</div>
-                                        </div>
-                                    </router-link>
+                                    </div>
                                 </div>
+                                <!--                                <div class="col-lg-4 col-md-6 col-sm-12 mb-5" v-for="property in properties.data">-->
+                                <!--                                    &lt;!&ndash; card  &ndash;&gt;-->
+                                <!--                                    -->
+                                <!--                                    <router-link  :to="{path:'/'+slug+'/'+property.id+'/detail'}" class="link-card card border-0 hover-card">-->
+                                <!--                                        <div class="position-relative h-card">-->
+                                <!--                                            <img class="card-img-top" src="/assets/images/listing-1-thumb.jpg"-->
+                                <!--                                                 alt="Image of a Property to sale or rent." height="200">-->
+                                <!--                                            <div class="card-tag position-absolute left-1">-->
+                                <!--                                                <span class="text-white font-weight-bold" v-if="property.purpose == PropertyPurpose.FOR_SALE">FOR SALE</span>-->
+                                <!--                                                <span class="text-white font-weight-bold" v-else>FOR RENT</span>-->
+                                <!--                                            </div>-->
+                                <!--                                        </div>-->
+                                <!--                                        <div class="py-3 d-flex justify-content-between align-items-baseline">-->
+                                <!--                                            <div>-->
+                                <!--                                                <h5 class="heading-font-weight text-dark">{{property.price}}</h5>-->
+                                <!--                                            </div>-->
+                                <!--                                            <div class="px-2">-->
+                                <!--                                                <i style="color: #00a4f2; font-size: 25px;"-->
+                                <!--                                                   class="fal fa-long-arrow-right icon-hov"></i>-->
+                                <!--                                            </div>-->
+                                <!--                                        </div>-->
+                                <!--                                        <hr>-->
+                                <!--                                        <h5 class="font-weight-bold px-2 text-dark">{{ property.title }}</h5>-->
+                                <!--                                        <div class="d-flex justify-content-between flex-wrap">-->
+                                <!--                                            <div class="text-secondary heading-span-weight">BEDS:{{property.property_detail.bedrooms}}</div>-->
+                                <!--                                            <div class="text-secondary heading-span-weight">BATHS:{{property.property_detail.bathrooms}}</div>-->
+                                <!--                                            <div class="text-secondary heading-span-weight">{{property.area+' '+property.area_unit_id.name}}</div>-->
+                                <!--                                        </div>-->
+                                <!--                                    </router-link>-->
+                                <!--                                </div>-->
                             </div>
                             <!-- new row in col-9 -->
                             <div class="row d-flex justify-content-center">

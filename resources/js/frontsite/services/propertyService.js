@@ -2,7 +2,7 @@ import EventEmitter from "events";
 import appApi from "~/api";
 import {ApiResponse} from "~/constants";
 import store from "~/frontsite/store";
-import errorHandlerService from "~/services/errorHandlerService";
+import errorHandlerService from "~/frontsite/services/errorHandlerService";
 import {useToast} from "vue-toastification";
 import router from "~/frontsite/router";
 

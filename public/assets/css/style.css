@@ -5,9 +5,10 @@
 :root{
     --ks-letter-spacing:-.05em;
     --ks-primary-color:#1C5FA8;
+    --ks-bg-primary-color:#1C5FA8;
 }
 body{
-    /*list-style: 1.8 !important;*/
+    font-size: 14px !important; /* for  card styling */
 }
 .hide {
     opacity:0;
@@ -884,4 +885,128 @@ body{
 }
 .contact-info-heading{
     letter-spacing: var(--ks-letter-spacing);
+}
+
+/* Add Property Styling  */
+
+
+.main_subheader {
+    background-color: var(--ks-bg-primary-color) !important;
+    border-radius: 3px;
+    color: #ffffff;
+    margin-bottom: 7px;
+    margin-top: 8px;
+    padding: 7px 0;
+    text-indent: 9px;
+    text-transform: uppercase;
+    width: 99.6%;
+}
+
+.add_property {
+    color: var(--ks-bg-primary-color);
+}
+
+
+input[type='radio'] {
+    box-sizing: border-box;
+    appearance: none;
+    border: 1px solid rgb(204, 204, 204);
+    outline: none;
+    width: 15px;
+    height: 15px;
+
+}
+
+input[type='radio']:checked {
+    background-image: url("/assets/images/tick.png") !important;
+    width: 30px;
+    height: 30px;
+    background-size: cover !important;
+    border-radius: none;
+    border: none !important;
+    bottom: -2px !important;
+    left: 13px !important;
+
+}
+.btn-check{
+
+    box-shadow:20px 20px 50px 10px rgb(233, 233, 233) inset;
+}
+/* Card Styling new */
+.letter-spacing{
+    letter-spacing: -.05em !important;
+}
+.top-8 {
+    top: 8px !important;
+}
+.left-8 {
+    left: 8px !important;
+}
+.custom-card-info-type {
+    background-color: #1C5FA8 !important;
+
+}
+.custom-card:hover{
+    box-shadow:0 1rem 3rem rgba(0,0,0,.175)!important;
+    cursor: pointer;
+}
+.card-anchor:hover {
+    text-decoration: none;
+}
+.custom-card-info-header {
+    border-bottom: 1px solid #E7E7E7;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+}
+.custom-card-info-content {
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+}
+.svg-color{
+    fill:#00a4f2 !important;
+}
+
+.move-svg{
+    transition: 0.4s  !important;
+    transition-timing-function: linear;
+}
+.move-svg:hover .arrow-move{
+    padding-left: 22px !important;
+    padding-right: 12px !important;
+    transition: 0.4s !important;
+    transition-timing-function: linear;
+}
+
+/* .custom-card > div > a > .custom-card-info-header > .move-svg{
+    transition: all .2s ease-in-out !important;
+}
+.custom-card > div > a > .custom-card-info-header  :hover > .move-svg{
+    padding-left: 22px !important;
+    padding-right: 12px !important;
+} */
+@media only screen and (max-width: 480px) {
+    .custom-card-info-img {
+        height: 300px !important;
+        width: 100%;
+    }
+    .custom-card-info-img>img.img-fluid {
+        /*object-fit: contain;*/
+        height: inherit;
+        width: inherit;
+        object-fit: cover;
+    }
+}
+@media only screen and (min-width: 481px) {
+    .custom-card-info-img {
+        height: 195px !important;
+        width: 100%;
+    }
+    .custom-card-info-img>img.img-fluid {
+        /*object-fit: contain;*/
+        height: inherit;
+        width: inherit;
+        object-fit: cover;
+        background-color: red;
+    ;
+    }
 }

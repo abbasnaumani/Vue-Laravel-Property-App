@@ -3,7 +3,7 @@ import EventEmitter from "events";
 import router from "~/frontsite/router";
 import appApi from "../../api";
 import {ApiResponse} from "../../constants";
-import errorHandlerService from "../../services/errorHandlerService";
+import errorHandlerService from "~/frontsite/services/errorHandlerService";
 
 const toast = useToast();
 
@@ -12,6 +12,7 @@ class SubscribeService extends EventEmitter {
         try {
             const response = await appApi.post('/subscribers',subscriptionData);
             if (response.data.status === ApiResponse.SUCCESS) {
+                toast.success(response.data.message);
                 return response.data;
             } else {
                 toast.error(response.data.message);

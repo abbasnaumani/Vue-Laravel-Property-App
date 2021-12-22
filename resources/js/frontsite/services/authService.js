@@ -1,7 +1,7 @@
 import EventEmitter from 'events';
 import appApi from "~/api/index";
 import store from "~/frontsite/store";
-import errorHandlerService from '~/services/errorHandlerService';
+import errorHandlerService from '~/frontsite/services/errorHandlerService';
 import {useToast} from "vue-toastification";
 import {ApiResponse, LocalStorageKeys} from "~/constants";
 import router from "~/frontsite/router";

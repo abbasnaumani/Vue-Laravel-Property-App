@@ -3,7 +3,7 @@ import EventEmitter from "events";
 import router from "~/router";
 import appApi from "~/api";
 import {ApiResponse} from "~/constants";
-import errorHandlerService from "~/common/services/errorHandlerService";
+import errorHandlerService from "~/admin/services/errorHandlerService";
 
 const toast = useToast();
 
