@@ -1123,10 +1123,15 @@ border: 1px solid rgb(204, 204, 204);
 }
 
 input[type='radio']:checked {
+
     background-image: url("tick.png") !important;
     
     width: 30px;
     height: 30px;
+
+    /* background: #333; */
+    background-image: url("tick.png") !important;
+
     background-size: cover !important;
     border-radius: none;
     background: none;
