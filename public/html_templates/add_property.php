@@ -19,8 +19,9 @@
                                         <div class="d-flex align-items-center">
                                             <div class="btn btn-secondary border-right">
                                                 <div class="form-check">
-                                                    <input type="radio" class="form-check-input" id="" name="materialExampleRadios">
+                                                    <input type="radio" class="form-check-input" id="" name="materialExampleRadios">s
                                                     <label class="form-check-label" for="materialUnchecked">For Sale</label>
+                                                    
                                                 </div>
                                             </div>
                                             <div class="btn btn-secondary">
