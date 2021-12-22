@@ -1037,24 +1037,6 @@ body {
 }
 
 
-/* Add Propert  */
-
-
-.main_subheader {
-    background-color: var(--ks-bg-primary-color) !important;
-        border-radius: 3px;
-        color: #ffffff;
-        margin-bottom: 7px;
-        margin-top: 8px;
-        padding: 7px 0;
-        text-indent: 9px;
-        text-transform: uppercase;
-        width: 99.6%;
-}
-
-.add_property {
-    color: var(--ks-bg-primary-color);
-}
 
 
 /* User Profile Page */
@@ -1110,12 +1092,29 @@ body {
     padding: 5px !important;
 }
 
- /* Add Property Radio Button Styling   */
+/* Add Property Styling  */
+
+
+.main_subheader {
+    background-color: var(--ks-bg-primary-color) !important;
+        border-radius: 3px;
+        color: #ffffff;
+        margin-bottom: 7px;
+        margin-top: 8px;
+        padding: 7px 0;
+        text-indent: 9px;
+        text-transform: uppercase;
+        width: 99.6%;
+}
+
+.add_property {
+    color: var(--ks-bg-primary-color);
+}
 
 input[type='radio'] {
     box-sizing: border-box;
     appearance: none;
-border: 1px solid rgb(204, 204, 204);
+    border: 1px solid rgb(204, 204, 204);
     outline: none;
     width: 15px;
     height: 15px;
@@ -1125,16 +1124,10 @@ border: 1px solid rgb(204, 204, 204);
 input[type='radio']:checked {
 
     background-image: url("tick.png") !important;
-    
     width: 30px;
     height: 30px;
-
-    /* background: #333; */
-    background-image: url("tick.png") !important;
-
     background-size: cover !important;
     border-radius: none;
-    background: none;
     border: none !important;
     bottom: -2px !important;
     left: 13px !important;
