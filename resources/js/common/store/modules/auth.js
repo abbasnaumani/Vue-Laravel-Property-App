@@ -33,8 +33,8 @@ const mutations = {
         state.profile = null;
         state.accessToken = null;
     },
-    setProfile({user}){
-        state.profile = user;
+    setProfile(stata,user){
+        state.profile = JSON.parse(JSON.stringify(user));
     }
 }
 const actions = {
@@ -49,9 +49,8 @@ const actions = {
         localStorage.removeItem(LocalStorageKeys.ACCESS_TOKEN);
         localStorage.clear();
     },
-    setProfile({commit}, {user}){
-        commit('setProfile', {user});
-        console.log(user,"sadhaskjhdkashkdahskjdhaskhdkashdkashdk")
+    setProfile({commit}, user){
+        commit('setProfile', user);
         localStorage.setItem(LocalStorageKeys.PROFILE, JSON.stringify(user));
     }
 }

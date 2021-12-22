@@ -102,6 +102,7 @@ class UserService extends EventEmitter {
             const response = await appApi.put('/user/update/profile',profileData);
             if (response.data.status === ApiResponse.SUCCESS) {
                 await store.dispatch('setProfile', response.data.payload);
+                console.log(response.data.payload);
                 toast.success(response.data.message, );
                 return response.data;
             } else {

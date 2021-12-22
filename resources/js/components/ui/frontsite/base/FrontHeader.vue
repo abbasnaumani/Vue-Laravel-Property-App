@@ -8,6 +8,8 @@
                             <div class="header-row d-flex align-items-center justify-content-between flex-grow-1  py-2">
                                 <div class="header-column d-flex justify-content-start">
                                     <div class="top-navs d-flex justify-content-inherit align-items-center">
+                                        {{profile }}
+                                        {{profile2}}
                                         <ul class="list-unstyled px-2 ">
                                             <li class="float-left">
                                                 <i style="font-size: 15px;color: #00a4f2;" class="fal fa-phone-alt"></i>
@@ -504,10 +506,10 @@
 
 <script>
 import {getAllLocationsByCItyId} from "../../../../composables/country";
-import {computed, ref, watchEffect} from "vue";
+import {computed, ref, watchEffect,watch} from "vue";
 import Select2 from "vue3-select2-component";
-import store from "~/store";
-
+// import store from "~/store";
+import {useStore} from 'vuex';
 export default {
     name: "FrontHeader",
     components:{
@@ -518,9 +520,22 @@ export default {
 
     },
     setup(){
-        const profile = computed(() => {
+        const store = useStore();
+        console.log(store.getters.getProfile,'store.getters.getProfile');
+        const profile2 = computed(() => {
+            console.log(store.getters.getProfile,"store.getters.getProfile")
             return store.getters.getProfile ? store.getters.getProfile : null;
         });
+        const profile = ref(null);
+
+        watch(()=>store.getters.getProfile,()=>{
+            console.log('insdieprofile');
+             profile.value = store.getters?.getProfile;
+        },
+            {
+                immediate: true,
+                deep: true,
+            });
         const options = getAllLocationsByCItyId(4);
         const location = ref(1);
         const showSearchDropdown = ref(false);
@@ -554,7 +569,8 @@ export default {
             model,
             openSearchDropDown,
             showSearchDropdown,
-            profile
+            profile,
+            profile2
         }
     }
 }

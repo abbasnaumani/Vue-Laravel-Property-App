@@ -89,7 +89,7 @@ class UserService extends BaseService
     public function updateUserProfile(Request $request)
     {
         $userId = $this->getAuthUserId();
-        $user = User::find($userId);
+        $user = User::find($userId)->with('roles','agencies')->first();
         if (Hash::check($request->profile_data['password'], $user->password)) {
             $user->first_name = $request->profile_data['first_name'];
             $user->last_name = $request->profile_data['last_name'];
