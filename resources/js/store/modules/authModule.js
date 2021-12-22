@@ -50,8 +50,8 @@ const actions = {
         localStorage.clear();
     },
     setProfile({commit}, user){
-        // commit('setProfile', user);
-        // localStorage.setItem(LocalStorageKeys.PROFILE, JSON.stringify(user));
+        commit('setProfile', user);
+        localStorage.setItem(LocalStorageKeys.PROFILE, JSON.stringify(user));
         console.log(localStorage.getItem(LocalStorageKeys.PROFILE),"localStorage.setItem(LocalStorageKeys.PROFILE",localStorage.getItem(LocalStorageKeys.PROFILE.agencies))
     }
 }
