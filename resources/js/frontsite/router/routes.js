@@ -206,11 +206,11 @@ export default [
     //     component: page('frontsite/property/Properties'),
     //     props: ({params}) => ({slug: params.slug || ''}),
     // },
-    // {
-    //     path: '/:slug/:propertyId/detail',
-    //     name: 'front-detail',
-    //     meta: {public: true, meta_title: 'KS Property Detail'},
-    //     component: page('frontsite/property/PropertyDetail'),
-    //     props: ({params}) => ({slug: params.slug || '' , propertyId:params.propertyId || 0}),
-    // }
+    {
+        path: '/:slug/:propertyId/detail',
+        name: 'front-detail',
+        meta: {public: true, meta_title: 'KS Property Detail'},
+        component: page('property/PropertyDetail'),
+        props: ({params}) => ({slug: params.slug || '' , propertyId:params.propertyId || 0}),
+    }
 ];

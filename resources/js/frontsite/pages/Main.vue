@@ -15,7 +15,7 @@
                             </h2>
                             <!-- row in col-9  -->
                             <div class="row" v-if="properties.data">
-                                <div class="col-12 col-sm-6 col-md-4 pb-4 mb-1">
+                                <div class="col-12 col-sm-6 col-md-4 pb-4 mb-1" v-for="property in properties.data">
                                     <div class="card custom-card move-svg  border-0">
                                         <div class="card-interior overflow-hidden position-relative z-index-1">
                                             <router-link :to="{path:'/'+slug+'/'+property.id+'/detail'}" class="text-decoration-none card-anchor">
@@ -23,7 +23,7 @@
                                         class="custom-card-info-type text-light py-2 px-3 text-1 font-weight-bold letter-spacing text-uppercase position-absolute top-8 left-8">For
                                         Sale</span>
                                                 <div class="custom-card-info-img d-block">
-                                                    <img src="/assets/images/img-3.jpg" class="img-fluid rounded">
+                                                    <img src="/assets/images/img-4.jpg" class="img-fluid rounded">
                                                 </div>
                                                 <span
                                                     class="custom-card-info-header d-flex justify-content-between align-items-center p-relative">

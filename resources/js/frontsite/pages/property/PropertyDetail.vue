@@ -1,7 +1,7 @@
 <template>
         <front-header></front-header>
     <div class="main py-3" v-if="property">
-        <section class="page-header border-0 mt-5">
+        <section class="page-top-banner border-0 mt-5">
             <div class="container py-4 position-relative z-index-2">
                 <div class="row py-4 mt-5 d-flex flex-wrap-reverse">
                     <div
