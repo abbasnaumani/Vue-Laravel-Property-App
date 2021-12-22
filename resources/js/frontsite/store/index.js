@@ -2,9 +2,8 @@ import { createStore } from 'vuex';
 // Load store modules dynamically.
 import loader from'~/store/modules/loaderModule';
 import auth from'~/store/modules/authModule';
-const requireContext = require.context('~/admin/store/modules', false, /.*\.js$/);
-console.log('_______________++++++++++++++++____________');
-console.log(requireContext);
+const requireContext = require.context('~/store/modules', false, /.*\.js$/);
+
 const modules = requireContext.keys()
     .map(file =>
         [file.replace(/(^.\/)|(\.js$)/g, ''), requireContext(file)]
@@ -14,8 +13,6 @@ const modules = requireContext.keys()
     ),{});
 modules['loader']=loader;
 modules['auth']=auth;
-console.log('___________________________');
-console.log(modules);
 const store = createStore({
     modules: modules,
 })

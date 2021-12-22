@@ -1,9 +1,9 @@
 import EventEmitter from "events";
-import {ApiResponse} from "~/constants";
-import appApi from "~/api";
-import errorHandlerService from "~/services/errorHandlerService";
+import {ApiResponse} from "../../constants";
+import appApi from "../../api";
+import errorHandlerService from "../../services/errorHandlerService";
 import {useToast} from "vue-toastification";
-import router from "~/admin/router";
+import router from "~/frontsite/router";
 const toast = useToast();
 import store from "../store";
 
@@ -97,7 +97,42 @@ class UserService extends EventEmitter {
             console.log(error, "error catch")
         }
     }
+    async updateUserProfile(profileData){
+        try {
+            const response = await appApi.put('/user/update/profile',profileData);
+            if (response.data.status === ApiResponse.SUCCESS) {
+                await store.dispatch('setProfile', response.data.payload);
+                console.log(response.data.payload);
+                toast.success(response.data.message, );
+                return response.data;
+            } else {
+                toast.error(response.data.message);
+            }
 
+        } catch (err) {
+            console.log(err, "err err")
+            toast.error(err.response.data.message);
+            const error = await errorHandlerService.errors.index(err);
+            console.log(error, "error catch")
+        }
+    }
+    async updatePassword(passwordData){
+        try {
+            const response = await appApi.put('/user/update/password',passwordData);
+            if (response.data.status === ApiResponse.SUCCESS) {
+                toast.success(response.data.message, );
+                return response.data;
+            } else {
+                toast.error(response.data.message);
+            }
+
+        } catch (err) {
+            console.log(err, "err err")
+            toast.error(err.response.data.message);
+            const error = await errorHandlerService.errors.index(err);
+            console.log(error, "error catch")
+        }
+    }
 }
 
 const service = new UserService();

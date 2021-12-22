@@ -1,39 +1,43 @@
 import EventEmitter from 'events';
 import appApi from "~/api/index";
-import store from "~/admin/store";
+import store from "~/frontsite/store";
 import errorHandlerService from '~/services/errorHandlerService';
 import {useToast} from "vue-toastification";
 import {ApiResponse, LocalStorageKeys} from "~/constants";
-import router from "~/admin/router";
+import router from "~/frontsite/router";
 import localStorageService from "~/services/localStorageService";
+import {UserRoles} from "~/constants";
 
 const toast = useToast();
 
 class AuthService extends EventEmitter {
-    // async handleRegistration(newUser) {
-    //     try {
-    //         const response = await appApi.post('/register', newUser);
-    //         if (response.data.status === ApiResponse.SUCCESS) {
-    //             toast.success("Registration Completed!");
-    //             await store.dispatch('actionAuthState', response.data.payload);
-    //             router.push({name: `user-dashboard`});
-    //         } else {
-    //             toast.error(response.data.message);
-    //         }
-    //     } catch (err) {
-    //         console.log(err, "catch error");
-    //         const error = await errorHandlerService.errors.index(err);
-    //         toast.error(error.message);
-    //     }
-    // }
+    async handleRegistration(newUser) {
+        try {
+            const response = await appApi.post('/register', newUser);
+            if (response.data.status === ApiResponse.SUCCESS) {
+                toast.success("Registration Completed!");
+                await store.dispatch('actionAuthState', response.data.payload);
+                if(response.data.payload.user.roles[0].id !== UserRoles.SUPER_ADMIN)
+                    router.push({path: '/'+response.data.payload.user.agencies[0].slug+'/main'});
+            } else {
+                toast.error(response.data.message);
+            }
+        } catch (err) {
+            console.log(err, "catch error");
+            const error = await errorHandlerService.errors.index(err);
+            toast.error(error.message);
+        }
+    }
 
     async handleLogin(email, password, rememberMe) {
         let credentials = {email, password};
         try {
             const response = await appApi.post('/login', credentials);
             if (response.data.status === ApiResponse.SUCCESS) {
+                console.log(response.data,"login success");
                 await store.dispatch('actionAuthState', response.data.payload);
-                router.push({name: 'user-dashboard'});
+                if(response.data.payload.user.roles[0].id !== UserRoles.SUPER_ADMIN)
+                router.push({path: '/'+response.data.payload.user.agencies[0].slug+'/main'});
             } else {
                 toast.error(response.data.message);
             }
@@ -67,10 +71,13 @@ class AuthService extends EventEmitter {
             toast.error(error.message);
         }
     }
+    user() {
+        return store.getters['getProfile'];
+    }
 
     async onLogout() {
         await store.dispatch('actionClearAuthState');
-        router.push({name: `admin-login`});
+        router.push({name: `user-login`});
     }
 
     async handleSendVerificationCode(payload) {

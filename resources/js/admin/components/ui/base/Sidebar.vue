@@ -54,7 +54,7 @@
 
 <script>
 import {computed} from "vue";
-import store from '~/store';
+import store from '~/admin/store';
 import userService from "../../../services/userService";
 import NavigationItems from "../navigation/NavigationItems";
 export default {

@@ -1,10 +1,10 @@
 import EventEmitter from "events";
 import appApi from "~/api";
-import {ApiResponse} from "../constants";
-import store from "../store";
+import {ApiResponse} from "~/constants";
+import store from "~/frontsite/store";
 import errorHandlerService from "~/services/errorHandlerService";
 import {useToast} from "vue-toastification";
-import router from "~/admin/router";
+import router from "~/frontsite/router";
 
 const toast = useToast();
 
@@ -27,12 +27,21 @@ class PropertyService extends EventEmitter {
     }
     async getPropertiesBySlug(slug,paginateData) {
         try {
+            console.log(paginateData,"paginate data")
             const response = await appApi.get('/'+slug+'/properties', {
                 params: {
                     current_page: paginateData.currentPage,
-                    per_page: paginateData.perPage
+                    per_page: paginateData.perPage,
+                    add_more: paginateData.addMore,
+                    // type: paginateData.type.value ?? null,
+                    // location: paginateData.location.value ?? null,
+                    // beds: paginateData.beds.value ?? null,
+                    // min_price: paginateData.minPrice.value ?? null,
+                    // max_price: paginateData.maxPrice.value ?? null
                 }
                 });
+            console.log(response,"sadsajdklajdlasj")
+
             if (response.data.status === ApiResponse.SUCCESS) {
                 // await store.dispatch('actionPropertiesBySlug', response.data.payload);
                 return response.data.payload;

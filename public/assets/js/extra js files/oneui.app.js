@@ -5392,7 +5392,7 @@ module.exports = function (IteratorConstructor, NAME, next) {
 
 /***/ "./node_modules/core-js/internals/create-non-enumerable-property.js":
 /*!**************************************************************************!*\
-  !*** ./node_modules/core-js/internals/create-non-enumerable-property.js ***!
+  !*** ./node_modules/core-js/internals/create-non-enumerable-propertyModule.js ***!
   \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -6861,7 +6861,7 @@ module.exports = DESCRIPTORS ? Object.defineProperties : function defineProperti
 
 /***/ "./node_modules/core-js/internals/object-define-property.js":
 /*!******************************************************************!*\
-  !*** ./node_modules/core-js/internals/object-define-property.js ***!
+  !*** ./node_modules/core-js/internals/object-define-propertyModule.js ***!
   \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -8504,7 +8504,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     if (this.options.touch) {
       this.$element.on('touchstart' + ScrollLock.NAMESPACE, this.options.selector, $.proxy(ScrollLock.CORE.touchHandler, this))
       this.$element.on('touchmove' + ScrollLock.NAMESPACE, this.options.selector, $.proxy(ScrollLock.CORE.handler, this))
-      
+
       if (this.options.unblock) {
         this.$element.on('touchmove' + ScrollLock.NAMESPACE, this.options.unblock, $.proxy(ScrollLock.CORE.unblockHandler, this))
       }

@@ -21,7 +21,7 @@ mix
 // .sass('resources/sass/oneui/themes/smooth.scss', 'public/css/themes/')
 /* JS */
 .js('resources/js/vendors.js', 'public')
-.js('resources/js/app.js', 'public')
+.js('resources/js/frontsite/app.js', 'public')
 .js('resources/js/admin/admin.js', 'public')
 .js('resources/js/oneui/app.js', 'public/js/oneui.app.js').vue()
 .disableNotifications();

@@ -1,9 +1,9 @@
 import EventEmitter from "events";
 import appApi from "~/api";
 import {ApiResponse} from "~/constants";
-import errorHandlerService from "~/common/services/errorHandlerService";
+import errorHandlerService from "~/services/errorHandlerService";
 import {useToast} from "vue-toastification";
-import router from "~/router";
+import router from "~/admin/router";
 import store from "~/admin/store";
 const toast = useToast();
 
