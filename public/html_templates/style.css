@@ -1121,6 +1121,6 @@ input[type='radio'] {
 
 input[type='radio']:checked {
     /* background: #333; */
-    background-image: url("tick.jpg") !important;
+    background-image: url("tick.png") !important;
     background-size: cover !important;
 }
