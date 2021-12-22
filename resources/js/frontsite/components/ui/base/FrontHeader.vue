@@ -34,6 +34,7 @@
                                     </div>
                                 </div>
                                 <div class="top-right-navs" v-if="isAuthenticated">
+                                    {{profile }}
                                     <div class="right-nav-links d-flex align-items-center">
                                         <ul class="list-unstyled">
                                             <li class="float-left px-2"><a class="text-decoration-none right-navs"
@@ -44,7 +45,7 @@
                                                         <i style="font-size:14px;" class="cursor-pointer fas fa-user p-1" data-toggle="dropdown"></i>
                                                         <div class="dropdown-menu">
                                                             <a class="dropdown-item" href="#" >
-                                                                <p class="font-weight-bold mb-0">{{ profile.first_name+' '+profile.last_name }}</p>
+                                                                <p class="font-weight-bold mb-0">{{ userName }}</p>
                                                             </a>
                                                             <a class="dropdown-item" href="#">
                                                                 <p class="mb-0 mt-0 header-dropdown-links px-2">My Account</p>
@@ -208,7 +209,7 @@
                                                                 <!-- 5rd child select tag -->
                                                                 <div class="px-3">
                                                                     <select class="select form-control" name="min Price"
-                                                                            id="min price">
+                                                                            id="minprice">
                                                                         <option value="Min price">Min Price</option>
                                                                         <option value="150000">$150,000</option>
                                                                         <option value="200000">$200,000</option>
@@ -371,7 +372,7 @@
                                         <div id="collapseSix" class="collapse" data-parent="#accordion">
                                             <div class="card-body">
                                                 <div>
-                                                    <select class="select px py-2" name="property" id="property">
+                                                    <select class="select px py-2" name="property">
                                                         <option value="property type">Property type</option>
                                                         <option value="Apartment">Apartment</option>
                                                         <option value="Houses">Houses</option>
@@ -389,7 +390,7 @@
                                                     />
                                                 </div>
                                                 <div class="mt-2">
-                                                    <select class="select px py-2" name="beds" id="beds">
+                                                    <select class="select px py-2" name="beds" >
                                                         <option value="Min Beds">Min Beds</option>
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
@@ -398,7 +399,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="mt-2">
-                                                    <select class="select px py-2" name="min Price" id="min price">
+                                                    <select class="select px py-2" name="min Price">
                                                         <option value="Min price">Min Price</option>
                                                         <option value="150000">$150,000</option>
                                                         <option value="200000">$200,000</option>
@@ -506,7 +507,9 @@
 import {getAllLocationsByCItyId} from "../../../composables/country";
 import {computed, ref, watchEffect,watch} from "vue";
 import Select2 from "vue3-select2-component";
+import store from "~/frontsite/store";
 import {useStore} from 'vuex';
+import _ from 'lodash';
 export default {
     name: "FrontHeader",
     components:{
@@ -517,22 +520,37 @@ export default {
 
     },
     setup(){
-        const store = useStore();
+     //   const store = useStore();
         console.log(store.getters.getProfile,'store.getters.getProfile');
         const profile2 = computed(() => {
             console.log(store.getters.getProfile,"store.getters.getProfile")
             return store.getters.getProfile ? store.getters.getProfile : null;
         });
+
+        const userName = computed(() => store.getters.getUserName, {
+            onTrack(e) {
+                console.log('onTrack',e);
+                // triggered when count.value is tracked as a dependency
+               // debugger
+            },
+            onTrigger(e) {
+                console.log('onTrigger',e);
+                // triggered when count.value is mutated
+            //    debugger
+            }
+        });
         const profile = ref(null);
 
-        watch(()=>store.getters.getProfile,()=>{
-            console.log('insdieprofile');
+        watch(()=> _.cloneDeep(userName),(userName, preUserName)=>{
+            console.log('insdieprofile',userName, preUserName);
              profile.value = store.getters?.getProfile;
         },
             {
                 immediate: true,
                 deep: true,
             });
+
+        watchEffect(() => console.log(store.getters.getUserName))
         const options = getAllLocationsByCItyId(4);
         const location = ref(1);
         const showSearchDropdown = ref(false);
@@ -541,16 +559,16 @@ export default {
         function openSearchDropDown(){
             showSearchDropdown.value = !showSearchDropdown.value;
         }
-        watchEffect(()=>{
-            if(options.value){
-                myOptions.value = [];
-                model.value = options.value[0];
-                options.value.forEach(function (option){
-                    myOptions.value = [{id:option.id,text:option.name},...myOptions.value];
-
-                })
-            }
-        })
+        // watchEffect(()=>{
+        //     if(options.value){
+        //         myOptions.value = [];
+        //         model.value = options.value[0];
+        //         options.value.forEach(function (option){
+        //             myOptions.value = [{id:option.id,text:option.name},...myOptions.value];
+        //
+        //         })
+        //     }
+        // })
         function myChangeEvent(val){
             console.log(val);
         }
@@ -567,7 +585,8 @@ export default {
             openSearchDropDown,
             showSearchDropdown,
             profile,
-            profile2
+            profile2,
+            userName
         }
     }
 }

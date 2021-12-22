@@ -1,9 +1,6 @@
 import { createStore } from 'vuex';
 // Load store modules dynamically.
-import loader from'~/store/modules/loaderModule';
-import auth from'~/store/modules/authModule';
-const requireContext = require.context('~/store/modules', false, /.*\.js$/);
-
+const requireContext = require.context('~/frontsite/store/modules', false, /.*\.js$/);
 const modules = requireContext.keys()
     .map(file =>
         [file.replace(/(^.\/)|(\.js$)/g, ''), requireContext(file)]
@@ -11,8 +8,10 @@ const modules = requireContext.keys()
         modules[name] = module.default,
             modules
     ),{});
-modules['loader']=loader;
-modules['auth']=auth;
+import loaderModule from'~/store/modules/loaderModule';
+import authModule from'~/store/modules/authModule';
+modules['loaderModule']=loaderModule;
+modules['authModule']=authModule;
 const store = createStore({
     modules: modules,
 })
