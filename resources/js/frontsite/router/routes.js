@@ -30,7 +30,18 @@ export default [
         name: 'user-profile',
         meta: {public: false, meta_title: 'User Profile'},
         component: page('user/UserProfile'),
-        // props: ({params}) => ({slug: params.slug || ''}),
+    },
+    {
+        path: '/agency/profile',
+        name: 'agency-profile',
+        meta: {public: false, meta_title: 'Agency Profile'},
+        component: page('user/AgencyProfile'),
+    },
+    {
+        path: '/contact/us',
+        name: 'contact-us',
+        meta: {public: true, meta_title: 'Contact Us'},
+        component: page('ContactUs'),
     },
     {
         path: '/logout',
@@ -42,7 +53,7 @@ export default [
         path: '/:slug/main',
         name: 'front-main',
         meta: {public: true, meta_title: 'KS Property'},
-        component: page('frontsite/Main'),
+        component: page('Main'),
         props: ({params}) => ({slug: params.slug || ''}),
     },
 

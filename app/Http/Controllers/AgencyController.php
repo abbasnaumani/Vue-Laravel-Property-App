@@ -92,12 +92,11 @@ class AgencyController extends Controller
      * Update the specified resource in storage.
      *
      * @param AgencyProfileRequest $request
-     * @param  int  $id
      * @return JsonResponse
      */
-    public function update(AgencyProfileRequest $request, int $id): JsonResponse
+    public function update(AgencyProfileRequest $request): JsonResponse
     {
-        $this->agencyService->updateAgencyProfile($request,$id);
+        $this->agencyService->updateAgencyProfile($request);
         return $this->getApiResponse();
     }
 

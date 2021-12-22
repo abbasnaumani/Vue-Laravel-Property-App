@@ -14,7 +14,7 @@ class Agency
             ->middleware('auth:sanctum');
         Route::group(['middleware' => ['auth:sanctum']], function(){
             Route::get('/agency/edit/{agencyId}',[AgencyController::class, 'edit'])->name('agency.edit');
-            Route::put('/agency/{agencyId}', [AgencyController::class,'update'])->name('agency.update');
+            Route::put('/agency/update/profile', [AgencyController::class,'update'])->name('agency.update');
         });
         Route::get('{slug}/agency/users', [AgencyController::class,'getAgencyUsersBySlug'])->name('agency.users.by.slug');
     }

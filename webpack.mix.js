@@ -23,7 +23,7 @@ mix
 .js('resources/js/vendors.js', 'public')
 .js('resources/js/frontsite/app.js', 'public')
 .js('resources/js/admin/admin.js', 'public')
-.js('resources/js/oneui/app.js', 'public/js/oneui.app.js').vue()
+.js('resources/js/admin/oneui/app.js', 'public/js/oneui.app.js').vue()
 .disableNotifications();
 mix.webpackConfig({
     devtool:  "source-map",

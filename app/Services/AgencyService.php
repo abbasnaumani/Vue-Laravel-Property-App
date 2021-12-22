@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Services\BaseService\BaseService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class AgencyService extends BaseService
 {
@@ -41,20 +42,21 @@ class AgencyService extends BaseService
     }
     /** Update the Agency profile
      * @param Request $request
-     * @param int $id
      */
-    public function updateAgencyProfile(Request $request, int $id)
+    public function updateAgencyProfile(Request $request)
     {
         $userId = $this->getAuthUserId();
-        $user = User::find($userId);
-        $agency = Agency::find($id);
-        if (Hash::check($request->password, $user->password)) {
-            $agency->name = $request->agency_name;
-            $agency->email = $request->agency_email;
-            $agency->phone_number = $request->agency_phone_number;
-            $agency->address = $request->agency_address;
+        $user = User::find($userId)->with('roles','agencies')->first();
+        $agency =$user->agencies()->first();
+        if (Hash::check($request->agency_data['password'], $user->password)) {
+            $agencySlug = $this->getUniqueAgencyByParams(['type' => 'slug', 'name' => Str::slug($request->agency_data['agency_slug'])]);
+            $agency->name = $request->agency_data['agency_name'];
+            $agency->slug = $agencySlug;
+            $agency->email = $request->agency_data['agency_email'];
+            $agency->phone_number = $request->agency_data['agency_phone_number'];
+            $agency->address = $request->agency_data['agency_address'];
             $agency->save();
-            $this->setApiSuccessMessage(trans('agency.update_profile'), $agency);
+            $this->setApiSuccessMessage(trans('agency.update_profile'), $user);
         }else{
             $this->setApiErrorMessage(trans('user.password_not_match'));
         }

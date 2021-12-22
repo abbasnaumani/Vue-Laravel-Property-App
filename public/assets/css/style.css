@@ -871,3 +871,17 @@ body{
     border-radius: 50% !important;
     padding: 5px !important;
 }
+/* Contact-page styling  */
+.contact-heading{
+    letter-spacing: var(--ks-letter-spacing);
+}
+.contact-form-card{
+    background-color: 	rgba(128,128,128,0.1) !important;
+    max-width: 100% !important;
+}
+.map-heading-contact{
+    letter-spacing: var(--ks-letter-spacing);
+}
+.contact-info-heading{
+    letter-spacing: var(--ks-letter-spacing);
+}

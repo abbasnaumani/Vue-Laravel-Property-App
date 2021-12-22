@@ -4,7 +4,7 @@
             <div class="card-header bg-white border-bottom-0 mt-4">
                 <div class="d-flex justify-content-between align-items-center">
                     <h2 class="font-weight-normal text-7 mb-0">
-                        <strong class="font-weight-extra-bold">User</strong>
+                        <strong class="font-weight-extra-bold">Agency</strong>
                         Profile
                     </h2>
                 </div>
@@ -26,84 +26,105 @@
                     </div>
                     <form class="col-lg-9">
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label line-height-9 pt-2 text-2 required">First name</label>
-                            <div class="col-lg-9">
-                                <input
-                                    type="text"
-                                    class="form-control text-3 h-auto py-2"
-                                    id="first_name"
-                                    v-model="profileData.first_name"
-                                    placeholder="First Name"
-                                    @blur="v$.profileData.first_name.$touch()"
-                                />
-                                <div class="d-flex justify-content-start">
-                                    <div v-if="v$.profileData.first_name.$dirty">
-                                        <sub v-if="v$.profileData.first_name.$error"
-                                             class="px-2 py-2 text-danger">
-                                            First Name is Required
-                                        </sub>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label line-height-9 pt-2 text-2 required">Last name</label>
-                            <div class="col-lg-9">
-                                <input
-                                    type="text"
-                                    class="form-control text-3 h-auto py-2"
-                                    id="last_name"
-                                    v-model="profileData.last_name"
-                                    placeholder="Last Name"
-                                    @blur="v$.profileData.last_name.$touch()"
-                                />
-                                <div class="d-flex justify-content-start">
-                                    <div v-if="v$.profileData.last_name.$dirty">
-                                        <sub v-if="v$.profileData.last_name.$error"
-                                             class="px-2 py-2 text-danger">
-                                            Last Name is Required
-                                        </sub>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label line-height-9 pt-2 text-2 required">Email</label>
-                            <div class="col-lg-9">
-                                <input
-                                    type="email"
-                                    class="form-control text-3 h-auto py-2"
-                                    id="email"
-                                    v-model="profileData.user_email"
-                                    placeholder="Email"
-                                    @blur="v$.profileData.user_email.$touch()"
-                                />
-                                <div class="d-flex justify-content-start">
-                                    <div v-if="v$.profileData.user_email.$dirty">
-                                        <sub v-if="v$.profileData.user_email.$error"
-                                             class="px-2 py-2 text-danger">
-                                            Please enter a valid Email address
-                                        </sub>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label line-height-9 pt-2 text-2">Phone Number</label>
+                            <label class="col-lg-3 col-form-label line-height-9 pt-2 text-2 required">Agency name</label>
                             <div class="col-lg-9">
                                 <input
                                     type="tel"
                                     class="form-control text-3 h-auto py-2"
-                                    id="phone"
-                                    v-model="profileData.phone_number"
-                                    @blur="v$.profileData.phone_number.$touch()"
-                                    placeholder="Phone Number"
+                                    id="agency-name"
+                                    v-model="agencyData.agency_name"
+                                    @blur="v$.agencyData.agency_name.$touch()"
+                                    placeholder="Agency Name"
                                 />
                                 <div class="d-flex justify-content-start">
-                                    <div v-if="v$.profileData.phone_number.$dirty">
-                                        <sub v-if="v$.profileData.phone_number.$error"
+                                    <div v-if="v$.agencyData.agency_name.$dirty">
+                                        <sub v-if="v$.agencyData.agency_name.$error"
                                              class="px-2 py-2 text-danger">
-                                            Phone Number is Required
+                                            Agency Name is Required
+                                        </sub>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label line-height-9 pt-2 text-2 required">Agency Slug</label>
+                            <div class="col-lg-9">
+                                <input
+                                    type="tel"
+                                    class="form-control text-3 h-auto py-2"
+                                    id="agency-slug"
+                                    v-model="agencyData.agency_slug"
+                                    @blur="v$.agencyData.agency_slug.$touch()"
+                                    placeholder="Agency Name"
+                                />
+                                <div class="d-flex justify-content-start">
+                                    <div v-if="v$.agencyData.agency_slug.$dirty">
+                                        <sub v-if="v$.agencyData.agency_slug.$error"
+                                             class="px-2 py-2 text-danger">
+                                            Agency Slug is Required
+                                        </sub>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label line-height-9 pt-2 text-2 required">Agency Email</label>
+                            <div class="col-lg-9">
+                                <input
+                                    type="tel"
+                                    class="form-control text-3 h-auto py-2"
+                                    id="agency-email"
+                                    v-model="agencyData.agency_email"
+                                    @blur="v$.agencyData.agency_email.$touch()"
+                                    placeholder="Agency Email"
+                                />
+                                <div class="d-flex justify-content-start">
+                                    <div v-if="v$.agencyData.agency_email.$dirty">
+                                        <sub v-if="v$.agencyData.agency_email.$error"
+                                             class="px-2 py-2 text-danger">
+                                            Please enter a valid Agency Email address
+                                        </sub>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label line-height-9 pt-2 text-2">Agency Phone Number</label>
+                            <div class="col-lg-9">
+                                <input
+                                    type="tel"
+                                    class="form-control text-3 h-auto py-2"
+                                    id="agency-phone"
+                                    v-model="agencyData.agency_phone_number"
+                                    @blur="v$.agencyData.agency_phone_number.$touch()"
+                                    placeholder="Agency Phone Number"
+                                />
+                                <div class="d-flex justify-content-start">
+                                    <div v-if="v$.agencyData.agency_phone_number.$dirty">
+                                        <sub v-if="v$.agencyData.agency_phone_number.$error"
+                                             class="px-2 py-2 text-danger">
+                                            Agency Phone Number is Required
+                                        </sub>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label line-height-9 pt-2 text-2">Agency Address</label>
+                            <div class="col-lg-9">
+                                <input
+                                    type="tel"
+                                    class="form-control text-3 h-auto py-2"
+                                    id="agency-address"
+                                    v-model="agencyData.agency_address"
+                                    @blur="v$.agencyData.agency_address.$touch()"
+                                    placeholder="Agency Address"
+                                />
+                                <div class="d-flex justify-content-start">
+                                    <div v-if="v$.agencyData.agency_address.$dirty">
+                                        <sub v-if="v$.agencyData.agency_address.$error"
+                                             class="px-2 py-2 text-danger">
+                                            Agency Address is Required
                                         </sub>
                                     </div>
                                 </div>
@@ -117,13 +138,13 @@
                                 type="password"
                                 class="form-control text-3 h-auto py-2"
                                 id="password"
-                                v-model="profileData.password"
-                                @blur="v$.profileData.password.$touch()"
+                                v-model="agencyData.password"
+                                @blur="v$.agencyData.password.$touch()"
                                 placeholder="Password"
                             />
                             <div class="d-flex justify-content-start">
-                                <div v-if="v$.profileData.password.$dirty">
-                                    <sub v-if="v$.profileData.password.$error"
+                                <div v-if="v$.agencyData.password.$dirty">
+                                    <sub v-if="v$.agencyData.password.$error"
                                          class="px-2 py-2 text-danger">
                                         Password is Required for updating profile
                                     </sub>
@@ -132,14 +153,14 @@
                         </div>
                         <div class="form-group d-flex justify-content-center">
                             <button
-                                v-if="v$.profileData.$invalid"
+                                v-if="v$.agencyData.$invalid"
                                 type="submit"
                                 class="mt-3 btn btn-primary btn-modern float-end cursor-not-allowed"
                                 disabled
                             >
                                 <i class="fa fa-cloud mr-1"></i>Save
                             </button>
-                            <button v-else @click.prevent="updateUserProfile"
+                            <button v-else @click.prevent="updateAgencyProfile"
                                     type="submit"
                                     class="mt-3 btn btn-primary btn-modern float-end"
                             >
@@ -148,106 +169,6 @@
                         </div>
                     </form>
                 </div>
-            </div>
-        </div>
-        <div class="card shadow-sm login-card w-100 text-left mt-5">
-            <div class="card-header bg-white border-bottom-0 mt-4">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h2 class="font-weight-normal text-7 mb-0">
-                        <strong class="font-weight-extra-bold">Update</strong>
-                        Password
-                    </h2>
-                </div>
-                <div class="overflow-hidden pt-3">
-                    <p class="mb-0">Provide your current and new password to update.</p>
-                </div>
-            </div>
-            <div class="card-body">
-
-                <form>
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label line-height-9 pt-2 text-2 required">Current
-                            Password</label>
-                        <div class="col-lg-9">
-                            <input
-                                type="password"
-                                class="form-control text-3 h-auto py-2"
-                                id="current-password"
-                                v-model="passwordData.current_password"
-                                @blur="v$.passwordData.current_password.$touch()"
-                                placeholder="Current Password"
-                            />
-                            <div class="d-flex justify-content-start">
-                                <div v-if="v$.passwordData.current_password.$dirty">
-                                    <sub v-if="v$.passwordData.current_password.$error"
-                                         class="px-2 py-2 text-danger">
-                                        Old Password is required
-                                    </sub>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label line-height-9 pt-2 text-2 required">New Password</label>
-                        <div class="col-lg-9">
-                            <input
-                                type="password"
-                                class="form-control text-3 h-auto py-2"
-                                id="new-password"
-                                v-model="passwordData.new_password"
-                                @blur="v$.passwordData.new_password.$touch()"
-                                placeholder="New Password"
-                            />
-                            <div class="d-flex justify-content-start">
-                                <div v-if="v$.passwordData.new_password.$dirty">
-                                    <sub v-if="v$.passwordData.new_password.$error"
-                                         class="px-2 py-2 text-danger">
-                                        New Password is Required (at-least 8 characters
-                                        long)
-                                    </sub>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-lg-3 col-form-label line-height-9 pt-2 text-2 required">Confirm New
-                            Password</label>
-                        <div class="col-lg-9">
-                            <input
-                                type="password"
-                                class="form-control text-3 h-auto py-2"
-                                id="confirm-new-password"
-                                v-model="passwordData.confirm_new_password"
-                                @blur="v$.passwordData.confirm_new_password.$touch()"
-                                placeholder="Confirm Password"
-                            />
-                            <div class="d-flex justify-content-start">
-                                <div v-if="v$.passwordData.confirm_new_password.$dirty">
-                                    <sub v-if="v$.passwordData.confirm_new_password.$error"
-                                         class="px-2 py-2 text-danger">
-                                        Please Enter confirm password same as password
-                                    </sub>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group d-flex justify-content-center">
-                        <button
-                            v-if="v$.passwordData.$invalid"
-                            type="submit"
-                            class="btn btn-primary btn-modern float-end cursor-not-allowed"
-                            disabled
-                        >
-                            <i class="fa fa-cloud mr-1"></i>Save
-                        </button>
-                        <button v-else @click.prevent="updatePassword"
-                                type="submit"
-                                class="btn btn-primary btn-modern float-end"
-                        >
-                            <i class="fa fa-cloud-in-alt mr-1"></i>Save
-                        </button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
@@ -259,82 +180,60 @@ import {email, minLength, required, sameAs} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
 import userService from "~/frontsite/services/userService";
 import auth from "~/frontsite/services/authService";
+import agencyService from "../../services/agencyService";
 
 export default {
     name: "AgencyProfile",
     setup() {
-        const profileData = ref({
-            user_email:auth.user().email,
-            phone_number:auth.user().phone_number,
-            first_name:auth.user().first_name,
-            last_name:auth.user().last_name,
+        const agencyData = ref({
+            agency_name:auth.user().agencies[0].name,
+            agency_phone_number:auth.user().agencies[0].phone_number,
+            agency_address:auth.user().agencies[0].address,
+            agency_email:auth.user().agencies[0].email,
+            agency_slug:auth.user().agencies[0].slug,
             password:''
         });
-        const passwordData = ref({
-            current_password: '',
-            new_password: '',
-            confirm_new_password: ''
-        });
 
-        const updatePassword = () => {
-            userService.updatePassword({
-                password_data:passwordData.value
-            });
-        }
-        const updateUserProfile = () => {
-            userService.updateUserProfile({
-                profile_data:profileData.value
+        const updateAgencyProfile = () => {
+            agencyService.updateAgencyProfile({
+                agency_data:agencyData.value
             });
         }
         const validationRules = computed(() => {
             return {
-                profileData:{
-                    user_email: {
+                agencyData:{
+                    agency_name: {
+                        required,
+                    },
+                    agency_phone_number: {
+                        required,
+                    },
+                    agency_address: {
+                        required
+                    },
+                    agency_email: {
                         required,
                         email
                     },
+                    agency_slug: {
+                        required
+                    },
                     password: {
-                        required,
-                    },
-                    first_name: {
-                        required
-                    },
-                    last_name: {
-                        required
-                    },
-                    phone_number: {
                         required
                     },
                 },
-                passwordData:{
-                    current_password: {
-                        required,
-                    },
-                    new_password: {
-                        required,
-                        minLength: minLength(8)
-                    },
-                    confirm_new_password: {
-                        required,
-                        sameAsPassword: sameAs(passwordData.value.new_password),
-                    }
-                }
             }
         });
         const v$ = useVuelidate(
             validationRules,
             {
-                profileData,
-                passwordData
+                agencyData,
             }
         );
         return {
             v$,
-            profileData,
-            passwordData,
-            updateUserProfile,
-            updatePassword
-
+            agencyData,
+            updateAgencyProfile,
         }
     }
 }

@@ -1,5 +1,4 @@
 <template>
-    <front-header></front-header>
     <carousel></carousel>
     <!-- Card -->
     <section class="main">

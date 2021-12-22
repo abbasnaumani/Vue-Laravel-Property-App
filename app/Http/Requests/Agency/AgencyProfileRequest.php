@@ -25,11 +25,12 @@ class AgencyProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'agency_name' => 'required|string|min:3|max:50',
-            'agency_address' => 'required|string|min:3|max:150',
-            'agency_email' => 'required|email',
-            'agency_phone_number' => 'required|min:11',
-            'password' => 'required|string|confirmed|min:8',
+            'agency_data.agency_name' => 'required|string|min:3|max:50',
+            'agency_data.agency_address' => 'required|string|min:3|max:150',
+            'agency_data.agency_slug' => 'required|string',
+            'agency_data.agency_email' => 'required|email',
+            'agency_data.agency_phone_number' => 'required|min:11',
+            'agency_data.password' => 'required|string|min:8',
         ];
     }
 
