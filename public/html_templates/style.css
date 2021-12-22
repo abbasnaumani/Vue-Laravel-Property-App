@@ -1029,6 +1029,36 @@ body {
     font-size: 1em!important;
 }
 
+
+/* wo we are  */
+
+.tick-2 {
+    color: #1c5fa8 !important;
+}
+
+
+/* Add Propert  */
+
+
+.main_subheader {
+    background-color: var(--ks-bg-primary-color) !important;
+        border-radius: 3px;
+        color: #ffffff;
+        margin-bottom: 7px;
+        margin-top: 8px;
+        padding: 7px 0;
+        text-indent: 9px;
+        text-transform: uppercase;
+        width: 99.6%;
+}
+
+.add_property {
+    color: var(--ks-bg-primary-color);
+}
+
+
+/* User Profile Page */
+
 .profile-image-outer-container {
     margin-top: auto !important;
     margin-bottom: auto !important;
@@ -1080,47 +1110,32 @@ body {
     padding: 5px !important;
 }
 
-
-/* wo we are  */
-
-.tick-2 {
-    color: #1c5fa8 !important;
-}
-
-
-/* Add Propert  */
-
-.main_subheader {
-    background-color: var(--ks-bg-primary-color) !important;
-    border-radius: 3px;
-    color: #ffffff;
-    margin-bottom: 7px;
-    margin-top: 2px;
-    padding: 7px 0;
-    text-indent: 9px;
-    text-transform: uppercase;
-    width: 99.6%;
-}
-
-.add_property {
-    color: var(--ks-bg-primary-color);
-}
-
-
-/* Add Property Radio Button Styling  */
+ /* Add Property Radio Button Styling   */
 
 input[type='radio'] {
     box-sizing: border-box;
     appearance: none;
-    background: white;
-    outline: 2px solid #333;
-    border: 3px solid white;
-    width: 16px;
-    height: 16px;
+border: 1px solid rgb(204, 204, 204);
+    outline: none;
+    width: 15px;
+    height: 15px;
+   
 }
 
 input[type='radio']:checked {
-    /* background: #333; */
-    background-image: url("tick.jpg") !important;
+    background-image: url("tick.png") !important;
+    
+    width: 30px;
+    height: 30px;
     background-size: cover !important;
+    border-radius: none;
+    background: none;
+    border: none !important;
+    bottom: -2px !important;
+    left: 13px !important;
+ 
+}
+.btn-check{
+
+    box-shadow:20px 20px 50px 10px rgb(233, 233, 233) inset;
 }

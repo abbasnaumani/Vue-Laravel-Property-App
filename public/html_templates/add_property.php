@@ -17,14 +17,14 @@
                                     <label class="col-lg-3 text-lg-right text-md-left text-sm-left line-height-9 text-2">Purpose:</label>
                                     <div class="col-lg-9">
                                         <div class="d-flex align-items-center">
-                                            <div class="btn btn-secondary border-right">
+                                            <div class="btn btn-check border-right">
                                                 <div class="form-check">
-                                                    <input type="radio" class="form-check-input" id="" name="materialExampleRadios">s
+                                                    <input type="radio" class="form-check-input" id="" name="materialExampleRadios">
                                                     <label class="form-check-label" for="materialUnchecked">For Sale</label>
                                                     
                                                 </div>
                                             </div>
-                                            <div class="btn btn-secondary">
+                                            <div class="btn btn-check">
                                                 <div class="form-check">
                                                     <input type="radio" class="form-check-input" id="" name="materialExampleRadios">
                                                     <label class="form-check-label" for="materialUnchecked">Rent</label>
@@ -37,19 +37,19 @@
                                     <label class="col-lg-3 text-lg-right text-md-left line-height-9 text-2">Property Type:</label>
                                     <div class="col-lg-9">
                                         <div class="d-flex align-items-center">
-                                            <div class="btn btn-secondary border-right">
+                                            <div class="btn btn-check border-right">
                                                 <div class="form-check ">
                                                     <input type="radio" class="form-check-input" id="" name="propertytype" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">
                                                     <label class="form-check-label " for="materialUnchecked">Homes</label>
                                                 </div>
                                             </div>
-                                            <div class="btn btn-secondary border-right">
+                                            <div class="btn btn-check border-right">
                                                 <div class="form-check ">
                                                     <input type="radio" class="form-check-input" id="" name="propertytype" data-toggle="collapse" data-target=".multi-collapse01" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">
                                                     <label class="form-check-label" for="materialUnchecked">Plotes</label>
                                                 </div>
                                             </div>
-                                            <div class="btn btn-secondary border-right">
+                                            <div class="btn btn-check border-right">
                                                 <div class="form-check">
                                                     <input type="radio" class="form-check-input" id="" name="propertytype" data-toggle="collapse" data-target=".multi-collapse02" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">
                                                     <label class="form-check-label" for="materialUnchecked">Commerical</label>
@@ -60,13 +60,13 @@
                                         <div class="row w-50 ">
                                             <div class="col ">
                                                 <div class="collapse multi-collapse mt-3" id="">
-                                                    <div class="btn btn-secondary">
+                                                    <div class="btn btn-check">
                                                         <div class="form-check">
                                                             <input type="radio" class="form-check-input" id="" name="materialExampleRadios01">
                                                             <label class="form-check-label">For Sale</label>
                                                         </div>
                                                     </div>
-                                                    <div class="btn btn-secondary">
+                                                    <div class="btn btn-check">
                                                         <div class="form-check">
                                                             <input type="radio" class="form-check-input" id="" name="materialExampleRadios01">
                                                             <label class="form-check-label">Rent</label>
@@ -77,19 +77,19 @@
                                         </div>
                                         <div class="d-flex">
                                             <div class="collapse multi-collapse01 mt-3 " id="">
-                                                <div class="btn btn-secondary">
+                                                <div class="btn btn-check">
                                                     <div class="form-check">
                                                         <input type="radio" class="form-check-input" id="" name="materialExampleRadios02">
                                                         <label class="form-check-label">House</label>
                                                     </div>
                                                 </div>
-                                                <div class="btn btn-secondary">
+                                                <div class="btn btn-check">
                                                     <div class="form-check">
                                                         <input type="radio" class="form-check-input" id="" name="materialExampleRadios02">
                                                         <label class="form-check-label">Flate</label>
                                                     </div>
                                                 </div>
-                                                <div class="btn btn-secondary">
+                                                <div class="btn btn-check">
                                                     <div class="form-check">
                                                         <input type="radio" class="form-check-input" id="" name="materialExampleRadios02">
                                                         <label class="form-check-label">Room</label>
@@ -99,25 +99,25 @@
                                         </div>
                                         <div class="d-flex align-item-center">
                                             <div class="collapse multi-collapse02 mt-3 " id="">
-                                                <div class="btn btn-secondary">
+                                                <div class="btn btn-check">
                                                     <div class="form-check">
                                                         <input type="radio" class="form-check-input" id="" name="materialExampleRadios02">
                                                         <label class="form-check-label">Office</label>
                                                     </div>
                                                 </div>
-                                                <div class="btn btn-secondary">
+                                                <div class="btn btn-check">
                                                     <div class="form-check">
                                                         <input type="radio" class="form-check-input" id="" name="materialExampleRadios02">
                                                         <label class="form-check-label">Shop</label>
                                                     </div>
                                                 </div>
-                                                <div class="btn btn-secondary">
+                                                <div class="btn btn-check">
                                                     <div class="form-check">
                                                         <input type="radio" class="form-check-input" id="" name="materialExampleRadios02">
                                                         <label class="form-check-label">Building</label>
                                                     </div>
                                                 </div>
-                                                <div class="btn btn-secondary">
+                                                <div class="btn btn-check">
                                                     <div class="form-check">
                                                         <input type="radio" class="form-check-input" id="" name="materialExampleRadios02">
                                                         <label class="form-check-label">Other</label>
