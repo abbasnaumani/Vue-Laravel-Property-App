@@ -6,7 +6,7 @@
                     <div class="text-lg-start text-center">
                         <h2 class="mb-0">
                             For
-                            <span class="font-weight-bold">Residential And Commercial</span>
+                            <span class="font-weight-extra-bold">Residential And Commercial</span>
                             Properties
                         </h2>
                         <div class="d-flex justify-content-lg-start justify-content-center">
