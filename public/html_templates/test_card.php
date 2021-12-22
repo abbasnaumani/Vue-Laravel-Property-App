@@ -119,7 +119,7 @@
         /* End font weight */
         /* ******************* */
 
-        .letter-spacing {
+        .letter-spacing{
             letter-spacing: -.05em !important;
         }
 
@@ -133,15 +133,13 @@
 
         .custom-card-info-type {
             background-color: #1C5FA8 !important;
-            padding-top: 0.25rem !important;
-            padding-bottom: 0.25rem !important;
-            padding-right: 1rem !important;
-            padding-left: 1rem !important;
+           
         }
 
-        /* .custom-card-info-img {
-            height: 195px !important;
-        } */
+        .custom-card:hover{
+            box-shadow:0 1rem 3rem rgba(0,0,0,.175)!important;
+            cursor: pointer;
+        }
         .card-anchor:hover {
             text-decoration: none;
         }
@@ -156,7 +154,28 @@
             padding-top: 0.8rem;
             padding-bottom: 0.8rem;
         }
-
+        .svg-color{
+            fill:#00a4f2 !important;
+        }
+    
+        .move-svg{
+            transition: 0.4s  !important;
+            transition-timing-function: linear;
+        }
+        .move-svg:hover .arrow-move{
+            padding-left: 22px !important;
+            padding-right: 12px !important;
+            transition: 0.4s !important;
+            transition-timing-function: linear;
+        }
+        
+        /* .custom-card > div > a > .custom-card-info-header > .move-svg{
+            transition: all .2s ease-in-out !important;
+        }
+        .custom-card > div > a > .custom-card-info-header  :hover > .move-svg{
+            padding-left: 22px !important;
+            padding-right: 12px !important;
+        } */
         @media only screen and (max-width: 480px) {
             .custom-card-info-img {
                 height: 300px !important;
@@ -195,29 +214,34 @@
             <div class="col-lg-9">
                 <div class="row">
                     <div class="col-12 col-sm-6 col-md-4 pb-4 mb-1">
-                        <div class="card custom-card">
-                            <div class="overflow-hidden position-relative z-index-1">
+                        <div class="card custom-card move-svg  border-0">
+                            <div class="card-interior overflow-hidden position-relative z-index-1">
                                 <a href="" class="text-decoration-none card-anchor">
                                     <span
-                                        class="custom-card-info-type text-light px-3 py-1 text-1 font-weight-semibold text-uppercase position-absolute top-8 left-8">For
+                                        class="custom-card-info-type text-light py-2 px-3 text-1 font-weight-bold letter-spacing text-uppercase position-absolute top-8 left-8">For
                                         Sale</span>
                                     <div class="custom-card-info-img d-block">
-                                        <img src="img-3.jpg" class="img-fluid">
+                                        <img src="img-3.jpg" class="img-fluid rounded">
                                     </div>
-                                    <span class="custom-card-info-header d-block p-relative">
-                                        <strong class="text-dark text-4 px-2">$ 1.250.000</strong>
+                                    <span class="custom-card-info-header d-flex justify-content-between align-items-center p-relative">
+                                        <strong class="text-dark text-4 px-3 letter-spacing">$ 1.250.000</strong>
+                                        <div class="px-3 arrow-move">
+                                        <svg class="svg-color" version="1.1" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="icon_131640173528885" data-filename="arrow-right.svg" width="27" height="27">
+	                                     <polygon points="1,26 44.586,26 38.293,32.293 39.707,33.707 48.414,25 39.707,16.293 38.293,17.707 44.586,24 1,24  "></polygon>
+                                            </svg>
+                                            </div>
                                     </span>
                                     <span class="custom-card-info-content d-block">
-                                        <h4 class="text-dark mb-1 text-5 px-2 font-weight-bold">South Miami</h4>
+                                        <h4 class="text-dark mb-1 text-5 px-3 font-weight-bold letter-spacing">South Miami</h4>
                                         <ul
                                             class="list-unstyled d-flex mb-0 px-1 py-1 justify-content-between flex-wrap">
-                                            <li class="mb-0 px-2">
+                                            <li class="mb-0 px-3">
                                                 <strong class="text-secondary text-uppercase text-2">Beds: 3</strong>
                                             </li>
-                                            <li class="mb-0">
+                                            <li class="mb-0 px-2">
                                                 <strong class="text-secondary text-uppercase text-2">Baths: 2</strong>
                                             </li>
-                                            <li class="mb-0 px-2">
+                                            <li class="mb-0 px-3">
                                                 <strong class="text-secondary text-uppercase text-2">Sq Ft: 500</strong>
                                             </li>
                                         </ul>
@@ -226,6 +250,7 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>

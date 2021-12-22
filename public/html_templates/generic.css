@@ -76,3 +76,15 @@ h6{
 /* ******************* */
 /* End font weight */
 /* ******************* */
+
+/* ******************* */
+/* start letter spacing */
+/* ******************* */
+
+.letter-spacing{
+    letter-spacing:-.05em !important;
+}
+
+/* ******************* */
+/* End lettet spacing */
+/* ******************* */
