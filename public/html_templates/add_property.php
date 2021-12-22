@@ -13,8 +13,8 @@
                         <form id="user-profile" action="" method="">
                             <div class="">
                                 <div class="main_subheader" style="margin-top: -30px;">Property Type and Location</div>
-                                <div class="form-group row text-center">
-                                    <label class="col-lg-3 text-lg-right text-md-left line-height-9 text-2">Purpose:</label>
+                                <div class="form-group row text-center mt-4">
+                                    <label class="col-lg-3 text-lg-right text-md-left text-sm-left line-height-9 text-2">Purpose:</label>
                                     <div class="col-lg-9">
                                         <div class="d-flex align-items-center">
                                             <div class="btn btn-secondary border-right">
@@ -38,7 +38,7 @@
                                         <div class="d-flex align-items-center">
                                             <div class="btn btn-secondary border-right">
                                                 <div class="form-check ">
-                                                    <input type="radio" class="form-check-input" type="button" data-toggle="collapse" data-target=".multi-collapse" >
+                                                    <input type="radio" class="form-check-input" id="" name="propertytype" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">
                                                     <label class="form-check-label " for="materialUnchecked">Homes</label>
                                                 </div>
                                             </div>
