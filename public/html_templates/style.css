@@ -17,6 +17,7 @@
 body {
     list-style: 1.8 !important;
     line-height: 26px;
+    font-size: 14px !important;
 }
 
 .hide {
@@ -51,26 +52,27 @@ body {
 }
 
 .nav-links {
-    color: #777777;
+    color: var(--ks-text-primary-color);
+    font-size: 14px;
 }
 
 .nav-links:hover {
     text-decoration: none;
-    color: #00a4f2;
+    color: var(--ks-bg-secondary-color);
 }
 
 .right-navs {
-    color: #777777;
+    color: var(--ks-text-primary-color);
     font-size: 11.6px;
 }
 
 .right-navs:hover {
     text-decoration: none;
-    color: #00a4f2;
+    color:var(--ks-bg-secondary-color);
 }
 
 .secondary-nav-li {
-    color: #444444;
+    color: var(--ks-text-secondary-color);
     font-weight: 645;
 }
 
@@ -80,7 +82,7 @@ body {
 }
 
 .facebook {
-    color: #444444;
+    color: var(--ks-text-secondary-color);
     padding: 8.5px;
 }
 
@@ -91,18 +93,18 @@ body {
 }
 
 .twitter-header {
-    color: #444444;
+    color: var(--ks-text-secondary-color);
     padding: 8.5px;
 }
 
 .twitter-header:hover {
-    background-color: #1877F2;
+    background-color: var(--ks-bg-tertiary-color);
     color: white;
     border-radius: 100%;
 }
 
 .instagram {
-    color: #444444;
+    color: var(--ks-text-secondary-color);
     padding: 8.5px;
 }
 
@@ -143,7 +145,7 @@ body {
 }
 
 .dropdown-primary-li {
-    color: #777777;
+    color: var(--ks-text-primary-color);
     font-family: 'Poppins', arial, sans-serif;
     font-size: 15px;
     transition: all 0.2s;
@@ -196,12 +198,12 @@ body {
 }
 
 .accordian-list {
-    color: #777777;
+    color: var(--ks-text-primary-color);
 }
 
 .accordian-list:hover {
     text-decoration: none;
-    color: #777777;
+    color: var(--ks-text-primary-color);
 }
 
 .accordian-collapse {
@@ -222,15 +224,17 @@ body {
 }
 
 .px {
-    color: #777777;
+    color: var(--ks-text-primary-color);
     outline: none;
     border: none;
     background-color: rgba(128, 128, 128, 0.3);
     width: 100%;
 }
-
+.active{
+    color: var(--ks-bg-primary-color) !important;
+}
 .active:active {
-    background-color: var(--ks-bg-primary-color);
+    background-color: var(--ks-bg-primary-color) !important;
 }
 
 .active-2 {
@@ -271,13 +275,8 @@ body {
 }
 
 .brightness {
-    filter: brightness(0.30);
+    filter: brightness(0.40);
 }
-
-.brightness:hover {
-    filter: brightness(0.30);
-}
-
 .crousal-section {
     height: 700px !important;
     width: 100%;
@@ -289,16 +288,17 @@ body {
 
 .rotate {
     position: absolute;
-    top: 25px;
-    right: -90px;
+    top: 35px;
+    right: -100px;
     transform: rotateZ(45deg);
     width: 200px;
     border-radius: 3px;
-    height: 38px;
+    height: 48px;
+    background-color: 	rgba(0,128,0,0.6);
 }
 
 .carousel-caption {
-    padding-bottom: 164px !important;
+    padding-bottom:95px !important;
     text-align: left !important;
 }
 
@@ -359,17 +359,17 @@ body {
 
 .card-form {
     background-color: rgba(128, 128, 128, 0.1) !important;
+    font-family: "Poppins", arial, sans-serif !important;
 }
 
 .card-hover {
-    background-color: #282A35;
-    opacity: 0.9;
+    background-color: rgba(0, 0, 0, 0.6);
     transition: all 1s ease-out;
 }
 
 .card-hover:hover {
     transition: all 0.5s ease;
-    opacity: 0.4;
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .h-card {
@@ -379,32 +379,19 @@ body {
 .fon {
     font-weight: 650;
 }
-
-.button {
-    font-size: 13px;
-    background-color: rgba(0, 0, 255, 0.3);
-}
-
 .backk {
     background-color: rgba(128, 128, 128, 0.1);
     outline: none;
-    color: #777777;
+    color: var(--ks-text-primary-color);
 }
-
 #option:hover {
     background-color: rgba(128, 128, 128, 0.1);
 }
-
-.button-color {
-    background-color: #00a4f2;
-    font-size: 14px;
-}
-
 .footer-color {
     background-color: #333333;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-family: "Poppins", arial, sans-serif !important;
 }
-
 .footer-heading {
     font-size: 18px;
     font-weight: 750;
@@ -437,7 +424,7 @@ body {
 
 .anchor {
     font-size: 13px;
-    color: #1877F2;
+    color:var(--ks-bg-tertiary-color);
 }
 
 .card-animation {
@@ -454,19 +441,19 @@ body {
 
 @keyframes example-2 {
     from {
-        left: 50px;
+        left: 10px;
     }
     to {
-        left: 130px;
+        left: 90px;
     }
 }
 
 @keyframes example {
     from {
-        right: 50px;
+        right: 10px;
     }
     to {
-        right: 130px;
+        right: 90px;
     }
 }
 
@@ -481,7 +468,7 @@ body {
 }
 
 .circle {
-    margin-bottom: -45px;
+    margin-bottom: -35px;
 }
 
 .icon-hov {
@@ -509,10 +496,8 @@ body {
 }
 
 .icon {
-    font-size: 30px;
-    background-color: #282A35;
-    color: white;
-    width: 30px;
+    width: 45px !important;
+    height: 45px !important;
 }
 
 .width {
@@ -525,7 +510,7 @@ body {
 }
 
 .btn-color {
-    background-color: #19B5FF !important;
+    background-color: var(--ks-btn-primary-color) !important;
     font-size: 17px !important;
 }
 
@@ -620,7 +605,7 @@ body {
 }
 
 .bg-table-color {
-    background-color: #19B5FF !important;
+    background-color: var(--ks-btn-primary-color) !important;
     color: white;
 }
 
@@ -657,14 +642,7 @@ body {
 .col-list {
     font-size: 13px !important;
 }
-
-.font-bold {
-    font-weight: bolder !important;
-}
-
-
 /* map  */
-
 .map-div {
     width: 800px !important;
     height: 400px !important;
@@ -888,7 +866,7 @@ body {
 }
 
 .anchor-button {
-    background-color: #2172C9 !important;
+    background-color: var(--ks-btn-secondary-color) !important;
     font-size: 14px !important;
 }
 
@@ -920,7 +898,7 @@ body {
 .agent-properties {
     font-size: 1em!important;
     font-weight: 600 !important;
-    color: #777777 !important;
+    color: var(--ks-text-primary-color) !important;
     letter-spacing: var(--ks-letter-spacing);
 }
 
@@ -1033,7 +1011,7 @@ body {
 /* wo we are  */
 
 .tick-2 {
-    color: #1c5fa8 !important;
+    color: var(--ks-bg-primary-color) !important;
 }
 
 
@@ -1136,4 +1114,97 @@ input[type='radio']:checked {
 .btn-check{
 
     box-shadow:20px 20px 50px 10px rgb(233, 233, 233) inset;
+}
+/* new card styling  */
+.letter-spacing{
+    letter-spacing: -.05em !important;
+}
+
+.top-8 {
+    top: 8px !important;
+}
+
+.left-8 {
+    left: 8px !important;
+}
+
+.custom-card-info-type {
+    background-color: var(--ks-bg-primary-color) !important;
+   
+}
+
+.custom-card:hover{
+    box-shadow:0 1rem 3rem rgba(0,0,0,.175)!important;
+    cursor: pointer;
+}
+.card-anchor:hover {
+    text-decoration: none;
+}
+
+.custom-card-info-header {
+    border-bottom: 1px solid #E7E7E7;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+}
+
+.custom-card-info-content {
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+}
+.svg-color{
+    fill:var(--ks-bg-secondary-color) !important;
+}
+
+.move-svg{
+    transition: 0.4s  !important;
+    transition-timing-function: linear;
+}
+.move-svg:hover .arrow-move{
+    padding-left: 22px !important;
+    padding-right: 12px !important;
+    transition: 0.4s !important;
+    transition-timing-function: linear;
+}
+@media only screen and (max-width: 480px) {
+    .custom-card-info-img {
+        height: 300px !important;
+        width: 100%;
+    }
+
+    .custom-card-info-img>img.img-fluid {
+        object-fit: contain;
+        height: inherit;
+        width: inherit;
+        object-fit: cover;
+    }
+}
+
+@media only screen and (min-width: 481px) {
+    .custom-card-info-img {
+        height: 195px !important;
+        width: 100%;
+    }
+
+    .custom-card-info-img>img.img-fluid {
+        object-fit: contain;
+        height: inherit;
+        width: inherit;
+        object-fit: cover;
+        background-color: white;
+        ;
+    }
+}
+
+/* new styling for crousal.php  */
+.carousel-control-prev{
+    opacity: 1 !important;
+    width: 0% !important;
+}
+.carousel-control-next{
+    opacity: 1 !important;
+    width: 0% !important;
+}
+/* additional css for main  */
+.card-button-info{
+    font-size: 12px !important;
 }

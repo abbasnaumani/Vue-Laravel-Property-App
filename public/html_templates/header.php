@@ -72,7 +72,7 @@
                                         <ul class="list-unstyled px-2 ">
                                             <li class="float-left">
                                                 <i style="font-size: 15px;color: #00a4f2;" class="fal fa-phone-alt"></i>
-                                                <a class="text-decoration-none nav-links font-weight-medium"
+                                                <a class="text-decoration-none nav-links font-weight-semibold"
                                                     href="#"><span class="px-1">(800)
                                                         123-4567</span></a>
                                             </li>
@@ -81,7 +81,7 @@
                                                     class="fal fa-map-marker-alt d-lg-inline d-md-none d-sm-none d-none"></i>
                                                 <a class="text-decoration-none nav-links font-weight-medium"
                                                     href="#"><span
-                                                        class="px-1 d-lg-inline d-md-none d-sm-none d-none">1234 Porto
+                                                        class="px-1 d-lg-inline d-md-none d-sm-none d-none trext">1234 Porto
                                                         Street,Los Angeles / LA</span></a>
                                             </li>
                                             <li class="float-left px-3">
@@ -89,7 +89,7 @@
                                                     class="fal fa-envelope d-lg-inline d-md-inline d-sm-none d-none"></i>
                                                 <a class="text-decoration-none nav-links font-weight-medium"
                                                     href=""><span
-                                                        class="px-1 d-lg-inline d-md-inline d-sm-none d-none">porto@portotheme.com</span></a>
+                                                        class="px-1 d-lg-inline d-md-inline d-sm-none d-none text-2">porto@portotheme.com</span></a>
                                             </li>
                                         </ul>
                                     </div>
@@ -137,30 +137,30 @@
                                     class="header-row d-flex align-items-center justify-content-between flex-grow-1 h-100 py-2">
                                     <div class="brand-logo px-1">
                                         <div class="web-image logo-h">
-                                            <img src="ks-logo.png" alt="The logo of web-page porto" height="100%">
+                                            <img src="logo.png" alt="The logo of web-page porto" height="100%">
                                         </div>
                                     </div>
                                     <div class="secondary-nav-links">
                                         <div class="d-flex justify-content-end">
                                             <ul class="list-unstyled d-lg-flex d-md-none d-sm-none d-none m-0">
                                                 <li class="px-3">
-                                                    <a class="secondary-nav-li text-decoration-none active py-4"
+                                                    <a class="secondary-nav-li text-decoration-none active py-4 text-4"
                                                         href="">Home</a>
                                                 </li>
                                                 <li class="px-3">
-                                                    <a class="secondary-nav-li text-decoration-none py-4"
+                                                    <a class="secondary-nav-li text-decoration-none py-4 text-4"
                                                         href="">Properties</a>
                                                 </li>
                                                 <li class="px-3">
                                                     <div class="dropdown-primary">
-                                                        <a class="secondary-nav-li text-decoration-none py-4"
+                                                        <a class="secondary-nav-li text-decoration-none py-4 text-4"
                                                             href="">About</a>
                                                         <div class="dropdown-primary-menu">
                                                             <ul class="list-unstyled">
-                                                                <li><a class="text-dark dropdown-primary-li"
+                                                                <li class="py-2 px-2"><a class="text-dark dropdown-primary-li"
                                                                         href="#">Agents</a>
                                                                 </li>
-                                                                <li><a class="text-dark dropdown-primary-li"
+                                                                <li class="py-2 px-2"><a class="text-dark dropdown-primary-li"
                                                                         href="#">Who we
                                                                         are</a></li>
                                                             </ul>
@@ -168,15 +168,15 @@
                                                     </div>
                                                 </li>
                                                 <li class="px-3">
-                                                    <a class="secondary-nav-li text-decoration-none" href="">Contact</a>
+                                                    <a class="secondary-nav-li text-decoration-none text-4" href="">Contact</a>
                                                 </li>
                                                 <li class="px-3">
-                                                    <a class="secondary-nav-li text-decoration-none py-4"
+                                                    <a class="secondary-nav-li text-decoration-none py-4 text-4"
                                                         href="">Elements</a>
                                                 </li>
                                                 <li class="px-3">
                                                     <div class="dropdown-mega">
-                                                        <a class="secondary-nav-li text-decoration-none py-4" href="">
+                                                        <a class="secondary-nav-li text-decoration-none py-4 text-4" href="">
                                                             <i class="fas fa-search px-1"></i>
                                                             Search
                                                         </a>
