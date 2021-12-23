@@ -510,7 +510,7 @@ import store from "~/frontsite/store";
 import {useStore} from 'vuex';
 import _ from 'lodash';
 export default {
-    name: "FrontHeader",
+    name: "Header",
     components:{
         Select2
     },

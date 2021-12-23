@@ -15,7 +15,7 @@
 <!--            <auth-header/>-->
 <!--            <sidebar/>-->
 <!--        </div>-->
-        <front-header :isAuthenticated="isAuthenticated"></front-header>
+        <header :isAuthenticated="isAuthenticated"></header>
         <child/>
     </div>
 </template>
@@ -23,11 +23,11 @@
 <script>
 import store from "~/frontsite/store";
 import {computed} from "vue";
-import FrontHeader from "../components/ui/base/Header";
+import Header from "../components/ui/base/Header";
 
 export default {
     name: "Default",
-    components: {FrontHeader},
+    components: {Header},
     setup() {
         const isAuthenticated = computed(() => {
             return store.getters.isAuthenticated ? store.getters.isAuthenticated : null;
