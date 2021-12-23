@@ -1,7 +1,7 @@
 <?php include "header.php" ?>
 <section class="top-banner border-0 mt-5">
-            <div class="container py-3 position-relative z-index-2">
-                <div class="row py-4 pb-3 mt-4 mb-4 d-flex flex-wrap-reverse">
+            <div class="container py-4 position-relative z-index-2">
+                <div class="row py-4 pb-3 mt-4 mb-4 d-flex flex-wrap-reverse align-items-center">
                     <div
                         class="col-md-8 order-2 order-md-1 d-flex align-self-center justify-content-md-start justify-content-sm-center justify-content-center">
                         <div class="main-heading text-lg-start">
