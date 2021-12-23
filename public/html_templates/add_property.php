@@ -21,7 +21,7 @@
                                                 <div class="form-check">
                                                     <input type="radio" class="form-check-input" id="" name="materialExampleRadios">
                                                     <label class="form-check-label" for="materialUnchecked">For Sale</label>
-                                                    
+
                                                 </div>
                                             </div>
                                             <div class="btn btn-check">
@@ -183,28 +183,28 @@
                                         </div>
                                     </div>
                                 </div>
-                                    <div class="form-group row">
+                                <div class="form-group row">
                                     <label class="col-lg-3 text-lg-right text-md-left text-2">Land Area:</label>
-                                        <div class="col-lg-9">
-                                            <div class="">
-                                                <div class="form-group w-50">
-                                                    <input type="text" class="form-control">
-                                                </div>
+                                    <div class="col-lg-9">
+                                        <div class="">
+                                            <div class="form-group w-50">
+                                                <input type="text" class="form-control">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group row ">
-                                        <label class="col-lg-3 text-lg-right text-md-left text-2">Unit:</label>
-                                        <div class="col-lg-9">
-                                            <select class="form-control w-50" id="">
-                                                <option>Square Feet</option>
-                                                <option>Square Yards</option>
-                                                <option>Square Meters</option>
-                                                <option>Marla</option>
-                                                <option>Kanal</option>
-                                            </select>
-                                        </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <label class="col-lg-3 text-lg-right text-md-left text-2">Unit:</label>
+                                    <div class="col-lg-9">
+                                        <select class="form-control w-50" id="">
+                                            <option>Square Feet</option>
+                                            <option>Square Yards</option>
+                                            <option>Square Meters</option>
+                                            <option>Marla</option>
+                                            <option>Kanal</option>
+                                        </select>
                                     </div>
+                                </div>
                                 <div class="form-group row my-4">
                                     <label class="col-lg-3 text-lg-right text-md-left text-2">Expires Aftar:</label>
                                     <div class="col-lg-9">
@@ -258,6 +258,93 @@
             </div>
         </div>
     </div>
-
 </section>
+<div class="container mt-3">
+  
+    <br>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs border-0">
+        <li class="nav-item btn-check border-right">
+            <a class="nav-link ml-4 border-0" data-toggle="tab" href="#home">
+                <input type="radio" class="form-check-input " name="propertytype"> Homes
+            </a>
+        </li>
+        <li class="nav-item btn-check border-right">
+            <a class="nav-link ml-4 border-0" data-toggle="tab" href="#forsale">
+                <input type="radio" class="form-check-input" name="propertytype"> Plotes
+            </a>
+        </li>
+        <li class="nav-item btn-check border-right">
+            <a class="nav-link ml-4 border-0" data-toggle="tab" href="#comerical">
+                <input type="radio" class="form-check-input" name="propertytype"> commerical
+            </a>
+        </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div id="home" class="container tab-pane fade"><br>
+            <div class="btn btn-check">
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" id="" name="home">
+                    <label class="form-check-label">For Sale</label>
+                </div>
+            </div>
+            <div class="btn btn-check">
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" id="" name="home">
+                    <label class="form-check-label">Rent</label>
+                </div>
+            </div>
+        </div>
+
+        <div id="forsale" class="container tab-pane fade"><br>
+            <div class="btn btn-check">
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" id="" name="plotes">
+                    <label class="form-check-label">House</label>
+                </div>
+            </div>
+            <div class="btn btn-check">
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" id="" name="plotes">
+                    <label class="form-check-label">Flate</label>
+                </div>
+            </div>
+            <div class="btn btn-check">
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" id="" name="plotes">
+                    <label class="form-check-label">Room</label>
+                </div>
+            </div>
+        </div>
+
+        <div id="comerical" class="container tab-pane fade"><br>
+            <div class="btn btn-check">
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" id="" name="comerical">
+                    <label class="form-check-label">Office</label>
+                </div>
+            </div>
+            <div class="btn btn-check">
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" id="" name="comerical">
+                    <label class="form-check-label">Shop</label>
+                </div>
+            </div>
+            <div class="btn btn-check">
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" id="" name="comerical">
+                    <label class="form-check-label">Building</label>
+                </div>
+            </div>
+            <div class="btn btn-check">
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" id="" name="comerical">
+                    <label class="form-check-label">Other</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <?php include "footer.php" ?>

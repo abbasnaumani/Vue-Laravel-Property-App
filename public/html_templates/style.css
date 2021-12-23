@@ -1115,6 +1115,7 @@ input[type='radio'] {
     box-sizing: border-box;
     appearance: none;
     border: 1px solid rgb(204, 204, 204);
+    border: 2px solid black;
     outline: none;
     width: 15px;
     height: 15px;
@@ -1133,7 +1134,13 @@ input[type='radio']:checked {
     left: 13px !important;
  
 }
-.btn-check{
+.active {
+    background-color: white !important;
+}
+.fade{
+    background-color: none !important;
+}
+/* .btn-check{
 
     box-shadow:20px 20px 50px 10px rgb(233, 233, 233) inset;
-}
+} */
