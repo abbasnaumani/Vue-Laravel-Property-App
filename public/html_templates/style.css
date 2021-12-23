@@ -1037,17 +1037,7 @@ body {
 }
 
 
-
-
 /* User Profile Page */
-
-.profile-image-outer-container {
-    margin-top: auto !important;
-    margin-bottom: auto !important;
-    border-radius: 50% !important;
-    position: relative !important;
-    cursor: pointer !important;
-}
 
 .profile-image-outer-container {
     margin-top: auto !important;
@@ -1123,7 +1113,6 @@ input[type='radio'] {
 }
 
 input[type='radio']:checked {
-
     background-image: url("tick.png") !important;
     width: 30px;
     height: 30px;
@@ -1132,15 +1121,4 @@ input[type='radio']:checked {
     border: none !important;
     bottom: -2px !important;
     left: 13px !important;
- 
 }
-.active {
-    background-color: white !important;
-}
-.fade{
-    background-color: none !important;
-}
-/* .btn-check{
-
-    box-shadow:20px 20px 50px 10px rgb(233, 233, 233) inset;
-} */
