@@ -1,12 +1,12 @@
 <template>
         <front-header></front-header>
-    <div class="main py-3" v-if="property">
+    <div class="main py-3">
         <section class="page-top-banner border-0 mt-5">
             <div class="container py-4 position-relative z-index-2">
                 <div class="row py-4 mt-5 d-flex flex-wrap-reverse">
                     <div
                         class="col-md-8 order-2 order-md-1 d-flex align-self-center justify-content-md-start justify-content-sm-center justify-content-center">
-                        <div class="main-heading text-lg-start">
+                        <div class="main-heading text-lg-start" v-if="property">
                             <h2 class="font-weight-bold text-light mb-0">{{property.property_detail.address}}</h2>
                             <div class="d-flex justify-content-md-start justify-content-center">
                                 <p style="opacity: 0.5;" class="text-white mb-0 px-1">{{property.title}}</p>
@@ -41,7 +41,7 @@
                                         <li data-target="#demo" data-slide-to="2" class="test-3"></li>
                                         <li data-target="#demo" data-slide-to="3" class="test-4"></li>
                                     </ul>
-                                    <div class="carousel-inner carousel-hover">
+                                    <div class="carousel-inner carousel-hover" v-if="property">
                                         <div class="carousel-item active image-div">
                                             <div class="image">
 <!--                                                {{property.media}}-->
@@ -74,7 +74,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-5">
+                        <div class="col-lg-5" v-if="property">
                             <div class="border-radius">
                                 <table class="table table-striped border-radius">
                                     <tbody>
@@ -165,7 +165,7 @@
                         </div>
                     </div>
                     <!-- new row in col-lg-9  -->
-                    <div class="row">
+                    <div class="row" v-if="property">
                         <div class="col">
                             <div class="information">
                                 <h5 class="mt-5 mb-3 font-bold">Description</h5>
@@ -415,80 +415,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 mt-5 ">
-                            <div class="card card-form" style="width:100%">
-                                <div class="card-body">
-                                    <h3 class="card-title font-weight-bold text-dark">Contact Us</h3>
-                                    <p class="card-text">We help you choose your property and any other question</p>
-                                    <form>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="text" placeholder="Name *"
-                                                   v-model="name"
-                                                   @blur="v$.name.$touch()"
-                                            >
-                                            <div class="text-left">
-                                                <div v-if="v$.name.$dirty">
-                                                    <sub v-if="v$.name.$error"
-                                                         class="px-2 py-2 text-danger">
-                                                        Name is Required
-                                                    </sub>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" id="userEmail" placeholder="E-mail *"
-                                                   v-model="userEmail" @blur="v$.userEmail.$touch()">
-                                            <div class="text-left">
-                                                <div v-if="v$.userEmail.$dirty">
-                                                    <sub v-if="v$.userEmail.$error"
-                                                         class="px-2 py-2 text-danger">
-                                                        Please enter a valid Email address
-                                                    </sub>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="tel" class="form-control" id="phone" placeholder="Phone *"
-                                                   v-model="phone_number" @blur="v$.phone_number.$touch()">
-                                            <div class="text-left">
-                                                <div v-if="v$.phone_number.$dirty">
-                                                    <sub v-if="v$.phone_number.$error"
-                                                         class="px-2 py-2 text-danger">
-                                                         Phone Number is Required
-                                                    </sub>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <textarea class="form-control" rows="5" id="comment" placeholder="Message *"
-                                                      v-model="message" @blur="v$.message.$touch()"></textarea>
-                                            <div class="text-left">
-                                                <div v-if="v$.message.$dirty">
-                                                    <sub v-if="v$.message.$error"
-                                                         class="px-2 py-2 text-danger">
-                                                        Message is Required
-                                                    </sub>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <button
-                                            v-if="v$.$invalid"
-                                            type="submit"
-                                            class="btn border-0 btn-primary btn-block font-weight-bold btn-color py-2 cursor-not-allowed"
-                                            disabled
-                                        >
-                                            <i class="fal fa-fw fa-sign-in-alt mr-1"></i>Send Message
-                                        </button>
-                                        <button v-else @click.prevent="handleContactUs"
-                                                type="submit"
-                                                class="btn border-0 btn-primary btn-block font-weight-bold btn-color py-2"
-                                        >
-                                            <i class="fal fa-fw fa-sign-in-alt mr-1"></i>Send Message
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                        <contact-us></contact-us>
                     </div>
                 </div>
             </div>
@@ -534,77 +461,29 @@
 </template>
 
 <script>
-import FrontHeader from "../../components/ui/base/FrontHeader";
-import FrontFooter from "../../components/ui/base/FrontFooter";
-import {getAgencyUsersBySlug} from "../../composables/agency";
+import FrontHeader from "../../components/ui/base/Header";
+import FrontFooter from "../../components/ui/base/Footer";
 import {computed, ref} from "vue";
 import propertyService from "../../services/propertyService";
 // import PropertyFilesList from "../../property/PropertyFilesList";
-import {ApiResponse} from "../../../constants";
-import contactUsService from "../../services/contactUsService";
-import {email, minLength, required, sameAs} from "@vuelidate/validators";
-import useVuelidate from "@vuelidate/core";
+import ContactUs from "../../components/widgets/ContactUs";
 export default {
     name: "PropertyDetail",
-    components: { FrontFooter, FrontHeader},
+    components: {ContactUs, FrontFooter, FrontHeader},
     props:{
         slug:String,
         propertyId:Number,
     },
     setup(props){
-        const name = ref('');
-        const userEmail = ref('');
-        const phone_number = ref('');
-        const message = ref('');
-        const agencyUsers = getAgencyUsersBySlug(props.slug);
+
         let property = ref();
         getPropertyById()
         async function getPropertyById() {
             property.value = await propertyService.getPropertyById(props.propertyId);
         }
-        async function handleContactUs(){
-            const response = await contactUsService.handleContactUs({name: name.value, email: userEmail.value,phone_number:phone_number.value,message:message.value});
-            if (response.status === ApiResponse.SUCCESS) {
-                name.value = '';
-                userEmail.value = '';
-                phone_number.value = '';
-                message.value = '';
-            }
-        }
-        const validationRules = computed(() => {
-            return {
-                userEmail: {
-                    required,
-                    email
-                },
-                phone_number: {
-                    required,
-                },
-                name: {
-                    required
-                },
-                message: {
-                    required
-                },
-            }
-        });
-        const v$ = useVuelidate(
-            validationRules,
-            {
-                userEmail,
-                phone_number,
-                name,
-                message
-            }
-        );
+
         return{
-            v$,
             property,
-            handleContactUs,
-            name,
-            userEmail,
-            phone_number,
-            message
         }
     }
 }

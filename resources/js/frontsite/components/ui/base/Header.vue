@@ -44,7 +44,7 @@
                                                         <i style="font-size:14px;" class="cursor-pointer fas fa-user p-1" data-toggle="dropdown"></i>
                                                         <div class="dropdown-menu">
                                                             <a class="dropdown-item" href="#" >
-                                                                <p class="font-weight-bold mb-0">{{ userName }}</p>
+                                                                <p class="font-weight-bold mb-0">{{ profile2?.first_name+' '+profile2?.last_name }}</p>
                                                             </a>
                                                             <a class="dropdown-item" href="#">
                                                                 <p class="mb-0 mt-0 header-dropdown-links px-2">My Account</p>

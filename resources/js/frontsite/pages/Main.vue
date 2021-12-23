@@ -205,113 +205,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- 3rd div  -->
-                                <div class="col-12 col-sm-6 col-lg-12" >
-                                    <div class="owl-crousal mt-4">
-                                        <div class="card card-crousel mt-2" style="width:100%;height: 345px;">
-                                            <div class="card-body">
-                                                <h4 class="text-white text-center">Our Agents</h4>
-                                                <div id="demo" class="carousel slide mt-4" data-ride="carousel">
-
-                                                    <!-- Indicators -->
-                                                    <ul class="carousel-indicators circle">
-                                                        <li data-target="#demo" data-slide-to="0" class="active test">
-                                                        </li>
-                                                        <li data-target="#demo" data-slide-to="1" class="test"></li>
-                                                    </ul>
-
-                                                    <!-- The slideshow -->
-                                                    <div class="carousel-inner" v-if="agencyUsers">
-                                                        <div class="carousel-item active text-center">
-                                                            <img style="max-width: 110px;border-radius: 100%;" id="img"
-                                                                 src="/assets/images/img-13.jpg" alt="Los Angeles" width="100%"
-                                                                 height="100px">
-                                                            <h5 class="text-white mt-3"></h5>
-                                                            <a href="#"
-                                                               class="text-white carousel-a  d-lg-block d-md-block d-sm-block d-block">(800)
-                                                                123-4567</a>
-                                                            <a href="#"
-                                                               class="text-white carousel-a d-lg-block d-md-block d-sm-block d-block">you@domain.com</a>
-                                                        </div>
-                                                        <div class="carousel-item  text-center" v-for="user in agencyUsers">
-                                                            <img style="max-width: 110px;border-radius: 100%;"
-                                                                 src="/assets/images/img-11.jpg" alt="Chicago" width="100%"
-                                                                 height="100px">
-                                                            <h5 class="text-white mt-3">{{user.first_name+' '+user.last_name}}</h5>
-                                                            <a href="#"
-                                                               class="text-white carousel-a d-lg-block d-md-block d-sm-block d-block">{{user.phone_number}}</a>
-                                                            <a href="#"
-                                                               class="text-white carousel-a d-lg-block d-md-block d-sm-block d-block">{{user.email}}</a>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- 4th div  -->
-                                <div class="col-12 col-sm-6 col-lg-12">
-                                    <div class="form-card mt-4 ">
-                                        <div class="card card-form border-0 mt-2 mb-4 py-5"
-                                             style="width:100%;height: 350px;">
-                                            <div class="card-body">
-                                                <h4>Newsletter</h4>
-                                                <p>Subscribe and be the first to know about our best offers</p>
-                                                <form>
-                                                    <div class="form-group">
-                                                        <input type="text"
-                                                               class="form-control"
-                                                               placeholder="Your Name *"
-                                                               v-model="name"
-                                                               required
-                                                               @blur="v$.name.$touch()"
-                                                        />
-                                                        <div class="text-left">
-                                                            <div v-if="v$.name.$dirty">
-                                                                <sub v-if="v$.name.$error"
-                                                                     class="px-2 py-2 text-danger">
-                                                                    Name is Required
-                                                                </sub>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="email"
-                                                               class="form-control"
-                                                               placeholder="Your Email Address *"
-                                                               v-model="userEmail"
-                                                               required
-                                                               @blur="v$.userEmail.$touch()"
-                                                        />
-                                                        <div class="text-left">
-                                                            <div v-if="v$.userEmail.$dirty">
-                                                                <sub v-if="v$.userEmail.$error"
-                                                                     class="px-2 py-2 text-danger">
-                                                                    Please enter a valid Email address
-                                                                </sub>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <button
-                                                        v-if="v$.$invalid"
-                                                        type="submit"
-                                                        class="btn btn-color btn-primary w-100 cursor-not-allowed"
-                                                        disabled
-                                                    >
-                                                        <i class="fal fa-fw fa-sign-in-alt mr-1"></i>Submit
-                                                    </button>
-                                                    <button v-else @click.prevent="handleSubscription"
-                                                            type="submit"
-                                                            class="btn btn-color btn-primary w-100"
-                                                    >
-                                                        <i class="fal fa-fw fa-sign-in-alt mr-1"></i>Submit
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <!-- agents on carousel  -->
+                                <agents-carousel :slug="slug"></agents-carousel>
+                                <!-- News Letter for subscribe  -->
+                               <news-letter></news-letter>
                             </div>
                         </div>
                     </div>
@@ -324,71 +221,33 @@
 </template>
 
 <script>
-import FrontHeader from "../components/ui/base/FrontHeader";
+import FrontHeader from "../components/ui/base/Header";
 import Carousel from "../components/utilities/Carousel";
-import FrontFooter from "../components/ui/base/FrontFooter";
-import {getPropertiesBySlug} from "../composables/property";
+import FrontFooter from "../components/ui/base/Footer";
 import propertyService from "../services/propertyService";
-import {computed, ref} from "vue";
-import {ApiResponse, PropertyPurpose} from "../../constants";
-import {preventDefault} from "../../../../public/assets/plugins/fullcalendar";
-import {getAgencyUsersBySlug} from "../composables/agency";
-import subscribeService from "../services/subscribeService";
-import {email, required} from "@vuelidate/validators";
-import useVuelidate from "@vuelidate/core";
+import {ref} from "vue";
+import {PropertyPurpose} from "../../constants";
+import NewsLetter from "../components/widgets/NewsLetter";
+import AgentsCarousel from "../components/widgets/AgentsCarousel";
 export default {
     name: "Main",
-    components: {FrontFooter, Carousel, FrontHeader},
+    components: {AgentsCarousel, NewsLetter, FrontFooter, Carousel, FrontHeader},
     props:{
       slug:String,
     },
     setup(props){
 
-        const name = ref('');
-        const userEmail = ref('');
-
-        const agencyUsers = getAgencyUsersBySlug(props.slug);
         let properties = ref([]);
         getPropertiesBySlug()
         async function getPropertiesBySlug(currentPage,perPage) {
             const addMore = 3;
              properties.value = await propertyService.getPropertiesBySlug(props.slug, {currentPage,perPage,addMore});
         }
-        async function handleSubscription() {
-            const response = await subscribeService.handleSubscription({name: name.value, email: userEmail.value});
-            console.log(response, "asdsad");
-            if (response.status === ApiResponse.SUCCESS) {
-                name.value = '';
-                userEmail.value = '';
-            }
-        }
-        const validationRules = computed(() => {
-            return {
-                userEmail: {
-                    required,
-                    email
-                },
-                name: {
-                    required
-                },
-            }
-        });
-        const v$ = useVuelidate(
-            validationRules,
-            {
-                userEmail,
-                name,
-            }
-        );
+
         return{
-            v$,
             PropertyPurpose,
-            name,
-            userEmail,
             properties,
             getPropertiesBySlug,
-            agencyUsers,
-            handleSubscription
         }
     }
 }

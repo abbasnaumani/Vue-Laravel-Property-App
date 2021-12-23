@@ -263,8 +263,8 @@
 </template>
 
 <script>
-import FrontHeader from "../../components/ui/base/FrontHeader";
-import FrontFooter from "../../components/ui/base/FrontFooter";
+import FrontHeader from "../../components/ui/base/Header";
+import FrontFooter from "../../components/ui/base/Footer";
 import propertyService from "../../services/propertyService";
 import {ref, watchEffect} from "vue";
 import {PropertyPurpose} from "../../../constants";

@@ -102,10 +102,10 @@ import {computed, ref} from "vue";
 import authService from "~/frontsite/services/authService";
 import {email, minLength, required} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
-import FrontHeader from "~/frontsite/components/ui/base/FrontHeader";
+import Header from "~/frontsite/components/ui/base/Header";
 export default {
     name: "Login",
-    components: {FrontHeader},
+    components: {Header},
     props: {
         token: String,
     },

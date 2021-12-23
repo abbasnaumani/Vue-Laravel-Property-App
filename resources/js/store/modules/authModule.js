@@ -1,15 +1,16 @@
 import {LocalStorageKeys} from "../../constants";
 
 const state = {
-    profile: JSON.parse(localStorage.getItem(LocalStorageKeys.PROFILE)) || null,
+    profile: JSON.parse(localStorage.getItem(LocalStorageKeys.PROFILE))
+        || null,
     accessToken: localStorage.getItem(LocalStorageKeys.ACCESS_TOKEN) || null,
 }
 const getters = {
-    isAuthenticated(state) {
-        return state.accessToken;
-    },
     getProfile(state) {
         return state.profile;
+    },
+    isAuthenticated(state) {
+        return state.accessToken;
     },
     getUserName(state) {
         if (state.profile) {
@@ -25,6 +26,9 @@ const getters = {
     },
 }
 const mutations = {
+    mutateProfile(state, user) {
+        state.profile = user;
+    },
     mutateAuthState(state, {user, token}) {
         state.profile = user;
         state.accessToken = token;
@@ -33,11 +37,12 @@ const mutations = {
         state.profile = null;
         state.accessToken = null;
     },
-    setProfile(stata,user){
-        state.profile = JSON.parse(JSON.stringify(user));
-    }
 }
 const actions = {
+    async actionProfile({commit}, profile) {
+        commit('mutateProfile', profile);
+        localStorage.setItem(LocalStorageKeys.PROFILE, JSON.stringify(profile));
+    },
     actionAuthState({commit}, {user, token}) {
         commit('mutateAuthState', {user, token});
         localStorage.setItem(LocalStorageKeys.PROFILE, JSON.stringify(user));
@@ -49,11 +54,6 @@ const actions = {
         localStorage.removeItem(LocalStorageKeys.ACCESS_TOKEN);
         localStorage.clear();
     },
-    setProfile({commit}, user){
-        commit('setProfile', user);
-        localStorage.setItem(LocalStorageKeys.PROFILE, JSON.stringify(user));
-        console.log(localStorage.getItem(LocalStorageKeys.PROFILE),"localStorage.setItem(LocalStorageKeys.PROFILE",localStorage.getItem(LocalStorageKeys.PROFILE.agencies))
-    }
 }
 export default {
     state,

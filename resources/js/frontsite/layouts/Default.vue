@@ -23,7 +23,7 @@
 <script>
 import store from "~/frontsite/store";
 import {computed} from "vue";
-import FrontHeader from "../components/ui/base/FrontHeader";
+import FrontHeader from "../components/ui/base/Header";
 
 export default {
     name: "Default",
