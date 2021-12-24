@@ -19,7 +19,7 @@
                                 <div class="block-header">
                                     <h3 class="block-title">User Record </h3>
                                     <router-link class="btn btn-primary" data-validation="validation-span-id"
-                                                 to="/user/add">Add
+                                                 to="/admin/user/add">Add
                                     </router-link>
                                 </div>
                                 <div class="block-content block-content-full">
@@ -53,7 +53,7 @@
                                                         {{(user.created_at) ? user.created_at : ''}} </em>
                                             </td>
                                             <td class="btn-group text-center font-w600 font-size-sm">
-                                                <router-link :to="{path:'/user/edit/'+user.id}" class="btn btn-primary "><i class="fa fa-pencil"></i></router-link>
+                                                <router-link :to="{path:'/admin/user/edit/'+user.id}" class="btn btn-primary "><i class="fa fa-edit"></i></router-link>
                                                 <button @click="openDeleteModal(user)" class="btn btn-danger mx-2"><i class="far fa-trash-alt"></i></button>
                                             </td>
                                         </tr>

@@ -28,6 +28,7 @@
                                                 id="email"
                                                 class="form-control form-control-alt form-control-lg"
                                                 type="email"
+                                                placeholder="Email"
                                                 v-model="userEmail"
                                                 @blur="v$.userEmail.$touch()"
                                                 required
@@ -48,6 +49,7 @@
                                                 id="password"
                                                 class="form-control form-control-alt form-control-lg"
                                                 type="password"
+                                                placeholder="Password"
                                                 v-model="password"
                                                 required
                                                 autocomplete="current-password"
@@ -72,7 +74,7 @@
                                                        for="login-remember">Remember Me</label>
                                             </div>
                                             <div class="col-md-6 col-xl-5 text-right">
-                                                <router-link to="/forgot/password"
+                                                <router-link to="/admin/forgot/password"
                                                              class="btn-block-option font-size-sm">
                                                     <p class="text-muted">Forgot Password</p>
                                                 </router-link>

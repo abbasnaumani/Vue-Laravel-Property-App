@@ -22,7 +22,7 @@ class UserService extends BaseService
         try {
             $user = $this->getAuthUser();
             $userData = User::create($this->userData($request));
-            $agencyUser = $userData->agencyUsers()->create($this->agencyUsersData($user->agencies()->first()->id,$user->id,$request->role_id));
+            $agencyUser = $userData->agencyUsers()->create($this->agencyUsersData($user->agencies()->first()->id,$user->id,$request->role_id)); // agency id will be from vue site
             DB::commit();
             $this->setApiSuccessMessage(trans('user.user_store'));
         } catch (\Exception $e) {
