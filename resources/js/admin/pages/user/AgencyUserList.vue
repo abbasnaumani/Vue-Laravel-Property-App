@@ -19,7 +19,7 @@
                                 <div class="block-header">
                                     <h3 class="block-title">User Record </h3>
                                     <router-link class="btn btn-primary" data-validation="validation-span-id"
-                                                 to="/user/add">Add
+                                                 to="/admin/user/add">Add
                                     </router-link>
                                 </div>
                                 <div class="block-content block-content-full">
@@ -71,15 +71,15 @@
         </div>
     </main>
     <app-modal :open="openConfirmDeleteModal"
-               confirmLabel="Delete Property?"
+               confirmLabel="Delete User?"
                cancelLabel="Cancel"
-               title="Confirm Delete Property"
+               title="Confirm Delete Agency User"
                icon="warning"
                :isConfirmButtonDisabled="isConfirmButtonDisabled"
                v-on:confirm="modalConfirmDelete(modalUser)"
                v-on:cancel="openConfirmDeleteModal=false">
         <div>
-            <p>Are you sure you want to delete this property?</p><p class="mt-2 font-bold">{{modalUser.title}}</p>
+            <p>Are you sure you want to delete this user from agency?</p><p class="mt-2 font-bold">{{modalUser.title}}</p>
         </div>
     </app-modal>
     <app-modal :open="openResponseModal"

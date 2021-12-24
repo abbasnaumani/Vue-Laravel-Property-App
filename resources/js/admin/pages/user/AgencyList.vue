@@ -19,7 +19,7 @@
                                 <div class="block-header">
                                     <h3 class="block-title">Agency Record </h3>
                                     <router-link class="btn btn-primary" data-validation="validation-span-id"
-                                                 to="/user/add">Add
+                                                 to="">Add
                                     </router-link>
                                 </div>
                                 <div class="block-content block-content-full">
@@ -58,7 +58,7 @@
                                                     {{(agency.created_at) ? agency.created_at : ''}} </em>
                                             </td>
                                             <td class="btn-group text-center font-w600 font-size-sm">
-                                                <router-link :to="{path:'/user/edit/'+agency.id}" class="btn btn-primary "><i class="fa fa-edit"></i></router-link>
+                                                <router-link :to="{path:'/admin/agency/edit/'+agency.id}" class="btn btn-primary "><i class="fa fa-edit"></i></router-link>
                                                 <button @click="openDeleteModal(agency)" class="btn btn-danger mx-2"><i class="far fa-trash-alt"></i></button>
                                                 <router-link :to="{path:'/admin/'+agency.id+'/users/'}" class="btn btn-info mx-2"><i class="far fa-eye"></i></router-link>
                                             </td>
@@ -74,15 +74,15 @@
         </div>
     </main>
     <app-modal :open="openConfirmDeleteModal"
-               confirmLabel="Delete Property?"
+               confirmLabel="Delete Agency?"
                cancelLabel="Cancel"
-               title="Confirm Delete Property"
+               title="Confirm Delete Agency"
                icon="warning"
                :isConfirmButtonDisabled="isConfirmButtonDisabled"
                v-on:confirm="modalConfirmDelete(modalUser)"
                v-on:cancel="openConfirmDeleteModal=false">
         <div>
-            <p>Are you sure you want to delete this property?</p><p class="mt-2 font-bold">{{modalUser.title}}</p>
+            <p>Are you sure you want to delete this agency?</p><p class="mt-2 font-bold">{{modalUser.title}}</p>
         </div>
     </app-modal>
     <app-modal :open="openResponseModal"

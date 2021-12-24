@@ -17,7 +17,7 @@
                                 </p>
                                 <div>
                                     Or click on the link for log into your account.
-                                    <router-link class="btn-block-option " to="/login"
+                                    <router-link class="btn-block-option " to="/admin/login"
                                                  data-toggle="tooltip" data-placement="left"
                                                  title="Sign In">
                                         <p class="text-muted fs-sm fw-medium">Login</p>

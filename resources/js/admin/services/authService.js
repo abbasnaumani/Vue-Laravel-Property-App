@@ -86,8 +86,8 @@ class AuthService extends EventEmitter {
                 }
                 toast.success(response.data.message);
                 router.push({
-                    name: 'reset-password',
-                    params: {encodedToken: response.data.data.token}
+                    name: 'admin-reset-password',
+                    params: {encodedToken: response.data.payload.token}
                 });
             } else {
                 toast.error(response.data.message);

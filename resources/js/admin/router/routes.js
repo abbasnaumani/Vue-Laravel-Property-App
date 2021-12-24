@@ -18,6 +18,20 @@ export default [
         meta: {login: true, meta_title: 'Admin Login'},
         props: true,
     },
+    {
+        path: '/admin/forgot/password',
+        name: 'admin-forgot-password',
+        component: page('auth/ForgotPassword'),
+        meta: {login: true, meta_title: 'Forgot Password'},
+        props: true,
+    },
+    {
+        path: '/admin/reset/password/:encodedToken',
+        name: 'admin-reset-password',
+        component: page('auth/ResetPassword'),
+        meta: {login: true, meta_title: 'Reset Password'},
+        props: ({params}) => ({encodedToken: params.encodedToken || ''}),
+    },
     // no need because wo consider admin as super admin
     // {
     //     path: '/signup',
@@ -26,18 +40,14 @@ export default [
     //     meta: {login: true, meta_title: 'Admin Registration'},
     //     props: true,
     // },
-    {
-        path: '/admin/dashboard',
-        name: 'admin-dashboard',
-        meta: {public: false, meta_title: 'User Dashboard'},
-        component: page('user/UserDashboard'),
-    },
+    // all agency list route
     {
         path: '/admin/agency/list',
         name: 'admin-agency-list',
         meta: {public: false, meta_title: 'Agency List'},
         component: page('user/AgencyList'),
     },
+    // Agency Users Route
     {
         path: '/admin/:agencyId/users/',
         name: 'admin-agency-user-list',
@@ -45,59 +55,35 @@ export default [
         component: page('user/AgencyUserList'),
         props: ({params}) => ({agencyId: params.agencyId || 0}),
     },
+    //Add user to agency
+    {
+        path: '/admin/user/add',
+        name: 'admin-user-add',
+        meta: {public: false, meta_title: 'User Add'},
+        component: page('user/AddAgencyUser'),
+    },
+
+    {
+        path: '/admin/user/list',
+        name: 'admin-user-list',
+        meta: {public: false, meta_title: 'User List'},
+        component: page('user/UserList'),
+    },
+
+    {
+        path: '/admin/dashboard',
+        name: 'admin-dashboard',
+        meta: {public: false, meta_title: 'User Dashboard'},
+        component: page('user/UserDashboard'),
+    },
+
     {
         path: '/logout',
         name: 'logout',
         meta: {logout: true, meta_title: 'Logout'},
         component: page('auth/Logout')
     },
-    // {
-    //     path: '/main/login',
-    //     name: 'login',
-    //     component: page('frontsite/auth/Login'),
-    //     meta: {login: true, meta_title: 'User Login'},
-    //     props: true,
-    // },
-    // {
-    //     path: '/main/signup',
-    //     name: 'register',
-    //     component: page('frontsite/auth/Register'),
-    //     meta: {login: true, meta_title: 'User Registration'},
-    //     props: true,
-    // },
-    // {
-    //     path: '/forgot/password',
-    //     name: 'forgot-password',
-    //     component: page('auth/ForgotPassword'),
-    //     meta: {login: true, meta_title: 'Forgot Password'},
-    //     props: true,
-    // },
-    // {
-    //     path: '/reset/password/:encodedToken',
-    //     name: 'reset-password',
-    //     component: page('auth/ResetPassword'),
-    //     meta: {login: true, meta_title: 'Reset Password'},
-    //     props: ({params}) => ({encodedToken: params.encodedToken || ''}),
-    // },
-    // {
-    //     path: '/',
-    //     name: 'main',
-    //     meta: {public: false, meta_title: 'User Dashboard'},
-    //     component: UserDashboard,
-    // },
 
-    // {
-    //     path: '/user/list',
-    //     name: 'user-list',
-    //     meta: {public: false, meta_title: 'User List'},
-    //     component: UserList,
-    // },
-    // {
-    //     path: '/user/add',
-    //     name: 'user-add',
-    //     meta: {public: false, meta_title: 'User Add'},
-    //     component: page('user/AddAgencyUser'),
-    // },
     // {
     //     path: '/user/chat',
     //     name: 'user-chat',
@@ -156,4 +142,15 @@ export default [
     //     component: page('UploadSingleComposition'),
     // },
     //
+    // {
+    //     path: '/:pathMatch(.*)*',
+    //     name: 'not-found',
+    //     component: page('NotFound')
+    // },
+    // // if you omit the last `*`, the `/` character in params will be encoded when resolving or pushing
+    // {
+    //     path: '/:pathMatch(.*)',
+    //     name: 'bad-not-found',
+    //     component: page('NotFound')
+    // },
 ];

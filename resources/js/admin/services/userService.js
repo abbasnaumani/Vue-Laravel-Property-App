@@ -46,7 +46,7 @@ class UserService extends EventEmitter {
             if (response.data.status === ApiResponse.SUCCESS) {
                 toast.success(response.data.message);
                 // await store.dispatch('setUsers', response.data.payload);
-                router.push({name: 'user-list'});
+                router.push({name: 'admin-user-list'});
             } else {
                 toast.error(response.data.message);
             }
