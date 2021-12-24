@@ -19,7 +19,7 @@
                     <div class="block-content fs-sm">
                         <p> {{ description }}</p>
                     </div>
-                    <div class="block-content block-content-full text-end bg-body">
+                    <div class="block-content block-content-full text-end bg-body d-flex justify-content-end">
                         <button v-if="cancelLabel" type="button" class="btn btn-sm btn-alt-secondary me-1"
                                 v-on:click="$emit('cancel')"
                                 data-dismiss="modal">{{ cancelLabel }}

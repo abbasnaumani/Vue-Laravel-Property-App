@@ -182,7 +182,7 @@
                                             </div>
                                         </div>
                                         <div class="py-2 row">
-                                            <div class="form-group col-4">
+                                            <div class="form-group w-100 px-3">
                                                 <upload-list :items="dataFiles" :itemsProgress="fileProgress"></upload-list>
                                             </div>
                                         </div>
