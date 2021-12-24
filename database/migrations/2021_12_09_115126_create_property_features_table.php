@@ -16,9 +16,9 @@ class CreatePropertyFeaturesTable extends Migration
         Schema::create('property_features', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('property_id');
-            $table->tinyInteger('is_central_air_conditioning')->default(0);
-            $table->tinyInteger('is_central_heating')->default(0);
-            $table->tinyInteger('is_furnished')->default(0);
+            $table->tinyInteger('is_central_air_conditioning')->default(0)->nullable();
+            $table->tinyInteger('is_central_heating')->default(0)->nullable();
+            $table->tinyInteger('is_furnished')->default(0)->nullable();
             $table->string('other_facilities')->nullable();
             $table->timestamps();
             $table->foreign('property_id')->references('id')->on('properties')->onDelete('cascade');

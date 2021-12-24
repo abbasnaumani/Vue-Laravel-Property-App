@@ -19,7 +19,7 @@
                                 <div class="block-header">
                                     <h3 class="block-title">Property Record </h3>
                                     <router-link class="btn btn-primary" data-validation="validation-span-id"
-                                            to="/property/add">Add
+                                            to="/admin/property/add">Add
                                     </router-link>
                                 </div>
                                 <div class="block-content block-content-full">
