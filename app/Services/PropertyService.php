@@ -192,7 +192,6 @@ class PropertyService extends BaseService
      */
     private function propertyFeaturesData(Request $request): array
     {
-        dd($request);
         return [
             'is_central_air_conditioning' => $request->input('is_central_air_conditioning'),
             'is_central_heating' => $request->input('is_central_heating'),
