@@ -11,6 +11,13 @@ export default [
         meta: {login: true, meta_title: 'Admin Login'},
         props: true,
     },
+    {
+        path: '/admin',
+        name: 'admin',
+        component: page('auth/Login'),
+        meta: {login: true, meta_title: 'Admin Login'},
+        props: true,
+    },
     // no need because wo consider admin as super admin
     // {
     //     path: '/signup',
@@ -20,20 +27,20 @@ export default [
     //     props: true,
     // },
     {
-        path: '/dashboard',
-        name: 'user-dashboard',
+        path: '/admin/dashboard',
+        name: 'admin-dashboard',
         meta: {public: false, meta_title: 'User Dashboard'},
         component: page('user/UserDashboard'),
     },
     {
         path: '/admin/agency/list',
-        name: 'agency-list',
+        name: 'admin-agency-list',
         meta: {public: false, meta_title: 'Agency List'},
         component: page('user/AgencyList'),
     },
     {
         path: '/admin/:agencyId/users/',
-        name: 'agency-user-list',
+        name: 'admin-agency-user-list',
         meta: {public: false, meta_title: 'Agency User List'},
         component: page('user/AgencyUserList'),
         props: ({params}) => ({agencyId: params.agencyId || 0}),
@@ -97,38 +104,32 @@ export default [
     //     meta: {public: false, meta_title: 'User Chat'},
     //     component: UserChat,
     // },
-    // {
-    //     path: '/properties',
-    //     name: 'properties',
-    //     meta: {public: true, meta_title: 'KS Properties'},
-    //     component: page('frontsite/property/Properties'),
-    // },
-    // {
-    //     path: '/property',
-    //     name: 'property-dashboard',
-    //     meta: {public: false, meta_title: 'Property Dashboard'},
-    //     component: page('property/Dashboard'),
-    // },
-    // {
-    //     path: '/property/details/:propertyId',
-    //     name: 'property-list',
-    //     meta: {public: false, meta_title: 'Property Details'},
-    //     component: page('property/PropertyDetails'),
-    //     props: ({params}) => ({propertyId: params.propertyId || 0}),
-    // },
-    // {
-    //     path: '/property/add',
-    //     name: 'property-add',
-    //     meta: {public: false, meta_title: 'Add Property'},
-    //     component: page('property/AddProperty'),
-    // },
-    // {
-    //     path: '/property/edit/:propertyId',
-    //     name: 'property-edit',
-    //     meta: {public: false, meta_title: 'Edit Property'},
-    //     component: page('property/EditProperty'),
-    //     props: ({params}) => ({propertyId: params.propertyId || 0}),
-    // },
+    {
+        path: '/admin/property',
+        name: 'admin-property-dashboard',
+        meta: {public: false, meta_title: 'Property Dashboard'},
+        component: page('property/Dashboard'),
+    },
+    {
+        path: '/admin/property/details/:propertyId',
+        name: 'admin-property-list',
+        meta: {public: false, meta_title: 'Property Details'},
+        component: page('property/PropertyDetails'),
+        props: ({params}) => ({propertyId: params.propertyId || 0}),
+    },
+    {
+        path: '/admin/property/add',
+        name: 'admin-property-add',
+        meta: {public: false, meta_title: 'Add Property'},
+        component: page('property/AddProperty'),
+    },
+    {
+        path: '/admin/property/edit/:propertyId',
+        name: 'admin-property-edit',
+        meta: {public: false, meta_title: 'Edit Property'},
+        component: page('property/EditProperty'),
+        props: ({params}) => ({propertyId: params.propertyId || 0}),
+    },
     // {
     //     path: '/property/search',
     //     name: 'property-search',
@@ -155,19 +156,4 @@ export default [
     //     component: page('UploadSingleComposition'),
     // },
     //
-
-    // {
-    //     path: '/:slug/main',
-    //     name: 'front-main',
-    //     meta: {public: true, meta_title: 'KS Property'},
-    //     component: page('frontsite/Main'),
-    //     props: ({params}) => ({slug: params.slug || ''}),
-    // },
-    // {
-    //     path: '/:slug/:propertyId/detail',
-    //     name: 'front-detail',
-    //     meta: {public: true, meta_title: 'KS Property Detail'},
-    //     component: page('frontsite/property/PropertyDetail'),
-    //     props: ({params}) => ({slug: params.slug || '' , propertyId:params.propertyId || 0}),
-    // }
 ];

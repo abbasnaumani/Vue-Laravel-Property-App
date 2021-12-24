@@ -15,7 +15,7 @@
 <!--            <auth-header/>-->
 <!--            <sidebar/>-->
 <!--        </div>-->
-        <header :isAuthenticated="isAuthenticated"></header>
+        <Header :isAuthenticated="isAuthenticated"></Header>
         <child/>
     </div>
 </template>

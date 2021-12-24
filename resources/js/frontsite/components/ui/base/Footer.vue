@@ -84,7 +84,7 @@
 
 <script>
 export default {
-    name: "FrontFooter"
+    name: "Footer"
 }
 </script>
 

@@ -11,16 +11,16 @@
                         <div class="block-content">
                             <div class="p-sm-3 px-lg-4 py-lg-5">
                                 <h1 class="h2 mb-1">KodeStudio</h1>
-                                <div class="text-muted">
-                                    Welcome, please login. Or
-                                    <router-link to="/signup"
-                                                 class="btn-block-option js-bs-tooltip-enabled"
-                                                 data-bs-toggle="tooltip" data-bs-placement="left"
-                                                 title="" data-bs-original-title="New Account">
-                                        <i class="fa fa-user-plus"></i>
-                                        <p class="text-muted">Create An Account</p>
-                                    </router-link>
-                                </div>
+<!--                                <div class="text-muted">-->
+<!--                                    Welcome, please login. Or-->
+<!--                                    <router-link to="/signup"-->
+<!--                                                 class="btn-block-option js-bs-tooltip-enabled"-->
+<!--                                                 data-bs-toggle="tooltip" data-bs-placement="left"-->
+<!--                                                 title="" data-bs-original-title="New Account">-->
+<!--                                        <i class="fa fa-user-plus"></i>-->
+<!--                                        <p class="text-muted">Create An Account</p>-->
+<!--                                    </router-link>-->
+<!--                                </div>-->
                                 <form>
                                     <div class="py-3">
                                         <div class="form-group">

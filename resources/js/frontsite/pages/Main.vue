@@ -217,21 +217,22 @@
         </div>
     </section>
     <!-- Card End -->
-    <front-footer></front-footer>
+    <Footer></Footer>
 </template>
 
 <script>
-import FrontHeader from "../components/ui/base/Header";
+
 import Carousel from "../components/utilities/Carousel";
-import FrontFooter from "../components/ui/base/Footer";
+
 import propertyService from "../services/propertyService";
 import {ref} from "vue";
 import {PropertyPurpose} from "../../constants";
 import NewsLetter from "../components/widgets/NewsLetter";
 import AgentsCarousel from "../components/widgets/AgentsCarousel";
+import Footer from "../components/ui/base/Footer";
 export default {
     name: "Main",
-    components: {AgentsCarousel, NewsLetter, FrontFooter, Carousel, FrontHeader},
+    components: {Footer, AgentsCarousel, NewsLetter, Carousel},
     props:{
       slug:String,
     },

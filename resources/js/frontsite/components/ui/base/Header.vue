@@ -46,9 +46,9 @@
                                                             <a class="dropdown-item" href="#" >
                                                                 <p class="font-weight-bold mb-0">{{ profile2?.first_name+' '+profile2?.last_name }}</p>
                                                             </a>
-                                                            <a class="dropdown-item" href="#">
+                                                            <router-link :to="{path:'/user/profile'}" class="dropdown-item">
                                                                 <p class="mb-0 mt-0 header-dropdown-links px-2">My Account</p>
-                                                            </a>
+                                                            </router-link>
                                                             <router-link to="/logout" class="dropdown-item">
                                                                 <p class="mb-0 mt-0 header-dropdown-links px-2">Log Out</p>
                                                             </router-link>
