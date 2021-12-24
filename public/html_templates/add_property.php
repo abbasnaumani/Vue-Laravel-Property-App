@@ -259,11 +259,13 @@
         </div>
     </div>
 </section>
+
 <div class="container mt-3">
-  
+
     <br>
     <!-- Nav tabs -->
     <ul class="nav nav-tabs border-0">
+<<<<<<< HEAD
         <li class="nav-item border-right">
             <a class="nav-link ml-4 border-0 btn-check" data-toggle="tab" href="#home">
                 <input type="radio" class="form-check-input " name="propertytype"> Homes
@@ -272,6 +274,18 @@
         <li class="nav-item ml-2">
             <a class="nav-link ml-4 border-0 btn-check" data-toggle="tab" href="#forsale">
                 <input type="radio" class="form-check-input btn-check" name="propertytype"> Plotes
+=======
+        <li class="nav-item btn-check border-right">
+            <a class="nav-link ml-4 border-0" data-toggle="tab" href="#home" class="frFlag">
+                <input type="radio" class="form-check-input " name="propertytype"> Homes
+            </a>
+        </li>
+        <li class="nav-item btn-check border-right">
+            <a class="nav-link ml-4 border-0" data-toggle="tab" href="#forsale">
+                <input type="radio" class="form-check-input" name="propertytype">
+                <label class="form-check-label">Plotes</label>
+                
+>>>>>>> 28509ef8a6b3ff747601ea2af8f8982c0c10b304
             </a>
         </li>
         <li class="nav-item btn-check  ml-2 ">
@@ -351,4 +365,8 @@
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 28509ef8a6b3ff747601ea2af8f8982c0c10b304
 <?php include "footer.php" ?>

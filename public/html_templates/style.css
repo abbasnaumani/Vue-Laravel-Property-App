@@ -658,10 +658,6 @@ body {
     font-size: 13px !important;
 }
 
-.font-bold {
-    font-weight: bolder !important;
-}
-
 
 /* map  */
 
@@ -1017,6 +1013,10 @@ body {
     font-weight: 800!important;
 }
 
+.font-weight-Semi-bold {
+    font-weight: 600!important;
+}
+
 .line-height-9 {
     line-height: 1.9!important;
 }
@@ -1082,19 +1082,19 @@ body {
     padding: 5px !important;
 }
 
-/* Add Property Styling  */
 
+/* Add Property Styling  */
 
 .main_subheader {
     background-color: var(--ks-bg-primary-color) !important;
-        border-radius: 3px;
-        color: #ffffff;
-        margin-bottom: 7px;
-        margin-top: 8px;
-        padding: 7px 0;
-        text-indent: 9px;
-        text-transform: uppercase;
-        width: 99.6%;
+    border-radius: 3px;
+    color: #ffffff;
+    margin-bottom: 7px;
+    margin-top: 8px;
+    padding: 7px 0;
+    text-indent: 9px;
+    text-transform: uppercase;
+    width: 99.6%;
 }
 
 .add_property {
@@ -1104,11 +1104,19 @@ body {
 input[type='radio'] {
     box-sizing: border-box;
     appearance: none;
+<<<<<<< HEAD
     /* border: 1px solid rgb(230, 230, 230); */
     outline: none; 
     width: 80px;
     height: 36px;
     bottom: -5px; 
+=======
+    border: 1px solid rgb(204, 204, 204);
+    border: 2px solid black;
+    outline: none;
+    width: 15px;
+    height: 15px;
+>>>>>>> 28509ef8a6b3ff747601ea2af8f8982c0c10b304
 }
 
 input[type='radio']:checked {
@@ -1143,3 +1151,42 @@ aside .nav-tabs .nav-link:hover {
     text-decoration: none !important;
 }
 
+/* Gallery Image Page */
+
+.image:hover {
+    transform: scale(1.1) !important;
+    background-color: var(--ks-bg-primary-color) !important;
+}
+
+.image {
+    height: 350px !important;
+}
+
+.gallery-crousal-section {
+    height: 500px !important;
+    width: 100%;
+}
+
+.image-gallery-text {
+    background-color: var(--ks-bg-primary-color) !important;
+    font-size: 24px !important;
+}
+
+
+/* Property Dashboard */
+
+.property-tabs>a.active {
+    background-color: var(--ks-bg-secondary-color) !important;
+    border-bottom: 5px solid var(--ks-bg-primary-color) !important;
+    color: white !important;
+}
+
+.property-tabs>a:hover {
+    background-color: var(--ks-bg-secondary-color) !important;
+    border-bottom: 5px solid var(--ks-bg-primary-color) !important;
+    color: white !important;
+}
+
+.property-tabs>a {
+    color: var(--ks-text-secondary-color);
+}
