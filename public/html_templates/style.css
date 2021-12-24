@@ -1147,7 +1147,8 @@ input[type='radio']:checked {
 
 /* Property Dashboard */
 
-.tabs>.show {
+
+/* .tabs>.show {
     background: var(--ks-bg-secondary-color) !important;
     border-bottom: 5px solid var(--ks-bg-primary-color) !important;
     color: whitesmoke !important;
@@ -1161,4 +1162,20 @@ input[type='radio']:checked {
 
 .tabs>a {
     color: var(--ks-text-secondary-color) !important;
+} */
+
+.property-tabs>a.active {
+    background-color: var(--ks-bg-secondary-color) !important;
+    border-bottom: 5px solid var(--ks-bg-primary-color) !important;
+    color: white !important;
+}
+
+.property-tabs>a:hover {
+    background-color: var(--ks-bg-secondary-color) !important;
+    border-bottom: 5px solid var(--ks-bg-primary-color) !important;
+    color: white !important;
+}
+
+.property-tabs>a {
+    color: var(--ks-text-secondary-color);
 }

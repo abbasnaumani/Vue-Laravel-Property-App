@@ -4,19 +4,19 @@
     <div class="container py-5 mt-lg-3">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs font-weight-Semi-bold"> 
-            <li class="nav-item tabs">
+            <li class="nav-item property-tabs">
                 <a class="nav-link active" data-toggle="tab" href="#dashboard">Dashboard</a>
             </li>
-            <li class="nav-item tabs">
+            <li class="nav-item property-tabs">
                 <a class="nav-link" data-toggle="tab" href="#propertyManagement">Property Management</a>
             </li>
-            <li class="nav-item tabs">
+            <li class="nav-item property-tabs">
                 <a class="nav-link" data-toggle="tab" href="#messageCenter">Message Center</a>
             </li>
-            <li class="nav-item tabs">
+            <li class="nav-item property-tabs">
                 <a class="nav-link" data-toggle="tab" href="#accountProfile">My Account & Profiles</a>
             </li>
-            <li class="nav-item tabs">
+            <li class="nav-item property-tabs">
                 <a class="nav-link" data-toggle="tab" href="#report">Reports</a>
             </li>
         </ul>
