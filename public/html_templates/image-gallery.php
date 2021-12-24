@@ -1,5 +1,5 @@
 <?php include "header.php" ?>
-<section>
+<section> 
     <div class="container py-5">
         <div class="row mt-lg-5">
             <div class="col-12 text-center">

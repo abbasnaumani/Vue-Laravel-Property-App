@@ -1013,6 +1013,10 @@ body {
     font-weight: 800!important;
 }
 
+.font-weight-Semi-bold {
+    font-weight: 600!important;
+}
+
 .line-height-9 {
     line-height: 1.9!important;
 }
@@ -1138,4 +1142,23 @@ input[type='radio']:checked {
 .image-gallery-text {
     background-color: var(--ks-bg-primary-color) !important;
     font-size: 24px !important;
+}
+
+
+/* Property Dashboard */
+
+.tabs>.show {
+    background: var(--ks-bg-secondary-color) !important;
+    border-bottom: 5px solid var(--ks-bg-primary-color) !important;
+    color: whitesmoke !important;
+}
+
+.tabs>.active {
+    background: var(--ks-bg-secondary-color) !important;
+    border-bottom: 5px solid var(--ks-bg-primary-color) !important;
+    color: whitesmoke !important;
+}
+
+.tabs>a {
+    color: var(--ks-text-secondary-color) !important;
 }
