@@ -46,7 +46,7 @@ class UserService extends EventEmitter {
             if (response.data.status === ApiResponse.SUCCESS) {
                 toast.success(response.data.message);
                 // await store.dispatch('setUsers', response.data.payload);
-                router.push({name: 'admin-user-list'});
+                router.push({path: 'admin-agency-list'});
             } else {
                 toast.error(response.data.message);
             }
@@ -82,7 +82,7 @@ class UserService extends EventEmitter {
     }
     async deleteUser(userId){
         try {
-            const response = await appApi.delete('/users/'+userId);
+            const response = await appApi.delete('/user/'+userId);
             if (response.data.status === ApiResponse.SUCCESS) {
                 toast.success(response.data.message, );
                 return response.data;

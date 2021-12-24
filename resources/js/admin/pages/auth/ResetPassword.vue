@@ -123,9 +123,9 @@ export default {
         encodedToken: String,
     },
     setup(props) {
-        const verificationCode = ref('654321');
-        const password = ref('12345678');
-        const confirmPassword = ref('12345678');
+        const verificationCode = ref('');
+        const password = ref('');
+        const confirmPassword = ref('');
         const validationRules = computed(() => {
             return {
                 verificationCode: {

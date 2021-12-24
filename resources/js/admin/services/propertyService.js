@@ -135,8 +135,9 @@ class PropertyService extends EventEmitter {
         try {
             const response = await appApi.put('/properties/'+propertyId,dataToUpdate);
             if (response.data.status === ApiResponse.SUCCESS) {
-                await store.dispatch('actionPropertyList', response.data.payload);
-                router.push({name: 'property-dashboard'});
+                // await store.dispatch('actionPropertyList', response.data.payload);
+               await this.getUserPropertyList();
+                router.push({name: 'admin-property-dashboard'});
             } else {
                 toast.error(response.data.message);
             }
@@ -176,7 +177,7 @@ class PropertyService extends EventEmitter {
                 if (response.data.status === ApiResponse.SUCCESS) {
                     // toast.success("Image Uploaded!");
                     await this.getUserPropertyList();
-                    router.push({name: 'property-dashboard'})
+                    router.push({name: 'admin-property-dashboard'})
                 } else {
                     toast.error(response.data.message);
                 }

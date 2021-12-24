@@ -10,9 +10,9 @@ class User
 {
     static function register()
     {
-        Route::get('/user/list', [UserController::class, 'getAgencyUsersList'])
-            ->name('user.list')
-            ->middleware('auth:sanctum');
+//        Route::get('/user/list', [UserController::class, 'getAgencyUsersList'])
+//            ->name('user.list')
+//            ->middleware('auth:sanctum');
         Route::get('/user/menu', [UserController::class, 'userMenu'])
             ->name('user.menu')
             ->middleware('auth:sanctum');
@@ -28,6 +28,9 @@ class User
             ->middleware('auth:sanctum');
         Route::get('/roles', [UserController::class, 'getAllRoles'])
             ->name('user.roles')
+            ->middleware('auth:sanctum');
+        Route::delete('/user/{userId}', [UserController::class, 'destroy'])
+            ->name('user.delete')
             ->middleware('auth:sanctum');
     }
 }

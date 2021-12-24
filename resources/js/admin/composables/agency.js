@@ -26,7 +26,10 @@ export const getAgencyUsersList = (agencyId) => {
     return agencies;
 
 }
-export const updateUserData = () => {
+export const updateAgencyUsersData = (agencyId) =>{
+    agencyService.getAgencyUsers(agencyId);
+}
+export const updateAgencyData = () => {
     agencyService.getAgencyList();
 }
 export const getAgencyUsersBySlug = (slug) => {

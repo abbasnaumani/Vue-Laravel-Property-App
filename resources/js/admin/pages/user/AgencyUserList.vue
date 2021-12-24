@@ -98,6 +98,8 @@ import AppModal from "../../components/ui/base/AppModal";
 import {ApiResponse} from "~/constants";
 import userService from "../../services/userService";
 import {getAgencyUsersList} from "~/admin/composables/agency";
+import {updateUserData} from "../../composables/user";
+import {updateAgencyUsersData} from "../../composables/agency";
 
 export default {
     name: "AgencyUserList",
@@ -124,7 +126,9 @@ export default {
         async function modalConfirmDelete(user) {
             isConfirmButtonDisabled.value = true;
             let response = await userService.deleteUser(user.id);
-            // updateUserData();
+            if(response.status === ApiResponse.SUCCESS){
+                updateAgencyUsersData(props.agencyId);
+            }
             showResponseModal(response);
         }
         function showResponseModal({message, status}) {

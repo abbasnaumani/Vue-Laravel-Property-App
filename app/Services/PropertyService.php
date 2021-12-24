@@ -134,8 +134,8 @@ class PropertyService extends BaseService
             $property->update($this->propertyData($request));
             $propertyDetail = $property->propertyDetail()->first();
             $propertyDetail->update($this->propertyDetailsData($request));
-            $propertyFeature = $property->propertyFeature()->first();
-            $propertyFeature->update($this->propertyFeaturesData($request));
+//            $propertyFeature = $property->propertyFeature()->first();
+//            $propertyFeature->update($this->propertyFeaturesData($request));
             DB::commit();
             $this->setApiSuccessMessage(trans('property.property_updated'), ['property_id' => $id]);
         } catch (\Exception $e) {
@@ -192,6 +192,7 @@ class PropertyService extends BaseService
      */
     private function propertyFeaturesData(Request $request): array
     {
+        dd($request);
         return [
             'is_central_air_conditioning' => $request->input('is_central_air_conditioning'),
             'is_central_heating' => $request->input('is_central_heating'),

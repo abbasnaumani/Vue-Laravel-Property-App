@@ -42,15 +42,15 @@ class AgencyController extends Controller
         return $this->getApiResponse();
     }
     /**
-     * Display a listing of the users
-     *
+     * Display a listing of the Agency users
+     * @param int $id
+     * @return JsonResponse
      */
-    public function getAgencyUsersList()
+    public function getAgencyUsers( $id): JsonResponse
     {
-        $user = $this->getAuthUser();
-        $agency = $user->agencies()->first();
-        $users = $agency->users()->with('roles')->get();
-        $this->setApiSuccessMessage(trans('user.get_user_list'), $users);
+        $agency = Agency::find($id);
+        $users = ($agency) ? $agency->users()->with('roles')->get() : null;
+        $this->setApiSuccessMessage(trans('agency.agency_user_list'), $users);
         return $this->getApiResponse();
     }
     /**
@@ -108,6 +108,9 @@ class AgencyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = Agency::find($id);
+        $user->delete();
+        $this->setApiSuccessMessage(trans('agency.agency_delete'));
+        return $this->getApiResponse();
     }
 }

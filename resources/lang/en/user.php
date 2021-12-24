@@ -24,5 +24,6 @@ return [
     'user_store' => 'User Added to Agency Successfully.',
     'user_not_store' => 'User adding Failed.',
     'get_all_roles' => 'Roles Fetch Successfully.',
+    'user_delete' => 'User deleted Successfully.',
 
 ];

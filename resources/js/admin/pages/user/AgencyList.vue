@@ -79,10 +79,10 @@
                title="Confirm Delete Agency"
                icon="warning"
                :isConfirmButtonDisabled="isConfirmButtonDisabled"
-               v-on:confirm="modalConfirmDelete(modalUser)"
+               v-on:confirm="modalConfirmDelete(modalAgency)"
                v-on:cancel="openConfirmDeleteModal=false">
         <div>
-            <p>Are you sure you want to delete this agency?</p><p class="mt-2 font-bold">{{modalUser.title}}</p>
+            <p>Are you sure you want to delete this agency?</p><p class="mt-2 font-bold">{{modalAgency.title}}</p>
         </div>
     </app-modal>
     <app-modal :open="openResponseModal"
@@ -102,6 +102,8 @@ import AppModal from "../../components/ui/base/AppModal";
 import {ApiResponse} from "~/constants";
 import userService from "~/admin/services/userService";
 import {getAgencyList} from "~/admin/composables/agency";
+import {updateAgencyData} from "../../composables/agency";
+import agencyService from "../../services/agencyService";
 
 export default {
     name: "AgencyList",
@@ -111,18 +113,18 @@ export default {
         const openResponseModal = ref(false);
         const confirmationMessage = ref();
         const isConfirmButtonDisabled = ref(false);
-        const modalUser = ref();
+        const modalAgency = ref();
         const responseIcon = ref('');
         const agencies = getAgencyList();
 
-        function openDeleteModal(user){
-            modalUser.value = user;
+        function openDeleteModal(agency){
+            modalAgency.value = agency;
             openConfirmDeleteModal.value = true;
         }
-        async function modalConfirmDelete(user) {
+        async function modalConfirmDelete(agency) {
             isConfirmButtonDisabled.value = true;
-            let response = await userService.deleteUser(user.id);
-            // updateUserData();
+            let response = await agencyService.deleteAgency(agency.id);
+            updateAgencyData();
             showResponseModal(response);
         }
         function showResponseModal({message, status}) {
@@ -135,7 +137,7 @@ export default {
         return {
             agencies,
             openDeleteModal,
-            modalUser,
+            modalAgency,
             modalConfirmDelete,
             openConfirmDeleteModal,
             responseIcon,

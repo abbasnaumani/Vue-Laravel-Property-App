@@ -346,6 +346,7 @@ export default {
             descriptionLength.value = quill.getLength();
         }
         const handleUpdateProperty = () => {
+            console.log(propertyData,"HELLO WORL")
             propertyService.handleUpdateProperty({
                 title: propertyData.value.title,
                 property_sub_type_id: propertyData.value.property_sub_type_id,
@@ -362,7 +363,7 @@ export default {
                 is_installment_available: isInstallmentAvailable.value,
                 is_possession_available: isPossessionAvailable.value,
 
-            }, props.propertyId);  // city_id: propertyData.value.city_id,
+            }, props.propertyId);// city_id: propertyData.value.city_id,
         }
         return {
             v$,

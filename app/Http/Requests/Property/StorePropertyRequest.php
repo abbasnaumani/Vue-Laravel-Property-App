@@ -27,7 +27,7 @@ class StorePropertyRequest extends FormRequest
         return [
             'property_sub_type_id' => 'required|exists:property_sub_types,id',
             'area_unit_id' => 'required|exists:area_units,id',
-            'city_id' => 'required|exists:cities,id',
+//            'city_id' => 'required|exists:cities,id',
             'title' => 'required|string|min:3|max:128',
             'area' => 'required|numeric',
             'purpose' => 'required',

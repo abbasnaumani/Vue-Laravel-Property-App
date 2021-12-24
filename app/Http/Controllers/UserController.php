@@ -27,18 +27,18 @@ class UserController extends Controller
         $this->userService = $userService;
     }
 
-    /**
-     * Display a listing of the users
-     *
-     */
-    public function getAgencyUsersList()
-    {
-        $user = $this->getAuthUser();
-        $agency = $user->agencies()->first();
-        $users = $agency->users()->with('roles')->get();
-        $this->setApiSuccessMessage(trans('user.get_user_list'), $users);
-        return $this->getApiResponse();
-    }
+//    /**
+//     * Display a listing of the users
+//     *
+//     */
+//    public function getAgencyUsersList()
+//    {
+//        $user = $this->getAuthUser();
+//        $agency = $user->agencies()->first();
+//        $users = $agency->users()->with('roles')->get();
+//        $this->setApiSuccessMessage(trans('user.get_user_list'), $users);
+//        return $this->getApiResponse();
+//    }
     /**
      * Edit the user profile
      *
@@ -82,6 +82,19 @@ class UserController extends Controller
     {
         $roles = Role::all();
         $this->setApiSuccessMessage(trans('user.get_all_roles'), $roles);
+        return $this->getApiResponse();
+    }
+    /**
+     * Remove the specified user from storage.
+     *
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function destroy(int $id): JsonResponse
+    {
+        $user = User::find($id);
+        $user->delete();
+        $this->setApiSuccessMessage(trans('user.user_delete'));
         return $this->getApiResponse();
     }
 

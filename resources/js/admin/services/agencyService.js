@@ -43,6 +43,39 @@ class AgencyService extends EventEmitter {
             toast.error(error.message);
         }
     }
+    async deleteAgency(agencyId){
+        try {
+            const response = await appApi.delete('/agency/'+agencyId);
+            if (response.data.status === ApiResponse.SUCCESS) {
+                toast.success(response.data.message, );
+                return response.data;
+            } else {
+                toast.error(response.data.message);
+            }
+
+        } catch (err) {
+            console.log(err, "err err")
+            toast.error(err.response.data.message);
+            const error = await errorHandlerService.errors.index(err);
+            console.log(error, "error catch")
+        }
+    }
+    async getAgencyUsers(agencyId){
+        try {
+            const response = await appApi.get('/agency/'+agencyId);
+            if (response.data.status === ApiResponse.SUCCESS) {
+                return response.data;
+            } else {
+                toast.error(response.data.message);
+            }
+
+        } catch (err) {
+            console.log(err, "err err")
+            toast.error(err.response.data.message);
+            const error = await errorHandlerService.errors.index(err);
+            console.log(error, "error catch")
+        }
+    }
 }
 const service = new AgencyService();
 export default service;

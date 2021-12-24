@@ -65,6 +65,7 @@ export default [
 
     {
         path: '/admin/user/list',
+
         name: 'admin-user-list',
         meta: {public: false, meta_title: 'User List'},
         component: page('user/UserList'),
