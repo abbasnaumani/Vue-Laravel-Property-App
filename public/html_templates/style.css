@@ -1169,9 +1169,10 @@ input[type='radio']:checked {
 .property-tabs>.main-tab {
     color: var(--ks-text-secondary-color);
 }
-.nav-tabs .nav-link.active {
+.nav-tabs .tab-form.active {
     color: var(--ks-bg-primary-color) !important;
     font-weight: 800;
+    border: 0px 0px 1px 0px solid black
 }
 
 aside .nav-tabs .nav-link {
@@ -1185,4 +1186,26 @@ aside .nav-tabs .nav-link:hover {
     color: var(--ks-bg-primary-color) !important;
     border: none !important;
     
+}
+.btn-bg-hover{
+    border: 1px solid #E6E6E6 !important;
+    padding: 3px 0px !important;
+}
+.btn-bg-hover:hover {
+    color: #212529;
+    background-color: none !important;
+}
+.tab-text-decoration.active{
+    background-color: #2172C9 !important;
+    color: white !important;
+    border: none;
+}
+.tab-text-decoration:hover{
+    text-decoration: none;
+    border: none;
+    color: black;
+}
+.tab-bg{
+    background-color: rgb(236, 236, 236);
+    color: black;
 }
