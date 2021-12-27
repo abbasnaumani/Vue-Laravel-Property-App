@@ -1192,7 +1192,3 @@ aside .nav-tabs .nav-link:hover {
 .property-tabs>.main-tab {
     color: var(--ks-text-secondary-color);
 }
-
-.sidebar>.sidebar-tab>li>.active {
-    background-color: orangered !important;
-}
