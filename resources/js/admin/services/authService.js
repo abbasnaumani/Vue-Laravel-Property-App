@@ -33,7 +33,7 @@ class AuthService extends EventEmitter {
             const response = await appApi.post('/login', credentials);
             if (response.data.status === ApiResponse.SUCCESS) {
                 await store.dispatch('actionAuthState', response.data.payload);
-                router.push({name: 'admin-dashboard'});
+                router.push({name: 'dashboard'});
             } else {
                 toast.error(response.data.message);
             }
@@ -70,7 +70,7 @@ class AuthService extends EventEmitter {
 
     async onLogout() {
         await store.dispatch('actionClearAuthState');
-        router.push({name: `admin-login`});
+        router.push({name: `login`});
     }
 
     async handleSendVerificationCode(payload) {
@@ -86,7 +86,7 @@ class AuthService extends EventEmitter {
                 }
                 toast.success(response.data.message);
                 router.push({
-                    name: 'admin-reset-password',
+                    name: 'reset-password',
                     params: {encodedToken: response.data.payload.token}
                 });
             } else {

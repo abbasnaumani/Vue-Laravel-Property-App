@@ -1,12 +1,14 @@
 <template>
     <ul :class="classes">
-        <li class="nav-main-item" v-for="item in menu">
+        <li class="nav-main-item " :class="{ 'open' : item.id===openItemId}"
+            v-for="item in menu" :key="item.id">
             <navigation-item :menuItem="item" v-if="!subMenu[item.id]"/>
-            <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu"
-               v-if="subMenu[item.id]"
-               aria-haspopup="true" aria-expanded="true" href="#">
+            <a
+                class="nav-main-link nav-main-link-submenu"
+                @click="handleOpenItem(item.id)"
+                v-if="subMenu[item.id]" href="#">
                 <i class="nav-main-link-icon si si-bulb"></i>
-                <span class="nav-main-link-name">{{ item.name }}</span>
+                <span class="nav-main-link-name">{{ item.name }} Test</span>
             </a>
             <navigation-items :classes="'nav-main-submenu'" :menu="subMenu[item.id]"
                               :subMenu="subMenu" v-if="subMenu[item.id]"/>
@@ -16,6 +18,8 @@
 
 <script>
 import NavigationItem from "./NavigationItem";
+import {ref} from "vue";
+
 export default {
     name: "NavigationItems",
     components: {NavigationItem},
@@ -24,11 +28,15 @@ export default {
         menu: Object,
         subMenu: Object,
     },
-    setup(props) {
-        const checkSubMenu = (data) => {
-            return props.subMenu[data] ? props.subMenu[data] : null;
+    setup() {
+        const openItemId = ref(0);
+        const handleOpenItem = (itemId) => {
+            openItemId.value = openItemId.value === itemId ? 0 : itemId;
         }
-        return {checkSubMenu}
+        return {
+            handleOpenItem,
+            openItemId
+        }
     },
 }
 </script>

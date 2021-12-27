@@ -20,7 +20,7 @@ export default async (to, from, next) => {
 
     if (to.meta.login) {
         if (auth.isAuthenticated()) {
-            return next({name: 'admin-dashboard'});
+            return next({name: 'dashboard'});
         }
         /*        if (to.name === 'create-account') {
                     if (!((to.params.accountType === 'vendor') || (to.params.accountType
@@ -45,9 +45,9 @@ export default async (to, from, next) => {
     // take the user back to the Login page.
     if (to.meta.logout) {
         auth.onLogout();
-        return next({name: 'admin-login'});
+        return next({name: 'login'});
     }
     localStorage.setItem('url.intended', to.path);
 
-    next({name: 'admin-login'});
+    next({name: 'login'});
 }

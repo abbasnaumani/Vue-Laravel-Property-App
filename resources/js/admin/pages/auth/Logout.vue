@@ -8,6 +8,7 @@ import authService from "~/admin/services/authService";
 export default {
     name: "Logout",
     setup() {
+        console.log('Logout from admin');
         authService.handleLogout();
     }
 }

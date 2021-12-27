@@ -3,31 +3,34 @@ function page(path) {
         m => m.default || m)
 }
 
+function routePath(path) {
+    return '/admin' + path;
+}
+
 export default [
     {
-        path: '/admin/login',
-        name: 'admin-login',
-        component: page('auth/Login'),
-        meta: {login: true, meta_title: 'Admin Login'},
-        props: true,
-    },
-    {
         path: '/admin',
-        name: 'admin',
+        name: 'dashboard',
+        meta: {public: false, meta_title: 'User Dashboard'},
+        component: page('user/UserDashboard'),
+    },
+    {
+        path: routePath('/login'),
+        name: 'login',
         component: page('auth/Login'),
         meta: {login: true, meta_title: 'Admin Login'},
         props: true,
     },
     {
-        path: '/admin/forgot/password',
-        name: 'admin-forgot-password',
+        path: routePath('/forgot/password'),
+        name: 'forgot-password',
         component: page('auth/ForgotPassword'),
         meta: {login: true, meta_title: 'Forgot Password'},
         props: true,
     },
     {
-        path: '/admin/reset/password/:encodedToken',
-        name: 'admin-reset-password',
+        path: routePath('/reset/password/:encodedToken'),
+        name: 'reset-password',
         component: page('auth/ResetPassword'),
         meta: {login: true, meta_title: 'Reset Password'},
         props: ({params}) => ({encodedToken: params.encodedToken || ''}),
@@ -35,51 +38,56 @@ export default [
     // no need because wo consider admin as super admin
     // {
     //     path: '/signup',
-    //     name: 'admin-register',
+    //     name: 'register',
     //     component: page('auth/Register'),
     //     meta: {login: true, meta_title: 'Admin Registration'},
     //     props: true,
     // },
     // all agency list route
     {
-        path: '/admin/agency/list',
-        name: 'admin-agency-list',
+        path: routePath('/agency/list'),
+        name: 'agency-list',
         meta: {public: false, meta_title: 'Agency List'},
         component: page('user/AgencyList'),
     },
     // Agency Users Route
     {
-        path: '/admin/:agencyId/users/',
-        name: 'admin-agency-user-list',
+        path: routePath('/:agencyId/users/'),
+        name: 'agency-user-list',
         meta: {public: false, meta_title: 'Agency User List'},
         component: page('user/AgencyUserList'),
         props: ({params}) => ({agencyId: params.agencyId || 0}),
     },
     //Add user to agency
     {
-        path: '/admin/user/add',
-        name: 'admin-user-add',
+        path: routePath('/user/add'),
+        name: 'user-add',
         meta: {public: false, meta_title: 'User Add'},
         component: page('user/AddAgencyUser'),
     },
 
     {
-        path: '/admin/user/list',
+        path: routePath('/user/list'),
 
-        name: 'admin-user-list',
+        name: 'user-list',
         meta: {public: false, meta_title: 'User List'},
         component: page('user/UserList'),
     },
 
     {
-        path: '/admin/dashboard',
-        name: 'admin-dashboard',
+        path: routePath('/dashboard'),
+        name: 'user-dashboard',
         meta: {public: false, meta_title: 'User Dashboard'},
         component: page('user/UserDashboard'),
     },
-
     {
         path: '/logout',
+        name: 'admin-logout',
+        meta: {logout: true, meta_title: 'Logout'},
+        component: page('auth/Logout')
+    },
+    {
+        path: routePath('/logout'),
         name: 'logout',
         meta: {logout: true, meta_title: 'Logout'},
         component: page('auth/Logout')
@@ -92,27 +100,27 @@ export default [
     //     component: UserChat,
     // },
     {
-        path: '/admin/property',
-        name: 'admin-property-dashboard',
+        path: routePath('/property'),
+        name: 'property-dashboard',
         meta: {public: false, meta_title: 'Property Dashboard'},
         component: page('property/Dashboard'),
     },
     {
-        path: '/admin/property/details/:propertyId',
-        name: 'admin-property-list',
+        path: routePath('/property/details/:propertyId'),
+        name: 'property-list',
         meta: {public: false, meta_title: 'Property Details'},
         component: page('property/PropertyDetails'),
         props: ({params}) => ({propertyId: params.propertyId || 0}),
     },
     {
-        path: '/admin/property/add',
-        name: 'admin-property-add',
+        path: routePath('/property/add'),
+        name: 'property-add',
         meta: {public: false, meta_title: 'Add Property'},
         component: page('property/AddProperty'),
     },
     {
-        path: '/admin/property/edit/:propertyId',
-        name: 'admin-property-edit',
+        path: routePath('/property/edit/:propertyId'),
+        name: 'property-edit',
         meta: {public: false, meta_title: 'Edit Property'},
         component: page('property/EditProperty'),
         props: ({params}) => ({propertyId: params.propertyId || 0}),
@@ -143,15 +151,15 @@ export default [
     //     component: page('UploadSingleComposition'),
     // },
     //
-    // {
-    //     path: '/:pathMatch(.*)*',
-    //     name: 'not-found',
-    //     component: page('NotFound')
-    // },
-    // // if you omit the last `*`, the `/` character in params will be encoded when resolving or pushing
-    // {
-    //     path: '/:pathMatch(.*)',
-    //     name: 'bad-not-found',
-    //     component: page('NotFound')
-    // },
+    {
+        path: '/:pathMatch(.*)*',
+        name: 'not-found',
+        component: page('NotFound')
+    },
+    // if you omit the last `*`, the `/` character in params will be encoded when resolving or pushing
+    {
+        path: '/:pathMatch(.*)',
+        name: 'bad-not-found',
+        component: page('NotFound')
+    },
 ];
