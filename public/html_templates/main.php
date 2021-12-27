@@ -320,7 +320,7 @@
                                                 <div class="carousel-inner">
                                                     <div class="carousel-item active text-center">
                                                         <img style="max-width: 110px;border-radius: 100%;" id="img"
-                                                             src="img-13.jpg" alt="Los Angeles" width="100%"
+                                                             src="img-11.png" alt="Los Angeles" width="100%"
                                                              height="100px">
                                                         <h5 class="text-white mt-3">John Doe</h5>
                                                         <a href="#"
@@ -331,7 +331,7 @@
                                                     </div>
                                                     <div class="carousel-item text-center">
                                                         <img style="max-width: 110px;border-radius: 100%;"
-                                                             src="img-11.jpg" alt="Chicago" width="100%"
+                                                             src="img-11.png" alt="Chicago" width="100%"
                                                              height="100px">
                                                         <h5 class="text-white mt-3">Janice Doe</h5>
                                                         <a href="#"
@@ -342,7 +342,7 @@
                                                     </div>
                                                     <div class="carousel-item text-center">
                                                         <img style="max-width: 110px;border-radius: 100%;"
-                                                             src="img-12.jpg" alt="New York" width="100%"
+                                                             src="img-11.png" alt="New York" width="100%"
                                                              height="100px">
                                                         <h5 class="text-white mt-3">Lisa Doe</h5>
                                                         <a href="#"
