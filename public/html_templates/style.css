@@ -1130,29 +1130,6 @@ input[type='radio']:checked {
 .btn-check {
     box-shadow: 5px 5px 35px rgb(207, 207, 207) inset;
 }
-
-
-/* elements form  */
-
-.nav-tabs .nav-link.active {
-    color: var(--ks-bg-primary-color) !important;
-    font-weight: 800;
-}
-
-aside .nav-tabs .nav-link {
-    color: #666;
-    font-size: 0.9em;
-    padding: 6px 0 8px 5px;
-    border-bottom: 1px solid rgba(0, 0, 0, .06) !important;
-}
-
-aside .nav-tabs .nav-link:hover {
-    color: var(--ks-bg-primary-color) !important;
-    border: none !important;
-    text-decoration: none !important;
-}
-
-
 /* Gallery Image Page */
 
 .image:hover {
@@ -1192,7 +1169,20 @@ aside .nav-tabs .nav-link:hover {
 .property-tabs>.main-tab {
     color: var(--ks-text-secondary-color);
 }
+.nav-tabs .nav-link.active {
+    color: var(--ks-bg-primary-color) !important;
+    font-weight: 800;
+}
 
-.sidebar>.sidebar-tab>li>.active {
-    background-color: orangered !important;
+aside .nav-tabs .nav-link {
+    color: #666;
+    font-size: 0.9em;
+    padding: 6px 0 8px 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, .06) !important;
+}
+
+aside .nav-tabs .nav-link:hover {
+    color: var(--ks-bg-primary-color) !important;
+    border: none !important;
+    
 }

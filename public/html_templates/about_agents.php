@@ -42,7 +42,7 @@
                                 <div class="col-md-5">
                                     <div class="border-radius-agents overflow-hidden-agents">
                                         <a href="#">
-                                            <img class="img-fluid" src="img-21.jpg" alt="">
+                                            <img class="img-fluid" src="img-22.jpg" alt="">
                                         </a>
                                     </div>
                                 </div>
@@ -87,7 +87,7 @@
                                 <div class="col-md-5">
                                     <div class="border-radius-agents overflow-hidden-agents">
                                         <a href="#">
-                                            <img class="img-fluid" src="img-12.jpg" alt="">
+                                            <img class="img-fluid" src="img-22.jpg" alt="">
                                         </a>
                                     </div>
                                 </div>
@@ -177,7 +177,7 @@
                                 <div class="col-md-5">
                                     <div class="border-radius-agents overflow-hidden-agents">
                                         <a href="#">
-                                            <img class="img-fluid" src="img-11.jpg" alt="">
+                                            <img class="img-fluid" src="img-22.jpg" alt="">
                                         </a>
                                     </div>
                                 </div>
