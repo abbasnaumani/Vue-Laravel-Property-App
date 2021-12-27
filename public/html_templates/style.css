@@ -1105,10 +1105,10 @@ input[type='radio'] {
     box-sizing: border-box;
     appearance: none;
     /* border: 1px solid rgb(230, 230, 230); */
-    outline: none; 
+    outline: none;
     width: 80px;
     height: 36px;
-    bottom: -5px; 
+    bottom: -5px;
     border: 1px solid rgb(204, 204, 204);
     border: 2px solid black;
     outline: none;
@@ -1127,26 +1127,31 @@ input[type='radio']:checked {
     left: 13px !important;
 }
 
-.btn-check{
+.btn-check {
     box-shadow: 5px 5px 35px rgb(207, 207, 207) inset;
 }
 
+
 /* elements form  */
+
 .nav-tabs .nav-link.active {
     color: var(--ks-bg-primary-color) !important;
     font-weight: 800;
 }
+
 aside .nav-tabs .nav-link {
     color: #666;
     font-size: 0.9em;
     padding: 6px 0 8px 5px;
-    border-bottom: 1px solid rgba(0,0,0,.06) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, .06) !important;
 }
+
 aside .nav-tabs .nav-link:hover {
     color: var(--ks-bg-primary-color) !important;
     border: none !important;
     text-decoration: none !important;
 }
+
 
 /* Gallery Image Page */
 
@@ -1172,18 +1177,22 @@ aside .nav-tabs .nav-link:hover {
 
 /* Property Dashboard */
 
-.property-tabs>a.active {
+.property-tabs>.main-tab.active {
     background-color: var(--ks-bg-secondary-color) !important;
     border-bottom: 5px solid var(--ks-bg-primary-color) !important;
     color: white !important;
 }
 
-.property-tabs>a:hover {
+.property-tabs>.main-tab:hover {
     background-color: var(--ks-bg-secondary-color) !important;
     border-bottom: 5px solid var(--ks-bg-primary-color) !important;
     color: white !important;
 }
 
-.property-tabs>a {
+.property-tabs>.main-tab {
     color: var(--ks-text-secondary-color);
+}
+
+.sidebar>.sidebar-tab>li>.active {
+    background-color: orangered !important;
 }
