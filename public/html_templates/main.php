@@ -218,6 +218,7 @@
                                             <br>
                                             <span class="text-white button p-2">91 Properties</span>
                                         </h4>
+                                        <div class="animated-box position-absolute"></div>
                                     </div>
                                 </div>
                             </div>
@@ -231,6 +232,7 @@
                                             <br>
                                             <span class="text-white button p-2">211 Properties</span>
                                         </h4>
+                                        <div class="animated-box position-absolute"></div>
                                     </div>
                                 </div>
                             </div>
@@ -244,6 +246,7 @@
                                             <br>
                                             <span class="text-white button p-2">231 Properties</span>
                                         </h4>
+                                        <div class="animated-box position-absolute"></div>
                                     </div>
                                 </div>
                             </div>

@@ -1130,6 +1130,8 @@ input[type='radio']:checked {
 .btn-check {
     box-shadow: 5px 5px 35px rgb(207, 207, 207) inset;
 }
+
+
 /* Gallery Image Page */
 
 .image:hover {
@@ -1169,7 +1171,12 @@ input[type='radio']:checked {
 .property-tabs>.main-tab {
     color: var(--ks-text-secondary-color);
 }
+<<<<<<< HEAD
 .nav-tabs .tab-form.active {
+=======
+
+.nav-tabs .nav-link.active {
+>>>>>>> 6944af257c20f84df9a9f667d2cd301f13dd5539
     color: var(--ks-bg-primary-color) !important;
     font-weight: 800;
     border: 0px 0px 1px 0px solid black
@@ -1185,6 +1192,7 @@ aside .nav-tabs .nav-link {
 aside .nav-tabs .nav-link:hover {
     color: var(--ks-bg-primary-color) !important;
     border: none !important;
+<<<<<<< HEAD
     
 }
 .btn-bg-hover{
@@ -1209,3 +1217,22 @@ aside .nav-tabs .nav-link:hover {
     background-color: rgb(236, 236, 236);
     color: black;
 }
+=======
+}
+
+
+/* Animated Card implement in Main page */
+
+.animated-box {
+    height: 0px;
+    width: 0px;
+    background-color: var(--ks-bg-secondary-color);
+    opacity: 0.6;
+    transition: width .5s, height .5s;
+}
+
+.card:hover>.card-img-overlay>.animated-box {
+    width: 100%;
+    height: 100%;
+}
+>>>>>>> 6944af257c20f84df9a9f667d2cd301f13dd5539
