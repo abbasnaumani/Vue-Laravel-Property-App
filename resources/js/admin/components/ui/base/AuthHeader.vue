@@ -230,7 +230,7 @@
 
 <script>
 import {authLogin} from "../../../composables/auth";
-import {computed, ref} from "vue";
+import {computed, ref, onMounted, onUnmounted} from "vue";
 import store from "../../../store";
 
 export default {
@@ -260,6 +260,17 @@ export default {
         const handleNotificationMenuPopup = () => {
             notificationMenuPopup.value = !notificationMenuPopup.value;
         }
+        const handleOutsideClick = (event) => {
+            if (!event.target.closest('.dropdown, .d-inline-block, .ml-2, .show')) {
+                profileMenuPopup.value = false;
+            }
+        }
+        onMounted(() => {
+            window.addEventListener("mousedown", handleOutsideClick);
+        })
+        onUnmounted(() => {
+            window.removeEventListener("mousedown", handleOutsideClick);
+        })
         return {
             handleLogout,
             profile,
