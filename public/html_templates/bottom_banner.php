@@ -21,7 +21,7 @@
                 <div class="col-lg-3 mt-5 mt-lg-0">
                     <div class="banner-button">
                         <a href="#"
-                            class="btn btn-primary btn-block font-weight-bold py-4 anchor-button d-flex justify-content-center">
+                            class="btn btn-primary test-fancy border-0 btn-block font-weight-bold py-4 anchor-button d-flex justify-content-center">
                             <div>
                                 CONTACT US
                             </div>

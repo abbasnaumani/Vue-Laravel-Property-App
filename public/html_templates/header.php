@@ -67,17 +67,17 @@
                                     <div class="top-navs d-flex justify-content-inherit align-items-center">
                                         <ul class="list-unstyled px-2 ">
                                             <li class="float-left">
-                                                <i style="font-size: 15px;color: #00a4f2;" class="fal fa-phone-alt"></i>
+                                                <i style="font-size: 15px;color: #7e1373;" class="fal fa-phone-alt"></i>
                                                 <a class="text-decoration-none nav-links font-weight-semibold" href="#"><span class="px-1">(800)
                                                         123-4567</span></a>
                                             </li>
                                             <li class="float-left px-3">
-                                                <i style="font-size: 15px;color: #00a4f2;" class="fal fa-map-marker-alt d-lg-inline d-md-none d-sm-none d-none"></i>
+                                                <i style="font-size: 15px;color: #7e1373;" class="fal fa-map-marker-alt d-lg-inline d-md-none d-sm-none d-none"></i>
                                                 <a class="text-decoration-none nav-links font-weight-medium" href="#"><span class="px-1 d-lg-inline d-md-none d-sm-none d-none trext">1234 Porto
                                                         Street,Los Angeles / LA</span></a>
                                             </li>
                                             <li class="float-left px-3">
-                                                <i style="font-size: 15px;color: #00a4f2;" class="fal fa-envelope d-lg-inline d-md-inline d-sm-none d-none"></i>
+                                                <i style="font-size: 15px;color: #7e1373;" class="fal fa-envelope d-lg-inline d-md-inline d-sm-none d-none"></i>
                                                 <a class="text-decoration-none nav-links font-weight-medium" href=""><span class="px-1 d-lg-inline d-md-inline d-sm-none d-none text-2">porto@portotheme.com</span></a>
                                             </li>
                                         </ul>

@@ -154,7 +154,7 @@
                         </div>
                         <div class="col-lg-2 mb-2 mb-lg-0">
                             <div class="select-button">
-                                <a href="#" class="btn btn-color text-white btn-block font-weight-bold py-3">
+                                <a href="#" class="btn btn-color test-fancy text-white btn-block font-weight-bold py-3">
                                     Search Now
                                 </a>
                             </div>
