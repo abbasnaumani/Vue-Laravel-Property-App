@@ -121,22 +121,22 @@
 
 <script>
 import {computed, ref} from "vue";
+import {getAllRoles} from "../../composables/user";
+import userService from "../../services/userService";
 import {email, required} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
-import userService from "../../services/userService";
-import {getAllRoles} from "../../composables/user";
 
 export default {
-    name: "AddAgencyUser",
+    name: "EditAgencyUser",
     props:{
-      agencyId: Number
+        agencyId: Number
     },
     setup(props){
         const firstName = ref('');
         const lastName = ref('');
         const userEmail = ref('');
         const phoneNumber = ref('');
-        const role_id = ref(3);
+        const roleId = ref(3);
         const roles = getAllRoles();
         const handleAddAgencyUser = () => {
             userService.handleAddAgencyUser({

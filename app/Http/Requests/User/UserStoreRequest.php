@@ -29,6 +29,8 @@ class UserStoreRequest extends FormRequest
             'last_name' => 'required|string|min:3|max:50',
             'email' => 'required|email',
             'phone_number' => 'required|min:11',
+            'agency_id' => 'required',
+            'role_id' => 'required',
         ];
     }
 

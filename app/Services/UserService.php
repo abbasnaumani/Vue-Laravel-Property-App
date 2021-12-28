@@ -18,13 +18,13 @@ class UserService extends BaseService
      *
      */
     public function addAgencyUser(Request $request){
+
         DB::beginTransaction();
         try {
-            $user = $this->getAuthUser();
-            $userData = User::create($this->userData($request));
-            $agencyUser = $userData->agencyUsers()->create($this->agencyUsersData($user->agencies()->first()->id,$user->id,$request->role_id)); // agency id will be from vue site
+            $user = User::create($this->userData($request));
+            $user->agencyUsers()->create($this->agencyUsersData($user->id,$request));
             DB::commit();
-            $this->setApiSuccessMessage(trans('user.user_store'));
+            $this->setApiSuccessMessage(trans('user.user_store'),$user);
         } catch (\Exception $e) {
             DB::rollback();
             $this->setApiErrorMessage(trans('user.user_not_store'));
@@ -49,16 +49,15 @@ class UserService extends BaseService
     /**
      * Prepare User Data for agency.
      * @param int $userId
-     * @param int $agencyId
-     * @param int $roleId
+     * @param Request $request
      * @return array
      */
-    private function agencyUsersData(int $agencyId,int $userId,int $roleId): array
+    private function agencyUsersData(int $userId,Request $request): array
     {
         return [
             'user_id' => $userId,
-            'agency_id' => $agencyId,
-            'role_id' => $roleId,
+            'agency_id' => $request->agency_id,
+            'role_id' => $request->role_id,
         ];
     }
     /** Update the user password

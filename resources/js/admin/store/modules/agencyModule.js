@@ -1,6 +1,6 @@
 const state = {
     agencyUsersBySlug: null,
-    agencies:null
+    agencies:null,
 }
 const getters = {
     getAgencyUsersBySlug:(state) => (slug) => {

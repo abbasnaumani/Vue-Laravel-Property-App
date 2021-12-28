@@ -65,7 +65,7 @@ export default [
         component: page('user/EditAgency'),
         props: ({params}) => ({agencyId: params.agencyId || 0}),
     },
-    // Agency Users Route
+    // Agency User List Route
     {
         path: routePath('/:agencyId/users/'),
         name: 'agency-user-list',
@@ -75,12 +75,20 @@ export default [
     },
     //Add user to agency
     {
-        path: routePath('/user/add'),
+        path: routePath('/:agencyId/user/add'),
         name: 'user-add',
-        meta: {public: false, meta_title: 'User Add'},
+        meta: {public: false, meta_title: 'Add Agency User'},
         component: page('user/AddAgencyUser'),
+        props: ({params}) => ({agencyId: params.agencyId || 0}),
     },
-
+    //Update user to agency
+    {
+        path: routePath('/edit/user/:userId'),
+        name: 'user-edit',
+        meta: {public: false, meta_title: 'Edit Agency User'},
+        component: page('user/EditAgencyUser'),
+        props: ({params}) => ({userId: params.userId || 0}),
+    },
     {
         path: routePath('/user/list'),
 

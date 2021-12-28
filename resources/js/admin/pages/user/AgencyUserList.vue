@@ -19,7 +19,7 @@
                                 <div class="block-header">
                                     <h3 class="block-title">User Record </h3>
                                     <router-link class="btn btn-primary" data-validation="validation-span-id"
-                                                 to="/admin/user/add">Add
+                                                 :to="{path:'/admin/'+agencyId+'/user/add'}">Add
                                     </router-link>
                                 </div>
                                 <div class="block-content block-content-full">
@@ -56,7 +56,7 @@
                                                     {{(user.created_at) ? user.created_at : ''}} </em>
                                             </td>
                                             <td class="btn-group text-center font-w600 font-size-sm">
-                                                <router-link :to="{path:'/user/edit/'+user.id}" class="btn btn-primary "><i class="fa fa-edit"></i></router-link>
+                                                <router-link :to="{path:'/admin/agency/edit/'+user.id}" class="btn btn-primary "><i class="fa fa-edit"></i></router-link>
                                                 <button @click="openDeleteModal(user)" class="btn btn-danger mx-2"><i class="far fa-trash-alt"></i></button>
                                             </td>
                                         </tr>
@@ -115,10 +115,7 @@ export default {
         const modalUser = ref();
         const responseIcon = ref('');
         const users = getAgencyUsersList(props.agencyId);
-        // userService.getUserList();
-        // userService.addListener('userListResponse', (response) => {
-        //     users = response;
-        // });
+
         function openDeleteModal(user){
             modalUser.value = user;
             openConfirmDeleteModal.value = true;
@@ -126,9 +123,9 @@ export default {
         async function modalConfirmDelete(user) {
             isConfirmButtonDisabled.value = true;
             let response = await userService.deleteUser(user.id);
-            if(response.status === ApiResponse.SUCCESS){
-                updateAgencyUsersData(props.agencyId);
-            }
+            // if(response.status === ApiResponse.SUCCESS){
+            //     updateAgencyUsersData(props.agencyId);
+            // }
             showResponseModal(response);
         }
         function showResponseModal({message, status}) {
