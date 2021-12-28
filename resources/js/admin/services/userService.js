@@ -58,9 +58,9 @@ class UserService extends EventEmitter {
         }
     }
 
-    async getUserMenu() {
+    async getUserMenu(path) {
         try {
-            const response = await appApi.get('/user/menu');
+            const response = await appApi.get('/user/menu?route='+path);
             await store.dispatch('actionUserMenu', response.data.payload);
         } catch (err) {
             console.log(err, "err err");

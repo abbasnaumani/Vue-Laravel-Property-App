@@ -13,10 +13,12 @@ use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
     protected $userService;
+
     /**
      * Initialize the user service in constructor
      * @param UserService $userService
@@ -43,28 +45,34 @@ class UserController extends Controller
      * Edit the user profile
      *
      */
-    public function editUserProfile(){
+    public function editUserProfile()
+    {
         $usersId = $this->getAuthUserId();
         $user = User::find($usersId);
         $this->setApiSuccessMessage(trans('user.user_found'), $user);
         return $this->getApiResponse();
     }
+
     /**
      * Update the user profile
      * @param UserProfileRequest $request
      */
-    public function updateUserProfile(UserProfileRequest $request){
+    public function updateUserProfile(UserProfileRequest $request)
+    {
         $this->userService->updateUserProfile($request);
         return $this->getApiResponse();
     }
+
     /**
      * Update the user password
      * @param UpdatePasswordRequest $request
      */
-    public function updateUserPassword(UpdatePasswordRequest $request){
+    public function updateUserPassword(UpdatePasswordRequest $request)
+    {
         $this->userService->updateUserPassword($request);
         return $this->getApiResponse();
     }
+
     /**
      * Store a newly created property in storage.
      * @param UserStoreRequest $request
@@ -75,6 +83,7 @@ class UserController extends Controller
         $this->userService->addAgencyUser($request);
         return $this->getApiResponse();
     }
+
     /**
      * Get all roles
      */
@@ -84,6 +93,7 @@ class UserController extends Controller
         $this->setApiSuccessMessage(trans('user.get_all_roles'), $roles);
         return $this->getApiResponse();
     }
+
     /**
      * Remove the specified user from storage.
      *
@@ -102,8 +112,9 @@ class UserController extends Controller
      * Display a listing of the side bar menus
      *
      */
-    public function userMenu()
+    public function userMenu(Request $request)
     {
+        $currentRoute = $request->route ?? '';
         $menuItems = MenuRole::with('menu')->where('is_allow', 1)->whereIn('role_id', $this->userRoles())
             ->whereHas('menu', function ($query) {
                 $query->where('is_active', 1);
@@ -115,14 +126,16 @@ class UserController extends Controller
         $prepareMenus = [];
         if (isset($menuItems) && count($menuItems) > 0) {
             foreach ($menuItems as $menuItem) {
-                if (intval($menuItem->menu->parent_id)>0) {
+                if (intval($menuItem->menu->parent_id) > 0) {
+                    $menuItem->menu->is_open = $menuItem->menu->route === $currentRoute;
                     $prepareMenus['sub_menu'][$menuItem->menu->parent_id][$menuItem->id] = $menuItem->menu;
-                }else{
+                } else {
+                    $menuItem->menu->is_open = Str::is($menuItem->menu->route, $currentRoute);
                     $prepareMenus['main_menu'][$menuItem->id] = $menuItem->menu;
                 }
             }
         }
-        $this->setApiSuccessMessage(trans('user.get_user_menu'),$prepareMenus);
+        $this->setApiSuccessMessage(trans('user.get_user_menu'), $prepareMenus);
         return $this->getApiResponse();
     }
 
