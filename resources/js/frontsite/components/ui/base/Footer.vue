@@ -9,7 +9,8 @@
                         <div class="row py-3 mt-5">
                             <div class="col-md-4 col-lg-3">
                                 <div>
-                                    <h6 class="text-white footer-heading mt-3">Porto Real Estate</h6>
+                                    <h6 class="text-white footer-heading mt-3">Porto Real
+                                        Estate</h6>
                                     <p class="text-white footer-p mt-3 mb-0">
                                         123 Porto Blvd, Suite 100
                                         New York, NY
@@ -48,7 +49,8 @@
                             </div>
                             <div class="col-md-4 col-lg-5">
                                 <div>
-                                    <h6 class="text-white mb-3 footer-heading mt-3">Latest Tweets</h6>
+                                    <h6 class="text-white mb-3 footer-heading mt-3">Latest
+                                        Tweets</h6>
                                     <span class="text-white"><i class="fab fa-twitter"></i></span>
                                     <span class="text-white footer-p">
                                         If you have any suggestions for the next updates, let us know.
@@ -83,22 +85,8 @@
 </template>
 
 <script>
-// window.onscroll = function() {myFunction()};
-//
-// var topHeader = document.getElementById("secondary-menu");
-// var sticky = topHeader.offsetTop
-//
-//
-//
-// function myFunction() {
-//     if (window.pageYOffset > sticky) {
-//         topHeader.classList.add("sticky");
-//     } else {
-//         topHeader.classList.remove("sticky");
-//     }
-// }
 export default {
-    name: "Footer"
+    name: "Footer",
 }
 </script>
 
