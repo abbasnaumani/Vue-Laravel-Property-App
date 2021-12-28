@@ -1,5 +1,6 @@
 import axios from "axios";
-import store from "~/frontsite/store";
+import { useStore } from 'vuex';
+const store = useStore();
 
 const instance = axios.create({
     baseURL: "http://127.0.0.1:8000/api/"
