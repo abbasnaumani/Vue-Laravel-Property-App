@@ -1,11 +1,12 @@
 <?php include 'header.php' ?>
-<div class="container py-5">
+<div class="container py-2">
     <div class="card shadow-sm login-card w-100 text-left mt-5">
         <div class="card-header bg-white border-bottom-0 mt-4">
             <div class="d-flex justify-content-between align-items-center">
                 <h2 class="font-weight-normal text-7 mb-0">
                     <strong class="font-weight-extra-bold">User</strong>
-                    Profile
+                    <strong class="font-weight-extra-bold">Profile</strong>
+
                 </h2>
             </div>
             <div class="overflow-hidden pt-3">
@@ -30,43 +31,43 @@
                 <div class="col-lg-9">
                     <form id="user-profile" action="" method="">
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label line-height-9 pt-2 text-2 required">First name</label>
+                            <label class="col-lg-3 col-form-label line-height-9 pt-2 letter-spacing text-secondary text-2 font-weight-bold required">First name</label>
                             <div class="col-lg-9">
                                 <input class="form-control text-3 h-auto py-2" type="text" name="firstName" value="Abc" required="">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label line-height-9 pt-2 text-2 required">Last name</label>
+                            <label class="col-lg-3 col-form-label line-height-9 pt-2 letter-spacing text-secondary text-2 font-weight-bold required">Last name</label>
                             <div class="col-lg-9">
                                 <input class="form-control text-3 h-auto py-2" type="text" name="lastName" value="Xyz" required="">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label line-height-9 pt-2 text-2 required">Email</label>
+                            <label class="col-lg-3 col-form-label line-height-9 pt-2 letter-spacing text-secondary text-2 font-weight-bold required">Email</label>
                             <div class="col-lg-9">
                                 <input class="form-control text-3 h-auto py-2" type="email" name="email" value="example@gmail.com" required="">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label line-height-9 pt-2 text-2">Company</label>
+                            <label class="col-lg-3 col-form-label line-height-9 pt-2 letter-spacing text-secondary text-2 font-weight-bold">Company</label>
                             <div class="col-lg-9">
                                 <input class="form-control text-3 h-auto py-2" type="text" name="company" value="">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label line-height-9 pt-2 text-2">Website</label>
+                            <label class="col-lg-3 col-form-label line-height-9 pt-2 letter-spacing text-secondary text-2 font-weight-bold">Website</label>
                             <div class="col-lg-9">
                                 <input class="form-control text-3 h-auto py-2" type="url" name="website" value="">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label line-height-9 pt-2 text-2">Address</label>
+                            <label class="col-lg-3 col-form-label line-height-9 pt-2 letter-spacing text-secondary text-2 font-weight-bold">Address</label>
                             <div class="col-lg-9">
                                 <input class="form-control text-3 h-auto py-2" type="text" name="address" value="" placeholder="Street">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label line-height-9 pt-2 text-2"></label>
+                            <label class="col-lg-3 col-form-label form-control-label line-height-9 pt-2 text-2 font-weight-bold"></label>
                             <div class="col-lg-6">
                                 <input class="form-control text-3 h-auto py-2" type="text" name="city" value="" placeholder="City">
                             </div>
@@ -75,7 +76,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label line-height-9 pt-2 text-2">Time Zone</label>
+                            <label class="col-lg-3 col-form-label line-height-9 pt-2 letter-spacing text-secondary font-weight-bold text-2">Time Zone</label>
                             <div class="col-lg-9">
                                 <div class="">
                                     <select id="user_time_zone" class="form-control text-3 h-auto py-2" name="timeZone" size="0">
@@ -92,19 +93,19 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label line-height-9 pt-2 text-2 required">Username</label>
+                            <label class="col-lg-3 col-form-label line-height-9 pt-2 letter-spacing font-weight-bold text-secondary text-2 required">Username</label>
                             <div class="col-lg-9">
                                 <input class="form-control text-3 h-auto py-2" type="text" name="username" value="" required="">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label line-height-9 pt-2 text-2 required">Password</label>
+                            <label class="col-lg-3 col-form-label line-height-9 pt-2 letter-spacing font-weight-bold text-secondary text-2 required">Password</label>
                             <div class="col-lg-9">
                                 <input class="form-control text-3 h-auto py-2" type="password" name="password" value="" required="">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-lg-3 col-form-label line-height-9 pt-2 text-2 required">Confirm password</label>
+                            <label class="col-lg-3 col-form-label line-height-9 pt-2 letter-spacing font-weight-bold text-secondary text-2 required">Confirm password</label>
                             <div class="col-lg-9">
                                 <input class="form-control text-3 h-auto py-2" type="password" name="confirmPassword" value="" required="">
                             </div>
@@ -114,7 +115,17 @@
 
                             </div>
                             <div class="form-group col-lg-3">
-                                <input type="submit" value="Save" class="btn btn-primary btn-modern float-end" data-loading-text="Loading...">
+                                <button type="submit" class="btn fancy-2 btn-color w-100">
+                                    <div class="svg-wrapper-1">
+                                        <div class="svg-wrapper">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                                <path fill="none" d="M0 0h24v24H0z"></path>
+                                                <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <span class="mt-0">Submit</span>
+                                </button>
                             </div>
                         </div>
                     </form>

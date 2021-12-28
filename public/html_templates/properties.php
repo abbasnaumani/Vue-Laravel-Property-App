@@ -1,16 +1,16 @@
 <?php include "header.php" ?>
 <section class="top-banner border-0 mt-5">
         <div class="container-fluid py-5">
-            <div class="container position-relative z-index-2 py-5 pb-0 mb-0">
+            <div class="container position-relative z-index-2 mt-5 py-2 pb-0 mb-0">
                 <div class="row d-flex flex-wrap-reverse">
                     <div
-                        class="col-md-8 order-2 order-md-1 d-flex align-self-center justify-content-md-start justify-content-sm-center justify-content-center">
+                        class="col-md-8 order-2 order-md-1 mb-0 mt-3 d-flex align-self-center justify-content-md-start justify-content-sm-center justify-content-center">
                         <div class="main-heading text-md-start text-center">
-                            <h3 class="heading-font text-light mb-0">Search properties for sale in Pakistan</h3>
+                            <h3 class="heading-font text-light mb-0 letter-spacing">Search properties for sale in Pakistan</h3>
                         </div>
                     </div>
                     <div
-                        class="col-md-4 order-2 order-md-1 d-flex align-self-center justify-content-md-end justify-content-sm-center justify-content-center">
+                        class="col-md-4 order-2 order-md-1 mb-0 mt-3 d-flex align-self-center justify-content-md-end justify-content-sm-center justify-content-center">
                         <div class="main-links">
                             <ul class="list-unstyled text-white">
                                 <li><span style="font-size:11.5px;">HOME</span> <span
@@ -168,245 +168,307 @@
         <div class="main-content">
             <div class="container py-5 my-3">
                 <div class="col">
-                    <h2 class="font-weight-bold mb-4">
-                        Listing for
-                        <span class="text-primary">Sale</span>
-                        or
-                        <span class="text-primary">Rent</span>
-                    </h2>
+                <h2 class="mb-4 font-weight-bold letter-spacing">
+                            Listing for <span class="text-blue-heading">Sale</span> or <span
+                                class="text-blue-heading">Rent</span>
+                        </h2>
                     <div class="row">
-                        <div class="col-12 col-sm-6 col-md-3 pb-4 mb-1">
-                            <a class="text-decoration-none link-card" href="#">
-                                <div class="card border-0 hover-card">
-                                    <div class="position-relative detail-h-card">
-                                        <img class="card-img-top h-image" src="img-3.jpg"
-                                            alt="Image of a Property to sale or rent.">
-                                        <div class="card-tag position-absolute left-1">
-                                            <span class="text-white font-weight-bold">FOR SALE</span>
-                                        </div>
+                    <div class="col-12 col-sm-6 col-md-3 pb-4 mb-1">
+                        <div class="card custom-card move-svg  border-0">
+                            <div class="card-interior overflow-hidden position-relative z-index-1">
+                                <a href="" class="text-decoration-none card-anchor">
+                                    <span
+                                        class="custom-card-info-type text-light py-2 px-3 text-1 font-weight-bold letter-spacing text-uppercase position-absolute top-8 left-8">For
+                                        Sale</span>
+                                    <div class="custom-card-info-img d-block">
+                                        <img src="img-3.jpg" class="img-fluid rounded">
                                     </div>
-                                    <div class="py-3 d-flex justify-content-between align-items-baseline">
-                                        <div>
-                                            <h6 class="head text-dark px-2">$ 1.250.000</h6>
-                                        </div>
-                                        <div class="px-2">
-                                            <i style="color: #00a4f2; font-size: 25px;"
-                                                class="fal fa-long-arrow-right icon-hov"></i>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <h5 class="font-weight-extra-bold px-2 text-dark">South Miami</h5>
-                                    <div class="d-flex justify-content-between flex-wrap">
-                                        <div class="text-secondary heading-div-weight px-2">BEDS:3</div>
-                                        <div class="text-secondary heading-div-weight">BATHS:2</div>
-                                        <div class="text-secondary heading-div-weight px-2">SQ FT:500</div>
-                                    </div>
-                                </div>
-                            </a>
+                                    <span class="custom-card-info-header d-flex justify-content-between align-items-center p-relative">
+                                        <strong class="text-dark text-4 px-3 letter-spacing">$ 1.250.000</strong>
+                                        <div class="px-3 arrow-move">
+                                        <svg class="svg-color" version="1.1" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="icon_131640173528885" data-filename="arrow-right.svg" width="27" height="27">
+	                                     <polygon points="1,26 44.586,26 38.293,32.293 39.707,33.707 48.414,25 39.707,16.293 38.293,17.707 44.586,24 1,24  "></polygon>
+                                            </svg>
+                                            </div>
+                                    </span>
+                                    <span class="custom-card-info-content d-block">
+                                        <h4 class="text-dark mb-1 text-5 px-3 font-weight-bold letter-spacing">South Miami</h4>
+                                        <ul
+                                            class="list-unstyled d-flex mb-0 px-1 py-1 justify-content-between flex-wrap">
+                                            <li class="mb-0 px-1">
+                                                <strong class="text-secondary text-uppercase font-weight-extra-bold text-2">Beds: 3</strong>
+                                            </li>
+                                            <li class="mb-0 px-1">
+                                                <strong class="text-secondary text-uppercase font-weight-extra-bold text-2">Baths: 2</strong>
+                                            </li>
+                                            <li class="mb-0 px-1">
+                                                <strong class="text-secondary text-uppercase font-weight-extra-bold text-2">Sq Ft: 500</strong>
+                                            </li>
+                                        </ul>
+                                    </span>
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-12 col-sm-6 col-md-3 pb-4 mb-1">
-                            <a class="text-decoration-none link-card" href="#">
-                                <div class="card border-0 hover-card">
-                                    <div class="position-relative detail-h-card">
-                                        <img class="card-img-top h-image" src="img-4.jpg"
-                                            alt="Image of a Property to sale or rent.">
-                                        <div class="card-tag position-absolute left-1">
-                                            <span class="text-white font-weight-bold">FOR SALE</span>
-                                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 pb-4 mb-1">
+                        <div class="card custom-card move-svg  border-0">
+                            <div class="card-interior overflow-hidden position-relative z-index-1">
+                                <a href="" class="text-decoration-none card-anchor">
+                                    <span
+                                        class="custom-card-info-type text-light py-2 px-3 text-1 font-weight-bold letter-spacing text-uppercase position-absolute top-8 left-8">For
+                                        Sale</span>
+                                    <div class="custom-card-info-img d-block">
+                                        <img src="img-4.jpg" class="img-fluid rounded">
                                     </div>
-                                    <div class="py-3 d-flex justify-content-between align-items-baseline">
-                                        <div>
-                                            <h6 class="head text-dark px-2">$ 1.250.000</h6>
-                                        </div>
-                                        <div class="px-2">
-                                            <i style="color: #00a4f2; font-size: 25px;"
-                                                class="fal fa-long-arrow-right icon-hov"></i>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <h5 class="font-weight-extra-bold px-2 text-dark">South Miami</h5>
-                                    <div class="d-flex justify-content-between flex-wrap">
-                                        <div class="text-secondary heading-div-weight px-2">BEDS:3</div>
-                                        <div class="text-secondary heading-div-weight">BATHS:2</div>
-                                        <div class="text-secondary heading-div-weight px-2">SQ FT:500</div>
-                                    </div>
-                                </div>
-                            </a>
+                                    <span class="custom-card-info-header d-flex justify-content-between align-items-center p-relative">
+                                        <strong class="text-dark text-4 px-3 letter-spacing">$ 1.250.000</strong>
+                                        <div class="px-3 arrow-move">
+                                        <svg class="svg-color" version="1.1" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="icon_131640173528885" data-filename="arrow-right.svg" width="27" height="27">
+	                                     <polygon points="1,26 44.586,26 38.293,32.293 39.707,33.707 48.414,25 39.707,16.293 38.293,17.707 44.586,24 1,24  "></polygon>
+                                            </svg>
+                                            </div>
+                                    </span>
+                                    <span class="custom-card-info-content d-block">
+                                        <h4 class="text-dark mb-1 text-5 px-3 font-weight-bold letter-spacing">South Miami</h4>
+                                        <ul
+                                            class="list-unstyled d-flex mb-0 px-1 py-1 justify-content-between flex-wrap">
+                                            <li class="mb-0 px-1">
+                                                <strong class="text-secondary text-uppercase font-weight-extra-bold text-2">Beds: 3</strong>
+                                            </li>
+                                            <li class="mb-0 px-1">
+                                                <strong class="text-secondary text-uppercase font-weight-extra-bold text-2">Baths: 2</strong>
+                                            </li>
+                                            <li class="mb-0 px-1">
+                                                <strong class="text-secondary text-uppercase font-weight-extra-bold text-2">Sq Ft: 500</strong>
+                                            </li>
+                                        </ul>
+                                    </span>
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-12 col-sm-6 col-md-3 pb-4 mb-1">
-                            <a class="text-decoration-none link-card" href="#">
-                                <div class="card border-0 hover-card">
-                                    <div class="position-relative detail-h-card">
-                                        <img class="card-img-top h-image" src="img-5.jpg"
-                                            alt="Image of a Property to sale or rent.">
-                                        <div class="card-tag position-absolute left-1">
-                                            <span class="text-white font-weight-bold">FOR SALE</span>
-                                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 pb-4 mb-1">
+                        <div class="card custom-card move-svg  border-0">
+                            <div class="card-interior overflow-hidden position-relative z-index-1">
+                                <a href="" class="text-decoration-none card-anchor">
+                                    <span
+                                        class="custom-card-info-type text-light py-2 px-3 text-1 font-weight-bold letter-spacing text-uppercase position-absolute top-8 left-8">For
+                                        Sale</span>
+                                    <div class="custom-card-info-img d-block">
+                                        <img src="img-5.jpg" class="img-fluid rounded">
                                     </div>
-                                    <div class="py-3 d-flex justify-content-between align-items-baseline">
-                                        <div>
-                                            <h6 class="head text-dark px-2">$ 1.250.000</h6>
-                                        </div>
-                                        <div class="px-2">
-                                            <i style="color: #00a4f2; font-size: 25px;"
-                                                class="fal fa-long-arrow-right icon-hov"></i>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <h5 class="font-weight-extra-bold px-2 text-dark">South Miami</h5>
-                                    <div class="d-flex justify-content-between flex-wrap">
-                                        <div class="text-secondary heading-div-weight px-2">BEDS:3</div>
-                                        <div class="text-secondary heading-div-weight">BATHS:2</div>
-                                        <div class="text-secondary heading-div-weight px-2">SQ FT:500</div>
-                                    </div>
-                                </div>
-                            </a>
+                                    <span class="custom-card-info-header d-flex justify-content-between align-items-center p-relative">
+                                        <strong class="text-dark text-4 px-3 letter-spacing">$ 1.250.000</strong>
+                                        <div class="px-3 arrow-move">
+                                        <svg class="svg-color" version="1.1" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="icon_131640173528885" data-filename="arrow-right.svg" width="27" height="27">
+	                                     <polygon points="1,26 44.586,26 38.293,32.293 39.707,33.707 48.414,25 39.707,16.293 38.293,17.707 44.586,24 1,24  "></polygon>
+                                            </svg>
+                                            </div>
+                                    </span>
+                                    <span class="custom-card-info-content d-block">
+                                        <h4 class="text-dark mb-1 text-5 px-3 font-weight-bold letter-spacing">South Miami</h4>
+                                        <ul
+                                            class="list-unstyled d-flex mb-0 px-1 py-1 justify-content-between flex-wrap">
+                                            <li class="mb-0 px-1">
+                                                <strong class="text-secondary text-uppercase font-weight-extra-bold text-2">Beds: 3</strong>
+                                            </li>
+                                            <li class="mb-0 px-1">
+                                                <strong class="text-secondary text-uppercase font-weight-extra-bold text-2">Baths: 2</strong>
+                                            </li>
+                                            <li class="mb-0 px-1">
+                                                <strong class="text-secondary text-uppercase font-weight-extra-bold text-2">Sq Ft: 500</strong>
+                                            </li>
+                                        </ul>
+                                    </span>
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-12 col-sm-6 col-md-3 pb-4 mb-1">
-                            <a class="text-decoration-none link-card" href="#">
-                                <div class="card border-0 hover-card">
-                                    <div class="position-relative detail-h-card">
-                                        <img class="card-img-top h-image" src="img-3.jpg"
-                                            alt="Image of a Property to sale or rent.">
-                                        <div class="card-tag position-absolute left-1">
-                                            <span class="text-white font-weight-bold">FOR SALE</span>
-                                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 pb-4 mb-1">
+                        <div class="card custom-card move-svg  border-0">
+                            <div class="card-interior overflow-hidden position-relative z-index-1">
+                                <a href="" class="text-decoration-none card-anchor">
+                                    <span
+                                        class="custom-card-info-type text-light py-2 px-3 text-1 font-weight-bold letter-spacing text-uppercase position-absolute top-8 left-8">For
+                                        Sale</span>
+                                    <div class="custom-card-info-img d-block">
+                                        <img src="img-6.jpg" class="img-fluid rounded">
                                     </div>
-                                    <div class="py-3 d-flex justify-content-between align-items-baseline">
-                                        <div>
-                                            <h6 class="head text-dark px-2">$ 1.250.000</h6>
-                                        </div>
-                                        <div class="px-2">
-                                            <i style="color: #00a4f2; font-size: 25px;"
-                                                class="fal fa-long-arrow-right icon-hov"></i>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <h5 class="font-weight-extra-bold px-2 text-dark">South Miami</h5>
-                                    <div class="d-flex justify-content-between flex-wrap">
-                                        <div class="text-secondary heading-div-weight px-2">BEDS:3</div>
-                                        <div class="text-secondary heading-div-weight">BATHS:2</div>
-                                        <div class="text-secondary heading-div-weight px-2">SQ FT:500</div>
-                                    </div>
-                                </div>
-                            </a>
+                                    <span class="custom-card-info-header d-flex justify-content-between align-items-center p-relative">
+                                        <strong class="text-dark text-4 px-3 letter-spacing">$ 1.250.000</strong>
+                                        <div class="px-3 arrow-move">
+                                        <svg class="svg-color" version="1.1" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="icon_131640173528885" data-filename="arrow-right.svg" width="27" height="27">
+	                                     <polygon points="1,26 44.586,26 38.293,32.293 39.707,33.707 48.414,25 39.707,16.293 38.293,17.707 44.586,24 1,24  "></polygon>
+                                            </svg>
+                                            </div>
+                                    </span>
+                                    <span class="custom-card-info-content d-block">
+                                        <h4 class="text-dark mb-1 text-5 px-3 font-weight-bold letter-spacing">South Miami</h4>
+                                        <ul
+                                            class="list-unstyled d-flex mb-0 px-1 py-1 justify-content-between flex-wrap">
+                                            <li class="mb-0 px-1">
+                                                <strong class="text-secondary text-uppercase font-weight-extra-bold text-2">Beds: 3</strong>
+                                            </li>
+                                            <li class="mb-0 px-1">
+                                                <strong class="text-secondary text-uppercase font-weight-extra-bold text-2">Baths: 2</strong>
+                                            </li>
+                                            <li class="mb-0 px-1">
+                                                <strong class="text-secondary text-uppercase font-weight-extra-bold text-2">Sq Ft: 500</strong>
+                                            </li>
+                                        </ul>
+                                    </span>
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-12 col-sm-6 col-md-3 pb-4 mb-1">
-                            <a class="text-decoration-none link-card" href="#">
-                                <div class="card border-0 hover-card">
-                                    <div class="position-relative detail-h-card">
-                                        <img class="card-img-top h-image" src="img-7.jpg"
-                                            alt="Image of a Property to sale or rent.">
-                                        <div class="card-tag position-absolute left-1">
-                                            <span class="text-white font-weight-bold">FOR SALE</span>
-                                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 pb-4 mb-1">
+                        <div class="card custom-card move-svg  border-0">
+                            <div class="card-interior overflow-hidden position-relative z-index-1">
+                                <a href="" class="text-decoration-none card-anchor">
+                                    <span
+                                        class="custom-card-info-type text-light py-2 px-3 text-1 font-weight-bold letter-spacing text-uppercase position-absolute top-8 left-8">For
+                                        Sale</span>
+                                    <div class="custom-card-info-img d-block">
+                                        <img src="img-7.jpg" class="img-fluid rounded">
                                     </div>
-                                    <div class="py-3 d-flex justify-content-between align-items-baseline">
-                                        <div>
-                                            <h6 class="head text-dark px-2">$ 1.250.000</h6>
-                                        </div>
-                                        <div class="px-2">
-                                            <i style="color: #00a4f2; font-size: 25px;"
-                                                class="fal fa-long-arrow-right icon-hov"></i>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <h5 class="font-weight-extra-bold px-2 text-dark">South Miami</h5>
-                                    <div class="d-flex justify-content-between flex-wrap">
-                                        <div class="text-secondary heading-div-weight px-2">BEDS:3</div>
-                                        <div class="text-secondary heading-div-weight">BATHS:2</div>
-                                        <div class="text-secondary heading-div-weight px-2">SQ FT:500</div>
-                                    </div>
-                                </div>
-                            </a>
+                                    <span class="custom-card-info-header d-flex justify-content-between align-items-center p-relative">
+                                        <strong class="text-dark text-4 px-3 letter-spacing">$ 1.250.000</strong>
+                                        <div class="px-3 arrow-move">
+                                        <svg class="svg-color" version="1.1" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="icon_131640173528885" data-filename="arrow-right.svg" width="27" height="27">
+	                                     <polygon points="1,26 44.586,26 38.293,32.293 39.707,33.707 48.414,25 39.707,16.293 38.293,17.707 44.586,24 1,24  "></polygon>
+                                            </svg>
+                                            </div>
+                                    </span>
+                                    <span class="custom-card-info-content d-block">
+                                        <h4 class="text-dark mb-1 text-5 px-3 font-weight-bold letter-spacing">South Miami</h4>
+                                        <ul
+                                            class="list-unstyled d-flex mb-0 px-1 py-1 justify-content-between flex-wrap">
+                                            <li class="mb-0 px-1">
+                                                <strong class="text-secondary text-uppercase font-weight-extra-bold text-2">Beds: 3</strong>
+                                            </li>
+                                            <li class="mb-0 px-1">
+                                                <strong class="text-secondary text-uppercase font-weight-extra-bold text-2">Baths: 2</strong>
+                                            </li>
+                                            <li class="mb-0 px-1">
+                                                <strong class="text-secondary text-uppercase font-weight-extra-bold text-2">Sq Ft: 500</strong>
+                                            </li>
+                                        </ul>
+                                    </span>
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-12 col-sm-6 col-md-3 pb-4 mb-1">
-                            <a class="text-decoration-none link-card" href="#">
-                                <div class="card border-0 hover-card">
-                                    <div class="position-relative detail-h-card">
-                                        <img class="card-img-top h-image" src="img-8.jpg"
-                                            alt="Image of a Property to sale or rent.">
-                                        <div class="card-tag position-absolute left-1">
-                                            <span class="text-white font-weight-bold">FOR SALE</span>
-                                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 pb-4 mb-1">
+                        <div class="card custom-card move-svg  border-0">
+                            <div class="card-interior overflow-hidden position-relative z-index-1">
+                                <a href="" class="text-decoration-none card-anchor">
+                                    <span
+                                        class="custom-card-info-type text-light py-2 px-3 text-1 font-weight-bold letter-spacing text-uppercase position-absolute top-8 left-8">For
+                                        Sale</span>
+                                    <div class="custom-card-info-img d-block">
+                                        <img src="img-8.jpg" class="img-fluid rounded">
                                     </div>
-                                    <div class="py-3 d-flex justify-content-between align-items-baseline">
-                                        <div>
-                                            <h6 class="head text-dark px-2">$ 1.250.000</h6>
-                                        </div>
-                                        <div class="px-2">
-                                            <i style="color: #00a4f2; font-size: 25px;"
-                                                class="fal fa-long-arrow-right icon-hov"></i>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <h5 class="font-weight-extra-bold px-2 text-dark">South Miami</h5>
-                                    <div class="d-flex justify-content-between flex-wrap">
-                                        <div class="text-secondary heading-div-weight px-2">BEDS:3</div>
-                                        <div class="text-secondary heading-div-weight">BATHS:2</div>
-                                        <div class="text-secondary heading-div-weight px-2">SQ FT:500</div>
-                                    </div>
-                                </div>
-                            </a>
+                                    <span class="custom-card-info-header d-flex justify-content-between align-items-center p-relative">
+                                        <strong class="text-dark text-4 px-3 letter-spacing">$ 1.250.000</strong>
+                                        <div class="px-3 arrow-move">
+                                        <svg class="svg-color" version="1.1" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="icon_131640173528885" data-filename="arrow-right.svg" width="27" height="27">
+	                                     <polygon points="1,26 44.586,26 38.293,32.293 39.707,33.707 48.414,25 39.707,16.293 38.293,17.707 44.586,24 1,24  "></polygon>
+                                            </svg>
+                                            </div>
+                                    </span>
+                                    <span class="custom-card-info-content d-block">
+                                        <h4 class="text-dark mb-1 text-5 px-3 font-weight-bold letter-spacing">South Miami</h4>
+                                        <ul
+                                            class="list-unstyled d-flex mb-0 px-1 py-1 justify-content-between flex-wrap">
+                                            <li class="mb-0 px-1">
+                                                <strong class="text-secondary text-uppercase font-weight-extra-bold text-2">Beds: 3</strong>
+                                            </li>
+                                            <li class="mb-0 px-1">
+                                                <strong class="text-secondary text-uppercase font-weight-extra-bold text-2">Baths: 2</strong>
+                                            </li>
+                                            <li class="mb-0 px-1">
+                                                <strong class="text-secondary text-uppercase font-weight-extra-bold text-2">Sq Ft: 500</strong>
+                                            </li>
+                                        </ul>
+                                    </span>
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-12 col-sm-6 col-md-3 pb-4 mb-1">
-                            <a class="text-decoration-none link-card" href="#">
-                                <div class="card border-0 hover-card">
-                                    <div class="position-relative detail-h-card">
-                                        <img class="card-img-top h-image" src="img-3.jpg"
-                                            alt="Image of a Property to sale or rent.">
-                                        <div class="card-tag position-absolute left-1">
-                                            <span class="text-white font-weight-bold">FOR SALE</span>
-                                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 pb-4 mb-1">
+                        <div class="card custom-card move-svg  border-0">
+                            <div class="card-interior overflow-hidden position-relative z-index-1">
+                                <a href="" class="text-decoration-none card-anchor">
+                                    <span
+                                        class="custom-card-info-type text-light py-2 px-3 text-1 font-weight-bold letter-spacing text-uppercase position-absolute top-8 left-8">For
+                                        Sale</span>
+                                    <div class="custom-card-info-img d-block">
+                                        <img src="img-3.jpg" class="img-fluid rounded">
                                     </div>
-                                    <div class="py-3 d-flex justify-content-between align-items-baseline">
-                                        <div>
-                                            <h6 class="head text-dark px-2">$ 1.250.000</h6>
-                                        </div>
-                                        <div class="px-2">
-                                            <i style="color: #00a4f2; font-size: 25px;"
-                                                class="fal fa-long-arrow-right icon-hov"></i>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <h5 class="font-weight-extra-bold px-2 text-dark">South Miami</h5>
-                                    <div class="d-flex justify-content-between flex-wrap">
-                                        <div class="text-secondary heading-div-weight px-2">BEDS:3</div>
-                                        <div class="text-secondary heading-div-weight">BATHS:2</div>
-                                        <div class="text-secondary heading-div-weight px-2">SQ FT:500</div>
-                                    </div>
-                                </div>
-                            </a>
+                                    <span class="custom-card-info-header d-flex justify-content-between align-items-center p-relative">
+                                        <strong class="text-dark text-4 px-3 letter-spacing">$ 1.250.000</strong>
+                                        <div class="px-3 arrow-move">
+                                        <svg class="svg-color" version="1.1" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="icon_131640173528885" data-filename="arrow-right.svg" width="27" height="27">
+	                                     <polygon points="1,26 44.586,26 38.293,32.293 39.707,33.707 48.414,25 39.707,16.293 38.293,17.707 44.586,24 1,24  "></polygon>
+                                            </svg>
+                                            </div>
+                                    </span>
+                                    <span class="custom-card-info-content d-block">
+                                        <h4 class="text-dark mb-1 text-5 px-3 font-weight-bold letter-spacing">South Miami</h4>
+                                        <ul
+                                            class="list-unstyled d-flex mb-0 px-1 py-1 justify-content-between flex-wrap">
+                                            <li class="mb-0 px-1">
+                                                <strong class="text-secondary text-uppercase font-weight-extra-bold text-2">Beds: 3</strong>
+                                            </li>
+                                            <li class="mb-0 px-1">
+                                                <strong class="text-secondary text-uppercase font-weight-extra-bold text-2">Baths: 2</strong>
+                                            </li>
+                                            <li class="mb-0 px-1">
+                                                <strong class="text-secondary text-uppercase font-weight-extra-bold text-2">Sq Ft: 500</strong>
+                                            </li>
+                                        </ul>
+                                    </span>
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-12 col-sm-6 col-md-3 pb-4 mb-1">
-                            <a class="text-decoration-none link-card" href="#">
-                                <div class="card border-0 hover-card">
-                                    <div class="position-relative detail-h-card">
-                                        <img class="card-img-top h-image" src="img-4.jpg"
-                                            alt="Image of a Property to sale or rent.">
-                                        <div class="card-tag position-absolute left-1">
-                                            <span class="text-white font-weight-bold">FOR SALE</span>
-                                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 pb-4 mb-1">
+                        <div class="card custom-card move-svg  border-0">
+                            <div class="card-interior overflow-hidden position-relative z-index-1">
+                                <a href="" class="text-decoration-none card-anchor">
+                                    <span
+                                        class="custom-card-info-type text-light py-2 px-3 text-1 font-weight-bold letter-spacing text-uppercase position-absolute top-8 left-8">For
+                                        Sale</span>
+                                    <div class="custom-card-info-img d-block">
+                                        <img src="img-4.jpg" class="img-fluid rounded">
                                     </div>
-                                    <div class="py-3 d-flex justify-content-between align-items-baseline">
-                                        <div>
-                                            <h6 class="head text-dark px-2">$ 1.250.000</h6>
-                                        </div>
-                                        <div class="px-2">
-                                            <i style="color: #00a4f2; font-size: 25px;"
-                                                class="fal fa-long-arrow-right icon-hov"></i>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <h5 class="font-weight-extra-bold px-2 text-dark">South Miami</h5>
-                                    <div class="d-flex justify-content-between flex-wrap">
-                                        <div class="text-secondary heading-div-weight px-2">BEDS:3</div>
-                                        <div class="text-secondary heading-div-weight">BATHS:2</div>
-                                        <div class="text-secondary heading-div-weight px-2">SQ FT:500</div>
-                                    </div>
-                                </div>
-                            </a>
+                                    <span class="custom-card-info-header d-flex justify-content-between align-items-center p-relative">
+                                        <strong class="text-dark text-4 px-3 letter-spacing">$ 1.250.000</strong>
+                                        <div class="px-3 arrow-move">
+                                        <svg class="svg-color" version="1.1" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="icon_131640173528885" data-filename="arrow-right.svg" width="27" height="27">
+	                                     <polygon points="1,26 44.586,26 38.293,32.293 39.707,33.707 48.414,25 39.707,16.293 38.293,17.707 44.586,24 1,24  "></polygon>
+                                            </svg>
+                                            </div>
+                                    </span>
+                                    <span class="custom-card-info-content d-block">
+                                        <h4 class="text-dark mb-1 text-5 px-3 font-weight-bold letter-spacing">South Miami</h4>
+                                        <ul
+                                            class="list-unstyled d-flex mb-0 px-1 py-1 justify-content-between flex-wrap">
+                                            <li class="mb-0 px-1">
+                                                <strong class="text-secondary text-uppercase font-weight-extra-bold text-2">Beds: 3</strong>
+                                            </li>
+                                            <li class="mb-0 px-1">
+                                                <strong class="text-secondary text-uppercase font-weight-extra-bold text-2">Baths: 2</strong>
+                                            </li>
+                                            <li class="mb-0 px-1">
+                                                <strong class="text-secondary text-uppercase font-weight-extra-bold text-2">Sq Ft: 500</strong>
+                                            </li>
+                                        </ul>
+                                    </span>
+                                </a>
+                            </div>
                         </div>
+                    </div>
                     </div>
                     <div class="row">
                         <div class="d-flex mx-auto pt-3">
