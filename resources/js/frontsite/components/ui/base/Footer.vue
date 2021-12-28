@@ -83,6 +83,20 @@
 </template>
 
 <script>
+// window.onscroll = function() {myFunction()};
+//
+// var topHeader = document.getElementById("secondary-menu");
+// var sticky = topHeader.offsetTop
+//
+//
+//
+// function myFunction() {
+//     if (window.pageYOffset > sticky) {
+//         topHeader.classList.add("sticky");
+//     } else {
+//         topHeader.classList.remove("sticky");
+//     }
+// }
 export default {
     name: "Footer"
 }

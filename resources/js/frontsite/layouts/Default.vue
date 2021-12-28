@@ -17,6 +17,7 @@
 <!--        </div>-->
         <Header :isAuthenticated="isAuthenticated"></Header>
         <child/>
+        <Footer></Footer>
     </div>
 </template>
 
@@ -24,10 +25,11 @@
 import store from "~/frontsite/store";
 import {computed} from "vue";
 import Header from "../components/ui/base/Header";
+import Footer from "../components/ui/base/Footer";
 
 export default {
     name: "Default",
-    components: {Header},
+    components: {Footer, Header},
     setup() {
         const isAuthenticated = computed(() => {
             return store.getters.isAuthenticated ? store.getters.isAuthenticated : null;

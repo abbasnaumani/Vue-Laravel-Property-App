@@ -26,6 +26,20 @@ export default [
         props: true,
     },
     {
+        path: '/forgot/password',
+        name: 'forgot-password',
+        component: page('auth/ForgotPassword'),
+        meta: {login: true, meta_title: 'Forgot Password'},
+        props: true,
+    },
+    {
+        path: '/reset/password/:encodedToken',
+        name: 'reset-password',
+        component: page('auth/ResetPassword'),
+        meta: {login: true, meta_title: 'Reset Password'},
+        props: ({params}) => ({encodedToken: params.encodedToken || ''}),
+    },
+    {
         path: '/user/profile',
         name: 'user-profile',
         meta: {public: false, meta_title: 'User Profile'},
@@ -84,20 +98,7 @@ export default [
     //     meta: {login: true, meta_title: 'User Registration'},
     //     props: true,
     // },
-    // {
-    //     path: '/forgot/password',
-    //     name: 'forgot-password',
-    //     component: page('auth/ForgotPassword'),
-    //     meta: {login: true, meta_title: 'Forgot Password'},
-    //     props: true,
-    // },
-    // {
-    //     path: '/reset/password/:encodedToken',
-    //     name: 'reset-password',
-    //     component: page('auth/ResetPassword'),
-    //     meta: {login: true, meta_title: 'Reset Password'},
-    //     props: ({params}) => ({encodedToken: params.encodedToken || ''}),
-    // },
+
     // {
     //     path: '/',
     //     name: 'main',

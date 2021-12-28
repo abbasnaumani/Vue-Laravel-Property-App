@@ -6,7 +6,7 @@
                     <div class="text-lg-start text-center">
                         <h2 class="mb-0">
                             For
-                            <span class="font-weight-bold">Residential And Commercial</span>
+                            <span class="font-weight-extra-bold">Residential And Commercial</span>
                             Properties
                         </h2>
                         <div class="d-flex justify-content-lg-start justify-content-center">
@@ -21,7 +21,7 @@
                 <div class="col-lg-3 mt-5 mt-lg-0">
                     <div class="banner-button">
                         <a href="#"
-                            class="btn btn-primary btn-block font-weight-bold py-4 anchor-button d-flex justify-content-center">
+                            class="btn btn-primary test-fancy border-0 btn-block font-weight-bold py-4 anchor-button d-flex justify-content-center">
                             <div>
                                 CONTACT US
                             </div>

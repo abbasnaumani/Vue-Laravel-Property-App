@@ -1,19 +1,19 @@
 <template>
-    <div class="container py-5">
-        <div class="card shadow-sm form-card w-100 mt-5">
+    <div class="container">
+        <div class="card shadow-lg login-card w-100">
             <div class="card-header bg-white border-bottom-0 mt-3">
                 <div class="d-flex justify-content-center align-items-center">
-                    <h4 class="login-text text-uppercase">Register Form</h4>
+                    <h4 class="login-text text-4 font-weight-semi-bold letter-spacing text-uppercase">Register Form</h4>
                 </div>
             </div>
             <div class="card-body">
-                <form id="property-form" action="" method="">
+                <form>
                     <div class="row">
                         <div class="col-6">
-                            <div class="card shadow-sm form-card w-100">
-                                <div class="card-header bg-white border-bottom-0">
+                            <div class="card shadow-sm login-card w-100">
+                                <div class="card-header bg-white border-bottom-0 mt-3">
                                     <div class="d-flex justify-content-center align-items-center">
-                                        <h4 class="login-text text-uppercase">User Information</h4>
+                                        <h4 class="login-text text-uppercase letter-spacing">User Information</h4>
                                     </div>
                                 </div>
                                 <div class="card-body text-left">
@@ -24,11 +24,10 @@
                                                 <i class="fal fa-user position-absolute p-3 text-primary"></i>
                                                 <input
                                                     type="text"
-                                                    class="pl-5 form-control form-control-lg form-control-alt"
+                                                    class="pl-5 form-control form-control-lg"
                                                     id="first_name"
                                                     v-model="firstName"
                                                     placeholder="First Name"
-                                                    autofocus
                                                     @blur="v$.firstName.$touch()"
                                                 />
                                             </div>
@@ -51,7 +50,7 @@
                                                 <i class="fal fa-user position-absolute p-3 text-primary"></i>
                                                 <input
                                                     type="text"
-                                                    class="pl-5 form-control form-control-lg form-control-alt"
+                                                    class="pl-5 form-control form-control-lg "
                                                     id="last_name"
                                                     v-model="lastName"
                                                     placeholder="Last Name"
@@ -77,7 +76,7 @@
                                                 <i class="fal fa-envelope position-absolute p-3 text-primary"></i>
                                                 <input
                                                     type="email"
-                                                    class="pl-5 form-control form-control-lg form-control-alt"
+                                                    class="pl-5 form-control form-control-lg "
                                                     id="email"
                                                     v-model="userEmail"
                                                     placeholder="Email"
@@ -103,7 +102,7 @@
                                                 <i class="fal fa-phone-alt position-absolute p-3 text-primary"></i>
                                                 <input
                                                     type="tel"
-                                                    class="pl-5 form-control form-control-lg form-control-alt"
+                                                    class="pl-5 form-control form-control-lg "
                                                     id="phone"
                                                     v-model="phoneNumber"
                                                     @blur="v$.phoneNumber.$touch()"
@@ -129,7 +128,7 @@
                                                 <i class="fal fa-lock position-absolute p-3 text-primary"></i>
                                                 <input
                                                     type="password"
-                                                    class="pl-5 form-control form-control-lg form-control-alt"
+                                                    class="pl-5 form-control form-control-lg "
                                                     id="password"
                                                     v-model="password"
                                                     @blur="v$.password.$touch()"
@@ -156,7 +155,7 @@
                                                 <i class="fal fa-lock position-absolute p-3 text-primary"></i>
                                                 <input
                                                     type="password"
-                                                    class="pl-5 form-control form-control-lg form-control-alt"
+                                                    class="pl-5 form-control form-control-lg "
                                                     id="password_confirmation"
                                                     v-model="confirmPassword"
                                                     @blur="v$.confirmPassword.$touch()"
@@ -177,10 +176,10 @@
                             </div>
                         </div>
                         <div class="col-6">
-                            <div class="card shadow-sm form-card w-100">
-                                <div class="card-header bg-white border-bottom-0">
+                            <div class="card shadow-sm login-card w-100">
+                                <div class="card-header bg-white border-bottom-0 mt-3">
                                     <div class="d-flex justify-content-center align-items-center">
-                                        <h4 class="login-text text-uppercase">Agency Information</h4>
+                                        <h4 class="login-text text-uppercase letter-spacing">Agency Information</h4>
                                     </div>
                                 </div>
                                 <div class="card-body text-left">
@@ -191,7 +190,7 @@
                                                 <i class="fal fa-building position-absolute p-3 text-primary"></i>
                                                 <input
                                                     type="tel"
-                                                    class="pl-5 form-control form-control-lg form-control-alt"
+                                                    class="pl-5 form-control form-control-lg"
                                                     id="agency-name"
                                                     v-model="agencyName"
                                                     @blur="v$.agencyName.$touch()"
@@ -217,7 +216,7 @@
                                                 <i class="fal fa-envelope position-absolute p-3 text-primary"></i>
                                                 <input
                                                     type="tel"
-                                                    class="pl-5 form-control form-control-lg form-control-alt"
+                                                    class="pl-5 form-control form-control-lg "
                                                     id="agency-email"
                                                     v-model="agencyEmail"
                                                     @blur="v$.agencyEmail.$touch()"
@@ -243,7 +242,7 @@
                                                 <i class="fal fa-phone-alt position-absolute p-3 text-primary"></i>
                                                 <input
                                                     type="tel"
-                                                    class="pl-5 form-control form-control-lg form-control-alt"
+                                                    class="pl-5 form-control form-control-lg "
                                                     id="agency-phone"
                                                     v-model="agencyPhoneNumber"
                                                     @blur="v$.agencyPhoneNumber.$touch()"
@@ -269,7 +268,7 @@
                                                 <i class="fal fa-map-marker-alt position-absolute p-3 text-primary"></i>
                                                 <input
                                                     type="tel"
-                                                    class="pl-5 form-control form-control-lg form-control-alt"
+                                                    class="pl-5 form-control form-control-lg "
                                                     id="agency-address"
                                                     v-model="agencyAddress"
                                                     @blur="v$.agencyAddress.$touch()"
@@ -290,18 +289,18 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group col-12 text-center">
+                    <div class="form-group col-12 text-center mt-4">
                         <button
                             v-if="v$.$invalid"
                             type="submit"
-                            class="btn btn-primary btn-modern cursor-not-allowed"
+                            class="btn btn-primary text-white btn-modern test-fancy border-0 btn-color w-25 cursor-not-allowed"
                             disabled
                         >
                             <i class="fal fa-fw fa-sign-in-alt mr-1"></i>Sign Up
                         </button>
                         <button v-else @click.prevent="handleRegistration"
                                 type="submit"
-                                class="btn btn-primary btn-modern"
+                                class="btn btn-primary text-white btn-modern test-fancy border-0 btn-color w-25"
                         >
                             <i class="fal fa-fw fa-sign-in-alt mr-1"></i>Sign Up
                         </button>

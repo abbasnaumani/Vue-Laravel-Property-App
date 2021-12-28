@@ -1,0 +1,90 @@
+/* ******************* */
+/* Text sizing */
+/* ******************* */
+.text-1{
+    font-size: 0.8em;
+}
+.text-2{
+    font-size: 0.9em !important;
+}
+.text-3{
+    font-size: 1em !important;
+}
+.text-4{
+    font-size: 1.2em !important;
+}
+.text-5{
+    font-size: 1.5em !important;
+}
+.text-6{
+    font-size: 1.8em !important;
+}
+.text-7 {
+    font-size: 2em !important;
+}
+.text-8{
+    font-size: 2.3em !important;
+}
+/* ******************* */
+/* End Text sizing */
+/* ******************* */
+
+/* ******************* */
+/* headings sizing */
+/* ******************* */
+
+h1{
+    font-size: 2.5rem;
+}
+h2{
+    font-size: 2rem;
+}
+h3{
+    font-size: 1.75rem;
+}
+h4{
+    font-size: 1.5rem;
+}
+h5{
+    font-size: 1.25rem;
+}
+h6{
+    font-size: 1rem;
+}
+
+/* ******************* */
+/* End headings sizing */
+/* ******************* */
+
+/* ******************* */
+/* font weight */
+/* ******************* */
+
+.font-weight-medium{
+    font-weight: 500 !important;
+}
+.font-weight-semi-bold{
+    font-weight: 600 !important;
+}
+.font-weight-bold{
+    font-weight: 700 !important;
+}
+.font-weight-extra-bold{
+    font-weight: 800 !important;
+}
+
+/* ******************* */
+/* End font weight */
+/* ******************* */
+
+/* ******************* */
+/* start letter spacing */
+/* ******************* */
+
+.letter-spacing{
+    letter-spacing:-.05em !important;
+}
+
+/* ******************* */
+/* End lettet spacing */
+/* ******************* */

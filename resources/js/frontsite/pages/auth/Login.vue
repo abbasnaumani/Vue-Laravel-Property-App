@@ -1,25 +1,24 @@
 <template>
     <div class="container py-5">
-        <div class="card-signup shadow-sm form-card w-50 text-left mt-5">
-            <div class="card-header bg-white border-bottom-0 mt-4">
+        <div class="card shadow-sm login-card w-50">
+            <div class="card-header bg-white border-bottom-0 mt-3">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h4 class="login-text text-uppercase">I'm a Returning Customer</h4>
-                    <!--                    <a class="float-end btn" href="#">Create Account</a>-->
+                    <h4 class="login-text text-uppercase letter-spacing">I'm a Returning Customer</h4>
                     <router-link to="/signup"
                                  class="float-end btn">
                         Create An Account
                     </router-link>
                 </div>
             </div>
-            <div class="card-body">
+            <div class="card-body text-left">
                 <form>
                     <div class="row">
                         <div class="form-group col">
-                            <label class="form-label">Username or E-mail Address</label>
+                            <label class="form-label">E-mail Address</label>
                             <div class="position-relative">
-                                <i class="fal fa-envelope position-absolute p-3 text-primary"></i>
+                                <i class="fal fa-envelope position-absolute pl-3 pt-3 text-primary"></i>
                                 <input
-                                    class="form-control form-control-lg pl-5"
+                                    class="pl-5 form-control form-control-lg"
                                     id="email"
                                     type="email"
                                     v-model="userEmail"
@@ -48,7 +47,7 @@
                             <!--                            <a class="float-end" href="#">(Lost Password?)</a>-->
                             <label class="form-label">Password</label>
                             <div class="position-relative">
-                                <i class="fal fa-key position-absolute p-3 text-primary"></i>
+                                <i class="fal fa-key position-absolute pl-3 pt-3 text-primary"></i>
                                 <input
                                     id="password"
                                     type="password"
@@ -56,7 +55,7 @@
                                     required
                                     autocomplete="current-password"
                                     @blur="v$.password.$touch()"
-                                    class="form-control form-control-lg pl-5"
+                                    class="pl-5 form-control form-control-lg"
                                 >
                                 <div class="text-left">
                                     <div v-if="v$.password.$dirty">
@@ -79,13 +78,13 @@
                         </div>
                         <div class="form-group col-md-4 col-12 text-md-right text-center">
                             <button type="submit"
-                                    class="btn btn-primary btn-modern cursor-not-allowed"
+                                    class="btn btn-primary text-white btn-modern test-fancy border-0 btn-color cursor-not-allowed"
                                     v-if="v$.$invalid" disabled>
                                 <i class="fal fa-fw fa-sign-in-alt mr-1"></i>Sign In
                             </button>
                             <button v-else @click.prevent="handleLogin"
                                     type="submit"
-                                    class="btn btn-primary btn-modern"
+                                    class="btn btn-primary text-white btn-modern test-fancy border-0 btn-color"
                             >
                                 <i class="fal fa-fw fa-sign-in-alt mr-1"></i>Sign In
                             </button>
