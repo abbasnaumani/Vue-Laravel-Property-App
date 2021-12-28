@@ -17,20 +17,22 @@
             <!-- Extra -->
             <div>
                 <!-- Options -->
-                <div class="dropdown d-inline-block ml-2">
-                    <a class="btn btn-sm btn-dual" id="sidebar-themes-dropdown"
-                       data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false" href="#">
-                        <i class="si si-drop"></i>
-                    </a>
-                </div>
+<!--                <div class="dropdown d-inline-block ml-2">-->
+<!--                    <a class="btn btn-sm btn-dual" id="sidebar-themes-dropdown"-->
+<!--                       data-toggle="dropdown"-->
+<!--                       aria-haspopup="true" aria-expanded="false" href="#">-->
+<!--                        <i class="si si-drop"></i>-->
+<!--                    </a>-->
+<!--                </div>-->
                 <!-- END Options -->
 
                 <!-- Close Sidebar, Visible only on mobile screens -->
                 <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
                 <a class="d-lg-none btn btn-sm btn-dual ml-1" data-toggle="layout"
                    data-action="sidebar_close"
-                   href="javascript:void(0)">
+                   href="javascript:void(0)"
+                   @click="handleMobileMenu"
+                >
                     <i class="fa fa-fw fa-times"></i>
                 </a>
                 <!-- END Close Sidebar -->
@@ -57,23 +59,25 @@
 </template>
 
 <script>
-import {computed, ref} from "vue";
+import {computed} from "vue";
 import store from '~/admin/store';
-import userService from "../../../services/userService";
-import NavigationItems from "../navigation/NavigationItems";
+import userService from "~/admin/services/userService";
+import NavigationItems from "~/admin/components/ui/navigation/NavigationItems";
 import {useRoute} from "vue-router";
 
 export default {
     name: "Sidebar",
     components: {NavigationItems},
-    setup(props) {
-        const isOpenedByUrl = ref(true);
+    props: {
+        sidebarOpenCloseConfig: Object,
+    },
+    setup(props, {emit}) {
         const userMenu = computed(() => {
             return store.getters.getUserMenu ? store.getters.getUserMenu : null;
         });
-        const sidebarOpenCloseConfig = computed(() => {
+       /* const sidebarOpenCloseConfig = computed(() => {
             return store.getters.getSidebarOpenCloseConfig ? store.getters.getSidebarOpenCloseConfig : null;
-        });
+        });*/
     /*    const openedMainMenuId = computed(() => {
             return store.getters.openedMainMenuId ? store.getters.openedMainMenuId : null;
         });
@@ -86,6 +90,9 @@ export default {
             console.log('here is the path', path.value);
             userService.getUserMenu(path.value.replace('/admin/', ''));
         }
+        const handleMobileMenu = () => {
+            emit('emitMobileMenuToggle', true)
+        }
         // const getUserMenu = () => {
         //     const userMenu = computed(() => {
         //         return store.getters.getUserMenu ? store.getters.getUserMenu : null;
@@ -97,8 +104,7 @@ export default {
         // };
         return {
             userMenu,
-            sidebarOpenCloseConfig,
-            isOpenedByUrl
+            handleMobileMenu
         }
     },
 }

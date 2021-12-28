@@ -17,7 +17,7 @@
 <body class="font-sans antialiased">
 <div id="app">
 </div>
-<script src="{{ asset('js/main/vendors.js') }}" type="text/javascript"></script>
+{{--<script src="{{ asset('js/main/vendors.js') }}" type="text/javascript"></script>--}}
 <script src="{{ asset('js/main/admin.js') }}" type="text/javascript"></script>
 </body>
 </html>
