@@ -52,7 +52,10 @@ class AuthService extends EventEmitter {
         }
         return true;
     }
-
+    verifyRoleIdsAccess(userRoleIds) {
+        const roles = store.getters['getRoleIds'];
+        return roles.some(v => userRoleIds.indexOf(v) >= 0);
+    }
     async handleLogout() {
         try {
             const response = await appApi.post('/logout');

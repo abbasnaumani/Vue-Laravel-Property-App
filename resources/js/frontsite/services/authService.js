@@ -79,7 +79,10 @@ class AuthService extends EventEmitter {
         await store.dispatch('actionClearAuthState');
         router.push({name: `user-login`});
     }
-
+    verifyRoleIdsAccess(userRoleIds) {
+        const roles = store.getters['getRoleIds'];
+        return roles.some(v => userRoleIds.indexOf(v) >= 0);
+    }
     async handleSendVerificationCode(payload) {
         try {
             const response = await appApi.post('/send/code', payload);

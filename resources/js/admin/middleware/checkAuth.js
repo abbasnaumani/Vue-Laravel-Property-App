@@ -1,8 +1,9 @@
 import auth from "~/admin/services/authService";
+import {UserRoles} from "../constants";
 
 export default async (to, from, next) => {
     //document.title = to.meta.meta_title || 'BCBooth';
-    let targetUrl =localStorage.getItem('url.intended');
+    let targetUrl = localStorage.getItem('url.intended');
     if (auth.isAuthenticated() && targetUrl) {
         const url = targetUrl;
         if (url) {
@@ -36,6 +37,11 @@ export default async (to, from, next) => {
         if (typeof to.meta.roleIds != 'undefined' && Array.isArray(
             to.meta.roleIds)) {
             roleHasAccess = auth.verifyRoleIdsAccess(to.meta.roleIds);
+        }
+        if (roleHasAccess && !auth.verifyRoleIdsAccess(
+            [UserRoles.SUPER_ADMIN, UserRoles.ADMIN])) {
+            auth.onLogout();
+            return next({name: 'login'});
         }
         return (roleHasAccess) ? next() : next({name: 'home'});
     }

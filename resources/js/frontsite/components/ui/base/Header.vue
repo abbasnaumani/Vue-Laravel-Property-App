@@ -44,7 +44,7 @@
                                                         <i style="font-size:14px;" class="cursor-pointer fas fa-user p-1" data-toggle="dropdown"></i>
                                                         <div class="dropdown-menu">
                                                             <a class="dropdown-item" href="#" >
-                                                                <p class="font-weight-bold mb-0">{{ profile2?.first_name+' '+profile2?.last_name }}</p>
+                                                                <p class="font-weight-bold mb-0">{{ profile?.first_name+' '+profile?.last_name }}</p>
                                                             </a>
                                                             <router-link :to="{path:'/user/profile'}" class="dropdown-item">
                                                                 <p class="mb-0 mt-0 header-dropdown-links px-2">My Account</p>
@@ -519,10 +519,7 @@ export default {
 
     },
     setup(){
-     //   const store = useStore();
-        console.log(store.getters.getProfile,'store.getters.getProfile');
-        const profile2 = computed(() => {
-            console.log(store.getters.getProfile,"store.getters.getProfile")
+        const profile = computed(() => {
             return store.getters.getProfile ? store.getters.getProfile : null;
         });
 
@@ -538,17 +535,6 @@ export default {
             //    debugger
             }
         });
-        const profile = ref(null);
-
-        watch(()=> _.cloneDeep(userName),(userName, preUserName)=>{
-            console.log('insdieprofile',userName, preUserName);
-             profile.value = store.getters?.getProfile;
-        },
-            {
-                immediate: true,
-                deep: true,
-            });
-
         watchEffect(() => console.log(store.getters.getUserName))
         const options = getAllLocationsByCItyId(4);
         const location = ref(1);
@@ -584,7 +570,6 @@ export default {
             openSearchDropDown,
             showSearchDropdown,
             profile,
-            profile2,
             userName
         }
     }
