@@ -2,7 +2,7 @@
 <?php include "carousel.php" ?>
 <section class="main">
     <div class="main-wrapper">
-        <div class="container-fluid pb-5">
+        <div class="container-fluid py-5">
             <div class="container pb-4 py-1">
                 <!-- main-row  -->
                 <div class="row">
@@ -412,5 +412,4 @@
         </div>
     </div>
 </section>
-
 <?php include "footer.php" ?>

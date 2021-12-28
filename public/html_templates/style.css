@@ -10,8 +10,7 @@
     --ks-bg-tertiary-color: #1877F2;
     --ks-text-primary-color: #777777;
     --ks-text-secondary-color: #444444;
-    --ks-btn-color: #BB286A;
-    --ks-card-tag-color:#F5A32A;
+    --ks-btn-color: #83727F;
 }
 
 body {
@@ -134,7 +133,7 @@ body {
     background-color: #f9f9f9;
     min-width: 190px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    z-index: 99;
     transition: all 0.7s;
 }
 
@@ -298,7 +297,7 @@ body {
     width: 200px;
     border-radius: 3px;
     height: 48px;
-    background-color:var(--ks-card-tag-color);
+    background-image: linear-gradient(to right, #E5555C ,#E5555C, #FFDD65,#FFDD65);
 }
 
 .carousel-caption {
@@ -1065,15 +1064,21 @@ input[type='radio']:checked {
 }
 
 .move-svg{
-    transition: 0.4s  !important;
-    transition-timing-function: linear;
+    transition: transform 0.3s ease-in-out;
 }
 .move-svg:hover .arrow-move{
-    padding-left: 22px !important;
-    padding-right: 12px !important;
-    transition: 0.4s !important;
-    transition-timing-function: linear;
+    animation: fly-2 0.6s ease-in-out infinite alternate;
+    transform: translateX(6.2em) rotate(45deg) scale(1.1);
 }
+@keyframes fly-2 {
+    from {
+     transform: translateX(0.2em);
+    }
+   
+    to {
+     transform: translateX(-0.1em);
+    }
+   }
 @media only screen and (max-width: 480px) {
     .custom-card-info-img {
         height: 300px !important;
@@ -1147,7 +1152,7 @@ input[type='radio']:checked {
     left: 0;
     height: 100%;
     width: 0;
-    background-color: var(--ks-card-tag-color);
+    background-color: #AE84A6;
     border: none !important;
     z-index: -1;
     -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
@@ -1374,3 +1379,35 @@ aside .nav-tabs .nav-link:hover {
     background-color: rgb(236, 236, 236);
     color: black;
 }
+/* 4040 page  */
+.http-error{
+    padding:50px 0;
+}
+.text-404{
+    color: var(--ks-bg-primary-color);
+}
+.bg-purple{
+    background-color: var(--ks-bg-primary-color);
+}
+.main-hover-icon{
+    transition: transform 0.3s ease-in-out;
+}
+.main-hover-icon:hover{
+    color: var(--ks-bg-primary-color);
+    color: white;
+    background-color: var(--ks-card-tag-color);
+}
+.main-hover-icon:hover .angle-404{
+    animation: fly-1 0.6s ease-in-out infinite alternate;
+    transform: translateX(6.2em) rotate(45deg) scale(1.1);
+    color: white;
+   }
+@keyframes fly-1 {
+    from {
+     transform: translateX(0.2em);
+    }
+   
+    to {
+     transform: translateX(-0.1em);
+    }
+   }
