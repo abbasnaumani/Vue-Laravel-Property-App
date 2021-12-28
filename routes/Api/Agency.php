@@ -10,8 +10,10 @@ class Agency
     static function register()
     {
         Route::group(['middleware' => ['auth:sanctum']], function(){
+            Route::post('/agency',[AgencyController::class, 'store'])->name('agency.store');
             Route::get('/agency/edit/{agencyId}',[AgencyController::class, 'edit'])->name('agency.edit');
-            Route::put('/agency/update/profile', [AgencyController::class,'update'])->name('agency.update');
+            Route::post('/agency/{agencyId}',[AgencyController::class, 'update'])->name('agency.edit');
+            Route::put('/agency/update/profile', [AgencyController::class,'updateProfile'])->name('agency.update.profile');
             Route::delete('/agency/{agencyId}', [AgencyController::class, 'destroy'])->name('agency.delete');
             Route::get('/agency/list', [AgencyController::class, 'getAgencyList'])->name('agency.list');
             Route::get('/agency/{agencyId}',[AgencyController::class, 'getAgencyUsers'])->name('agency.users');

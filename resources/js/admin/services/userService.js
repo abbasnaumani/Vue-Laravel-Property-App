@@ -40,6 +40,7 @@ class UserService extends EventEmitter {
             toast.error(error.message);
         }
     }
+
     async handleAddAgencyUser(agencyUserData) {
         try {
             const response = await appApi.post('/user/add',agencyUserData);

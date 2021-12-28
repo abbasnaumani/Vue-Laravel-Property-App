@@ -50,6 +50,21 @@ export default [
         meta: {public: false, meta_title: 'Agency List'},
         component: page('user/AgencyList'),
     },
+    // Add Agency
+    {
+        path: routePath('/add/agency'),
+        name: 'add-agency',
+        meta: {public: false, meta_title: 'Add Agency'},
+        component: page('user/AddAgency'),
+    },
+    // Edit Agency
+    {
+        path: routePath('/edit/agency/:agencyId'),
+        name: 'edit-agency',
+        meta: {public: false, meta_title: 'Edit Agency'},
+        component: page('user/EditAgency'),
+        props: ({params}) => ({agencyId: params.agencyId || 0}),
+    },
     // Agency Users Route
     {
         path: routePath('/:agencyId/users/'),

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Agency\AgencyProfileRequest;
+use App\Http\Requests\Agency\AgencyStoreRequest;
+use App\Http\Requests\Agency\AgencyUpdateRequest;
 use App\Models\Agency;
 use App\Services\AgencyService;
 use Illuminate\Http\JsonResponse;
@@ -56,12 +58,13 @@ class AgencyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  AgencyStoreRequest  $request
+     * @return JsonResponse
      */
-    public function store(Request $request)
+    public function store(AgencyStoreRequest $request): JsonResponse
     {
-        //
+        $this->agencyService->addAgency($request);
+        return $this->getApiResponse();
     }
 
     /**
@@ -87,14 +90,25 @@ class AgencyController extends Controller
         $this->setApiSuccessMessage(trans('agency.agency_found'), $agency);
         return $this->getApiResponse();
     }
-
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param AgencyUpdateRequest $request
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function update(AgencyUpdateRequest $request,int $id): JsonResponse
+    {
+        $this->agencyService->updateAgency($request,$id);
+        return $this->getApiResponse();
+    }
     /**
      * Update the specified resource in storage.
      *
      * @param AgencyProfileRequest $request
      * @return JsonResponse
      */
-    public function update(AgencyProfileRequest $request): JsonResponse
+    public function updateProfile(AgencyProfileRequest $request): JsonResponse
     {
         $this->agencyService->updateAgencyProfile($request);
         return $this->getApiResponse();

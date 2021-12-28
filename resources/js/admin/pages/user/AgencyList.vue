@@ -58,7 +58,7 @@
                                                     {{(agency.created_at) ? agency.created_at : ''}} </em>
                                             </td>
                                             <td class="btn-group text-center font-w600 font-size-sm">
-                                                <router-link :to="{path:'/admin/agency/edit/'+agency.id}" class="btn btn-primary "><i class="fa fa-edit"></i></router-link>
+                                                <router-link :to="{path:'/admin/edit/agency/'+agency.id}" class="btn btn-primary "><i class="fa fa-edit"></i></router-link>
                                                 <button @click="openDeleteModal(agency)" class="btn btn-danger mx-2"><i class="far fa-trash-alt"></i></button>
                                                 <router-link :to="{path:'/admin/'+agency.id+'/users/'}" class="btn btn-info mx-2"><i class="far fa-eye"></i></router-link>
                                             </td>

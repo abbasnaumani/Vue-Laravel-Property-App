@@ -13,6 +13,39 @@ use Illuminate\Support\Str;
 class AgencyService extends BaseService
 {
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     */
+    public function addAgency(Request $request){
+        $agency = new Agency();
+        $agencySlug = $this->getUniqueAgencyByParams(['type' => 'slug', 'name' => Str::slug($request->agency_name)]);
+        $agency->name = $request->agency_name;
+        $agency->slug = $agencySlug;
+        $agency->email = $request->agency_email;
+        $agency->address = $request->agency_address;
+        $agency->phone_number = $request->agency_phone_number;
+        $agency->save();
+        $this->setApiSuccessMessage(trans('agency.add_agency'));
+    }
+    /**
+     * Update the agency data.
+     *
+     * @param  Request  $request
+     * @param int $id
+     */
+    public function updateAgency(Request $request,int $id){
+        $agency = Agency::find($id);
+        $agencySlug = $this->checkUniqueSlug(['slug' => $request->agency_slug, 'id' => $agency->id]);
+        $agency->name = $request->agency_name;
+        $agency->slug = $agencySlug;
+        $agency->email = $request->agency_email;
+        $agency->address = $request->agency_address;
+        $agency->phone_number = $request->agency_phone_number;
+        $agency->save();
+        $this->setApiSuccessMessage(trans('agency.add_agency'));
+    }
+    /**
      * Get Unique Agency Slug
      *
      * @param array $params

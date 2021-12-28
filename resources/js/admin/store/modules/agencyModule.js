@@ -13,13 +13,16 @@ const getters = {
     },
     getAgencyUsersListById:(state) => (agencyId) =>{
         return state.agencies !== null ?  state.agencies.find(agency => agency.id == agencyId)?.users : null;
+    },
+    getAgencyById:(state) => (agencyId) => {
+        return state.agencies !== null ?  state.agencies.find(agency => agency.id == agencyId) : null;
     }
 }
 const mutations = {
     mutateAgencyUsersBySlug(state, agencyUsers) {
         state.agencyUsersBySlug = agencyUsers;
     },
-    setAgencies(state, agencies) {
+    mutateAgencies(state, agencies) {
         state.agencies = agencies;
     },
 }
@@ -27,8 +30,8 @@ const actions = {
     actionAgencyUsersBySlug({commit, state},agencyUsers){
         commit('mutateAgencyUsersBySlug', agencyUsers);
     },
-    setAgencies({commit, state},agencies){
-        commit('setAgencies', agencies);
+    actionAgencies({commit, state},agencies){
+        commit('mutateAgencies', agencies);
     },
 }
 

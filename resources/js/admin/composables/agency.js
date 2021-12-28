@@ -13,6 +13,17 @@ export const getAgencyList = () =>{
     }
     return agencies;
 }
+export const getAgencyById = (agencyId) =>{
+    const agency = computed(() => {
+        return (store.getters.getAgencyById)
+            ? store.getters.getAgencyById(agencyId)
+            : null;
+    });
+    if (!agency.value) {
+        agencyService.getAgencyList();
+    }
+    return agency;
+}
 
 export const getAgencyUsersList = (agencyId) => {
     const agencies = computed(() => {

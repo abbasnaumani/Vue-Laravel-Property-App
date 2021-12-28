@@ -27,12 +27,45 @@ class AgencyService extends EventEmitter {
     //         console.log(error, "error catch")
     //     }
     // }
+    async handleAddAgency(agencyData){
+        try {
+            const response = await appApi.post('/agency',agencyData);
+            if (response.data.status === ApiResponse.SUCCESS) {
+                toast.success(response.data.message);
+                await store.dispatch('actionAgencies', response.data.payload);
+                router.push({name: 'agency-list'});
+            } else {
+                toast.error(response.data.message);
+            }
+
+        } catch (err) {
+            console.log(err, "err err")
+            const error = await errorHandlerService.errors.index(err);
+            toast.error(error.message);
+        }
+    }
+    async handleUpdateAgency(agencyData,agencyId){
+        try {
+            const response = await appApi.post('/agency/'+agencyId,agencyData);
+            if (response.data.status === ApiResponse.SUCCESS) {
+                toast.success(response.data.message);
+                await store.dispatch('actionAgencies', response.data.payload);
+                router.push({name: 'agency-list'});
+            } else {
+                toast.error(response.data.message);
+            }
+
+        } catch (err) {
+            console.log(err, "err err")
+            const error = await errorHandlerService.errors.index(err);
+            toast.error(error.message);
+        }
+    }
     async getAgencyList() {
         try {
             const response = await appApi.get('/agency/list');
             if (response.data.status === ApiResponse.SUCCESS) {
-                toast.success(response.data.message);
-                await store.dispatch('setAgencies', response.data.payload);
+                await store.dispatch('actionAgencies', response.data.payload);
             } else {
                 toast.error(response.data.message);
             }
