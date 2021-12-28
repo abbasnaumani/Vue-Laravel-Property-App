@@ -19,7 +19,7 @@
                                 <div class="block-header">
                                     <h3 class="block-title">Agency Record </h3>
                                     <router-link class="btn btn-primary" data-validation="validation-span-id"
-                                                 to="">Add
+                                                 :to="{path:'/admin/add/agency'}">Add
                                     </router-link>
                                 </div>
                                 <div class="block-content block-content-full">
