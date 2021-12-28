@@ -43,8 +43,12 @@
         <div class="js-sidebar-scroll">
             <!-- Side Navigation -->
             <div class="content-side" v-if="userMenu">
-                <navigation-items :classes="'nav-main'" :menu="userMenu.main_menu"
-                                  :subMenu="userMenu.sub_menu"/>
+                <navigation-items
+                    :classes="'nav-main'"
+                    :menu="userMenu.main_menu"
+                    :subMenu="userMenu.sub_menu"
+                    :sidebarOpenCloseConfig="sidebarOpenCloseConfig"
+                />
             </div>
             <!-- END Side Navigation -->
         </div>
@@ -53,19 +57,34 @@
 </template>
 
 <script>
-import {computed} from "vue";
+import {computed, ref} from "vue";
 import store from '~/admin/store';
 import userService from "../../../services/userService";
 import NavigationItems from "../navigation/NavigationItems";
+import {useRoute} from "vue-router";
+
 export default {
     name: "Sidebar",
     components: {NavigationItems},
     setup(props) {
+        const isOpenedByUrl = ref(true);
         const userMenu = computed(() => {
             return store.getters.getUserMenu ? store.getters.getUserMenu : null;
         });
+        const sidebarOpenCloseConfig = computed(() => {
+            return store.getters.getSidebarOpenCloseConfig ? store.getters.getSidebarOpenCloseConfig : null;
+        });
+    /*    const openedMainMenuId = computed(() => {
+            return store.getters.openedMainMenuId ? store.getters.openedMainMenuId : null;
+        });
+        const openedSubMenuId = computed(() => {
+            return store.getters.openedSubMenuId ? store.getters.openedSubMenuId : null;
+        });*/
         if (!userMenu.value) {
-            userService.getUserMenu();
+            const route = useRoute();
+            const path = computed(() => route.path)
+            console.log('here is the path', path.value);
+            userService.getUserMenu(path.value.replace('/admin/', ''));
         }
         // const getUserMenu = () => {
         //     const userMenu = computed(() => {
@@ -76,7 +95,11 @@ export default {
         //     }
         //     return userMenu;
         // };
-        return {userMenu}
+        return {
+            userMenu,
+            sidebarOpenCloseConfig,
+            isOpenedByUrl
+        }
     },
 }
 </script>

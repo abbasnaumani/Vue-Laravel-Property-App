@@ -1,5 +1,3 @@
-import {getAgencyUsersList} from "../../composables/user";
-
 const state = {
     agencyUsersBySlug: null,
     agencies:null
