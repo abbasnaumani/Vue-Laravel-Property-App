@@ -14,7 +14,6 @@ const modules = requireContext.keys()
     ),{});
 modules['loader']=loader;
 modules['auth']=auth;
-console.log('___________________________');
 console.log(modules);
 const store = createStore({
     modules: modules,
