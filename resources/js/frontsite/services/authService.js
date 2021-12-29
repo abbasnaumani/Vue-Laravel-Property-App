@@ -77,7 +77,7 @@ class AuthService extends EventEmitter {
 
     async onLogout() {
         await store.dispatch('actionClearAuthState');
-        router.push({name: `user-login`});
+        router.push({name: `main-login`});
     }
     verifyRoleIdsAccess(userRoleIds) {
         const roles = store.getters['getRoleIds'];

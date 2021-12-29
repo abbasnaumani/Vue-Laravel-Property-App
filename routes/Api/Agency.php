@@ -16,8 +16,9 @@ class Agency
             Route::put('/agency/update/profile', [AgencyController::class,'updateProfile'])->name('agency.update.profile');
             Route::delete('/agency/{agencyId}', [AgencyController::class, 'destroy'])->name('agency.delete');
             Route::get('/agency/list', [AgencyController::class, 'getAgencyList'])->name('agency.list');
-            Route::get('/agency/{agencyId}',[AgencyController::class, 'getAgencyUsers'])->name('agency.users');
+            Route::get('/agency/{agencyId}/users',[AgencyController::class, 'getAgencyUsers'])->name('agency.users');
         });
         Route::get('{slug}/agency/users', [AgencyController::class,'getAgencyUsersBySlug'])->name('agency.users.by.slug');
+        Route::get('/agency/{slug}', [AgencyController::class,'getAgencyBySlug'])->name('agency.by.slug');
     }
 }

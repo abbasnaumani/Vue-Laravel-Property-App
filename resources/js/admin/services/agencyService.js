@@ -96,7 +96,7 @@ class AgencyService extends EventEmitter {
     }
     async getAgencyUsers(agencyId){
         try {
-            const response = await appApi.get('/agency/'+agencyId);
+            const response = await appApi.get('/agency/'+agencyId+'/users');
             if (response.data.status === ApiResponse.SUCCESS) {
                 return response.data;
             } else {

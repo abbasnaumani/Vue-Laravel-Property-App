@@ -10,28 +10,26 @@
                                 <div class="header-column d-flex justify-content-start">
                                     <div
                                         class="top-navs d-flex justify-content-inherit align-items-center">
-                                        <ul class="list-unstyled px-2 ">
+                                        <ul class="list-unstyled px-2 " v-if="agency[0]">
                                             <li class="float-left">
                                                 <i style="font-size: 15px;color: #7e1373;"
                                                    class="fal fa-phone-alt"></i>
                                                 <a class="text-decoration-none nav-links font-weight-semibold"
-                                                   href="#"><span class="px-1">(800)
-                                                        123-4567</span></a>
+                                                   href="#"><span class="px-1">{{agency[0].phone_number}}</span></a>
                                             </li>
                                             <li class="float-left px-3">
                                                 <i style="font-size: 15px;color: #7e1373;"
                                                    class="fal fa-map-marker-alt d-lg-inline d-md-none d-sm-none d-none"></i>
                                                 <a class="text-decoration-none nav-links font-weight-medium"
                                                    href="#"><span
-                                                    class="px-1 d-lg-inline d-md-none d-sm-none d-none trext">1234 Porto
-                                                        Street,Los Angeles / LA</span></a>
+                                                    class="px-1 d-lg-inline d-md-none d-sm-none d-none trext">{{agency[0].address}}</span></a>
                                             </li>
                                             <li class="float-left px-3">
                                                 <i style="font-size: 15px;color: #7e1373;"
                                                    class="fal fa-envelope d-lg-inline d-md-inline d-sm-none d-none"></i>
                                                 <a class="text-decoration-none nav-links font-weight-medium"
                                                    href=""><span
-                                                    class="px-1 d-lg-inline d-md-inline d-sm-none d-none text-2">porto@portotheme.com</span></a>
+                                                    class="px-1 d-lg-inline d-md-inline d-sm-none d-none text-2">{{agency[0].email}}</span></a>
                                             </li>
                                         </ul>
                                     </div>
@@ -722,6 +720,7 @@ import store from "~/frontsite/store";
 import {useStore} from 'vuex';
 import _ from 'lodash';
 import { useRoute } from 'vue-router'
+import agencyService from "../../../services/agencyService";
 
 export default {
     name: "Header",
@@ -767,7 +766,21 @@ export default {
                 : (props.isAuthenticated) ?  {path:'/'+profile.agencies[0].slug+path}
                     : {path:'/'+store.getters.getDefaultAgencySlug+path}
         }
-
+        const agency = ref([]);
+        // const agencyData = ref(null);
+        const slug = ref();
+        getAgencyBySlug();
+        async function getAgencyBySlug() {
+             slug.value = store.getters.getCurrentAgencySlug ? store.getters.getCurrentAgencySlug
+                : (props.isAuthenticated) ?  profile.value.agencies[0].slug
+                    : store.getters.getDefaultAgencySlug
+            agency.value = await agencyService.getAgencyBySlug(slug.value);
+        }
+        // watchEffect(()=> {
+        //     if (agency.value) {
+        //         agencyData.value = {...agency.value};
+        //     }
+        // });
         // watchEffect(()=>{
         //     if(options.value){
         //         myOptions.value = [];
@@ -816,7 +829,8 @@ export default {
             stickyHeader,
             stickyHeaderRef,
             route,
-            getRoutePath
+            getRoutePath,
+            agency,
         }
     }
 }

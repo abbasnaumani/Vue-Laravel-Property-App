@@ -31,11 +31,27 @@ class AgencyService extends EventEmitter {
         try {
             const response = await appApi.put('/agency/update/profile',profileData);
             if (response.data.status === ApiResponse.SUCCESS) {
-                console.log(response.data.payload,"asdhkashdkashdkjashkjdhsakjdhksaj")
                 await store.dispatch('setProfile', response.data.payload);
                 console.log(response.data.payload);
                 toast.success(response.data.message, );
                 return response.data;
+            } else {
+                toast.error(response.data.message);
+            }
+
+        } catch (err) {
+            console.log(err, "err err")
+            toast.error(err.response.data.message);
+            const error = await errorHandlerService.errors.index(err);
+            console.log(error, "error catch")
+        }
+    }
+    async getAgencyBySlug(slug){
+        try {
+            const response = await appApi.get('/agency/'+slug);
+            if (response.data.status === ApiResponse.SUCCESS) {
+                console.log(response);
+                return response.data.payload;
             } else {
                 toast.error(response.data.message);
             }

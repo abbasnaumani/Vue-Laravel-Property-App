@@ -70,12 +70,14 @@ class AgencyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  string  $slug
+     * @return JsonResponse
      */
-    public function show($id)
+    public function getAgencyBySlug(string $slug): JsonResponse
     {
-        //
+        $agency = Agency::where('slug',$slug)->get();
+        $this->setApiSuccessMessage(trans('agency.agency_found'), $agency);
+        return $this->getApiResponse();
     }
 
     /**
