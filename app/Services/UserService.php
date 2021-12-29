@@ -31,6 +31,29 @@ class UserService extends BaseService
         }
     }
     /**
+     * Update the specified user from storage.
+     *
+     * @param Request $request
+     * @param int $id
+     *
+     */
+    public function updateAgencyUser(Request $request,int $id){
+        DB::beginTransaction();
+        try {
+            $user = User::find($id);
+            $user->email = $request->email;
+            $user->first_name = $request->first_name;
+            $user->last_name = $request->last_name;
+            $user->phone_number = $request->phone_number;
+            $user->save();
+            $user->agencyUsers()->sync('role_id',$request->role_id);
+            $this->setApiSuccessMessage(trans('user.user_store'),$user);
+        } catch (\Exception $e) {
+            DB::rollback();
+            $this->setApiErrorMessage(trans('user.user_not_store').$e->getMessage());
+        }
+    }
+    /**
      * Prepare User Data for agency.
      * @param Request $request
      *

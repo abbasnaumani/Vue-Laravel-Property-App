@@ -6,6 +6,7 @@ use App\Events\ActionEvent;
 use App\Http\Requests\User\UpdatePasswordRequest;
 use App\Http\Requests\User\UserProfileRequest;
 use App\Http\Requests\User\UserStoreRequest;
+use App\Http\Requests\User\UserUpdateRequest;
 use App\Models\Agency;
 use App\Models\MenuRole;
 use App\Models\Role;
@@ -83,7 +84,30 @@ class UserController extends Controller
         $this->userService->addAgencyUser($request);
         return $this->getApiResponse();
     }
-
+    /**
+     * Edit the specified user from storage.
+     *
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function edit(int $id): JsonResponse
+    {
+        $user = User::with('roles','agencies')->find($id);
+        $this->setApiSuccessMessage(trans('user.user_found'),$user);
+        return $this->getApiResponse();
+    }
+    /**
+     * Update the specified user from storage.
+     *
+     * @param UserUpdateRequest $request
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function update(UserUpdateRequest $request,int $id): JsonResponse
+    {
+        $this->userService->updateAgencyUser($request,$id);
+        return $this->getApiResponse();
+    }
     /**
      * Get all roles
      */

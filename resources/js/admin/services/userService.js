@@ -60,13 +60,32 @@ class UserService extends EventEmitter {
             toast.error(error.message);
         }
     }
-    async handleUpdateAgencyUser(agencyUserData,userId) {
+    async getAgencyUserById(userId){
         try {
-            const response = await appApi.post('/user/add',agencyUserData);
+            const response = await appApi.get('/user/'+userId);
             if (response.data.status === ApiResponse.SUCCESS) {
                 toast.success(response.data.message);
+                console.log(response.data.payload,"response.data.payload")
+                return response.data.payload;
+            } else {
+                toast.error(response.data.message);
+            }
+
+        } catch (err) {
+            console.log(err, "err err")
+            const error = await errorHandlerService.errors.index(err);
+            toast.error(error.message);
+        }
+    }
+    async handleUpdateAgencyUser(userData,userId) {
+        try {
+            console.log(userData,"asdahskdhaksd")
+            const response = await appApi.put('/user/'+userId,userData);
+            if (response.data.status === ApiResponse.SUCCESS) {
+                toast.success(response.data.message);
+                console.log(response.data,"saddiquecool")
                 await agencyService.getAgencyList();
-                router.push({path: '/admin/'+agencyUserData.agency_id+'/users/'});
+                // router.push({path: '/admin/'+userData.agency_id+'/users/'});
             } else {
                 toast.error(response.data.message);
             }

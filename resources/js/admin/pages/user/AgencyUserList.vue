@@ -56,7 +56,7 @@
                                                     {{(user.created_at) ? user.created_at : ''}} </em>
                                             </td>
                                             <td class="btn-group text-center font-w600 font-size-sm">
-                                                <router-link :to="{path:'/admin/agency/edit/'+user.id}" class="btn btn-primary "><i class="fa fa-edit"></i></router-link>
+                                                <router-link :to="{path:'/admin/edit/user/'+user.id}" class="btn btn-primary "><i class="fa fa-edit"></i></router-link>
                                                 <button @click="openDeleteModal(user)" class="btn btn-danger mx-2"><i class="far fa-trash-alt"></i></button>
                                             </td>
                                         </tr>

@@ -37,6 +37,7 @@ export const getAgencyUsersList = (agencyId) => {
     return agencies;
 
 }
+
 export const updateAgencyUsersData = (agencyId) =>{
     agencyService.getAgencyUsers(agencyId);
 }
