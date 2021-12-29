@@ -18,12 +18,15 @@ class User
             ->middleware('auth:sanctum');
         Route::post('/user/chat/send/message', [UserChatController::class, 'store'])
             ->middleware('auth:sanctum');
+
         Route::get('/user/edit/profile', [UserController::class, 'editUserProfile'])->name('user.edit.profile')
             ->middleware('auth:sanctum');
         Route::put('/user/update/profile', [UserController::class, 'updateUserProfile'])->name('user.update.profile')
             ->middleware('auth:sanctum');
+
         Route::put('/user/update/password', [UserController::class, 'updateUserPassword'])->name('user.update.password')
             ->middleware('auth:sanctum');
+
         Route::post('/user/add', [UserController::class, 'store'])->name('user.store')
             ->middleware('auth:sanctum');
         Route::get('/roles', [UserController::class, 'getAllRoles'])
@@ -31,6 +34,13 @@ class User
             ->middleware('auth:sanctum');
         Route::delete('/user/{userId}', [UserController::class, 'destroy'])
             ->name('user.delete')
+            ->middleware('auth:sanctum');
+
+        Route::get('/user/{userId}', [UserController::class, 'edit'])
+            ->name('user.edit')
+            ->middleware('auth:sanctum');
+        Route::put('/user/{userId}', [UserController::class, 'update'])
+            ->name('user.update')
             ->middleware('auth:sanctum');
     }
 }

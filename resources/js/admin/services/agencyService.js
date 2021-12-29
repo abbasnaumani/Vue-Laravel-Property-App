@@ -44,6 +44,7 @@ class AgencyService extends EventEmitter {
             toast.error(error.message);
         }
     }
+
     async handleUpdateAgency(agencyData,agencyId){
         try {
             const response = await appApi.post('/agency/'+agencyId,agencyData);
