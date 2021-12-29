@@ -16,25 +16,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly" async></script>
     <script>
-        // var myScrollFunc = function () {
-        //     var y = window.scrollY;
-        //     if (y >= 50) {
-        //         console.log('ifcase',topHeader)
-        //         topHeader.classList.add("sticky");
-        //         //topHeader.className = "bottomMenu hide";
-        //         $('.top-header').hide();
-        //         $('.secondary-menu').css('top', '0');
-
-        //     } else {
-        //         console.log('elsecase',topHeader)
-        //         //topHeader.className = "bottomMenu show";
-        //         $('.secondary-menu').css('top', '40px');
-        //         $('.top-header').show();
-        //         topHeader.classList.remove("sticky");
-        //     }
-        // };
-
-        // window.addEventListener("scroll", myScrollFunc);
         function initMap() {
             // The location of Uluru
             const uluru = {
