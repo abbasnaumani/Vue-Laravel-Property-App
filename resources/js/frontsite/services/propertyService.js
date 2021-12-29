@@ -40,12 +40,13 @@ class PropertyService extends EventEmitter {
                     // max_price: paginateData.maxPrice.value ?? null
                 }
                 });
-            console.log(response,"sadsajdklajdlasj")
-
+            console.log(response,"RESPONSE")
             if (response.data.status === ApiResponse.SUCCESS) {
                 // await store.dispatch('actionPropertiesBySlug', response.data.payload);
                 return response.data.payload;
             } else {
+                console.log(response,"SADDIQUECOOL")
+                router.push({name:'not-found'})
                 toast.error(response.data.message);
             }
 

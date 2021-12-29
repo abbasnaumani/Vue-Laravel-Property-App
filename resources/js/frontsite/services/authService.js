@@ -37,7 +37,7 @@ class AuthService extends EventEmitter {
                 console.log(response.data,"login success");
                 await store.dispatch('actionAuthState', response.data.payload);
                 if(response.data.payload.user.roles[0].id !== UserRoles.SUPER_ADMIN)
-                router.push({path: '/'+response.data.payload.user.agencies[0].slug+'/main'});
+                router.push({path: '/'+response.data.payload.user.agencies[0].slug});
             } else {
                 toast.error(response.data.message);
             }

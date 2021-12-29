@@ -92,8 +92,8 @@
                                         <div class="d-flex justify-content-end">
                                             <ul class="list-unstyled d-lg-flex d-md-none d-sm-none d-none m-0">
                                                 <li class="px-3">
-                                                    <a class="secondary-nav-li text-decoration-none active py-4 text-3"
-                                                       href="">Home</a>
+                                                    <router-link :to="(isAuthenticated) ? {path:'/'+profile.agencies[0].slug} : {path:'/'+route.params.slug}" class="secondary-nav-li text-decoration-none active py-4 text-3"
+                                                       href="">Home</router-link>
                                                 </li>
                                                 <li class="px-3">
                                                     <a class="secondary-nav-li text-decoration-none py-4 text-3"
@@ -721,6 +721,7 @@ import Select2 from "vue3-select2-component";
 import store from "~/frontsite/store";
 import {useStore} from 'vuex';
 import _ from 'lodash';
+import { useRoute } from 'vue-router'
 
 export default {
     name: "Header",
@@ -729,9 +730,12 @@ export default {
     },
     props: {
         isAuthenticated: String,
-
     },
     setup() {
+
+        const route = useRoute();
+        store.dispatch('actionCurrentAgencySlug', route.params.slug || null);
+
         const profile = computed(() => {
             return store.getters.getProfile ? store.getters.getProfile : null;
         });
@@ -805,7 +809,8 @@ export default {
             profile,
             userName,
             stickyHeader,
-            stickyHeaderRef
+            stickyHeaderRef,
+            route
         }
     }
 }

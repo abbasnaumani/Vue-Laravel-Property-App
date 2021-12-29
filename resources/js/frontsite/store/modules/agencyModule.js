@@ -1,5 +1,6 @@
 const state = {
     agencyUsersBySlug: null,
+    currentAgencySlug: null,
 }
 const getters = {
     getAgencyUsersBySlug:(state) => (slug) => {
@@ -10,10 +11,16 @@ const mutations = {
     mutateAgencyUsersBySlug(state, agencyUsers) {
         state.agencyUsersBySlug = agencyUsers;
     },
+    mutateCurrentAgencySlug(state, slug) {
+        state.currentAgencySlug = slug;
+    },
 }
 const actions = {
     actionAgencyUsersBySlug({commit, state},agencyUsers){
         commit('mutateAgencyUsersBySlug', agencyUsers);
+    },
+    actionCurrentAgencySlug({commit, state},slug){
+        commit('mutateCurrentAgencySlug', slug);
     },
 }
 

@@ -20,7 +20,7 @@ export default async (to, from, next) => {
 
     if (to.meta.login) {
         if (auth.isAuthenticated()) {
-            return next({path: '/'+auth.user().agencies[0].slug+'main'});
+            return next({path: '/'+auth.user().agencies[0].slug});
         }
         /*        if (to.name === 'create-account') {
                     if (!((to.params.accountType === 'vendor') || (to.params.accountType

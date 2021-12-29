@@ -70,7 +70,7 @@ export default [
         component: page('auth/Logout')
     },
     {
-        path: '/:slug/main',
+        path: '/:slug',
         name: 'front-main',
         meta: {public: true, meta_title: 'KS Property'},
         component: page('Main'),
@@ -213,5 +213,16 @@ export default [
         meta: {public: true, meta_title: 'KS Property Detail'},
         component: page('property/PropertyDetail'),
         props: ({params}) => ({slug: params.slug || '' , propertyId:params.propertyId || 0}),
-    }
+    },
+    {
+        path: '/:pathMatch(.*)*',
+        name: 'not-found',
+        component: page('NotFound')
+    },
+    // if you omit the last `*`, the `/` character in params will be encoded when resolving or pushing
+    {
+        path: '/:pathMatch(.*)',
+        name: 'bad-not-found',
+        component: page('NotFound')
+    },
 ];
