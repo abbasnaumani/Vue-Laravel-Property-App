@@ -138,7 +138,7 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="form-group col">
-                                                            <input type="submit" value="Submit Form" class="btn btn-primary">
+                                                            <input type="submit" value="Submit Form" class="btn test-fancy">
                                                         </div>
                                                     </div>
                                                 </form>
@@ -947,10 +947,10 @@
                         <div class="col p-0">
                             <div class="row float-right">
                                 <div class="px-2">
-                                    <button type="button" class="btn btn-primary bg-none btn-bg-hover text-white px-2"><i class="fas fa-search"></i> Inventory Search </button>
+                                    <button type="button" class="btn test-fancy btn-bg-hover px-2"><i class="fas fa-search"></i> Inventory Search </button>
                                 </div>
                                 <div class="px-2">
-                                    <button type="button" class="btn btn-primary bg-none btn-bg-hover text-white px-2"><i class="fas fa-plus"></i> Post Listing</button>
+                                    <button type="button" class="btn test-fancy btn-bg-hover px-2"><i class="fas fa-plus"></i> Post Listing</button>
                                 </div>
                             </div>
                         </div>
