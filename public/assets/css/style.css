@@ -889,6 +889,10 @@ body {
     line-height: 1.9 !important;
 }
 
+.view-more:hover {
+    text-decoration: none;
+}
+
 
 /* User Profile Page */
 
@@ -1417,6 +1421,3 @@ aside .nav-tabs .nav-link:hover {
         transform: translateX(-0.1em);
     }
 }
-
-
-/* Property detail page */

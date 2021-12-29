@@ -45,9 +45,14 @@
                                                 posuere.
                                             </p>
                                             <p class="pt-2 mb-3">
-                                                <a class="text-decoration-none font-weight-bold d-flex align-items-center" href="#">
+                                                <a class="font-weight-bold d-flex align-items-center move-svg view-more" href="#">
                                                     view more
-                                                    <i style="color: #00a4f2; font-size: 25px;" class="fal fa-long-arrow-right"></i>
+                                                    <!-- <i style="color: #00a4f2; font-size: 25px;" class="fal fa-long-arrow-right"></i> -->
+                                                    <div class="px-2 arrow-move">
+                                                        <svg class="svg-color" version="1.1" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="icon_131640173528885" data-filename="arrow-right.svg" width="27" height="27">
+                                                            <polygon points="1,26 44.586,26 38.293,32.293 39.707,33.707 48.414,25 39.707,16.293 38.293,17.707 44.586,24 1,24  "></polygon>
+                                                        </svg>
+                                                    </div>
                                                 </a>
                                             </p>
                                         </div>
@@ -86,9 +91,14 @@
                                                 posuere.
                                             </p>
                                             <p class="pt-2 mb-3">
-                                                <a class="text-decoration-none font-weight-bold d-flex align-items-center" href="#">
+                                                <a class="font-weight-bold d-flex align-items-center move-svg view-more" href="#">
                                                     view more
-                                                    <i style="color: #00a4f2; font-size: 25px;" class="fal fa-long-arrow-right"></i>
+                                                    <!-- <i style="color: #00a4f2; font-size: 25px;" class="fal fa-long-arrow-right"></i> -->
+                                                    <div class="px-2 arrow-move">
+                                                        <svg class="svg-color" version="1.1" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="icon_131640173528885" data-filename="arrow-right.svg" width="27" height="27">
+                                                            <polygon points="1,26 44.586,26 38.293,32.293 39.707,33.707 48.414,25 39.707,16.293 38.293,17.707 44.586,24 1,24  "></polygon>
+                                                        </svg>
+                                                    </div>
                                                 </a>
                                             </p>
                                         </div>
@@ -126,9 +136,14 @@
                                                 posuere.
                                             </p>
                                             <p class="pt-2 mb-3">
-                                                <a class="text-decoration-none font-weight-bold d-flex align-items-center" href="#">
+                                                <a class="font-weight-bold d-flex align-items-center move-svg view-more" href="#">
                                                     view more
-                                                    <i style="color: #00a4f2; font-size: 25px;" class="fal fa-long-arrow-right"></i>
+                                                    <!-- <i style="color: #00a4f2; font-size: 25px;" class="fal fa-long-arrow-right"></i> -->
+                                                    <div class="px-2 arrow-move">
+                                                        <svg class="svg-color" version="1.1" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="icon_131640173528885" data-filename="arrow-right.svg" width="27" height="27">
+                                                            <polygon points="1,26 44.586,26 38.293,32.293 39.707,33.707 48.414,25 39.707,16.293 38.293,17.707 44.586,24 1,24  "></polygon>
+                                                        </svg>
+                                                    </div>
                                                 </a>
                                             </p>
                                         </div>
@@ -167,9 +182,14 @@
                                                 posuere.
                                             </p>
                                             <p class="pt-2 mb-3">
-                                                <a class="text-decoration-none font-weight-bold d-flex align-items-center" href="#">
+                                                <a class="font-weight-bold d-flex align-items-center move-svg view-more" href="#">
                                                     view more
-                                                    <i style="color: #00a4f2; font-size: 25px;" class="fal fa-long-arrow-right"></i>
+                                                    <!-- <i style="color: #00a4f2; font-size: 25px;" class="fal fa-long-arrow-right"></i> -->
+                                                    <div class="px-2 arrow-move">
+                                                        <svg class="svg-color" version="1.1" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="icon_131640173528885" data-filename="arrow-right.svg" width="27" height="27">
+                                                            <polygon points="1,26 44.586,26 38.293,32.293 39.707,33.707 48.414,25 39.707,16.293 38.293,17.707 44.586,24 1,24  "></polygon>
+                                                        </svg>
+                                                    </div>
                                                 </a>
                                             </p>
                                         </div>

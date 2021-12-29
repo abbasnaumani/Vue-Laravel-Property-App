@@ -52,12 +52,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="d-flex mx-auto pt-3">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-8 col-lg-4 col-md-6">
                             <div>
                                 <a class="btn border-0 btn-block test-fancy text-white text-center btn-color py-3"
-                                   href="javascript:void(0)" @click.prevent="getPropertiesBySlug(properties.current_page,properties.per_page)">
-                                    <span style="font-size: 15px;font-weight: 600;">View More</span>
+                                    href="javascript:void(0)" @click.prevent="getPropertiesBySlug(properties.current_page,properties.per_page)">
+                                    <span class="text-3 font-weight-bold">View More</span>
                                 </a>
                             </div>
                         </div>
