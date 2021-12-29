@@ -188,6 +188,7 @@ import {PropertyPurpose} from "../../constants";
 import NewsLetter from "../components/widgets/NewsLetter";
 import AgentsCarousel from "../components/widgets/AgentsCarousel";
 import Footer from "../components/ui/base/Footer";
+import store from "../store";
 export default {
     name: "Main",
     components: {Footer, AgentsCarousel, NewsLetter, Carousel},
@@ -197,10 +198,12 @@ export default {
     setup(props){
 
         let properties = ref([]);
+        const slug = ref();
         getPropertiesBySlug()
         async function getPropertiesBySlug(currentPage,perPage) {
             const addMore = 3;
-             properties.value = await propertyService.getPropertiesBySlug(props.slug, {currentPage,perPage,addMore});
+            slug.value = (props.slug) ? props.slug : store.getters.getDefaultAgencySlug;
+            properties.value = await propertyService.getPropertiesBySlug(slug.value, {currentPage,perPage,addMore});
         }
 
         return{

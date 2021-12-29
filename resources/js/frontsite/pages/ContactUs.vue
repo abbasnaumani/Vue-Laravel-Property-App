@@ -1,23 +1,5 @@
 <template>
-    <section class="top-banner border-0 mt-5">
-        <div class="container py-4 position-relative z-index-2 py-3">
-            <div class="row py-4 d-flex flex-wrap-reverse align-items-center">
-                <div class="col-md-8 order-2 order-md-1 d-flex align-self-center py-4 mt-2 justify-content-md-start justify-content-sm-center justify-content-center">
-                    <div class="main-heading text-lg-start">
-                        <h2 class="font-weight-extra-bold letter-spacing text-light mb-0">Page Name</h2>
-                    </div>
-                </div>
-                <div class="col-md-4 order-2 order-md-1 d-flex align-self-center py-4 mt-2 justify-content-md-end justify-content-sm-center justify-content-center">
-                    <div class="main-links">
-                        <ul class="list-unstyled text-white">
-                            <li><span style="font-size:11.5px;">HOME</span> <span style="opacity: 0.6;font-size:11.5px;">>
-                                Page Name</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <top-banner pageName="Contact" link="contact"></top-banner>
     <section class="main-contact mt-5">
         <div class="main-contact-wrapper">
             <div class="container py-3 pb-5 mb-5">
@@ -195,10 +177,10 @@
                                     <div class="card border-0" style="width:100%;height: auto;">
                                         <div id="card" class="carousel slide" data-ride="carousel">
                                             <ul class="carousel-indicators circle-2">
-                                                <li data-target="#demo" data-slide-to="0" class="active crousal-circle-link-agents"></li>
-                                                <li data-target="#demo" data-slide-to="1" class="crousal-circle-link-agents">
+                                                <li data-target="#card" data-slide-to="0" class="active crousal-circle-link-agents"></li>
+                                                <li data-target="#card" data-slide-to="1" class="crousal-circle-link-agents">
                                                 </li>
-                                                <li data-target="#demo" data-slide-to="2" class="crousal-circle-link-agents">
+                                                <li data-target="#card" data-slide-to="2" class="crousal-circle-link-agents">
                                                 </li>
                                             </ul>
                                             <div class="carousel-inner">
@@ -345,9 +327,11 @@ import contactUsService from "../services/contactUsService";
 import {ApiResponse} from "../../constants";
 import {email, required} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
+import TopBanner from "../components/utilities/TopBanner";
 
 export default {
     name: "ContactUs",
+    components: {TopBanner},
     setup(){
         const name = ref('');
         const userEmail = ref('');

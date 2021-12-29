@@ -4,13 +4,7 @@ function page(path) {
 }
 
 export default [
-    {
-        path: '/',
-        name: 'user-login',
-        component: page('auth/Login'),
-        meta: {login: true, meta_title: 'User Login'},
-        props: true,
-    },
+
     {
         path: '/login',
         name: 'main-login',
@@ -58,7 +52,7 @@ export default [
         component: page('user/AgencyProfile'),
     },
     {
-        path: '/contact/us',
+        path: '/:slug/contact/us',
         name: 'contact-us',
         meta: {public: true, meta_title: 'Contact Us'},
         component: page('ContactUs'),
@@ -68,6 +62,15 @@ export default [
         name: 'logout',
         meta: {logout: true, meta_title: 'Logout'},
         component: page('auth/Logout')
+    },
+
+
+    {
+        path: '/',
+        name: 'home',
+        component: page('Main'),
+        meta: {public: true, meta_title: 'KS Property'},
+        props: true,
     },
     {
         path: '/:slug',
@@ -200,13 +203,34 @@ export default [
     //     component: page('frontsite/Main'),
     //     props: ({params}) => ({slug: params.slug || ''}),
     // },
-    // {
-    //     path: '/:slug/properties',
-    //     name: 'front-properties',
-    //     meta: {public: true, meta_title: 'KS Property'},
-    //     component: page('frontsite/property/Properties'),
-    //     props: ({params}) => ({slug: params.slug || ''}),
-    // },
+    {
+        path: '/:slug/agents/info',
+        name: 'agents-info',
+        meta: {public: true, meta_title: 'KS Agents Info'},
+        component: page('aboutus/AgentInfo'),
+        props: ({params}) => ({slug: params.slug || ''}),
+    },
+    {
+        path: '/:slug/agent/info/detail',
+        name: 'agent-info-detail',
+        meta: {public: true, meta_title: 'KS Agent Info Detail'},
+        component: page('aboutus/AgentInfoDetail'),
+        props: ({params}) => ({slug: params.slug || ''}),
+    },
+    {
+        path: '/:slug/about/us',
+        name: 'about-us',
+        meta: {public: true, meta_title: 'KS About Us'},
+        component: page('aboutus/AboutUs'),
+        props: ({params}) => ({slug: params.slug || ''}),
+    },
+    {
+        path: '/:slug/properties',
+        name: 'front-properties',
+        meta: {public: true, meta_title: 'KS Property'},
+        component: page('property/Properties'),
+        props: ({params}) => ({slug: params.slug || ''}),
+    },
     {
         path: '/:slug/:propertyId/detail',
         name: 'front-detail',

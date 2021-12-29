@@ -92,12 +92,12 @@
                                         <div class="d-flex justify-content-end">
                                             <ul class="list-unstyled d-lg-flex d-md-none d-sm-none d-none m-0">
                                                 <li class="px-3">
-                                                    <router-link :to="(isAuthenticated) ? {path:'/'+profile.agencies[0].slug} : {path:'/'+route.params.slug}" class="secondary-nav-li text-decoration-none active py-4 text-3"
+                                                    <router-link :to="getRoutePath()" class="secondary-nav-li text-decoration-none  py-4 text-3"
                                                        href="">Home</router-link>
                                                 </li>
                                                 <li class="px-3">
-                                                    <a class="secondary-nav-li text-decoration-none py-4 text-3"
-                                                       href="">Properties</a>
+                                                    <router-link :to="getRoutePath('/properties')" class="secondary-nav-li text-decoration-none py-4 text-3"
+                                                       href="">Properties</router-link>
                                                 </li>
                                                 <li class="px-3">
                                                     <div class="dropdown-primary">
@@ -105,21 +105,21 @@
                                                            href="">About</a>
                                                         <div class="dropdown-primary-menu">
                                                             <ul class="list-unstyled">
-                                                                <li class="py-2 px-2"><a
+                                                                <li class="py-2 px-2"><router-link
                                                                     class="text-dark dropdown-primary-li"
-                                                                    href="#">Agents</a>
+                                                                    :to="getRoutePath('/agents/info')">Agents</router-link>
                                                                 </li>
-                                                                <li class="py-2 px-2"><a
+                                                                <li class="py-2 px-2"><router-link
                                                                     class="text-dark dropdown-primary-li"
-                                                                    href="#">Who we
-                                                                    are</a></li>
+                                                                    :to="getRoutePath('/about/us')">Who we
+                                                                    are</router-link></li>
                                                             </ul>
                                                         </div>
                                                     </div>
                                                 </li>
                                                 <li class="px-3">
-                                                    <a class="secondary-nav-li text-decoration-none text-3"
-                                                       href="">Contact</a>
+                                                    <router-link  class="secondary-nav-li text-decoration-none text-3"
+                                                       :to="getRoutePath('/contact/us')">Contact</router-link>
                                                 </li>
                                                 <li class="px-3">
                                                     <a class="secondary-nav-li text-decoration-none py-4 text-3"
@@ -731,7 +731,7 @@ export default {
     props: {
         isAuthenticated: String,
     },
-    setup() {
+    setup(props) {
 
         const route = useRoute();
         store.dispatch('actionCurrentAgencySlug', route.params.slug || null);
@@ -761,6 +761,11 @@ export default {
 
         function openSearchDropDown() {
             showSearchDropdown.value = !showSearchDropdown.value;
+        }
+        function getRoutePath(path = ''){
+          return  store.getters.getCurrentAgencySlug ? {path:'/'+store.getters.getCurrentAgencySlug+path}
+                : (props.isAuthenticated) ?  {path:'/'+profile.agencies[0].slug+path}
+                    : {path:'/'+store.getters.getDefaultAgencySlug+path}
         }
 
         // watchEffect(()=>{
@@ -810,7 +815,8 @@ export default {
             userName,
             stickyHeader,
             stickyHeaderRef,
-            route
+            route,
+            getRoutePath
         }
     }
 }

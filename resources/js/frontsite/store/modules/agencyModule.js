@@ -1,11 +1,18 @@
 const state = {
     agencyUsersBySlug: null,
     currentAgencySlug: null,
+    defaultAgencySlug: 'kode-studio',
 }
 const getters = {
     getAgencyUsersBySlug:(state) => (slug) => {
         return state.agencyUsersBySlug;
     },
+    getCurrentAgencySlug(){
+        return state.currentAgencySlug;
+    },
+    getDefaultAgencySlug(){
+        return state.defaultAgencySlug;
+    }
 }
 const mutations = {
     mutateAgencyUsersBySlug(state, agencyUsers) {

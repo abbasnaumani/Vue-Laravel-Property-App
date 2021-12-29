@@ -46,7 +46,6 @@ class PropertyService extends EventEmitter {
                 return response.data.payload;
             } else {
                 console.log(response,"SADDIQUECOOL")
-                router.push({name:'not-found'})
                 toast.error(response.data.message);
             }
 
