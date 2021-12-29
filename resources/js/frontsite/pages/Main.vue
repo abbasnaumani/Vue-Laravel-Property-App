@@ -176,7 +176,7 @@
         </div>
     </section>
     <!-- Card End -->
-    <Footer></Footer>
+    <!-- <Footer></Footer> -->
 </template>
 
 <script>
