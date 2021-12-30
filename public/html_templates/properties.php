@@ -176,7 +176,7 @@
                     <div class="col-12 col-sm-6 col-md-3 pb-4 mb-1">
                         <div class="card custom-card move-svg  border-0">
                             <div class="card-interior overflow-hidden position-relative z-index-1">
-                                <a href="" class="text-decoration-none card-anchor">
+                                <a href="http://localhost/kodestudio/property/public/html_templates/detail.php" class="text-decoration-none card-anchor">
                                     <span
                                         class="custom-card-info-type text-light py-2 px-3 text-1 font-weight-bold letter-spacing text-uppercase position-absolute top-8 left-8">For
                                         Sale</span>

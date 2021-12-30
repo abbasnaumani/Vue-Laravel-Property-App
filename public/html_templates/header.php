@@ -76,7 +76,7 @@
                                                             <a class="dropdown-item" href="#">
                                                                 <p class="font-weight-bold mb-0">Hassan Khalid</p>
                                                             </a>
-                                                            <a class="dropdown-item" href="#">
+                                                            <a class="dropdown-item" href="http://localhost/kodestudio/property/public/html_templates/user-profile.php">
                                                                 <p class="mb-0 mt-0 header-dropdown-links px-2">My
                                                                     Account</p>
                                                             </a>
@@ -111,26 +111,26 @@
                                         <div class="d-flex justify-content-end">
                                             <ul class="list-unstyled d-lg-flex d-md-none d-sm-none d-none m-0">
                                                 <li class="px-3">
-                                                    <a class="secondary-nav-li text-decoration-none active py-4 text-3" href="">Home</a>
+                                                    <a class="secondary-nav-li text-decoration-none active py-4 text-3" href="http://localhost/kodestudio/property/public/html_templates/main.php">Home</a>
                                                 </li>
                                                 <li class="px-3">
-                                                    <a class="secondary-nav-li text-decoration-none py-4 text-3" href="">Properties</a>
+                                                    <a class="secondary-nav-li text-decoration-none py-4 text-3" href="http://localhost/kodestudio/property/public/html_templates/properties.php">Properties</a>
                                                 </li>
                                                 <li class="px-3">
                                                     <div class="dropdown-primary">
-                                                        <a class="secondary-nav-li text-decoration-none py-4 text-3" href="">About</a>
+                                                        <a class="secondary-nav-li text-decoration-none py-4 text-3" href="#">About</a>
                                                         <div class="dropdown-primary-menu">
                                                             <ul class="list-unstyled">
-                                                                <li class="py-2 px-2"><a class="text-dark dropdown-primary-li" href="#">Agents</a>
+                                                                <li class="py-2 px-2"><a class="text-dark dropdown-primary-li" href="http://localhost/kodestudio/property/public/html_templates/about_agents.php">Agents</a>
                                                                 </li>
-                                                                <li class="py-2 px-2"><a class="text-dark dropdown-primary-li" href="#">Who we
+                                                                <li class="py-2 px-2"><a class="text-dark dropdown-primary-li" href="http://localhost/kodestudio/property/public/html_templates/who_we_are.php">Who we
                                                                         are</a></li>
                                                             </ul>
                                                         </div>
                                                     </div>
                                                 </li>
                                                 <li class="px-3">
-                                                    <a class="secondary-nav-li text-decoration-none text-3" href="">Contact</a>
+                                                    <a class="secondary-nav-li text-decoration-none text-3" href="http://localhost/kodestudio/property/public/html_templates/contact.php">Contact</a>
                                                 </li>
                                                 <li class="px-3">
                                                     <a class="secondary-nav-li text-decoration-none py-4 text-3" href="">Elements</a>
