@@ -33,17 +33,22 @@ class PropertyService extends BaseService
 //    }
     public function getPropertyListBySlug(Request $request, string $slug)
     {
-        $agency = Agency::where('slug', $slug)->first();
-        $agencyUsers = $agency->users ?? null;
-        if ($agencyUsers) {
-            $agencyUserIds = array_column($agencyUsers->toArray(), 'id');
-            if ($agencyUserIds) {
-                $this->properties = Property::with('propertyDetail', 'propertyFeature', 'media', 'user', 'location.city', 'areaUnit', 'propertySubType');
-                $this->applyPropertyFilters($request);
-                $properties = $this->properties->whereIn('user_id', $agencyUserIds)
-                    ->orderBy('id')->simplePaginate((int)$request->per_page + $request->add_more, ['*'], 'page', (int)$request->current_page);            // limit and offset
-                $this->setApiSuccessMessage(trans('property.properties_retrieved'), $properties ?? null);
+
+        try {
+            $agency = Agency::where('slug', $slug)->firstOrFail();
+            $agencyUsers = $agency->users ?? null;
+            if ($agencyUsers) {
+                $agencyUserIds = array_column($agencyUsers->toArray(), 'id');
+                if ($agencyUserIds) {
+                    $this->properties = Property::with('propertyDetail', 'propertyFeature', 'media', 'user', 'location.city', 'areaUnit', 'propertySubType');
+                    $this->applyPropertyFilters($request);
+                    $properties = $this->properties->whereIn('user_id', $agencyUserIds)
+                        ->orderBy('id')->simplePaginate((int)$request->per_page + $request->add_more, ['*'], 'page', (int)$request->current_page);            // limit and offset
+                    $this->setApiSuccessMessage(trans('property.properties_retrieved'), $properties ?? null);
+                }
             }
+        } catch (\Exception $e) {
+            $this->setApiErrorMessage(trans('property.page_not_found'));
         }
     }
 

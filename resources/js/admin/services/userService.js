@@ -79,15 +79,11 @@ class UserService extends EventEmitter {
     }
     async handleUpdateAgencyUser(userData,userId) {
         try {
-            console.log(userData,"asdahskdhaksd")
             const response = await appApi.put('/user/'+userId,userData);
             if (response.data.status === ApiResponse.SUCCESS) {
                 toast.success(response.data.message);
-                console.log(response.data,"saddiquecool")
                 await agencyService.getAgencyList();
-                // router.push({path: '/admin/'+userData.agency_id+'/users/'});
-            } else {
-                toast.error(response.data.message);
+                router.push({path: '/admin/'+response.data.payload.agencies[0].id+'/users/'});
             }
 
         } catch (err) {

@@ -27,7 +27,6 @@ class PropertyService extends EventEmitter {
     }
     async getPropertiesBySlug(slug,paginateData) {
         try {
-            console.log(paginateData,"paginate data")
             const response = await appApi.get('/'+slug+'/properties', {
                 params: {
                     current_page: paginateData.currentPage,
@@ -40,17 +39,14 @@ class PropertyService extends EventEmitter {
                     // max_price: paginateData.maxPrice.value ?? null
                 }
                 });
-            console.log(response,"RESPONSE")
             if (response.data.status === ApiResponse.SUCCESS) {
                 // await store.dispatch('actionPropertiesBySlug', response.data.payload);
                 return response.data.payload;
-            } else {
-                console.log(response,"SADDIQUECOOL")
-                toast.error(response.data.message);
             }
 
         } catch (err) {
-            console.log(err, "err err")
+            // console.log(err, "err err")
+           router.push({name:'not-found'});
             toast.error(err.response.data.message);
             const error = await errorHandlerService.errors.index(err);
             console.log(error, "error catch")

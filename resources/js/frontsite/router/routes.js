@@ -241,6 +241,7 @@ export default [
     {
         path: '/:pathMatch(.*)*',
         name: 'not-found',
+        meta: {public: true, meta_title: 'KS Property'},
         component: page('NotFound')
     },
     // if you omit the last `*`, the `/` character in params will be encoded when resolving or pushing

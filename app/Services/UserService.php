@@ -40,13 +40,16 @@ class UserService extends BaseService
     public function updateAgencyUser(Request $request,int $id){
         DB::beginTransaction();
         try {
-            $user = User::find($id);
+            $user = User::with('roles','agencies')->find($id);
             $user->email = $request->email;
             $user->first_name = $request->first_name;
             $user->last_name = $request->last_name;
             $user->phone_number = $request->phone_number;
             $user->save();
-            $user->agencyUsers()->sync('role_id',$request->role_id);
+            $agency = $user->agencies()->first();
+            $user->agencies()->detach($agency->id);
+            $user->agencies()->attach($agency->id,['role_id' => $request->role_id]);
+            DB::commit();
             $this->setApiSuccessMessage(trans('user.user_store'),$user);
         } catch (\Exception $e) {
             DB::rollback();

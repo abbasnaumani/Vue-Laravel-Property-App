@@ -13,7 +13,7 @@
                                 class="text-blue-heading">Rent</span>
                             </h2>
                             <!-- row in col-9  -->
-                            <div class="row" v-if="properties.data">
+                            <div class="row" v-if="properties">
                                 <div class="col-12 col-sm-6 col-md-4 pb-4 mb-1" v-for="property in properties.data">
                                     <div class="card custom-card move-svg  border-0">
                                         <div class="card-interior overflow-hidden position-relative z-index-1">

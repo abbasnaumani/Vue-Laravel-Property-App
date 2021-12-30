@@ -27,6 +27,7 @@ class PropertyController extends Controller
     public function getPropertyListBySlug(Request $request,string $slug): JsonResponse
     {
         $this->propertyService->getPropertyListBySlug($request,$slug);
+//        dd($this->getApiResponse());
         return $this->getApiResponse();
     }
     /**

@@ -13,6 +13,7 @@ return [
     |
     */
 
+    'page_not_found' => 'Page Not Found ',
     'property_details_found' => 'Property Details Found Successfully.',
     'property_details_not_found' => 'Property Details Not Found.',
     'properties_retrieved' => 'Properties Retrieved Successfully.',
