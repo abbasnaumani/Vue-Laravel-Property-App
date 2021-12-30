@@ -552,7 +552,7 @@ body {
     padding-left: 10px !important;
 }
 .bg-table-color {
-    background-color: var(--ks-btn-color) !important;
+    background-color: var(--ks-bg-secondary-color) !important;
     color: white;
 }
 
@@ -581,12 +581,9 @@ body {
 .info-text {
     font-size: 15px;
 }
-
-.col-list {
-    font-size: 13px !important;
+.detail-icon{
+    color: var(--ks-bg-secondary-color);
 }
-
-
 /* map  */
 
 .map-div {
