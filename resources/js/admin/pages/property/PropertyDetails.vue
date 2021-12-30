@@ -8,7 +8,7 @@
                 </div>
                 <div class="block-content block-content-full">
                     <!-- DataTables init on table by adding .js-dataTable-full-pagination class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
-                    <table class="table table-bordered table-striped table-vcenter  js-dataTable-buttons">
+                    <table class="table table-responsive table-bordered table-striped table-vcenter  js-dataTable-buttons">
                         <thead>
                         <tr>
                             <th class="text-center" style="width: 80px;">ID</th>

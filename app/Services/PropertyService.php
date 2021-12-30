@@ -128,8 +128,8 @@ class PropertyService extends BaseService
         DB::beginTransaction();
         try {
             $property = Property::create($this->propertyData($request));
-            $propertyDetail = $property->propertyDetail()->create($this->propertyDetailsData($request));
-            $propertyFeature = $property->propertyFeature()->create($this->propertyFeaturesData($request));
+            $property->propertyDetail()->create($this->propertyDetailsData($request));
+            $property->propertyFeature()->create($this->propertyFeaturesData($request));
             DB::commit();
             $this->setApiSuccessMessage(trans('property.property_store'), ['property_id' => $property->id]);
         } catch (\Exception $e) {
@@ -153,6 +153,7 @@ class PropertyService extends BaseService
             $property->update($this->propertyData($request));
             $propertyDetail = $property->propertyDetail()->first();
             $propertyDetail->update($this->propertyDetailsData($request));
+
 //            $propertyFeature = $property->propertyFeature()->first();
 //            $propertyFeature->update($this->propertyFeaturesData($request));
             DB::commit();
@@ -196,8 +197,8 @@ class PropertyService extends BaseService
         return [
             'description' => $request->input('description'),
             'address' => $request->input('address'),
-            'bedrooms' => $request->input('bedrooms'),
-            'bathrooms' => $request->input('bathrooms'),
+            'bedrooms' =>  $request->input('bedrooms') ?? 0,
+            'bathrooms' => $request->input('bathrooms') ?? 0,
             'is_occupancy_status' => $request->input('is_occupancy_status'),
             'is_installment_available' => $request->input('is_installment_available'),
             'is_possession_available' => $request->input('is_possession_available')

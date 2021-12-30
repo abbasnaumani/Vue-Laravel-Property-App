@@ -18,8 +18,8 @@ class CreatePropertyDetailsTable extends Migration
             $table->unsignedBigInteger('property_id');
             $table->string('description');
             $table->string('address');
-            $table->integer('bedrooms')->nullable();
-            $table->integer('bathrooms')->nullable();
+            $table->integer('bedrooms')->nullable()->default(0);
+            $table->integer('bathrooms')->nullable()->default(0);
             $table->tinyInteger('is_occupancy_status')->default(0);
             $table->tinyInteger('is_installment_available')->default(0);
             $table->tinyInteger('is_possession_available')->default(0);
