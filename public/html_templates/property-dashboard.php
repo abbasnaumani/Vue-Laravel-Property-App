@@ -258,23 +258,29 @@
                                                 <a class="text-white text-4 dash-links font-weight-bold px-3" href="#">Listings</a>
                                             </li>
                                             <li class="nav-item py-1  border border-top-0 border-right-0 border-left-0 border-bottom-1 dash-icon">
-                                                <div id="accordian">
-                                                    <i class="fas fa-angle-right move-arrow px-2"></i>
+                                                <div id="accordion">
+                                                <i class="fas fa-angle-right move-arrow px-2"></i>
                                                     <a class="text-dark text-4 dash-links" data-toggle="collapse" href="#active-dropdown">
                                                         Active
                                                     </a>
                                                     <div id="active-dropdown" class="collapse" data-parent="#accordion">
-                                                        <ul class="list-unstyled flex-column">
-                                                            <li><a class="dash-links px-5 text-dark text-4" data-toggle="tab" href="#active-dropdown1">
-                                                                    link 1
-                                                                </a></li>
-                                                            <li><a class="dash-links px-5 text-dark text-4" data-toggle="tab" href="#active-dropdown2">
-                                                                    link 2
-                                                                </a></li>
-                                                            <li><a class="dash-links px-5 text-dark text-4" data-toggle="tab" href="#active-dropdown3">
-                                                                    link 3
-                                                                </a></li>
-                                                        </ul>
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <ul class="nav nav-tabs flex-column mb-0">
+                                                                        <li class="nav-item">
+                                                                            <a class="text-dark dash-links nav-link active" data-toggle="tab" href="#active-dropdown1">Link 1</a>
+                                                                        </li>
+                                                                        <li class="nav-item">
+                                                                            <a class="text-dark dash-links nav-link" data-toggle="tab" href="#active-dropdown2">Link 2</a>
+                                                                        </li>
+                                                                        <li class="nav-item">
+                                                                            <a class="text-dark dash-links nav-link" data-toggle="tab" href="#active-dropdown3">Link 2</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </li>
@@ -286,7 +292,7 @@
                                                     </a>
                                                     <div id="edited-dropdown" class="collapse" data-parent="#accordion">
                                                         <ul class="list-unstyled flex-column">
-                                                            <li><a class="dash-links px-5 text-dark text-4" data-toggle="tab" href="">
+                                                            <li><a class="nav-link dash-links px-5 text-dark text-4" data-toggle="tab" href="">
                                                                     link 1
                                                                 </a></li>
                                                             <li><a class="dash-links px-5 text-dark text-4" data-toggle="tab" href="">
@@ -299,6 +305,7 @@
                                                     </div>
                                                 </div>
                                             </li>
+
                                         </ul>
                                     </div>
                                 </div>
