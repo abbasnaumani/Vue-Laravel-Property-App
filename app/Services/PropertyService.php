@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 
 class PropertyService extends BaseService
 {
+    protected $properties;
     /**
      * Get All Properties
      * @param string $slug
@@ -30,33 +31,44 @@ class PropertyService extends BaseService
 //            }
 //        }
 //    }
-    public function getPropertyListBySlug(Request $request,string $slug)
+    public function getPropertyListBySlug(Request $request, string $slug)
     {
         $agency = Agency::where('slug', $slug)->first();
         $agencyUsers = $agency->users ?? null;
         if ($agencyUsers) {
             $agencyUserIds = array_column($agencyUsers->toArray(), 'id');
             if ($agencyUserIds) {
-                $properties = Property::with('propertyDetail','propertyFeature', 'media', 'user', 'location.city', 'areaUnit', 'propertySubType');
-                if($request->location || $request->location !=''){
-                    $properties =  $properties->where(['location_id'=>$request->location]);
-                }
-                if($request->type){
-                    $properties =  $properties->where(['property_sub_type_id' => $request->type]);
-                }
-                if($request->beds){
-                    $properties =  $properties->whereHas('propertyDetail',function($query) use ($request){
-                        $query->where('bedrooms','>=',$request->beds);
-                    });
-                }
-                if($request->min_price && $request->max_price){
-                    $properties =  $properties->whereBetween('price', [$request->min_price, $request->max_price]);
-                }
-                $properties = $properties->whereIn('user_id', $agencyUserIds)->orderBy('id')->simplePaginate((int)$request->per_page + $request->add_more, ['*'],'page',(int)$request->current_page);            // limit and offset
+                $this->properties = Property::with('propertyDetail', 'propertyFeature', 'media', 'user', 'location.city', 'areaUnit', 'propertySubType');
+                $this->applyPropertyFilters($request);
+                $properties = $this->properties->whereIn('user_id', $agencyUserIds)
+                    ->orderBy('id')->simplePaginate((int)$request->per_page + $request->add_more, ['*'], 'page', (int)$request->current_page);            // limit and offset
                 $this->setApiSuccessMessage(trans('property.properties_retrieved'), $properties ?? null);
             }
         }
     }
+
+    /**
+     * Apply Property Filters
+     * @param
+     */
+    public function applyPropertyFilters($request)
+    {
+        if (isset($request->location) && !empty($request->location)) {
+            $this->properties = $this->properties->where(['location_id' => $request->location]);
+        }
+        if (isset($request->type) && !empty($request->type)) {
+            $this->properties = $this->properties->where(['property_sub_type_id' => $request->type]);
+        }
+        if (isset($request->beds) && intval($request->beds) > 0) {
+            $this->properties = $this->properties->whereHas('propertyDetail', function ($query) use ($request) {
+                $query->where('bedrooms', '>=', $request->beds);
+            });
+        }
+        if (isset($request->min_price) && isset($request->max_price)) {
+            $this->properties = $this->properties->whereBetween('price', [$request->min_price, $request->max_price]);
+        }
+    }
+
     /**
      * Get All User Properties of Agency
      * @param int $agencyId
@@ -70,7 +82,7 @@ class PropertyService extends BaseService
         if ($agencyUsers) {
             $agencyUserIds = array_column($agencyUsers->toArray(), 'id');
             if ($agencyUserIds) {
-                $properties = Property::with('propertyDetail','propertyFeature', 'media', 'user', 'location.city', 'areaUnit', 'propertySubType')
+                $properties = Property::with('propertyDetail', 'propertyFeature', 'media', 'user', 'location.city', 'areaUnit', 'propertySubType')
                     ->whereIn('user_id', $agencyUserIds)->get();
                 $this->setApiSuccessMessage(trans('property.properties_retrieved'), $properties ?? null);
             }
@@ -85,20 +97,22 @@ class PropertyService extends BaseService
      */
     public function getPropertyById(int $id)
     {
-        $property = Property::with('propertyDetail','propertyFeature','media', 'user','location.city', 'areaUnit', 'propertySubType')
+        $property = Property::with('propertyDetail', 'propertyFeature', 'media', 'user', 'location.city', 'areaUnit', 'propertySubType')
             ->where('id', $id)->first();
         $this->setApiSuccessMessage(trans('generic.record_found'), $property);
     }
+
     /**
      * Display a listing of the resource.
      * @param int $id
      */
     public function getProperty(int $id)
     {
-        $property = Property::with('propertyDetail','propertyFeature','media', 'user','location.city', 'areaUnit', 'propertySubType')
+        $property = Property::with('propertyDetail', 'propertyFeature', 'media', 'user', 'location.city', 'areaUnit', 'propertySubType')
             ->where('user_id', $this->getAuthUserId())->where('id', $id)->get();
         $this->setApiSuccessMessage(trans('generic.record_found'), $property);
     }
+
     /**
      * Store a newly created resource in storage.
      * @param Request $request
@@ -115,9 +129,10 @@ class PropertyService extends BaseService
             $this->setApiSuccessMessage(trans('property.property_store'), ['property_id' => $property->id]);
         } catch (\Exception $e) {
             DB::rollback();
-            $this->setApiErrorMessage(trans('property.property_not_store').$e->getMessage());
+            $this->setApiErrorMessage(trans('property.property_not_store') . $e->getMessage());
         }
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -183,6 +198,7 @@ class PropertyService extends BaseService
             'is_possession_available' => $request->input('is_possession_available')
         ];
     }
+
     /**
      * Prepare Property Features Data for storing.
      * @param Request $request
