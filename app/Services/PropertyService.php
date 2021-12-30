@@ -134,7 +134,7 @@ class PropertyService extends BaseService
             $this->setApiSuccessMessage(trans('property.property_store'), ['property_id' => $property->id]);
         } catch (\Exception $e) {
             DB::rollback();
-            $this->setApiErrorMessage(trans('property.property_not_store') . $e->getMessage());
+            $this->setApiErrorMessage(trans('property.property_not_store'));
         }
     }
 

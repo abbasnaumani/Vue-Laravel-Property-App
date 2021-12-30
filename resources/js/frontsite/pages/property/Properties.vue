@@ -43,7 +43,7 @@
                                                 <strong class="text-secondary text-uppercase font-weight-extra-bold text-2">Baths: {{property.property_detail.bathrooms}}</strong>
                                             </li>
                                             <li class="mb-0 px-1">
-                                                <strong class="text-secondary text-uppercase font-weight-extra-bold text-2">{{property.area+' '+property.area_unit_id.name}}</strong>
+                                                <strong class="text-secondary text-uppercase font-weight-extra-bold text-2">{{property.area+' '+property.area_unit.name}}</strong>
                                             </li>
                                         </ul>
                                     </span>

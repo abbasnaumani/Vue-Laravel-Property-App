@@ -35,15 +35,22 @@ class AgencyService extends BaseService
      * @param int $id
      */
     public function updateAgency(Request $request,int $id){
-        $agency = Agency::find($id);
-        $agencySlug = $this->checkUniqueSlug(['slug' => $request->agency_slug, 'id' => $agency->id]);
-        $agency->name = $request->agency_name;
-        $agency->slug = $agencySlug;
-        $agency->email = $request->agency_email;
-        $agency->address = $request->agency_address;
-        $agency->phone_number = $request->agency_phone_number;
-        $agency->save();
-        $this->setApiSuccessMessage(trans('agency.add_agency'));
+        // try{
+            $agency = Agency::find($id);
+            $agencySlug = $this->checkUniqueSlug(['slug' => $request->agency_slug, 'id' => $agency->id]);
+            $agency->name = $request->agency_name;
+            $agency->slug = $agencySlug;
+            $agency->email = $request->agency_email;
+            $agency->address = $request->agency_address;
+            $agency->phone_number = $request->agency_phone_number;
+            $agency->save();
+            $this->setApiSuccessMessage(trans('agency.add_agency'));
+
+        // } catch (\Exception $e) {
+        //     //dd($e->errorInfo);
+        //     $this->setApiErrorMessage($e->errorInfo[2]);
+        // }
+       
     }
     /**
      * Get Unique Agency Slug
