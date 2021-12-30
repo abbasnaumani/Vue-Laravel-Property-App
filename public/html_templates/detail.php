@@ -25,7 +25,7 @@
                 <div class="col-lg-9">
                     <div class="row">
                         <div class="col-lg-7">
-                            <div class="card border border-0" style="width:100%;padding-bottom: 180px;">
+                            <!-- <div class="card border border-0" style="width:100%;padding-bottom: 180px;">
                                 <div id="demo" class="carousel slide" data-ride="carousel">
                                     <ul class="carousel-indicators indicators">
                                         <li data-target="#demo" data-slide-to="0" class="active test"></li>
@@ -62,7 +62,98 @@
                                         <span class="icon"><i class="fas fa-angle-right"></i></span>
                                     </a>
                                 </div>
+                            </div> -->
+                            <div class="card border border-0" style="width: 100%; padding-bottom: 180px">
+                            <div id="demo" class="carousel slide" data-ride="carousel">
+                                <ul class="carousel-indicators indicators">
+                                    <li
+                                        data-target="#demo"
+                                        data-slide-to="0"
+                                        class="active test-1"
+                                    ></li>
+                                    <li data-target="#demo" data-slide-to="1" class="test-2"></li>
+                                    <li data-target="#demo" data-slide-to="2" class="test-3"></li>
+                                    <li data-target="#demo" data-slide-to="3" class="test-4"></li>
+                                </ul>
+                                <div class="carousel-inner carousel-hover" v-if="property">
+                                    <div class="carousel-item active image-div">
+                                        <div class="image">
+                                            <!--                                                {{property.media}}-->
+                                            <!--                                                <div class="row">-->
+                                            <!--                                                    <div class="col-12" v-if="property.media" >-->
+                                            <!--                                                        <property-files-list :propertyMedia="property.media"></property-files-list>-->
+                                            <!--                                                    </div>-->
+                                            <!--                                                </div>-->
+                                            <img
+                                                src="img-11.jpg"
+                                                alt="kuch bhi"
+                                                width="475"
+                                                height="382"
+                                            />
+                                            <div class="overlay">
+                                                <div class="text">
+                                                    <i style="font-size: 28px" class="fal fa-search"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item image-div">
+                                        <div class="image">
+                                            <!--                                                {{property.media}}-->
+                                            <!--                                                <div class="row">-->
+                                            <!--                                                    <div class="col-12" v-if="property.media" >-->
+                                            <!--                                                        <property-files-list :propertyMedia="property.media"></property-files-list>-->
+                                            <!--                                                    </div>-->
+                                            <!--                                                </div>-->
+                                            <img
+                                                src="img-12.jpg"
+                                                alt="kuch bhi"
+                                                width="475"
+                                                height="382"
+                                            />
+                                            <div class="overlay">
+                                                <div class="text">
+                                                    <i style="font-size: 28px" class="fal fa-search"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item image-div">
+                                        <div class="image">
+                                            <!--                                                {{property.media}}-->
+                                            <!--                                                <div class="row">-->
+                                            <!--                                                    <div class="col-12" v-if="property.media" >-->
+                                            <!--                                                        <property-files-list :propertyMedia="property.media"></property-files-list>-->
+                                            <!--                                                    </div>-->
+                                            <!--                                                </div>-->
+                                            <img
+                                                src="img-13.jpg"
+                                                alt="kuch bhi"
+                                                width="475"
+                                                height="382"
+                                            />
+                                            <div class="overlay">
+                                                <div class="text">
+                                                    <i style="font-size: 28px" class="fal fa-search"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="carousel-control-prev prev" href="#demo" data-slide="prev">
+                                    <span
+                                        class="icon-indicators rounded d-flex justify-content-center align-items-center">
+                                        <i class="fas fa-angle-left icon text-white d-flex justify-content-center align-items-center"></i>
+                                    </span>
+                                </a>
+                                <a class="carousel-control-next next" href="#demo" data-slide="next">
+                                  <span
+                                      class="icon-indicators rounded d-flex justify-content-center align-items-center">
+                                  <i class="fas fa-angle-right icon text-white d-flex justify-content-center align-items-center"></i>
+                                  </span>
+                                </a>
                             </div>
+                        </div>
                         </div>
                         <div class="col-lg-5">
                             <div class="border-radius">
