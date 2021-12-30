@@ -3,7 +3,7 @@ import { createStore } from 'vuex';
 import loader from'~/store/modules/loaderModule';
 import auth from'~/store/modules/authModule';
 const requireContext = require.context('~/admin/store/modules', false, /.*\.js$/);
-console.log('_______________++++++++++++++++____________');
+console.log('_______________Admin ++++++++++++++++____________');
 console.log(requireContext);
 const modules = requireContext.keys()
     .map(file =>

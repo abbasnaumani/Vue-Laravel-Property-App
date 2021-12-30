@@ -75,7 +75,7 @@ class AgencyController extends Controller
      */
     public function getAgencyBySlug(string $slug): JsonResponse
     {
-        $agency = Agency::where('slug',$slug)->get();
+        $agency = Agency::where('slug',$slug)->first();
         $this->setApiSuccessMessage(trans('agency.agency_found'), $agency);
         return $this->getApiResponse();
     }

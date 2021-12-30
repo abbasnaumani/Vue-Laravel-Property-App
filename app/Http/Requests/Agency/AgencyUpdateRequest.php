@@ -27,8 +27,8 @@ class AgencyUpdateRequest extends FormRequest
         return [
             'agency_name' => 'required|string|min:3|max:50',
             'agency_slug' => 'required|string',
-            'agency_address' => 'required|string|min:3|max:50',
-            'agency_email' => 'required|email',
+            'agency_address' => 'required|string|min:3|max:100',
+            'agency_email' => 'required|unique:users,email',
             'agency_phone_number' => 'required|min:11',
         ];
     }

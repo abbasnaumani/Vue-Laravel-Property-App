@@ -2,7 +2,7 @@ import auth from "../services/authService";
 
 export default async (to, from, next) => {
     //document.title = to.meta.meta_title || 'BCBooth';
-    let targetUrl =localStorage.getItem('url.intended');
+    let targetUrl = localStorage.getItem('url.intended');
     if (auth.isAuthenticated() && targetUrl) {
         const url = targetUrl;
         if (url) {
@@ -12,7 +12,7 @@ export default async (to, from, next) => {
     }
     if ((to.meta.home) || (to.meta.public)) {
         localStorage.removeItem('url.intended');
-        if (from.path === to.path) {
+        if (from.path === to.path && from.path !== '/') {
             return;
         }
         return next();
@@ -20,7 +20,7 @@ export default async (to, from, next) => {
 
     if (to.meta.login) {
         if (auth.isAuthenticated()) {
-            return next({path: '/'+auth.user().agencies[0].slug});
+            return next({path: '/' + auth.user().agencies[0].slug});
         }
         /*        if (to.name === 'create-account') {
                     if (!((to.params.accountType === 'vendor') || (to.params.accountType

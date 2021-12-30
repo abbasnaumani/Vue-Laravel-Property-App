@@ -10,26 +10,30 @@
                                 <div class="header-column d-flex justify-content-start">
                                     <div
                                         class="top-navs d-flex justify-content-inherit align-items-center">
-                                        <ul class="list-unstyled px-2 " v-if="agency[0]">
+                                        <ul class="list-unstyled px-2 " v-if="agency">
                                             <li class="float-left">
                                                 <i style="font-size: 15px;color: #7e1373;"
                                                    class="fal fa-phone-alt"></i>
                                                 <a class="text-decoration-none nav-links font-weight-semibold"
-                                                   href="#"><span class="px-1">{{agency[0].phone_number}}</span></a>
+                                                   href="#"><span class="px-1">{{ agency?.phone_number }}</span></a>
                                             </li>
                                             <li class="float-left px-3">
                                                 <i style="font-size: 15px;color: #7e1373;"
                                                    class="fal fa-map-marker-alt d-lg-inline d-md-none d-sm-none d-none"></i>
                                                 <a class="text-decoration-none nav-links font-weight-medium"
                                                    href="#"><span
-                                                    class="px-1 d-lg-inline d-md-none d-sm-none d-none trext">{{agency[0].address}}</span></a>
+                                                    class="px-1 d-lg-inline d-md-none d-sm-none d-none trext">{{
+                                                        agency?.address
+                                                    }}</span></a>
                                             </li>
                                             <li class="float-left px-3">
                                                 <i style="font-size: 15px;color: #7e1373;"
                                                    class="fal fa-envelope d-lg-inline d-md-inline d-sm-none d-none"></i>
                                                 <a class="text-decoration-none nav-links font-weight-medium"
                                                    href=""><span
-                                                    class="px-1 d-lg-inline d-md-inline d-sm-none d-none text-2">{{agency[0].email}}</span></a>
+                                                    class="px-1 d-lg-inline d-md-inline d-sm-none d-none text-2">{{
+                                                        agency?.email
+                                                    }}</span></a>
                                             </li>
                                         </ul>
                                     </div>
@@ -86,38 +90,48 @@
                                                  alt="The logo of web-page porto" height="100%">
                                         </div>
                                     </div>
-                                    <div class="secondary-nav-links">
+                                    <div class="secondary-nav-links" v-if="agency">
                                         <div class="d-flex justify-content-end">
                                             <ul class="list-unstyled d-lg-flex d-md-none d-sm-none d-none m-0">
                                                 <li class="px-3">
-                                                    <router-link :to="getRoutePath()" class="secondary-nav-li text-decoration-none  py-4 text-3"
-                                                       href="">Home</router-link>
+                                                    <router-link :to="{path: '/' + slug}"
+                                                                 class="secondary-nav-li text-decoration-none  py-4 text-3"
+                                                                >Home
+                                                    </router-link>
                                                 </li>
                                                 <li class="px-3">
-                                                    <router-link :to="getRoutePath('/properties')" class="secondary-nav-li text-decoration-none py-4 text-3"
-                                                       href="">Properties</router-link>
+                                                    <router-link :to="{path: '/' + slug + '/properties'}"
+                                                                 class="secondary-nav-li text-decoration-none py-4 text-3"
+                                                                >Properties
+                                                    </router-link>
                                                 </li>
                                                 <li class="px-3">
                                                     <div class="dropdown-primary">
                                                         <a class="secondary-nav-li text-decoration-none py-4 text-3"
-                                                           href="">About</a>
+                                                           href="javascript:void(0)">About</a>
                                                         <div class="dropdown-primary-menu">
                                                             <ul class="list-unstyled">
-                                                                <li class="py-2 px-2"><router-link
-                                                                    class="text-dark dropdown-primary-li"
-                                                                    :to="getRoutePath('/agents/info')">Agents</router-link>
+                                                                <li class="py-2 px-2">
+                                                                    <router-link
+                                                                        class="text-dark dropdown-primary-li"
+                                                                        :to="{path: '/' + slug + '/agents/info'}">Agents
+                                                                    </router-link>
                                                                 </li>
-                                                                <li class="py-2 px-2"><router-link
-                                                                    class="text-dark dropdown-primary-li"
-                                                                    :to="getRoutePath('/about/us')">Who we
-                                                                    are</router-link></li>
+                                                                <li class="py-2 px-2">
+                                                                    <router-link
+                                                                        class="text-dark dropdown-primary-li"
+                                                                        :to="{path: '/' + slug + '/about/us'}">Who we
+                                                                        are
+                                                                    </router-link>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                     </div>
                                                 </li>
                                                 <li class="px-3">
-                                                    <router-link  class="secondary-nav-li text-decoration-none text-3"
-                                                       :to="getRoutePath('/contact/us')">Contact</router-link>
+                                                    <router-link class="secondary-nav-li text-decoration-none text-3"
+                                                                 :to="{path: '/' + slug + '/contact/us'}">Contact
+                                                    </router-link>
                                                 </li>
                                                 <li class="px-3">
                                                     <a class="secondary-nav-li text-decoration-none py-4 text-3"
@@ -719,7 +733,7 @@ import Select2 from "vue3-select2-component";
 import store from "~/frontsite/store";
 import {useStore} from 'vuex';
 import _ from 'lodash';
-import { useRoute } from 'vue-router'
+import {useRoute} from 'vue-router'
 import agencyService from "../../../services/agencyService";
 
 export default {
@@ -733,11 +747,19 @@ export default {
     setup(props) {
 
         const route = useRoute();
-        store.dispatch('actionCurrentAgencySlug', route.params.slug || null);
-
         const profile = computed(() => {
             return store.getters.getProfile ? store.getters.getProfile : null;
         });
+
+        const slug = computed(() => {
+            console.log('route.params.slug ',route.params)
+            return  route.params.slug && route.params.slug !=='' ? route.params.slug
+                : ((props.isAuthenticated) ? profile.value.agencies[0].slug
+                    : store.getters.getDefaultAgencySlug)
+        });
+        console.log(' slug action slug', slug.value);
+        store.dispatch('actionCurrentAgencySlug', slug.value);
+
 
         const userName = computed(() => store.getters.getUserName, {
             onTrack(e) {
@@ -751,7 +773,6 @@ export default {
                 //    debugger
             }
         });
-        watchEffect(() => console.log(store.getters.getUserName))
         const options = getAllLocationsByCItyId(4);
         const location = ref(1);
         const showSearchDropdown = ref(false);
@@ -761,21 +782,30 @@ export default {
         function openSearchDropDown() {
             showSearchDropdown.value = !showSearchDropdown.value;
         }
-        function getRoutePath(path = ''){
-          return  store.getters.getCurrentAgencySlug ? {path:'/'+store.getters.getCurrentAgencySlug+path}
-                : (props.isAuthenticated) ?  {path:'/'+profile.agencies[0].slug+path}
-                    : {path:'/'+store.getters.getDefaultAgencySlug+path}
+
+        function getRoutePath(path = '') {
+            // return store.getters.getCurrentAgencySlug ? {path: '/' + store.getters.getCurrentAgencySlug + path}
+            //     : ((props.isAuthenticated) ? {path: '/' + profile.value.agencies[0].slug + path}
+            //         : {path: '/' + store.getters.getDefaultAgencySlug + path})
         }
-        const agency = ref([]);
-        // const agencyData = ref(null);
-        const slug = ref();
+
+        const agency = ref(null);
+
         getAgencyBySlug();
+
         async function getAgencyBySlug() {
-             slug.value = store.getters.getCurrentAgencySlug ? store.getters.getCurrentAgencySlug
-                : (props.isAuthenticated) ?  profile.value.agencies[0].slug
-                    : store.getters.getDefaultAgencySlug
-            agency.value = await agencyService.getAgencyBySlug(slug.value);
+            // console.log(store.getters.getCurrentAgencySlug ,"store.getters.getCurrentAgencySlug ",profile.value.agencies[0].slug);
+            // slug.value = store.getters.getCurrentAgencySlug ? store.getters.getCurrentAgencySlug
+            //     : ((props.isAuthenticated) ? profile.value.agencies[0].slug
+            //         : store.getters.getDefaultAgencySlug);
+            if (slug.value) {
+                agency.value = await agencyService.getAgencyBySlug(slug.value);
+                console.log(agency.value, 'agency.value')
+            } else {
+                console.log('error was there', slug.value)
+            }
         }
+
         // watchEffect(()=> {
         //     if (agency.value) {
         //         agencyData.value = {...agency.value};
@@ -831,6 +861,7 @@ export default {
             route,
             getRoutePath,
             agency,
+            slug
         }
     }
 }

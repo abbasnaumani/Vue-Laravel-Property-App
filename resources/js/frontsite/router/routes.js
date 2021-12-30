@@ -4,7 +4,12 @@ function page(path) {
 }
 
 export default [
-
+    {
+        path: '/',
+        name: 'dashboard',
+        component: page('Main'),
+        meta: {public: true, meta_title: 'KS Property'},
+    },
     {
         path: '/login',
         name: 'main-login',
@@ -63,146 +68,6 @@ export default [
         meta: {logout: true, meta_title: 'Logout'},
         component: page('auth/Logout')
     },
-
-
-    {
-        path: '/',
-        name: 'home',
-        component: page('Main'),
-        meta: {public: true, meta_title: 'KS Property'},
-        props: true,
-    },
-    {
-        path: '/:slug',
-        name: 'front-main',
-        meta: {public: true, meta_title: 'KS Property'},
-        component: page('Main'),
-        props: ({params}) => ({slug: params.slug || ''}),
-    },
-
-    // {
-    //     path: '/main/login',
-    //     name: 'login',
-    //     component: page('frontsite/auth/Login'),
-    //     meta: {login: true, meta_title: 'User Login'},
-    //     props: true,
-    // },
-    // {
-    //     path: '/signup',
-    //     name: 'admin-register',
-    //     component: page('auth/Register'),
-    //     meta: {login: true, meta_title: 'Admin Registration'},
-    //     props: true,
-    // },
-    // {
-    //     path: '/main/signup',
-    //     name: 'register',
-    //     component: page('frontsite/auth/Register'),
-    //     meta: {login: true, meta_title: 'User Registration'},
-    //     props: true,
-    // },
-
-    // {
-    //     path: '/',
-    //     name: 'main',
-    //     meta: {public: false, meta_title: 'User Dashboard'},
-    //     component: UserDashboard,
-    // },
-    // {
-    //     path: '/dashboard',
-    //     name: 'user-dashboard',
-    //     meta: {public: false, meta_title: 'User Dashboard'},
-    //     component: UserDashboard,
-    // },
-    // {
-    //     path: '/user/list',
-    //     name: 'user-list',
-    //     meta: {public: false, meta_title: 'User List'},
-    //     component: UserList,
-    // },
-    // {
-    //     path: '/user/add',
-    //     name: 'user-add',
-    //     meta: {public: false, meta_title: 'User Add'},
-    //     component: page('user/AddAgencyUser'),
-    // },
-    // {
-    //     path: '/user/chat',
-    //     name: 'user-chat',
-    //     meta: {public: false, meta_title: 'User Chat'},
-    //     component: UserChat,
-    // },
-    // {
-    //     path: '/properties',
-    //     name: 'properties',
-    //     meta: {public: true, meta_title: 'KS Properties'},
-    //     component: page('frontsite/property/Properties'),
-    // },
-    // {
-    //     path: '/property',
-    //     name: 'property-dashboard',
-    //     meta: {public: false, meta_title: 'Property Dashboard'},
-    //     component: page('property/Dashboard'),
-    // },
-    // {
-    //     path: '/property/details/:propertyId',
-    //     name: 'property-list',
-    //     meta: {public: false, meta_title: 'Property Details'},
-    //     component: page('property/PropertyDetails'),
-    //     props: ({params}) => ({propertyId: params.propertyId || 0}),
-    // },
-    // {
-    //     path: '/property/add',
-    //     name: 'property-add',
-    //     meta: {public: false, meta_title: 'Add Property'},
-    //     component: page('property/AddProperty'),
-    // },
-    // {
-    //     path: '/property/edit/:propertyId',
-    //     name: 'property-edit',
-    //     meta: {public: false, meta_title: 'Edit Property'},
-    //     component: page('property/EditProperty'),
-    //     props: ({params}) => ({propertyId: params.propertyId || 0}),
-    // },
-    // {
-    //     path: '/property/search',
-    //     name: 'property-search',
-    //     meta: {public: false, meta_title: 'Search Property'},
-    //     component: page('property/SearchProperty'),
-    // },
-    //
-    // {
-    //     path: '/upload',
-    //     name: 'upload',
-    //     meta: {public: false, meta_title: 'Upload'},
-    //     component: page('Upload'),
-    // },
-    // {
-    //     path: '/upload-composition',
-    //     name: 'upload-composition',
-    //     meta: {public: false, meta_title: 'UploadComposition'},
-    //     component: page('UploadComposition'),
-    // },
-    // {
-    //     path: '/upload-single-composition',
-    //     name: 'upload-single-composition',
-    //     meta: {public: false, meta_title: 'UploadSingleComposition'},
-    //     component: page('UploadSingleComposition'),
-    // },
-    //
-    // {
-    //     path: '/logout',
-    //     name: 'logout',
-    //     meta: {logout: true, meta_title: 'Logout'},
-    //     component: page('auth/Logout')
-    // },
-    // {
-    //     path: '/:slug/main',
-    //     name: 'front-main',
-    //     meta: {public: true, meta_title: 'KS Property'},
-    //     component: page('frontsite/Main'),
-    //     props: ({params}) => ({slug: params.slug || ''}),
-    // },
     {
         path: '/:slug/agents/info',
         name: 'agents-info',
@@ -237,6 +102,20 @@ export default [
         meta: {public: true, meta_title: 'KS Property Detail'},
         component: page('property/PropertyDetail'),
         props: ({params}) => ({slug: params.slug || '' , propertyId:params.propertyId || 0}),
+    },
+    {
+        path: '/:slug/:anything',
+        name: 'slug-not-found',
+        meta: {public: true, meta_title: 'KS Property'},
+        component: page('NotFound'),
+        props: ({params}) => ({slug: params.slug || ''}),
+    },
+    {
+        path: '/:slug',
+        name: 'front-main',
+        meta: {public: true, meta_title: 'KS Property'},
+        component: page('Main'),
+        props: ({params}) => ({slug: params.slug || ''}),
     },
     {
         path: '/:pathMatch(.*)*',
