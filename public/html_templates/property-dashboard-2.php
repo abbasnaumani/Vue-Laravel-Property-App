@@ -266,13 +266,13 @@
                                                     <div id="active-dropdown" class="collapse" data-parent="#accordion">
                                                         <ul class="list-unstyled flex-column">
                                                             <li><a class="dash-links px-5 text-dark text-4" data-toggle="tab" href="#active-dropdown1">
-                                                                   link 1
+                                                                    link 1
                                                                 </a></li>
                                                             <li><a class="dash-links px-5 text-dark text-4" data-toggle="tab" href="#active-dropdown2">
-                                                                   link 2
+                                                                    link 2
                                                                 </a></li>
                                                             <li><a class="dash-links px-5 text-dark text-4" data-toggle="tab" href="#active-dropdown3">
-                                                                   link 3
+                                                                    link 3
                                                                 </a></li>
                                                         </ul>
                                                     </div>
@@ -285,132 +285,6 @@
                                                         Edited
                                                     </a>
                                                     <div id="edited-dropdown" class="collapse" data-parent="#accordion">
-                                                        <ul class="list-unstyled flex-column">
-                                                            <li><a class="dash-links px-5 text-dark text-4" data-toggle="tab" href="">
-                                                                    link 1
-                                                                </a></li>
-                                                            <li><a class="dash-links px-5 text-dark text-4" data-toggle="tab" href="">
-                                                                    link 2
-                                                                </a></li>
-                                                            <li><a class="dash-links px-5 text-dark text-4" data-toggle="tab" href="">
-                                                                    link 3
-                                                                </a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="nav-item py-1  border border-top-0 border-right-0 border-left-0 border-bottom-1 dash-icon">
-                                                <div id="accordian">
-                                                    <i class="fas fa-angle-right move-arrow px-2"></i>
-                                                    <a class="text-dark text-4 dash-links" data-toggle="collapse" href="#Pending-dropdown">
-                                                        Pending
-                                                    </a>
-                                                    <div id="Pending-dropdown" class="collapse" data-parent="#accordion">
-                                                        <ul class="list-unstyled flex-column">
-                                                            <li><a class="dash-links px-5 text-dark text-4" data-toggle="tab" href="">
-                                                                    link 1
-                                                                </a></li>
-                                                            <li><a class="dash-links px-5 text-dark text-4" data-toggle="tab" href="">
-                                                                    link 2
-                                                                </a></li>
-                                                            <li><a class="dash-links px-5 text-dark text-4" data-toggle="tab" href="">
-                                                                    link 3
-                                                                </a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="nav-item py-1  border border-top-0 border-right-0 border-left-0 border-bottom-1 dash-icon">
-                                                <div id="accordian">
-                                                    <i class="fas fa-angle-right move-arrow px-2"></i>
-                                                    <a class="text-dark text-4 dash-links" data-toggle="collapse" href="#Expired-dropdown">
-                                                        Expired
-                                                    </a>
-                                                    <div id="Expired-dropdown" class="collapse" data-parent="#accordion">
-                                                        <ul class="list-unstyled flex-column">
-                                                            <li><a class="dash-links px-5 text-dark text-4" data-toggle="tab" href="">
-                                                                    link 1
-                                                                </a></li>
-                                                            <li><a class="dash-links px-5 text-dark text-4" data-toggle="tab" href="">
-                                                                    link 2
-                                                                </a></li>
-                                                            <li><a class="dash-links px-5 text-dark text-4" data-toggle="tab" href="">
-                                                                    link 3
-                                                                </a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="nav-item py-1  border border-top-0 border-right-0 border-left-0 border-bottom-1 dash-icon">
-                                                <div id="accordian">
-                                                    <i class="fas fa-angle-right move-arrow px-2"></i>
-                                                    <a class="text-dark text-4 dash-links" data-toggle="collapse" href="#Uploaded-dropdown">
-                                                        Uploaded
-                                                    </a>
-                                                    <div id="Uploaded-dropdown" class="collapse" data-parent="#accordion">
-                                                        <ul class="list-unstyled flex-column">
-                                                            <li><a class="dash-links px-5 text-dark text-4" data-toggle="tab" href="">
-                                                                    link 1
-                                                                </a></li>
-                                                            <li><a class="dash-links px-5 text-dark text-4" data-toggle="tab" href="">
-                                                                    link 2
-                                                                </a></li>
-                                                            <li><a class="dash-links px-5 text-dark text-4" data-toggle="tab" href="">
-                                                                    link 3
-                                                                </a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="nav-item py-1  border border-top-0 border-right-0 border-left-0 border-bottom-1 dash-icon">
-                                                <div id="accordian">
-                                                    <i class="fas fa-angle-right move-arrow px-2"></i>
-                                                    <a class="text-dark text-4 dash-links" data-toggle="collapse" href="#Hiddden-dropdown">
-                                                        Hiddden
-                                                    </a>
-                                                    <div id="Hiddden-dropdown" class="collapse" data-parent="#accordion">
-                                                        <ul class="list-unstyled flex-column">
-                                                            <li><a class="dash-links px-5 text-dark text-4" data-toggle="tab" href="">
-                                                                    link 1
-                                                                </a></li>
-                                                            <li><a class="dash-links px-5 text-dark text-4" data-toggle="tab" href="">
-                                                                    link 2
-                                                                </a></li>
-                                                            <li><a class="dash-links px-5 text-dark text-4" data-toggle="tab" href="">
-                                                                    link 3
-                                                                </a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="nav-item py-1  border border-top-0 border-right-0 border-left-0 border-bottom-1 dash-icon">
-                                                <div id="accordian">
-                                                    <i class="fas fa-angle-right move-arrow px-2"></i>
-                                                    <a class="text-dark text-4 dash-links" data-toggle="collapse" href="#Deleted-dropdown">
-                                                        Deleted
-                                                    </a>
-                                                    <div id="Deleted-dropdown" class="collapse" data-parent="#accordion">
-                                                        <ul class="list-unstyled flex-column">
-                                                            <li><a class="dash-links px-5 text-dark text-4" data-toggle="tab" href="">
-                                                                    link 1
-                                                                </a></li>
-                                                            <li><a class="dash-links px-5 text-dark text-4" data-toggle="tab" href="">
-                                                                    link 2
-                                                                </a></li>
-                                                            <li><a class="dash-links px-5 text-dark text-4" data-toggle="tab" href="">
-                                                                    link 3
-                                                                </a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="nav-item py-1  border border-top-0 border-right-0 border-left-0 border-bottom-1 dash-icon">
-                                                <div id="accordian">
-                                                    <i class="fas fa-angle-right move-arrow px-2"></i>
-                                                    <a class="text-dark text-4 dash-links" data-toggle="collapse" href="#Rejected-dropdown">
-                                                        Rejected
-                                                    </a>
-                                                    <div id="Rejected-dropdown" class="collapse" data-parent="#accordion">
                                                         <ul class="list-unstyled flex-column">
                                                             <li><a class="dash-links px-5 text-dark text-4" data-toggle="tab" href="">
                                                                     link 1
