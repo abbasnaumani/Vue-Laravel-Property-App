@@ -1,9 +1,9 @@
 import EventEmitter from "events";
 import appApi from "~/api";
-import {ApiResponse} from "~/constants";
+import { ApiResponse } from "~/constants";
 import store from "~/frontsite/store";
 import errorHandlerService from "~/frontsite/services/errorHandlerService";
-import {useToast} from "vue-toastification";
+import { useToast } from "vue-toastification";
 import router from "~/frontsite/router";
 
 const toast = useToast();
@@ -25,20 +25,21 @@ class PropertyService extends EventEmitter {
             console.log(error, "error catch")
         }
     }
-    async getPropertiesBySlug(slug,paginateData) {
+    async getPropertiesBySlug(slug, paginateData) {
+        console.log(paginateData, 'paginateData');
         try {
-            const response = await appApi.get('/'+slug+'/properties', {
+            const response = await appApi.get('/' + slug + '/properties', {
                 params: {
                     current_page: paginateData.currentPage,
                     per_page: paginateData.perPage,
                     add_more: paginateData.addMore,
-                    // type: paginateData.type.value ?? null,
-                    // location: paginateData.location.value ?? null,
-                    // beds: paginateData.beds.value ?? null,
-                    // min_price: paginateData.minPrice.value ?? null,
-                    // max_price: paginateData.maxPrice.value ?? null
+                    // type: paginateData.type.value,
+                    // location: paginateData.location.value,
+                    // beds: paginateData.beds.value,
+                    // min_price: paginateData.minPrice.value,
+                    // max_price: paginateData.maxPrice.value
                 }
-                });
+            });
             if (response.data.status === ApiResponse.SUCCESS) {
                 // await store.dispatch('actionPropertiesBySlug', response.data.payload);
                 return response.data.payload;
@@ -46,7 +47,7 @@ class PropertyService extends EventEmitter {
 
         } catch (err) {
             // console.log(err, "err err")
-           router.push({name:'not-found'});
+            router.push({ name: 'not-found' });
             toast.error(err.response.data.message);
             const error = await errorHandlerService.errors.index(err);
             console.log(error, "error catch")
@@ -54,7 +55,7 @@ class PropertyService extends EventEmitter {
     }
     async getPropertyById(propertyId) {
         try {
-            const response = await appApi.get('/property/'+propertyId)
+            const response = await appApi.get('/property/' + propertyId)
             if (response.data.status === ApiResponse.SUCCESS) {
                 // await store.dispatch('actionPropertiesBySlug', response.data.payload);
                 return response.data.payload;
@@ -85,7 +86,7 @@ class PropertyService extends EventEmitter {
             console.log(error, "error catch")
         }
     }
-    async getAreaUnits(){
+    async getAreaUnits() {
         try {
             const response = await appApi.get('/property/area/unit');
             if (response.data.status === ApiResponse.SUCCESS) {
@@ -101,13 +102,13 @@ class PropertyService extends EventEmitter {
             console.log(error, "error catch")
         }
     }
-    async handleAddProperty(newProperty){
+    async handleAddProperty(newProperty) {
         try {
-            const response = await appApi.post('/properties',newProperty);
+            const response = await appApi.post('/properties', newProperty);
             if (response.data.status === ApiResponse.SUCCESS) {
                 // await store.dispatch('actionPropertyList', response.data.payload.data);
                 return response.data;
-                 // router.push({name: 'property-dashboard'});
+                // router.push({name: 'property-dashboard'});
             } else {
                 toast.error(response.data.message);
             }
@@ -119,9 +120,9 @@ class PropertyService extends EventEmitter {
             console.log(error, "error catch")
         }
     }
-    async deleteProperty(propertyId){
+    async deleteProperty(propertyId) {
         try {
-            const response = await appApi.delete('/properties/'+propertyId);
+            const response = await appApi.delete('/properties/' + propertyId);
             if (response.data.status === ApiResponse.SUCCESS) {
                 toast.success(response.data.message, );
                 return response.data;
@@ -136,12 +137,12 @@ class PropertyService extends EventEmitter {
             console.log(error, "error catch")
         }
     }
-    async handleUpdateProperty(dataToUpdate,propertyId){
+    async handleUpdateProperty(dataToUpdate, propertyId) {
         try {
-            const response = await appApi.put('/properties/'+propertyId,dataToUpdate);
+            const response = await appApi.put('/properties/' + propertyId, dataToUpdate);
             if (response.data.status === ApiResponse.SUCCESS) {
                 await store.dispatch('actionPropertyList', response.data.payload);
-                router.push({name: 'property-dashboard'});
+                router.push({ name: 'property-dashboard' });
             } else {
                 toast.error(response.data.message);
             }
@@ -154,16 +155,16 @@ class PropertyService extends EventEmitter {
         }
     }
 
-    async handleImages(dataFiles,fileProgress,propertyId){
+    async handleImages(dataFiles, fileProgress, propertyId) {
         const files = dataFiles.value;
         try {
             for (let i = 0; i < files.length; i++) {
                 var formData = new FormData();
                 //console.log(`files`, files[i])
                 formData.append("images", files[i]);
-                formData.append('property_id',propertyId);
+                formData.append('property_id', propertyId);
                 const response = await appApi.post('/uploads', formData, {
-                    onUploadProgress: async (progressEvent) => {
+                    onUploadProgress: async(progressEvent) => {
                         console.log('progressEvent', progressEvent);
                         const total = progressEvent.total;
                         const totalLength = progressEvent.lengthComputable ? total : null;
@@ -181,7 +182,7 @@ class PropertyService extends EventEmitter {
                 if (response.data.status === ApiResponse.SUCCESS) {
                     // toast.success("Image Uploaded!");
                     await this.getUserPropertyList();
-                    router.push({name: 'property-dashboard'})
+                    router.push({ name: 'property-dashboard' })
                 } else {
                     toast.error(response.data.message);
                 }
