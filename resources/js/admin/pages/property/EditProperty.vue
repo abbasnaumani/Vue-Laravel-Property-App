@@ -210,6 +210,22 @@
                                         </div>
                                         <div class="py-2 row">
                                             <div class="form-group col-10 offset-1">
+                                                <label >&nbsp Property Images  </label>
+                                                <drop-zone v-model="dataFiles" ></drop-zone>
+                                            </div>
+                                        </div>
+                                        <div class="py-2 row">
+                                            <div class="form-group w-100 px-3">
+                                                <upload-list action="edit" :items="dataFiles" :itemsProgress="fileProgress"></upload-list>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12" v-if="propertyMedia" >
+                                                <property-files-list action="edit" :propertyMedia="propertyMedia"></property-files-list>
+                                            </div>
+                                        </div>
+                                        <div class="py-2 row">
+                                            <div class="form-group col-10 offset-1">
                                                 <label>&nbsp Description </label>
                                                 <QuillEditor toolbar="minimal" theme="snow"
                                                              v-model:content="propertyData.property_detail.description"
@@ -269,10 +285,17 @@ import propertyService from "../../services/propertyService";
 import {QuillEditor} from '@vueup/vue-quill'
 import BlotFormatter from 'quill-blot-formatter'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
+import {ApiResponse} from "../../constants";
+import DropZone from "../dropzone/DropZone";
+import UploadList from "../dropzone/UploadList";
+import PropertyFilesList from "./PropertyFilesList";
 
 export default {
     name: "EditProperty",
     components: {
+        PropertyFilesList,
+        UploadList,
+        DropZone,
         QuillEditor
     },
     props: {
@@ -284,6 +307,10 @@ export default {
             module: BlotFormatter,
             options: {}
         };
+        const dataFiles = ref([]);
+        const propertyMedia = ref([]);
+        const fileProgress = ref([]);
+
         const isOccupancyStatus = ref();
         const isInstallmentAvailable = ref();
         const isPossessionAvailable = ref();
@@ -305,6 +332,9 @@ export default {
                 isInstallmentAvailable.value = propertyData.value.property_detail.is_installment_available;
                 isOccupancyStatus.value = propertyData.value.property_detail.is_occupancy_status;
                 isPossessionAvailable.value = propertyData.value.property_detail.is_possession_available;
+            }
+            if(propertyData.value && propertyData.value.media){
+                propertyMedia.value = propertyData.value.media;
             }
             console.log(propertyData.value,"propertyData.value");
         })
@@ -345,9 +375,9 @@ export default {
             let quill = quillEditor.value.getQuill()
             descriptionLength.value = quill.getLength();
         }
-        const handleUpdateProperty = () => {
-            console.log(propertyData,"HELLO WORL")
-            propertyService.handleUpdateProperty({
+        const handleUpdateProperty = async () => {
+            console.log(propertyData, "HELLO WORL")
+            const response = await propertyService.handleUpdateProperty({
                 title: propertyData.value.title,
                 property_sub_type_id: propertyData.value.property_sub_type_id,
                 area_unit_id: propertyData.value.area_unit_id,
@@ -364,6 +394,8 @@ export default {
                 is_possession_available: isPossessionAvailable.value,
 
             }, props.propertyId);// city_id: propertyData.value.city_id,
+                propertyService.handleImages(dataFiles, fileProgress, props.propertyId);
+
         }
         return {
             v$,
@@ -380,7 +412,10 @@ export default {
             handleDescriptionValidation,
             quillEditor,
             descriptionLength,
-            allCityLocations
+            allCityLocations,
+            dataFiles,
+            fileProgress,
+            propertyMedia
         }
     }
 }

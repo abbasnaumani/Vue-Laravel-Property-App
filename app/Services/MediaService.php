@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\MyMedia;
 use App\Services\BaseService\BaseService;
+use Storage;
 
 class MediaService extends BaseService
 {
@@ -41,5 +42,13 @@ class MediaService extends BaseService
             }
         }
         return $preparedMedia ?? null;
+    }
+    /**
+     * Method to Delete Image from Cloud
+     * @param string $filePath
+     */
+    public function deleteImageFromCloud(string $filePath)
+    {
+        Storage::cloud()->delete($filePath);
     }
 }

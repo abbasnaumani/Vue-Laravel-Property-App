@@ -80,8 +80,9 @@ class PropertyService extends BaseService
      */
     public function getUserPropertyList(int $agencyId = 1)
     {
-
-        $agency = Agency::find($agencyId);
+        $user = $this->getAuthUser();
+        $agency = $user->agencies()->first();
+//        $agency = Agency::find($agencyId);
         $agencyUsers = $agency->users ?? null;
 
         if ($agencyUsers) {
@@ -89,6 +90,7 @@ class PropertyService extends BaseService
             if ($agencyUserIds) {
                 $properties = Property::with('propertyDetail', 'propertyFeature', 'media', 'user', 'location.city', 'areaUnit', 'propertySubType')
                     ->whereIn('user_id', $agencyUserIds)->get();
+//                dd($properties);
                 $this->setApiSuccessMessage(trans('property.properties_retrieved'), $properties ?? null);
             }
         }

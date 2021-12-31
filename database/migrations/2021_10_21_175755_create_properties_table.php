@@ -24,6 +24,7 @@ class CreatePropertiesTable extends Migration
             $table->double('area');
             $table->tinyInteger('purpose');
             $table->double('price');
+            $table->softDeletes();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');

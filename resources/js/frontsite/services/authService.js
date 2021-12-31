@@ -7,6 +7,7 @@ import {ApiResponse, LocalStorageKeys} from "~/constants";
 import router from "~/frontsite/router";
 import localStorageService from "~/services/localStorageService";
 import {UserRoles} from "~/constants";
+import agencyService from "./agencyService";
 
 const toast = useToast();
 
@@ -18,7 +19,7 @@ class AuthService extends EventEmitter {
                 toast.success("Registration Completed!");
                 await store.dispatch('actionAuthState', response.data.payload);
                 if(response.data.payload.user.roles[0].id !== UserRoles.SUPER_ADMIN)
-                    router.push({path: '/'+response.data.payload.user.agencies[0].slug+'/main'});
+                    router.push({path: '/'+response.data.payload.user.agencies[0].slug});
             } else {
                 toast.error(response.data.message);
             }
@@ -36,6 +37,7 @@ class AuthService extends EventEmitter {
             if (response.data.status === ApiResponse.SUCCESS) {
                 console.log(response.data,"login success");
                 await store.dispatch('actionAuthState', response.data.payload);
+                await store.dispatch('actionAgencyBySlug', response.data.payload.user.agencies[0]);
                 if(response.data.payload.user.roles[0].id !== UserRoles.SUPER_ADMIN)
                 router.push({path: '/'+response.data.payload.user.agencies[0].slug});
             } else {

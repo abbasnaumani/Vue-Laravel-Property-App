@@ -26,6 +26,7 @@ User::register();
 Subscribe::register();
 ContactUs::register();
 Agency::register();
+\Route\Api\Media::register();
 \Route\Api\Test::register();
 \Route\Api\Upload::register();
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

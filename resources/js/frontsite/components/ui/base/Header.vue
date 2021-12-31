@@ -41,9 +41,6 @@
                                 <div class="top-right-navs" v-if="isAuthenticated">
                                     <div class="right-nav-links d-flex align-items-center">
                                         <ul class="list-unstyled">
-                                            <li class="float-left px-2"><a
-                                                class="text-decoration-none right-navs"
-                                                href="">BLOG</a></li>
                                             <li class="float-left px-2">
                                                 <div class="container">
                                                     <div class="dropdown dropleft">
@@ -71,6 +68,16 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="top-right-navs" v-else>
+                                    <div class="right-nav-links d-flex align-items-center">
+                                        <ul class="list-unstyled">
+                                            <li class="float-left px-2"><router-link class="text-decoration-none right-navs"
+                                                                           :to="{path:'/login'}">LOGIN<span
+                                                style="font-size: 15px;">/</span>REGISTER</router-link>
                                             </li>
                                         </ul>
                                     </div>
@@ -735,6 +742,7 @@ import {useStore} from 'vuex';
 import _ from 'lodash';
 import {useRoute} from 'vue-router'
 import agencyService from "../../../services/agencyService";
+import {getAgencyBySlug} from "../../../composables/agency";
 
 export default {
     name: "Header",
@@ -783,34 +791,9 @@ export default {
             showSearchDropdown.value = !showSearchDropdown.value;
         }
 
-        function getRoutePath(path = '') {
-            // return store.getters.getCurrentAgencySlug ? {path: '/' + store.getters.getCurrentAgencySlug + path}
-            //     : ((props.isAuthenticated) ? {path: '/' + profile.value.agencies[0].slug + path}
-            //         : {path: '/' + store.getters.getDefaultAgencySlug + path})
-        }
+        // getAgencyDataBySlug();
+        const agency = getAgencyBySlug(slug.value);
 
-        const agency = ref(null);
-
-        getAgencyBySlug();
-
-        async function getAgencyBySlug() {
-            // console.log(store.getters.getCurrentAgencySlug ,"store.getters.getCurrentAgencySlug ",profile.value.agencies[0].slug);
-            // slug.value = store.getters.getCurrentAgencySlug ? store.getters.getCurrentAgencySlug
-            //     : ((props.isAuthenticated) ? profile.value.agencies[0].slug
-            //         : store.getters.getDefaultAgencySlug);
-            if (slug.value) {
-                agency.value = await agencyService.getAgencyBySlug(slug.value);
-                console.log(agency.value, 'agency.value')
-            } else {
-                console.log('error was there', slug.value)
-            }
-        }
-
-        // watchEffect(()=> {
-        //     if (agency.value) {
-        //         agencyData.value = {...agency.value};
-        //     }
-        // });
         // watchEffect(()=>{
         //     if(options.value){
         //         myOptions.value = [];
@@ -859,9 +842,8 @@ export default {
             stickyHeader,
             stickyHeaderRef,
             route,
-            getRoutePath,
             agency,
-            slug
+            slug,
         }
     }
 }

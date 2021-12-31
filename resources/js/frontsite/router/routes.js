@@ -7,7 +7,7 @@ export default [
     {
         path: '/',
         name: 'dashboard',
-        component: page('Main'),
+        component: page('agency/Dashboard'),
         meta: {public: true, meta_title: 'KS Property'},
     },
     {

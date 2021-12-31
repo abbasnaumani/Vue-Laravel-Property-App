@@ -202,8 +202,9 @@ export default {
         getPropertiesBySlug()
         async function getPropertiesBySlug(currentPage,perPage) {
             const addMore = 3;
-            slug.value = (props.slug) ? props.slug : store.getters.getDefaultAgencySlug;
-            properties.value = await propertyService.getPropertiesBySlug(slug.value, {currentPage,perPage,addMore});
+            // slug.value = (props.slug) ? props.slug : store.getters.getDefaultAgencySlug;
+            properties.value = await propertyService.getPropertiesBySlug(props.slug, {currentPage,perPage,addMore});
+            console.log(props.slug,properties.value,"properties.valueproperties.value");
         }
 
         return{

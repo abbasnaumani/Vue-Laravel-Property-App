@@ -5,6 +5,7 @@ import errorHandlerService from "~/frontsite/services/errorHandlerService";
 import {useToast} from "vue-toastification";
 import router from "~/frontsite/router";
 import store from "~/frontsite/store";
+import {getAllAgencies} from "../composables/agency";
 const toast = useToast();
 
 class AgencyService extends EventEmitter {
@@ -49,12 +50,19 @@ class AgencyService extends EventEmitter {
     async getAgencyBySlug(slug){
         try {
             const response = await appApi.get('/agency/'+slug);
-            if (response.data.status === ApiResponse.SUCCESS) {
-                console.log(response);
-                return response.data.payload;
-            } else {
-                toast.error(response.data.message);
-            }
+            await store.dispatch('actionAgencyBySlug', response.data.payload);
+
+        } catch (err) {
+            console.log(err, "err err")
+            toast.error(err.response.data.message);
+            const error = await errorHandlerService.errors.index(err);
+            console.log(error, "error catch")
+        }
+    }
+    async getAllAgencies(){
+        try {
+            const response = await appApi.get('/agency/list');
+            await store.dispatch('actionAgencies', response.data.payload);
 
         } catch (err) {
             console.log(err, "err err")

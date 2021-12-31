@@ -24,6 +24,10 @@
                         </div>
                     </div>
                 </div>
+                <div class="image-action col-12 col-md-2 mt-4" v-if="action ==='edit' ">
+                    <button class="btn btn-danger mx-2" @click.prevent="removeMedia(index)"><i class="far fa-trash-alt"></i>
+                    </button>
+                </div>
             </div>
         </li>
     </ul>
@@ -43,9 +47,13 @@ import {
 
 export default {
     name: "UploadList",
-    props: ['items','itemsProgress'],
-    setup() {
+    props: ['items','itemsProgress','action'],
+    setup(props) {
+        async function removeMedia(index) {
+            props.items.splice(index,1)
+        }
         return {
+            removeMedia,
             getFileSize,
             getFileName,
             getFileType,
@@ -58,7 +66,7 @@ export default {
     },
     computed: {
         files() {
-            console.log("uperuper", this);
+            console.log("uperuper", this.items);
             return this.items.reverse();
         },
     }
