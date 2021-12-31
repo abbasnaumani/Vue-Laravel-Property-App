@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Plank\Mediable\Mediable;
 
 class Property extends Model
 {
     protected $guarded = [];
     protected $fillable = ['property_sub_type_id','user_id', 'area_unit_id', 'title', 'area', 'purpose', 'price', 'location_id'];
-    use Mediable;
+    use SoftDeletes, Mediable;
     /**
      * Property has a Property Detail
      *
