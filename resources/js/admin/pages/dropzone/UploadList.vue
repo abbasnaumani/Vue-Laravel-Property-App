@@ -11,7 +11,7 @@
                         <span class="bg-dark text-white p-1 rounded">{{ getFileSize(file.size) }}</span>
                     </div>
                 </div>
-                <div class="image-detail col-12 col-md-10">
+                <div class="image-detail col-12 col-md-8">
                     <div class="d-flex flex-column">
                         <div>
                             <p class="font-weight-bold">{{ getFileName(file.name) }}</p>

@@ -22,7 +22,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="image-action col-12 col-md-2 mt-4" v-if="action ==='edit' ">
+                <div class="image-action col-12 col-md-2 mt-4 align-right" v-if="action ==='edit' ">
                     <button class="btn btn-danger mx-2" @click.prevent="deleteImage(media.id)"><i class="far fa-trash-alt"></i>
                     </button>
                 </div>

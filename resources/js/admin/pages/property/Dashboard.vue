@@ -27,33 +27,33 @@
                                     <table class="table table-responsive table-bordered table-striped table-vcenter  js-dataTable-buttons">
                                         <thead>
                                         <tr>
-                                            <th class="text-center" style="width: 80px;">ID</th>
-                                            <th class="text-center d-none d-sm-table-cell">Property Title</th>
-                                            <th class="text-center d-none d-sm-table-cell" >Owner</th>
-                                            <th class="text-center d-none d-sm-table-cell" >Property Type</th>
-                                            <th class="text-center d-none d-sm-table-cell" >Area</th>
-                                            <th class="text-center d-none d-sm-table-cell" >City</th>
-                                            <th class="text-center d-none d-sm-table-cell" >Purpose</th>
-                                            <th class="text-center d-none d-sm-table-cell" >Price</th>
-                                            <th class="text-center d-none d-sm-table-cell" >Location</th>
-                                            <th class="text-center" colspan="3" style="width: 15%;">Actions</th>
+                                            <th class="text-center col-1 align-middle">ID</th>
+                                            <th class="text-center col-1 align-middle">Property Title</th>
+                                            <th class="text-center col-1 align-middle" >Owner</th>
+                                            <th class="text-center col-1 align-middle" >Property Type</th>
+                                            <th class="text-center col-1 align-middle" >Area</th>
+                                            <th class="text-center col-1 align-middle" >City</th>
+                                            <th class="text-center col-1 align-middle" >Purpose</th>
+                                            <th class="text-center col-1 align-middle" >Price</th>
+                                            <th class="text-center col-2 align-middle" >Location</th>
+                                            <th class="text-center col-2 align-middle" colspan="3">Actions</th>
                                         </tr>
                                         </thead>
                                         <tbody v-if="properties && properties.length > 0">
                                             <tr v-for="property in properties" :key="property.id">
-                                                <td class="font-w600 font-size-sm">{{property.id}}</td>
-                                                <td class="font-w600 font-size-sm">{{property.title}}</td>
-                                                <td class="font-w600 font-size-sm">{{property.user.first_name +' '+property.user.last_name}} </td>
-                                                <td class="font-w600 font-size-sm">{{property.property_sub_type.name}}</td>
-                                                <td class="font-w600 font-size-sm">{{property.area}} {{property.area_unit.name}}</td>
-                                                <td class="font-w600 font-size-sm">{{property.location.city.name}}</td>
-                                                <td class="font-w600 font-size-sm">{{property.purpose}}</td>
-                                                <td class="font-w600 font-size-sm">{{property.price}}</td>
-                                                <td class="font-w600 font-size-sm">{{property.location.name}}</td>
-                                                <td class="btn-group text-center font-w600 font-size-sm">
-                                                    <router-link :to="{path:'/admin/property/edit/'+property.id}" class="btn btn-primary "><i class="fa fa-edit"></i></router-link>
-                                                    <button @click="openDeleteModal(property)" class="btn btn-danger mx-2"><i class="far fa-trash-alt"></i></button>
-                                                    <router-link :to="{path:'/admin/property/details/'+property.id}" class="btn btn-info mx-2"><i class="far fa-eye"></i></router-link>
+                                                <td class="font-w600 text-center col-1 font-size-sm">{{property.id}}</td>
+                                                <td class="font-w600 text-center col-1 font-size-sm">{{property.title}}</td>
+                                                <td class="font-w600 text-center col-1 font-size-sm">{{property.user.first_name +' '+property.user.last_name}} </td>
+                                                <td class="font-w600 text-center col-1 font-size-sm">{{property.property_sub_type.name}}</td>
+                                                <td class="font-w600 text-center col-1 font-size-sm">{{property.area}} {{property.area_unit.name}}</td>
+                                                <td class="font-w600 text-center col-1 font-size-sm">{{property.location.city.name}}</td>
+                                                <td class="font-w600 text-center col-1 font-size-sm">{{property.purpose}}</td>
+                                                <td class="font-w600 text-center col-1 font-size-sm">{{property.price}}</td>
+                                                <td class="font-w600 text-center col-2 font-size-sm">{{property.location.name}}</td>
+                                                <td class="col-2 text-center mx-auto font-size-sm">
+                                                    <router-link :to="{path:'/admin/property/edit/'+property.id}" class="btn btn-primary mx-1"><i class="far fa-edit"></i></router-link>
+                                                    <button @click="openDeleteModal(property)" class="btn btn-danger mx-1"><i class="far fa-trash-alt"></i></button>
+                                                    <router-link :to="{path:'/admin/property/details/'+property.id}" class="btn btn-info mx-1"><i class="far fa-eye"></i></router-link>
                                                 </td>
                                             </tr>
                                         </tbody>
