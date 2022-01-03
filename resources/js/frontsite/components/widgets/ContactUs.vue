@@ -136,6 +136,7 @@ export default {
         userEmail.value = "";
         phone_number.value = "";
         message.value = "";
+          v$.value.$reset();
       }
     }
     const validationRules = computed(() => {

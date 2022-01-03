@@ -39,7 +39,7 @@
                                             <th class="text-center" colspan="3" style="width: 15%;">Actions</th>
                                         </tr>
                                         </thead>
-                                        <tbody v-if="properties">
+                                        <tbody v-if="properties && properties.length > 0">
                                             <tr v-for="property in properties" :key="property.id">
                                                 <td class="font-w600 font-size-sm">{{property.id}}</td>
                                                 <td class="font-w600 font-size-sm">{{property.title}}</td>
@@ -56,6 +56,9 @@
                                                     <router-link :to="{path:'/admin/property/details/'+property.id}" class="btn btn-info mx-2"><i class="far fa-eye"></i></router-link>
                                                 </td>
                                             </tr>
+                                        </tbody>
+                                        <tbody v-else class="d-flex justify-content-center mt-3">
+                                            <p class="d-flex justify-content-center text-center">No Record Found</p>
                                         </tbody>
                                     </table>
                                 </div>

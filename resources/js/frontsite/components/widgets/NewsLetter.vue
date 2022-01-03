@@ -79,6 +79,7 @@ export default {
             if (response.status === ApiResponse.SUCCESS) {
                 name.value = '';
                 userEmail.value = '';
+                v$.value.$reset();
             }
         }
 

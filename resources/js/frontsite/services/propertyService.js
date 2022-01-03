@@ -41,6 +41,7 @@ class PropertyService extends EventEmitter {
                 }
             });
             if (response.data.status === ApiResponse.SUCCESS) {
+                console.log(response,"sadasdadasdasdsadasdsa");
                 // await store.dispatch('actionPropertiesBySlug', response.data.payload);
                 return response.data.payload;
             }

@@ -37,7 +37,7 @@
                                             <th colspan="2" class="col-1">Actions</th>
                                         </tr>
                                         </thead>
-                                        <tbody v-if="users">
+                                        <tbody v-if="users && users.length > 0">
                                         <tr v-for="(user,index) in users" :key="index">
                                             <td class="text-center font-size-sm">{{ user.id }}</td>
                                             <td class="font-w600 font-size-sm">{{ user.first_name }}
@@ -60,6 +60,9 @@
                                                 <button @click="openDeleteModal(user)" class="btn btn-danger mx-2"><i class="far fa-trash-alt"></i></button>
                                             </td>
                                         </tr>
+                                        </tbody>
+                                        <tbody v-else class="d-flex justify-content-center mt-3">
+                                        <p class="d-flex justify-content-center text-center">No Record Found</p>
                                         </tbody>
                                     </table>
                                 </div>

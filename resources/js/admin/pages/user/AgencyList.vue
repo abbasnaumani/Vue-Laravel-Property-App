@@ -38,7 +38,7 @@
                                             <th class="col-1">Actions</th>
                                         </tr>
                                         </thead>
-                                        <tbody v-if="agencies">
+                                        <tbody v-if="agencies && agencies.length > 0">
                                         <tr v-for="(agency,index) in agencies" :key="index">
                                             <td class="text-center font-size-sm">{{ agency.id }}</td>
                                             <td class="font-w600 font-size-sm">{{ agency.name }}
@@ -63,6 +63,9 @@
                                                 <router-link :to="{path:'/admin/'+agency.id+'/users/'}" class="btn btn-info mx-2"><i class="far fa-eye"></i></router-link>
                                             </td>
                                         </tr>
+                                        </tbody>
+                                        <tbody v-else class="d-flex justify-content-center mt-3">
+                                        <p class="d-flex justify-content-center text-center">No Record Found</p>
                                         </tbody>
                                     </table>
                                 </div>
