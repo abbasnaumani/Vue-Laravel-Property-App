@@ -1,6 +1,6 @@
 <?php include "header.php" ?>
 
-<section class="top-banner border-0 mt-5 py-3">
+<section class="top-banner border-0 mt-2 py-3">
     <div class="container py-3 mt-4 position-relative z-index-2">
         <div class="row py-4 mb-4 d-flex flex-wrap-reverse">
             <div class="col-md-8 order-2 order-md-1 ">

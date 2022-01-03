@@ -48,17 +48,17 @@
                                     <div class="top-navs d-flex justify-content-inherit align-items-center">
                                         <ul class="list-unstyled px-2 ">
                                             <li class="float-left">
-                                                <i style="font-size: 15px;color: #7e1373;" class="fal fa-phone-alt"></i>
+                                                <i class="fal fa-phone-alt header-icon"></i>
                                                 <a class="text-decoration-none nav-links font-weight-semibold" href="#"><span class="px-1">(800)
                                                         123-4567</span></a>
                                             </li>
                                             <li class="float-left px-3">
-                                                <i style="font-size: 15px;color: #7e1373;" class="fal fa-map-marker-alt d-lg-inline d-md-none d-sm-none d-none"></i>
+                                                <i class="fal fa-map-marker-alt header-icon d-lg-inline d-md-none d-sm-none d-none"></i>
                                                 <a class="text-decoration-none nav-links font-weight-medium" href="#"><span class="px-1 d-lg-inline d-md-none d-sm-none d-none trext">1234 Porto
                                                         Street,Los Angeles / LA</span></a>
                                             </li>
                                             <li class="float-left px-3">
-                                                <i style="font-size: 15px;color: #7e1373;" class="fal fa-envelope d-lg-inline d-md-inline d-sm-none d-none"></i>
+                                                <i class="fal fa-envelope header-icon d-lg-inline d-md-inline d-sm-none d-none"></i>
                                                 <a class="text-decoration-none nav-links font-weight-medium" href=""><span class="px-1 d-lg-inline d-md-inline d-sm-none d-none text-2">porto@portotheme.com</span></a>
                                             </li>
                                         </ul>
@@ -71,7 +71,7 @@
                                             <li class="float-left px-2">
                                                 <div class="container">
                                                     <div class="dropdown dropleft">
-                                                        <i style="font-size:14px;" class="fas fa-user p-1" data-toggle="dropdown"></i>
+                                                        <i style="font-size:14px;" class="fas fa-user p-1 header-icon" data-toggle="dropdown"></i>
                                                         <div class="dropdown-menu">
                                                             <a class="dropdown-item" href="#">
                                                                 <p class="font-weight-bold mb-0">Hassan Khalid</p>
@@ -264,7 +264,7 @@
                                                                 </div>
                                                                 <!-- button  -->
                                                                 <div class="px-3">
-                                                                    <button style="background-color: #19B5FF;font-size: 15px;" type="button" class="btn text-white btn-lg">Search
+                                                                    <button style="background-color: #19B5FF;font-size: 15px;" type="button" class="btn test-fancy border-0 text-white btn-lg">Search
                                                                         Now
                                                                     </button>
                                                                 </div>
