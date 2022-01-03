@@ -45,12 +45,6 @@ export default [
         component: page('user/UserProfile'),
     },
     {
-        path: '/add/property',
-        name: 'add-property',
-        meta: {public: false, meta_title: 'Add Property'},
-        component: page('property/AddProperty'),
-    },
-    {
         path: '/agency/profile',
         name: 'agency-profile',
         meta: {public: false, meta_title: 'Agency Profile'},
@@ -88,6 +82,12 @@ export default [
         meta: {public: true, meta_title: 'KS About Us'},
         component: page('aboutus/AboutUs'),
         props: ({params}) => ({slug: params.slug || ''}),
+    },
+    {
+        path: '/:slug/add/property',
+        name: 'add-property',
+        meta: {public: true, meta_title: 'Add Property'},
+        component: page('property/AddProperty'),
     },
     {
         path: '/:slug/properties',

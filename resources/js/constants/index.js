@@ -20,3 +20,8 @@ export const PropertyPurpose = {
     FOR_SALE: 1,
     FOR_RENT: 2,
 }
+export const PropertyType = {
+    HOMES:1,
+    PLOTS:1,
+    COMMERCIAL:1,
+}

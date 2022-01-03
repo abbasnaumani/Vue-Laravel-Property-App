@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Property\StorePropertyRequest;
+use App\Models\PropertyType;
 use Illuminate\Http\JsonResponse;
 use App\Services\PropertyService;
 use Illuminate\Http\Request;
@@ -98,7 +99,18 @@ class PropertyController extends Controller
         return $this->getApiResponse();
     }
     /**
-     * Get all Property Types.
+     * Get all Property Parent Types.
+     *
+     * @return JsonResponse
+     */
+    public function getPropertyParentTypes(): JsonResponse
+    {
+        $propertyParentTypes = PropertyType::all();
+        $this->setApiSuccessMessage(trans('property.property_types_found'), $propertyParentTypes);
+        return $this->getApiResponse();
+    }
+    /**
+     * Get all Property Sub Types.
      *
      * @return JsonResponse
      */

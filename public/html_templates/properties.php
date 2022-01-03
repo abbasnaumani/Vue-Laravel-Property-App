@@ -154,7 +154,7 @@
                         </div>
                         <div class="col-lg-2 mb-2 mb-lg-0">
                             <div class="select-button">
-                                <a href="#" class="btn btn-color test-fancy text-white btn-block font-weight-bold py-3">
+                                <a href="#" class="btn btn-color border-0 test-fancy text-white btn-block font-weight-bold py-3">
                                     Search Now
                                 </a>
                             </div>
@@ -176,7 +176,7 @@
                     <div class="col-12 col-sm-6 col-md-3 pb-4 mb-1">
                         <div class="card custom-card move-svg  border-0">
                             <div class="card-interior overflow-hidden position-relative z-index-1">
-                                <a href="" class="text-decoration-none card-anchor">
+                                <a href="http://localhost/kodestudio/property/public/html_templates/detail.php" class="text-decoration-none card-anchor">
                                     <span
                                         class="custom-card-info-type text-light py-2 px-3 text-1 font-weight-bold letter-spacing text-uppercase position-absolute top-8 left-8">For
                                         Sale</span>

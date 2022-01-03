@@ -44,6 +44,8 @@ import {
     formatFileSize,
     humanFileSize
 } from '../../utils/file';
+import {useToast} from "vue-toastification";
+const toast = useToast();
 
 export default {
     name: "UploadList",
@@ -51,6 +53,7 @@ export default {
     setup(props) {
         async function removeMedia(index) {
             props.items.splice(index,1)
+            toast.success("Media Deleted Successfully",)
         }
         return {
             removeMedia,

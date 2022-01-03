@@ -20,7 +20,7 @@
 
                 <div class="col-lg-3 mt-5 mt-lg-0">
                     <div class="banner-button">
-                        <a href="#"
+                        <a href="http://localhost/kodestudio/property/public/html_templates/contact.php"
                             class="btn btn-primary test-fancy border-0 btn-block font-weight-bold py-4 anchor-button d-flex justify-content-center">
                             <div>
                                 CONTACT US

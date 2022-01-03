@@ -60,6 +60,7 @@ export const getPropertiesBySlug = (slug) => {
     }
     return properties;
 }
+// now getting this on user side
 export const getPropertyTypes = () => {
     const propertyTypes = computed(() => {
         return (store.getters.getPropertyTypes)
@@ -70,6 +71,17 @@ export const getPropertyTypes = () => {
         propertyService.getPropertyTypes();
     }
     return propertyTypes;
+}
+export const getParentTypes = () => {
+    const mainTypes = computed(() => {
+        return (store.getters.getParentTypes)
+            ? store.getters.getParentTypes
+            : null;
+    });
+    if (!mainTypes.value) {
+        propertyService.getParentTypes();
+    }
+    return mainTypes;
 }
 export const getAreaUnits = () => {
     const areaUnits = computed(() => {

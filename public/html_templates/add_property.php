@@ -1,6 +1,6 @@
 <?php include "header.php" ?>
 <section id="add_property">
-    <div class="container py-5">
+    <div class="container py-2">
         <div class="card shadow-sm login-card w-100 text-left mt-5">
             <div class="card-header bg-white border-bottom-0 mt-4">
                 <div class="d-flex justify-content-between align-items-center">

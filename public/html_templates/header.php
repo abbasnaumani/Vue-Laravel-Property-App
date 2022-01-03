@@ -16,25 +16,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly" async></script>
     <script>
-        // var myScrollFunc = function () {
-        //     var y = window.scrollY;
-        //     if (y >= 50) {
-        //         console.log('ifcase',topHeader)
-        //         topHeader.classList.add("sticky");
-        //         //topHeader.className = "bottomMenu hide";
-        //         $('.top-header').hide();
-        //         $('.secondary-menu').css('top', '0');
-
-        //     } else {
-        //         console.log('elsecase',topHeader)
-        //         //topHeader.className = "bottomMenu show";
-        //         $('.secondary-menu').css('top', '40px');
-        //         $('.top-header').show();
-        //         topHeader.classList.remove("sticky");
-        //     }
-        // };
-
-        // window.addEventListener("scroll", myScrollFunc);
         function initMap() {
             // The location of Uluru
             const uluru = {
@@ -95,7 +76,7 @@
                                                             <a class="dropdown-item" href="#">
                                                                 <p class="font-weight-bold mb-0">Hassan Khalid</p>
                                                             </a>
-                                                            <a class="dropdown-item" href="#">
+                                                            <a class="dropdown-item" href="http://localhost/kodestudio/property/public/html_templates/user-profile.php">
                                                                 <p class="mb-0 mt-0 header-dropdown-links px-2">My
                                                                     Account</p>
                                                             </a>
@@ -130,26 +111,26 @@
                                         <div class="d-flex justify-content-end">
                                             <ul class="list-unstyled d-lg-flex d-md-none d-sm-none d-none m-0">
                                                 <li class="px-3">
-                                                    <a class="secondary-nav-li text-decoration-none active py-4 text-3" href="">Home</a>
+                                                    <a class="secondary-nav-li text-decoration-none active py-4 text-3" href="http://localhost/kodestudio/property/public/html_templates/main.php">Home</a>
                                                 </li>
                                                 <li class="px-3">
-                                                    <a class="secondary-nav-li text-decoration-none py-4 text-3" href="">Properties</a>
+                                                    <a class="secondary-nav-li text-decoration-none py-4 text-3" href="http://localhost/kodestudio/property/public/html_templates/properties.php">Properties</a>
                                                 </li>
                                                 <li class="px-3">
                                                     <div class="dropdown-primary">
-                                                        <a class="secondary-nav-li text-decoration-none py-4 text-3" href="">About</a>
+                                                        <a class="secondary-nav-li text-decoration-none py-4 text-3" href="#">About</a>
                                                         <div class="dropdown-primary-menu">
                                                             <ul class="list-unstyled">
-                                                                <li class="py-2 px-2"><a class="text-dark dropdown-primary-li" href="#">Agents</a>
+                                                                <li class="py-2 px-2"><a class="text-dark dropdown-primary-li" href="http://localhost/kodestudio/property/public/html_templates/about_agents.php">Agents</a>
                                                                 </li>
-                                                                <li class="py-2 px-2"><a class="text-dark dropdown-primary-li" href="#">Who we
+                                                                <li class="py-2 px-2"><a class="text-dark dropdown-primary-li" href="http://localhost/kodestudio/property/public/html_templates/who_we_are.php">Who we
                                                                         are</a></li>
                                                             </ul>
                                                         </div>
                                                     </div>
                                                 </li>
                                                 <li class="px-3">
-                                                    <a class="secondary-nav-li text-decoration-none text-3" href="">Contact</a>
+                                                    <a class="secondary-nav-li text-decoration-none text-3" href="http://localhost/kodestudio/property/public/html_templates/contact.php">Contact</a>
                                                 </li>
                                                 <li class="px-3">
                                                     <a class="secondary-nav-li text-decoration-none py-4 text-3" href="">Elements</a>
@@ -308,7 +289,7 @@
                                                 <a class="d-lg-inline d-md-inline d-sm-none d-none instagram" href="#"><i class="fab fa-instagram p-1"></i></a>
                                             </li>
                                             <li class="d-lg-none d-md-inline d-sm-inline d-inline py-2 px-2">
-                                                <button style="background-color: #1C5FA8;color: white;" type="button" data-toggle="collapse" data-target="#accordion" class="btn btn-md navbar-toggler-collapsed border border-0"><i class="fa fa-navicon"></i></button>
+                                                <button type="button" data-toggle="collapse" data-target="#accordion" class="btn btn-md test-fancy navbar-toggler-collapsed border border-0"><i class="fa fa-navicon"></i></button>
                                             </li>
                                         </ul>
                                     </div>

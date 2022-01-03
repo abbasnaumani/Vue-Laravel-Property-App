@@ -44,8 +44,8 @@
                                             <textarea class="form-control" rows="13" id="comment" placeholder="Message *" name="text"></textarea>
                                         </div>
                                         <button type="submit" class="btn test-fancy border-0 text-white btn-color w-100">
-                                                       Send messages
-                                                </button>
+                                            Send messages
+                                        </button>
                                     </form>
                                 </div>
                             </div>
@@ -275,7 +275,6 @@
                                                         </a>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>

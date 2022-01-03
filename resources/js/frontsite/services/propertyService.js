@@ -5,6 +5,7 @@ import store from "~/frontsite/store";
 import errorHandlerService from "~/frontsite/services/errorHandlerService";
 import { useToast } from "vue-toastification";
 import router from "~/frontsite/router";
+import {getParentTypes} from "../composables/property";
 
 const toast = useToast();
 
@@ -76,6 +77,22 @@ class PropertyService extends EventEmitter {
             const response = await appApi.get('/property/types');
             if (response.data.status === ApiResponse.SUCCESS) {
                 await store.dispatch('actionPropertyTypes', response.data.payload);
+            } else {
+                toast.error(response.data.message);
+            }
+
+        } catch (err) {
+            console.log(err, "err err")
+            toast.error(err.response.data.message);
+            const error = await errorHandlerService.errors.index(err);
+            console.log(error, "error catch")
+        }
+    }
+    async getParentTypes(){
+        try {
+            const response = await appApi.get('/property/parent/types');
+            if (response.data.status === ApiResponse.SUCCESS) {
+                await store.dispatch('actionPropertyParentTypes', response.data.payload);
             } else {
                 toast.error(response.data.message);
             }

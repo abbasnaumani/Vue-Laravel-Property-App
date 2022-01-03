@@ -28,7 +28,8 @@ class MediaController extends Controller
         try {
             $media->delete();
 //            $this->mediaService->deleteImageFromCloud($media->getDiskPath());
-            $this->setApiSuccessMessage(trans('media.media_deleted'));
+            $this->setApiSuccessMessage(trans('media.media_deleted'),$media);
+            return $this->getApiResponse();
         }catch(\Exception $e){
             $this->setApiErrorMessage(trans());
         }

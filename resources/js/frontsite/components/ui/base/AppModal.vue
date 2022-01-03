@@ -4,7 +4,7 @@
          v-show="open" role="dialog"
          :class="{'d-block show': open}"
     >
-        <div class="modal-dialog modal-md" role="document">
+        <div class="modal-dialog" :class="modalClass" role="document">
             <div class="modal-content">
                 <div class="block block-rounded block-transparent mb-0">
                     <div class="block-header block-header-default">
@@ -16,6 +16,7 @@
                             </button>
                         </div>
                     </div>
+                    <slot></slot>
                     <div class="block-content fs-sm">
                         <p> {{ description }}</p>
                     </div>
@@ -60,6 +61,7 @@ export default {
             type: Boolean,
             default: false
         },
+
         config: Object,
         title: String,
         description: String,
@@ -69,6 +71,10 @@ export default {
         isLoading: {
             type: Boolean,
             default: false
+        },
+        modalClass:{
+            type:String,
+            default:'modal-sm'
         },
         isConfirmButtonDisabled: {
             type: Boolean,

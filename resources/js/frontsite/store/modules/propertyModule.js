@@ -2,6 +2,7 @@ import {getPropertyMedia} from "../../composables/property";
 
 const state = {
     properties: null,
+    propertyParentTypes: null,
     propertyTypes: null,
     areaUnits: null,
     locations:null
@@ -21,6 +22,9 @@ const getters = {
     },
     getPropertiesBySlug:(state) => (slug) => {
         return state.properties !== null ?  JSON.parse(JSON.stringify(state.properties.filter(property => console.log(property,"store console.",slug)))): null;
+    },
+    getParentTypes(state){
+        return state.propertyParentTypes;
     },
     getPropertyTypes(state){
         return state.propertyTypes;
@@ -42,6 +46,9 @@ const mutations = {
     mutatePropertyTypes(state, propertyTypes) {
         state.propertyTypes = propertyTypes;
     },
+    mutatePropertyParentTypes(state, types) {
+        state.propertyParentTypes = types;
+    },
     mutateAreaUnits(state, areaUnits) {
         state.areaUnits = areaUnits;
     },
@@ -61,6 +68,9 @@ const actions = {
     actionPropertyTypes({commit, state},propertyTypes){
         commit('mutatePropertyTypes', propertyTypes);
     },
+    actionPropertyParentTypes({commit, state},types){
+        commit('mutatePropertyParentTypes', types);
+    },
     actionAreaUnits({commit, state},areaUnits){
         commit('mutateAreaUnits', areaUnits);
     },
@@ -71,7 +81,6 @@ const actions = {
         commit('mutateLocationByCityId', locations);
     },
     actionPropertiesBySlug({commit, state},properties){
-        console.log(properties,"action store")
         commit('mutatePropertiesBySlug', properties);
     },
 }

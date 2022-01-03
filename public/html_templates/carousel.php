@@ -14,29 +14,29 @@
                             <!-- slider card  -->
                             <div class="container">
                                 <div class="d-flex justify-content-end align-items-start  overflow-hidden">
-                                    <div class="card text-dark overflow z-index-1" style="width:390px">
-                                        <div class="card-header bg-white">
-                                            <h4 class="py-3 font-weight-bold">$ 1.250.000</h4>
+                                    <div class="card carosuel-card text-dark overflow z-index-1" style="width:390px">
+                                        <div class="card-header">
+                                            <h4 class="py-3 font-weight-bold primary-text-color">$ 1.250.000</h4>
                                         </div>
                                         <div class="card-body">
                                             <div class="text-white w-75 rotate d-flex justify-content-center align-items-center">
                                                 <span class="font-weight-bold">Featured</span>
                                             </div>
                                             <div class="py-1">
-                                                <h3 class="font-weight-bold letter-spacing">South Miami</h3>
+                                                <h3 class="font-weight-bold letter-spacing primary-text-color">South Miami</h3>
                                                 <div class="py-2 d-flex flex-wrap justify-content-between">
-                                                    <div class="text-secondary font-weight-semi-bold text-4 letter-spacing">
+                                                    <div class="font-weight-semi-bold text-4 letter-spacing secondary-text-color">
                                                         BEDS:2</div>
-                                                    <div class="text-secondary font-weight-semi-bold text-4 letter-spacing">
+                                                    <div class="font-weight-semi-bold text-4 letter-spacing secondary-text-color">
                                                         BATHS:3</div>
-                                                    <div class="text-secondary font-weight-semi-bold text-4 letter-spacing">
+                                                    <div class="font-weight-semi-bold text-4 letter-spacing secondary-text-color">
                                                         SQ
                                                         FT:500</div>
                                                 </div>
                                             </div>
                                             <div class="py-3 width">
-                                                <button type="button" class="btn button-carosuaol btn-md btn-block btn-color">
-                                                    <div class="d-flex justify-content-between align-items-center text-white py-3 flex-wrap">
+                                                <button type="button" class="btn button-carosuaol main-carosuel-button  btn-md btn-block btn-color">
+                                                    <div class="d-flex justify-content-between align-items-center primary-text-color py-3 flex-wrap">
                                                         <div class="px-4 font-weight-bold">
                                                             View Property
                                                         </div>
@@ -58,29 +58,29 @@
                             <!-- slider card  -->
                             <div class="container">
                                 <div class="d-flex justify-content-start align-items-start  overflow-hidden">
-                                    <div class="card text-dark overflow z-index-1" style="width:390px">
-                                        <div class="card-header bg-white">
-                                            <h4 class="py-3 font-weight-bold">$ 1.250.000</h4>
+                                    <div class="card carosuel-card text-dark overflow z-index-1" style="width:390px">
+                                        <div class="card-header">
+                                            <h4 class="py-3 font-weight-bold primary-text-color">$ 1.250.000</h4>
                                         </div>
                                         <div class="card-body">
                                             <div class="text-white w-75 rotate d-flex justify-content-center align-items-center">
                                                 <span class="font-weight-bold">Featured</span>
                                             </div>
                                             <div class="py-1">
-                                                <h3 class="font-weight-bold letter-spacing">South Miami</h3>
+                                                <h3 class="font-weight-bold letter-spacing primary-text-color">South Miami</h3>
                                                 <div class="py-2 d-flex flex-wrap justify-content-between">
-                                                    <div class="text-secondary font-weight-semi-bold text-4 letter-spacing">
+                                                    <div class="font-weight-semi-bold text-4 letter-spacing secondary-text-color">
                                                         BEDS:2</div>
-                                                    <div class="text-secondary font-weight-semi-bold text-4 letter-spacing">
+                                                    <div class="font-weight-semi-bold text-4 letter-spacing secondary-text-color">
                                                         BATHS:3</div>
-                                                    <div class="text-secondary font-weight-semi-bold text-4 letter-spacing">
+                                                    <div class="font-weight-semi-bold text-4 letter-spacing secondary-text-color">
                                                         SQ
                                                         FT:500</div>
                                                 </div>
                                             </div>
                                             <div class="py-3 width">
-                                                <button type="button" class="btn button-carosuaol btn-md btn-block btn-color">
-                                                    <div class="d-flex justify-content-between align-items-center text-white py-3 flex-wrap">
+                                                <button type="button" class="btn button-carosuaol main-carosuel-button btn-md btn-block btn-color">
+                                                    <div class="d-flex justify-content-between align-items-center py-3 flex-wrap primary-text-color">
                                                         <div class="px-4 font-weight-bold">
                                                             View Property
                                                         </div>

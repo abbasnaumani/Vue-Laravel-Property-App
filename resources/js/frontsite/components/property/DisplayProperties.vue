@@ -8,7 +8,10 @@
                             v-if="property.purpose == PropertyPurpose.FOR_SALE">For Sale</span>
                         <span class="custom-card-info-type text-light py-2 px-3 text-1 font-weight-bold letter-spacing text-uppercase position-absolute top-8 left-8" v-else>For
                                         Rent</span>
-                        <div class="custom-card-info-img d-block">
+                        <div class="custom-card-info-img d-block" v-if="property.media[0]">
+                            <img :src="'/'+property.media[0].disk+'/'+property.media[0].directory+'/'+property.media[0].filename+'.'+property.media[0].extension" :alt="property.media[0].filename" class="img-fluid rounded">
+                        </div>
+                        <div class="custom-card-info-img d-block" v-else>
                             <img src="/assets/images/img-3.jpg" class="img-fluid rounded">
                         </div>
                         <span class="custom-card-info-header d-flex justify-content-between align-items-center p-relative">

@@ -1,0 +1,26 @@
+      <div class="tab-content mt-3 border border-1">
+                                        <div id="premium" class="container mt-3">
+                                            <div class="content-1">
+                                                <table class="table table-striped">
+                                                    <tr class="text-4 font-weight-bold">
+                                                        <td>Total Quota</td>
+                                                        <td>Quota Used:</td>
+                                                        <td>Available</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>4</td>
+                                                        <td>0</td>
+                                                        <td>0</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>6</td>
+                                                        <td>0</td>
+                                                        <td>0</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div id="premium-2" class="container"></div>
+                                        <div id="" class="container"></div>
+                                        <div id="" class="container"></div>
+                                    </div>
