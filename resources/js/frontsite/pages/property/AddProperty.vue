@@ -85,9 +85,9 @@
                                                         <div class="form-check">
                                                             <input
                                                                 :value="type.id"
-                                                                :id="'type' + key"
                                                                 type="radio"
                                                                 class="form-check-input"
+                                                                name="sub_type"
                                                             >
                                                             <label
                                                                 class="form-check-label letter-spacing font-weight-bold text-secondary text-2">
@@ -128,8 +128,163 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="main_subheader">Property Details</div>
+                                    <div class="main_subheader">Property Space and Price</div>
+                                    <div class="form-group mt-4">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="d-flex justify-content-end">
+                                                    <label class=" text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2 pr-3">Area Size:</label>                                                    
+                                                    <div class="form-group px-3">
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-group d-flex justify-content-start">
+                                                    <label class="text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2 pr-3">Unit:</label>
+                                                    <div class="px-3 w-50" v-if="allAreaUnits">
+                                                        <select
+                                                            class="form-control"
+                                                            v-model="areaUnit"
+                                                        >
+                                                            <option v-for="unit in allAreaUnits" :value="unit.id" :selected="unit.id===areaUnit">{{unit.name}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Expires Aftar:</label>
+                                        <div class="col-lg-9">
+                                            <div class="d-flex align-items-center">
+                                                <div class="d-flex align-items-center w-50">
+                                                    <select class="form-control" >
+                                                        <option>Vacant</option>
+                                                        <option>Occupied</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Total Price:</label>
+                                        <div class="col-lg-9">
+                                            <div class="d-flex align-items-center">
+                                                <div class="form-group w-50">
+                                                    <input
+                                                        v-model="price"
+                                                        @blur="v$.price.$touch()"
+                                                        type="text"
+                                                        class="form-control"
+                                                    >
+                                                    <div class="text-left">
+                                                        <div v-if="v$.price.$dirty">
+                                                            <sub v-if="v$.price.$error"
+                                                                 class="px-2 py-2 text-danger">
+                                                                Price is Required
+                                                            </sub>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 text-lg-right text-md-left line-height-9 letter-spacing font-weight-bold text-secondary text-2">Installment Available:</label>
+
+                                        <div class="col-lg-9">
+                                            <div class="d-flex align-items-center">
+                                                <div class="btn btn-check border-right">
+                                                    <div class="form-check">
+                                                        <input type="radio"
+                                                               class="form-check-input"
+                                                               id="installment"
+                                                               name="installment"
+                                                        >
+                                                        <label class="form-check-label letter-spacing font-weight-bold text-secondary text-2" >Property on Installment</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Advance/Initial Payment:</label>
+                                        <div class="col-lg-9">
+                                            <div class="d-flex align-items-center">
+                                                <div class="form-group w-50">
+                                                    <input
+                                                        type="text"
+                                                        class="form-control"
+                                                    >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Lising Expiry:</label>
+                                        <div class="col-lg-9">
+                                             <div class="d-flex align-items-center">
+                                                <div class="d-flex align-items-center w-50">
+                                                    <select class="form-control" >
+                                                        <option>1 Month</option>
+                                                        <option>3 Month</option>
+                                                        <option>6 Month</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Rental Price Details -->
+                                    <div class="main_subheader">Rental Price Details</div>
+
                                     <div class="form-group row mt-4">
+                                        <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Minimum Contract Period:</label>
+                                        <div class="col-lg-9">
+                                            <div class="d-flex align-items-center">
+                                                <div class="d-flex align-items-center w-25 pr-2">
+                                                    <select class="form-control" >
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                        <option>4</option>
+                                                        <option>5</option>
+                                                        <option>6</option>
+                                                        <option>7</option>
+                                                        <option>8</option>
+                                                        <option>9</option>
+                                                        <option>10</option>
+                                                        <option>11</option>
+                                                        <option>12</option>
+                                                    </select>
+                                                </div>
+                                                <div class="d-flex align-items-center w-25">
+                                                    <select class="form-control" >
+                                                        <option>Month</option>
+                                                        <option>Year</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Monthly Rent:</label>
+                                        <div class="col-lg-9">
+                                            <div class="d-flex align-items-center">
+                                                <div class="form-group w-50">
+                                                    <input
+                                                        type="text"
+                                                        class="form-control"
+                                                    >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="main_subheader mb-4">Property Title and Description</div>
+                                    <div class="col-lg-9">
+                                        <div class="form-group row mt-4">
                                         <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Property Tittle:</label>
                                         <div class="col-lg-9">
                                             <div class="d-flex align-items-center">
@@ -152,62 +307,19 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="form-group row">
                                         <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Description:</label>
                                         <div class="col-lg-9">
                                             <div class="d-flex align-items-center">
-                                                <div class="form-group ">
+                                                <div class="form-group w-100">
                                                     <QuillEditor ref="quillEditor" @blur="handleDescriptionValidation($event)" @input="handleDescriptionValidation($event)"  toolbar="minimal" theme="snow" v-model:content="description" contentType="html" :modules="modules"/>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">All Inclusive Price: (PKR) </label>
-                                        <div class="col-lg-9">
-                                            <div class="d-flex align-items-center">
-                                                <div class="form-group w-50">
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
-                                    <div class="form-group d-flex justify-content-center">
-                                        <label class=" text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Land Area:</label>
-                                        <div class="">
-                                            <div class="">
-                                                <div class="form-group w-50">
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <label class=" text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Unit:</label>
-                                        <div class="" v-if="allAreaUnits">
-                                            <select
-                                                class="form-control"
-                                                v-model="areaUnit"
-                                            >
-                                                <option v-for="unit in allAreaUnits" :value="unit.id" :selected="unit.id===areaUnit">{{unit.name}}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group d-flex ">
 
-                                    </div>
-                                    <div class="form-group row my-4">
-                                        <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Expires Aftar:</label>
-                                        <div class="col-lg-9">
-                                            <div class="d-flex align-items-center">
-                                                <div class="d-flex align-items-center w-50">
-                                                    <select class="form-control" >
-                                                        <option>1 Month</option>
-                                                        <option>3 Months</option>
-                                                        <option>6 Months</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="main_subheader mb-4">Add Images</div>
                                     <div class="col-lg-9">
                                         <div class="d-flex align-items-center">

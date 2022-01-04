@@ -12,20 +12,28 @@
                     </div>
                 </div>
                 <div class="image-detail col-12 col-md-8">
-                    <div class="d-flex flex-column">
+                    <div class="d-flex flex-column mt-md-5 mt-2">
                         <div>
                             <p class="font-weight-bold">{{ getFileName(file.name) }}</p>
                         </div>
-                        <div class="d-flex justify-content-between">
-                            <span>Last Modified: {{ getFileDate(file.lastModified) }}</span>
-                            <span>File type:{{ getFileType(file.type, 'format') }}</span>
-                            <span>File progress:{{ file.progress || 0 }}</span>
-                            <span>File progress:{{ itemsProgress[index] || 0 }}</span>
+                        <div class="row">
+                            <div class="col-12 col-lg-3 mt-lg-0 mt-2">
+                                <div>Last Modified: {{ getFileDate(file.lastModified) }}</div>
+                            </div>
+                            <div class="col-12 col-lg-3 mt-lg-0 mt-2">
+                                <div>File type:{{ getFileType(file.type, 'format') }}</div>
+                            </div>
+                            <div class="col-12 col-lg-3 mt-lg-0 mt-2">
+                                <div>File progress:{{ file.progress || 0 }}</div>
+                            </div>
+                            <div class="col-12 col-lg-3 mt-lg-0 mt-2">
+                                <div>File progress:{{ itemsProgress[index] || 0 }}</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="image-action col-12 col-md-2 mt-4" v-if="action ==='edit' ">
-                    <button class="btn btn-danger mx-2" @click.prevent="removeMedia(index)"><i class="far fa-trash-alt"></i>
+                <div class="image-action col-12 col-md-2 mt-4 align-right mb-5 text-md-left text-center" v-if="action ==='edit' ">
+                    <button class="btn btn-danger mx-2 mt-md-5" @click.prevent="removeMedia(index)"><i class="far fa-trash-alt"></i>
                     </button>
                 </div>
             </div>
