@@ -1447,3 +1447,10 @@ aside .nav-tabs .nav-link:hover {
         transform: translateX(-0.1em);
     }
 }
+
+
+/* Textarea Editor  */
+
+.ql-editor {
+    height: 140px !important;
+}
