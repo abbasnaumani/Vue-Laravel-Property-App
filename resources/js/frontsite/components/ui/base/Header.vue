@@ -141,10 +141,6 @@
                                                     </router-link>
                                                 </li>
                                                 <li class="px-3">
-                                                    <a class="secondary-nav-li text-decoration-none py-4 text-3"
-                                                       href="">Elements</a>
-                                                </li>
-                                                <li class="px-3">
                                                     <div class="dropdown-mega">
                                                         <a class=" secondary-nav-li text-decoration-none py-4 text-3"
                                                            href="javascript:void(0)"
@@ -514,20 +510,22 @@
                                      class="collapse overflow-auto scrollbar style-3">
                                     <div class="card border border-0 ">
                                         <div class="card-header card-padding">
-                                            <div class="active-2 py-2">
-                                                <a class="card-link px-2  text-white accordian-collapse "
-                                                   data-toggle="collapse" href="#collapseOne">
-                                                    Home
-                                                </a>
+                                            <div class=" py-2">
+                                                <router-link :to="{path: '/' + slug}"
+                                                             class="card-link px-2  accordian-collapse card-link accordian-collapse "
+                                                             data-toggle="collapse"
+                                                >Home
+                                                </router-link>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="card border border-0">
                                         <div class="card-header card-padding">
-                                            <a class="collapsed px-2  accordian-collapse accordian-collapse card-link"
-                                               data-toggle="collapse" href="#collapseTwo">
-                                                Properties
-                                            </a>
+                                            <router-link :to="{path: '/' + slug + '/properties'}"
+                                                         class="collapsed px-2  accordian-collapse accordian-collapse card-link"
+                                                         data-toggle="collapse"
+                                            >Properties
+                                            </router-link>
                                         </div>
                                     </div>
                                     <div class="card border border-0">
@@ -547,12 +545,18 @@
                                             <div class="card-body py-1 accordion-ul">
                                                 <ul class="list-unstyled ">
                                                     <li class="list-collapse py-1 border border-bottom-1 border-top-0 border-right-0 border-left-0">
-                                                        <a class="accordian-list"
-                                                           href="#">Agents</a>
+                                                        <router-link
+                                                            class="accordian-list"
+                                                            :to="{path: '/' + slug + '/agents/info'}">Agents
+                                                        </router-link>
+
                                                     </li>
                                                     <li class="list-collapse py-1 border border-bottom-1 border-top-0 border-right-0 border-left-0">
-                                                        <a class="accordian-list" href="#">Who we
-                                                            are</a>
+                                                        <router-link
+                                                            class="accordian-list"
+                                                            :to="{path: '/' + slug + '/about/us'}">Who we
+                                                            are
+                                                        </router-link>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -560,18 +564,10 @@
                                     </div>
                                     <div class="card border border-0">
                                         <div class="card-header card-padding">
-                                            <a class="collapsed px-2 accordian-collapse card-link"
-                                               data-toggle="collapse" href="#collapsefour">
-                                                Contact
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="card border border-0">
-                                        <div class="card-header card-padding">
-                                            <a class="collapsed px-2 accordian-collapse card-link"
-                                               data-toggle="collapse" href="#collapsefive">
-                                                Elements
-                                            </a>
+                                            <router-link class="collapsed px-2 accordian-collapse card-link"
+                                                         data-toggle="collapse"
+                                                         :to="{path: '/' + slug + '/contact/us'}">Contact
+                                            </router-link>
                                         </div>
                                     </div>
                                     <div class="card border border-0">
@@ -827,10 +823,18 @@ export default {
                 stickyHeader.value = false;
             }
         }
+        // const handleOutsideClick = (event) => {
+        //     if (event.target.closest('.d-block')) {
+        //         stickySearchBar.value = false ;
+        //     }
+        // }
+
         onMounted(() => {
+            // window.addEventListener("click", handleOutsideClick);
             window.addEventListener("scroll", handleScroll);
         });
         onUnmounted(() => {
+            // window.addEventListener("click", handleOutsideClick);
             window.removeEventListener("scroll", handleScroll);
         });
 

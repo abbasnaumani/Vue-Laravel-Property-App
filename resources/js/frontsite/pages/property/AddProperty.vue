@@ -85,8 +85,8 @@
                                                         <div class="form-check">
                                                             <input
                                                                 :value="type.id"
-                                                                :id="'type' + key"
                                                                 type="radio"
+                                                                name="sub_type"
                                                                 class="form-check-input"
                                                             >
                                                             <label
