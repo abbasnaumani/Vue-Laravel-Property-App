@@ -12,7 +12,6 @@
     >
         <div class="py-2 row">
             <div class="form-group col-10 offset-1">
-                <label>&nbsp Property Images </label>
                 <drop-zone v-model="dataFiles"></drop-zone>
             </div>
         </div>

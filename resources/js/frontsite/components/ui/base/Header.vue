@@ -146,12 +146,13 @@
                                                 </li>
                                                 <li class="px-3">
                                                     <div class="dropdown-mega">
-                                                        <a class="secondary-nav-li text-decoration-none py-4 text-3"
-                                                           href="">
+                                                        <a class=" secondary-nav-li text-decoration-none py-4 text-3"
+                                                           href="javascript:void(0)"
+                                                           @click.prevent="handleSearchBar">
                                                             <i class="fas fa-search px-1"></i>
                                                             Search
                                                         </a>
-                                                        <div class="dropdown-mega-menu">
+                                                        <div class="dropdown-mega-menu " :class='{"d-block":stickySearchBar}'>
                                                             <div
                                                                 class="d-flex align-items-center justify-content-center mt-5 mb-5">
                                                                 <!-- 1st child select tag -->
@@ -786,6 +787,11 @@ export default {
         const showSearchDropdown = ref(false);
         const myOptions = ref([]);
         const model = ref();
+        const stickySearchBar = ref(false);
+
+        function handleSearchBar(){
+            stickySearchBar.value = !stickySearchBar.value ;
+        }
 
         function openSearchDropDown() {
             showSearchDropdown.value = !showSearchDropdown.value;
@@ -844,6 +850,8 @@ export default {
             route,
             agency,
             slug,
+            handleSearchBar,
+            stickySearchBar
         }
     }
 }

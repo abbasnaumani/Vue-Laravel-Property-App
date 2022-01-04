@@ -4,13 +4,14 @@
 }
 
 :root {
-    --ks-letter-spacing: -0.05em;
-    --ks-bg-primary-color: #7e1373;
-    --ks-bg-secondary-color: #ae6dab;
-    --ks-bg-tertiary-color: #1877f2;
+    --ks-letter-spacing: -.05em;
+    --ks-bg-primary-color: #00B8DD;
+    --ks-bg-secondary-color: #623CC3;
+    --ks-bg-tertiary-color: #1877F2;
     --ks-text-primary-color: #777777;
     --ks-text-secondary-color: #444444;
-    --ks-btn-color: #83727f;
+    --ks-btn-color: #00B5FF;
+    --ks-btn-hover-color: #444444;
 }
 
 body {
@@ -517,7 +518,7 @@ body {
 
 .test-1 {
     background-color: var(--ks-primary-color) !important;
-    background-image: url("img-17.jpg");
+    background-image: url("/assets/images/img-17.jpg");
     background-size: cover;
     height: 100px !important;
     width: 150px !important;
@@ -1017,7 +1018,7 @@ input[type="radio"] {
 }
 
 input[type="radio"]:checked {
-    background-image: url("tick.png") !important;
+    background-image: url("/assets/images/tick.png") !important;
     width: 30px;
     height: 30px;
     background-size: cover !important;

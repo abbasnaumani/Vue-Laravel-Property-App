@@ -21,24 +21,28 @@
                                                     <div class="form-check">
                                                         <input type="radio"
                                                                class="form-check-input"
+                                                               :value="PropertyPurpose.FOR_SALE"
+                                                               id="purpose"
+                                                               name="purpose"
                                                                v-model="purpose"
-                                                               @blur="v$.purpose.$touch()"
                                                         >
                                                         <label class="form-check-label letter-spacing font-weight-bold text-secondary text-2" >For Sale</label>
-                                                        <div class="text-left">
-                                                            <div v-if="v$.purpose.$dirty">
-                                                                <sub v-if="v$.purpose.$error"
-                                                                     class="px-2 py-2 text-danger">
-                                                                    Purpose is Required
-                                                                </sub>
-                                                            </div>
-                                                        </div>
+<!--                                                        <div class="text-left">-->
+<!--                                                            <div v-if="v$.purpose.$dirty">-->
+<!--                                                                <sub v-if="v$.purpose.$error"-->
+<!--                                                                     class="px-2 py-2 text-danger">-->
+<!--                                                                    Purpose is Required-->
+<!--                                                                </sub>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
                                                     </div>
                                                 </div>
                                                 <div class="btn btn-check">
                                                     <div class="form-check">
                                                         <input type="radio"
+                                                               :value="PropertyPurpose.FOR_RENT"
                                                                class="form-check-input"
+                                                               name="purpose"
                                                                v-model="purpose"
                                                         >
                                                         <label class="form-check-label letter-spacing font-weight-bold text-secondary text-2" >For Rent</label>
@@ -47,30 +51,48 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="form-group row" v-if="parentTypes">
                                         <label class="col-lg-3 text-lg-right text-md-left line-height-9 letter-spacing font-weight-bold text-secondary text-2">Property Type:</label>
 
                                         <div class="col-lg-9">
-                                            <div class="d-flex align-items-center" >
+                                            <div class="d-flex align-items-center">
                                                 <div class="btn btn-check border-right" v-for="type in parentTypes">
                                                     <div class="form-check ">
-                                                        <input type="radio"
-                                                               class="form-check-input"
-                                                               aria-expanded="false"
-                                                               v-model="parentType"
-                                                               @change="filterPropertyTypesById(type.id)"
+                                                        <input
+                                                            type="radio"
+                                                            class="form-check-input"
+                                                            :value="type.id"
+                                                            @change="filterPropertyTypesById(type.id)"
+                                                            v-model="parentType"
+                                                            data-toggle="collapse"
+                                                            data-target=".multi-collapse01"
+                                                            aria-expanded="false"
+                                                            aria-controls="multiCollapseExample1 multiCollapseExample2"
                                                         >
-                                                        <label class="form-check-label letter-spacing font-weight-bold text-secondary text-2" >{{type.name}}</label>
+                                                        <label
+                                                            class="form-check-label letter-spacing font-weight-bold text-secondary text-2"
+                                                            for="materialUnchecked"
+                                                        >{{type.name}}
+                                                        </label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <!-- drop data -->
                                             <div class="d-flex" v-if="subTypes">
-                                                <div class="  mt-3 " v-for="type in subTypes">
+                                                <div class="  mt-3 " v-for="(type,key) in subTypes" :key="type.id">
                                                     <div class="btn btn-check">
                                                         <div class="form-check">
-                                                            <input type="radio" class="form-check-input" >
-                                                            <label class="form-check-label letter-spacing font-weight-bold text-secondary text-2">{{type.name}}</label>
+                                                            <input
+                                                                :value="type.id"
+                                                                :id="'type' + key"
+                                                                type="radio"
+                                                                class="form-check-input"
+                                                            >
+                                                            <label
+                                                                class="form-check-label letter-spacing font-weight-bold text-secondary text-2">
+                                                                {{type.name}}
+                                                            </label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -235,7 +257,7 @@ import {computed, ref, watch} from "vue";
 import {integer, minValue, required} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
 import {getAreaUnits, getParentTypes, getPropertyTypes} from "../../composables/property";
-import {PropertyType} from "../../../constants";
+import {PropertyPurpose, PropertyType} from "../../../constants";
 import {getAllLocationsByCItyId} from "../../composables/country";
 import PropertyImagesModal from "../../components/property/PropertyImagesModal";
 import {QuillEditor} from "@vueup/vue-quill";
@@ -370,7 +392,8 @@ export default {
             openConfirmImageModal,
             parentTypes,
             filterPropertyTypesById,
-            parentType
+            parentType,
+            PropertyPurpose
 
         }
     }

@@ -35,24 +35,6 @@
 </div>
 {{--<script src="{{ asset('js/main/vendors.js') }}" type="text/javascript"></script> --}}{{-- Making conflict on user drop down--}}
 <script src="{{ asset('js/main/app.js') }}" type="text/javascript"></script>
-<!--<script type="application/javascript">
-    $(document).ready(function () {
-        window.onscroll = function () {
-            myFunction()
-        };
-        var topHeader = document.getElementById("secondary-menu");
-        console.log('topHeadertopHeader', topHeader)
-        var sticky = topHeader?.offsetTop;
 
-        function myFunction() {
-            if (window.pageYOffset > sticky) {
-                topHeader?.classList.add("sticky");
-            } else {
-                topHeader?.classList.remove("sticky");
-            }
-        }
-    });
-
-</script>-->
 </body>
 </html>
