@@ -45,17 +45,24 @@
                     <div class="col-lg-7">
                         <div class="card border border-0" style="width: 100%; padding-bottom: 180px">
                             <div id="demo" class="carousel slide" data-ride="carousel">
-                                <ul class="carousel-indicators indicators">
-                                    <li
-                                        data-target="#demo"
-                                        data-slide-to="0"
-                                        class="active test-1"
-                                    ></li>
-                                    <li data-target="#demo" data-slide-to="1" class="test-2"></li>
-                                    <li data-target="#demo" data-slide-to="2" class="test-3"></li>
-                                    <li data-target="#demo" data-slide-to="3" class="test-4"></li>
-                                </ul>
-                                <div class="carousel-inner carousel-hover" v-if="property">
+                                <div class="row mt-3 carousel-indicators indicators">
+                                        <div class="col-4 p-0">
+                                            <a href="" data-target="#demo" data-slide-to="0">
+                                                <img src="/assets/images/img-12.jpg" alt="" width="90%" height="110">
+                                            </a>
+                                        </div>
+                                        <div class="col-4 p-0">
+                                            <a href="" data-target="#demo" data-slide-to="1">
+                                                <img src="/assets/images/img-12.jpg" alt="" width="90%" height="110">
+                                            </a>
+                                        </div>
+                                        <div class="col-4 p-0">
+                                            <a href="" data-target="#demo" data-slide-to="2">
+                                                <img src="/assets/images/img-12.jpg" alt="" width="90%" height="110">
+                                            </a>
+                                        </div>
+                                    </div>
+                                <div class="carousel-inner carousel-image carousel-hover" v-if="property">
                                     <div class="carousel-item active image-div">
                                         <div class="image">
                                             <!--                                                {{property.media}}-->
