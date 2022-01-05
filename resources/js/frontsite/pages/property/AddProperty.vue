@@ -79,16 +79,16 @@
                                                 </div>
                                             </div>
                                             <!-- drop data -->
-                                            <div class="d-flex" v-if="subTypes">
-                                                <div class="  mt-3 " v-for="(type,key) in subTypes" :key="type.id">
+                                            <div class="d-flex" v-if="parentSubTypes">
+                                                <div class="  mt-3 " v-for="(type,key) in parentSubTypes" :key="type.id">
                                                     <div class="btn btn-check">
                                                         <div class="form-check">
                                                             <input
                                                                 :value="type.id"
                                                                 type="radio"
+                                                                v-model="subType"
                                                                 name="sub_type"
                                                                 class="form-check-input"
-                                                                name="sub_type"
                                                             >
                                                             <label
                                                                 class="form-check-label letter-spacing font-weight-bold text-secondary text-2">
@@ -134,7 +134,7 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="d-flex justify-content-end">
-                                                    <label class=" text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2 pr-3">Area Size:</label>                                                    
+                                                    <label class=" text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2 pr-3">Area Size:</label>
                                                     <div class="form-group px-3">
                                                         <input type="text" class="form-control">
                                                     </div>
@@ -153,7 +153,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div> 
+                                        </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Expires Aftar:</label>
@@ -191,37 +191,97 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-lg-3 text-lg-right text-md-left line-height-9 letter-spacing font-weight-bold text-secondary text-2">Installment Available:</label>
+                                    <div class="form-group row" v-if="purpose == PropertyPurpose.FOR_SALE">
+                                        <label
+                                            class="col-lg-3 text-lg-right text-md-left line-height-9 letter-spacing font-weight-bold text-secondary text-2"
+                                        >Installment Available:</label>
 
                                         <div class="col-lg-9">
                                             <div class="d-flex align-items-center">
                                                 <div class="btn btn-check border-right">
                                                     <div class="form-check">
-                                                        <input type="radio"
+                                                        <input type="checkbox"
                                                                class="form-check-input"
                                                                id="installment"
                                                                name="installment"
+                                                               v-model="isInstallmentAvailable"
                                                         >
-                                                        <label class="form-check-label letter-spacing font-weight-bold text-secondary text-2" >Property on Installment</label>
+                                                        <label
+                                                            class="form-check-label letter-spacing font-weight-bold text-secondary text-2"
+                                                        >Property on Installment</label>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Advance/Initial Payment:</label>
-                                        <div class="col-lg-9">
-                                            <div class="d-flex align-items-center">
-                                                <div class="form-group w-50">
-                                                    <input
-                                                        type="text"
-                                                        class="form-control"
-                                                    >
+                                    <div v-if="isInstallmentAvailable">
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">
+                                                Advance/Initial Payment:</label>
+                                            <div class="col-lg-9">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="form-group w-50">
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                        >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">
+                                                No. of Remaining Installments:</label>
+                                            <div class="col-lg-9">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="form-group w-50">
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                        >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">
+                                                Monthly Installment:</label>
+                                            <div class="col-lg-9">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="form-group w-50">
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                        >
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="form-group row" v-if="purpose == PropertyPurpose.FOR_SALE && showPossessionOnSubTypes(subType)">
+                                        <label
+                                            class="col-lg-3 text-lg-right text-md-left line-height-9 letter-spacing font-weight-bold text-secondary text-2"
+                                        >Possession Available:</label>
+
+                                        <div class="col-lg-9">
+                                            <div class="d-flex align-items-center">
+                                                <div class="btn btn-check border-right">
+                                                    <div class="form-check">
+                                                        <input type="checkbox"
+                                                               class="form-check-input"
+                                                               id="possesion"
+                                                               name="possession"
+                                                               v-model="isPossessionAvailable"
+                                                        >
+                                                        <label
+                                                            class="form-check-label letter-spacing font-weight-bold text-secondary text-2"
+                                                        >Available</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="form-group row">
                                         <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Lising Expiry:</label>
                                         <div class="col-lg-9">
@@ -236,60 +296,87 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    <!-- Rental Price Details -->
-                                    <div class="main_subheader">Rental Price Details</div>
 
-                                    <div class="form-group row mt-4">
-                                        <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Minimum Contract Period:</label>
-                                        <div class="col-lg-9">
-                                            <div class="d-flex align-items-center">
-                                                <div class="d-flex align-items-center w-25 pr-2">
-                                                    <select class="form-control" >
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                        <option>6</option>
-                                                        <option>7</option>
-                                                        <option>8</option>
-                                                        <option>9</option>
-                                                        <option>10</option>
-                                                        <option>11</option>
-                                                        <option>12</option>
-                                                    </select>
+                                    <!-- Rental Price Details -->
+                                    <div v-if="purpose == PropertyPurpose.FOR_RENT">
+                                        <div class="main_subheader">Rental Price Details</div>
+
+                                        <div class="form-group row mt-4">
+                                            <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Minimum Contract Period:</label>
+                                            <div class="col-lg-9">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="d-flex align-items-center w-25 pr-2">
+                                                        <select class="form-control" >
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                            <option>3</option>
+                                                            <option>4</option>
+                                                            <option>5</option>
+                                                            <option>6</option>
+                                                            <option>7</option>
+                                                            <option>8</option>
+                                                            <option>9</option>
+                                                            <option>10</option>
+                                                            <option>11</option>
+                                                            <option>12</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="d-flex align-items-center w-25">
+                                                        <select class="form-control" >
+                                                            <option>Month</option>
+                                                            <option>Year</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                                <div class="d-flex align-items-center w-25">
-                                                    <select class="form-control" >
-                                                        <option>Month</option>
-                                                        <option>Year</option>
-                                                    </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Monthly Rent:</label>
+                                            <div class="col-lg-9">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="form-group w-50">
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                        >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Security Deposit:</label>
+                                            <div class="col-lg-9">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="form-group w-50">
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                        >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Advance Rent:</label>
+                                            <div class="col-lg-9">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="form-group w-50">
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                        >
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Monthly Rent:</label>
-                                        <div class="col-lg-9">
-                                            <div class="d-flex align-items-center">
-                                                <div class="form-group w-50">
-                                                    <input
-                                                        type="text"
-                                                        class="form-control"
-                                                    >
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
                                     <div class="main_subheader mb-4">Property Title and Description</div>
                                     <div class="col-lg-9">
                                         <div class="form-group row mt-4">
                                         <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Property Tittle:</label>
                                         <div class="col-lg-9">
                                             <div class="d-flex align-items-center">
-                                                <div class="form-group w-50">
+                                                <div class="form-group w-100">
                                                     <input
                                                         v-model="title"
                                                         @blur="v$.title.$touch()"
@@ -314,7 +401,7 @@
                                         <div class="col-lg-9">
                                             <div class="d-flex align-items-center">
                                                 <div class="form-group w-100">
-                                                    <QuillEditor ref="quillEditor" @blur="handleDescriptionValidation($event)" @input="handleDescriptionValidation($event)"  toolbar="minimal" theme="snow" v-model:content="description" contentType="html" :modules="modules"/>
+                                                    <QuillEditor  ref="quillEditor" @blur="handleDescriptionValidation($event)" @input="handleDescriptionValidation($event)"  toolbar="minimal" theme="snow" v-model:content="description" contentType="html" :modules="modules"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -370,7 +457,7 @@ import {computed, ref, watch} from "vue";
 import {integer, minValue, required} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
 import {getAreaUnits, getParentTypes, getPropertyTypes} from "../../composables/property";
-import {PropertyPurpose, PropertyType} from "../../../constants";
+import {CommercialSubType, HomesSubType, PlotsSubType, PropertyPurpose, PropertyType} from "../../../constants";
 import {getAllLocationsByCItyId} from "../../composables/country";
 import PropertyImagesModal from "../../components/property/PropertyImagesModal";
 import {QuillEditor} from "@vueup/vue-quill";
@@ -388,7 +475,8 @@ export default {
         const openConfirmImageModal = ref(false);
         const parentType = ref(null);
         const title = ref('');
-        const subTypes = ref([]);
+        const parentSubTypes = ref([]);
+        const subType = ref();
         const area = ref('');
         const areaUnit = ref(1);
         const city = ref(1);
@@ -407,13 +495,18 @@ export default {
         const parentTypes = getParentTypes();
         const allAreaUnits = getAreaUnits();
 
+        const showSubTypesArray = [HomesSubType.HOUSE,HomesSubType.FLAT,HomesSubType.FARM_HOUSE,HomesSubType.PENT_HOUSE,
+            PlotsSubType.RESIDENTIAL_PLOT,PlotsSubType.COMMERCIAL_PLOT,CommercialSubType.SHOP];
         function filterPropertyTypesById(typeId){
             if(propertyTypes.value){
-                subTypes.value = [];
-                subTypes.value = propertyTypes.value.filter(function (type){
+                parentSubTypes.value = [];
+                parentSubTypes.value = propertyTypes.value.filter(function (type){
                     return type.property_type.id == typeId
                 })
             }
+        }
+        function showPossessionOnSubTypes(subTypeId){
+            return showSubTypesArray.includes(subTypeId);
         }
         // const allCities = getCities();
         const allCityLocations = getAllLocationsByCItyId(4);
@@ -476,7 +569,8 @@ export default {
         return{
             v$,
             title,
-            subTypes,
+            subType,
+            parentSubTypes,
             areaUnit,
             area,
             city,
@@ -506,7 +600,11 @@ export default {
             parentTypes,
             filterPropertyTypesById,
             parentType,
-            PropertyPurpose
+            PropertyPurpose,
+            // HomesSubType,
+            // PlotsSubType,
+            // CommercialSubType,
+            showPossessionOnSubTypes
 
         }
     }

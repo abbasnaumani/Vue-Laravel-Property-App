@@ -176,7 +176,7 @@ body {
     /*width: 1140px;*/
     min-width: 1100px !important;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 99;
+    z-index: 99 !important;
 }
 
 .dropdown-mega:hover .dropdown-mega-menu {
@@ -186,6 +186,7 @@ body {
 
 .dropdown-mega-menu a:hover {
     text-decoration: none;
+    z-index: 99 !important;
 }
 
 .select {
@@ -1008,7 +1009,7 @@ body {
     color: var(--ks-bg-primary-color);
 }
 
-input[type="radio"] {
+input[type="radio"],input[type="checkbox"] {
     box-sizing: border-box;
     appearance: none;
     border: 1px solid rgb(204, 204, 204);
@@ -1017,7 +1018,7 @@ input[type="radio"] {
     height: 15px;
 }
 
-input[type="radio"]:checked {
+input[type="radio"]:checked ,input[type="checkbox"]:checked{
     background-image: url("/assets/images/tick.png") !important;
     width: 30px;
     height: 30px;
@@ -1193,59 +1194,6 @@ input[type="radio"]:checked {
     width: 100%;
 }
 
-
-/* .fancy-2 {
-    font-family: inherit;
-    font-size: 20px;
-    color: white;
-    padding: 0.2em 1em;
-    padding-left: 0.3em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    border-radius: 16px;
-    overflow: hidden;
-    transition: all 0.2s;
-   }
-
-   .fancy-2 span {
-    display: block;
-    transition: all 0.3s ease-in-out;
-   }
-
-   .fancy-2 svg {
-    display: block;
-    transform-origin: center center;
-    transition: transform 0.3s ease-in-out;
-   }
-
-   .fancy-2:hover .svg-wrapper {
-    animation: fly-1 0.6s ease-in-out infinite alternate;
-   }
-
-   .fancy-2:hover svg {
-    transform: translateX(6.2em) rotate(45deg) scale(1.1);
-   }
-
-   .fancy-2:hover span {
-    transform: translateX(42em);
-   }
-
-   .fancy-2:active {
-    transform: scale(0.95);
-   }
-
-   @keyframes fly-1 {
-    from {
-     transform: translateY(0.9em);
-    }
-
-    to {
-     transform: translateY(-0.1em);
-    }
-   }
-    */
 
 .button-carosuaol {
     display: inline-block;

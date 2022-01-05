@@ -25,3 +25,28 @@ export const PropertyType = {
     PLOTS:1,
     COMMERCIAL:1,
 }
+export const HomesSubType = {
+    HOUSE:1,
+    FLAT:2,
+    UPPER_PORTION:3,
+    LOWER_PORTION:4,
+    FARM_HOUSE:5,
+    ROOM:6,
+    PENT_HOUSE:7
+}
+export const PlotsSubType = {
+    RESIDENTIAL_PLOT:8,
+    COMMERCIAL_PLOT:9,
+    AGRICULTURAL_PLOT:10,
+    INDUSTRIAL_PLOT:11,
+    PLOT_FILE:12,
+    PLOT_FORM:13,
+}
+export const CommercialSubType = {
+    OFFICE:14,
+    SHOP:15,
+    WHERE_HOUSE:16,
+    FACTORY:17,
+    BUILDING:18,
+    OTHER:19
+}
