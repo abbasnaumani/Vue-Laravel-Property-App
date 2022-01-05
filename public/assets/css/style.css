@@ -1402,3 +1402,8 @@ aside .nav-tabs .nav-link:hover {
 .ql-editor {
     height: 140px !important;
 }
+
+.carousel-image img {
+    width: 100%;
+    height: 100%;
+}
