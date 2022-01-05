@@ -1,7 +1,7 @@
 <template>
     <ul class="list">
         <li class="card mt-3" v-for="(file,index) in files" :key="index">
-            <div class="row image-detail-item shadow-lg m-2">
+            <div class="row image-detail-item shadow-lg">
                 <div class="image-content position-relative col-12 col-md-2">
                     <figure v-if="getFileType(file.type)=='image'" class="card-figure">
                         <img :src="getFileImage(file)" @load="loadFileImage(file)" :alt="file.name"
