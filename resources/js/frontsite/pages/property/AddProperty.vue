@@ -411,7 +411,7 @@
                                     <div class="main_subheader mb-4">Add Images</div>
                                     <div class="col-lg-9">
                                         <div class="d-flex align-items-center">
-                                           <button @click.prevent="openConfirmImageModal=true">Add Images</button>
+                                           <button @click.prevent="openConfirmImageModal=true" class="btn btn-secondary border-0 text-white w-25 letter-uppercase">Add Images</button>
                                         </div>
                                     </div>
                                     <div class="main_subheader mt-4">Contact Details</div>
