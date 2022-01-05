@@ -7,8 +7,8 @@
         icon="warning"
         modalClass="modal-lg"
         :isConfirmButtonDisabled="isConfirmButtonDisabled"
-        v-on:confirm="modalConfirmPropertyImage(modalProperty)"
-        v-on:cancel="openConfirmImageModal=false"
+        v-on:confirm="modalConfirmPropertyImage"
+        v-on:cancel="$emit('cancel')"
     >
         <div class="py-2 row">
             <div class="form-group col-10 offset-1">
@@ -38,15 +38,16 @@ export default {
             type:Boolean
         }
     },
-    setup() {
+    setup(props,{emit}) {
         const confirmationMessage = ref();
         const isConfirmButtonDisabled = ref(false);
         const modalProperty = ref();
         const dataFiles = ref([]);
         const fileProgress = ref([]);
-        async function modalConfirmPropertyImage(image) {
-            isConfirmButtonDisabled.value = true;
-           }
+        async function modalConfirmPropertyImage() {
+            emit('openConfirmImageModal', false);
+            emit('handlePropertyImages', {dataFiles, fileProgress});
+        }
         return {
             confirmationMessage,
             isConfirmButtonDisabled,

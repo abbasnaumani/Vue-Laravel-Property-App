@@ -22,8 +22,8 @@ export const PropertyPurpose = {
 }
 export const PropertyType = {
     HOMES:1,
-    PLOTS:1,
-    COMMERCIAL:1,
+    PLOTS:2,
+    COMMERCIAL:3,
 }
 export const HomesSubType = {
     HOUSE:1,

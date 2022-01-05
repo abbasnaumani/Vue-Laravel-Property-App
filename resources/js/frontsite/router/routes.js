@@ -88,6 +88,7 @@ export default [
         name: 'add-property',
         meta: {public: true, meta_title: 'Add Property'},
         component: page('property/AddProperty'),
+        props: ({params}) => ({slug: params.slug || ''}),
     },
     {
         path: '/:slug/properties',
@@ -108,6 +109,13 @@ export default [
         name: 'slug-not-found',
         meta: {public: true, meta_title: 'KS Property'},
         component: page('NotFound'),
+        props: ({params}) => ({slug: params.slug || ''}),
+    },
+    {
+        path: '/detail',
+        name: 'detail',
+        meta: {public: true, meta_title: 'KS Property'},
+        component: page('detail'),
         props: ({params}) => ({slug: params.slug || ''}),
     },
     {

@@ -125,6 +125,7 @@ class PropertyService extends EventEmitter {
             const response = await appApi.post('/properties', newProperty);
             if (response.data.status === ApiResponse.SUCCESS) {
                 // await store.dispatch('actionPropertyList', response.data.payload.data);
+                toast.success(response.data.message);
                 return response.data;
                 // router.push({name: 'property-dashboard'});
             } else {
@@ -160,7 +161,7 @@ class PropertyService extends EventEmitter {
             const response = await appApi.put('/properties/' + propertyId, dataToUpdate);
             if (response.data.status === ApiResponse.SUCCESS) {
                 await store.dispatch('actionPropertyList', response.data.payload);
-                router.push({ name: 'property-dashboard' });
+                // router.push({ name: 'property-dashboard' });
             } else {
                 toast.error(response.data.message);
             }
@@ -199,8 +200,8 @@ class PropertyService extends EventEmitter {
                 console.log(response);
                 if (response.data.status === ApiResponse.SUCCESS) {
                     // toast.success("Image Uploaded!");
-                    await this.getUserPropertyList();
-                    router.push({ name: 'property-dashboard' })
+                    // await this.getPropertiesBySlug();
+                    // router.push({ name: 'property-dashboard' })
                 } else {
                     toast.error(response.data.message);
                 }
