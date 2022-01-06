@@ -1,25 +1,26 @@
 <template>
-    <ul :class="classes">
-        <li class="nav-main-item "
-            v-for="item in menu" :key="item.id"
-            :class="{ 'open' : item.id===openItemId || sidebarOpenCloseConfig?.openedMainMenuId===item.id || item.is_open && sidebarOpenCloseConfig?.openByUrl}"
-        >
+    <ul :class="classes" v-if="menu" >
+        <template v-for="item in menu" :key="item.id">
+            <li class="nav-main-item "
+                :class="{ 'open' : item.id===openItemId || sidebarOpenCloseConfig?.openedMainMenuId===item.id || item.is_open && sidebarOpenCloseConfig?.openByUrl}"
+            >
 
-            <navigation-item
-                :menuItem="item"
-                v-if="!subMenu[item.id]"
-                :opned="item.id===openItemId" :sidebarOpenCloseConfig="sidebarOpenCloseConfig"
-            />
-            <a
-                class="nav-main-link nav-main-link-submenu"
-                @click="handleOpenItem(item.id)"
-                v-if="subMenu[item.id]" href="#">
-                <i class="nav-main-link-icon si si-bulb"></i>
-                <span class="nav-main-link-name">{{ item.name }}</span>
-            </a>
-            <navigation-items :classes="'nav-main-submenu'" :menu="subMenu[item.id]"
-                              :subMenu="subMenu" v-if="subMenu[item.id]"/>
-        </li>
+                <navigation-item
+                    :menuItem="item"
+                    v-if="!subMenu[item.id]"
+                    :opned="item.id===openItemId" :sidebarOpenCloseConfig="sidebarOpenCloseConfig"
+                />
+                <a
+                    class="nav-main-link nav-main-link-submenu"
+                    @click="handleOpenItem(item.id)"
+                    v-if="subMenu[item.id]" href="#">
+                    <i class="nav-main-link-icon si si-bulb"></i>
+                    <span class="nav-main-link-name">{{ item.name }}</span>
+                </a>
+                <navigation-items :classes="'nav-main-submenu'" :menu="subMenu[item.id]"
+                                  :subMenu="subMenu" v-if="subMenu[item.id]"/>
+            </li>
+        </template>
     </ul>
 </template>
 

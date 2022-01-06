@@ -216,7 +216,7 @@
                                         </div>
                                         <div class="py-2 row">
                                             <div class="form-group w-100 px-3">
-                                                <upload-list action="edit" :items="dataFiles" :itemsProgress="fileProgress"></upload-list>
+                                                <upload-list :items="dataFiles" :itemsProgress="fileProgress"></upload-list>
                                             </div>
                                         </div>
                                         <div class="row">

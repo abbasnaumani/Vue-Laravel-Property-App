@@ -24,6 +24,10 @@
                         </div>
                     </div>
                 </div>
+                <div class="image-action col-12 col-md-2 mt-4 align-right mb-5 text-md-left text-center">
+                    <button class="btn btn-danger mx-2 mt-md-5" @click.prevent="removeMedia(index)"><i class="far fa-trash-alt"></i>
+                    </button>
+                </div>
             </div>
         </li>
     </ul>
@@ -40,12 +44,19 @@ import {
     formatFileSize,
     humanFileSize
 } from '../../../utils/file';
+import {useToast} from "vue-toastification";
+const toast = useToast();
 
 export default {
     name: "UploadList",
     props: ['items','itemsProgress'],
     setup() {
+        async function removeMedia(index) {
+            props.items.splice(index,1)
+            toast.success("Media Deleted Successfully",)
+        }
         return {
+            removeMedia,
             getFileSize,
             getFileName,
             getFileType,

@@ -32,7 +32,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="image-action col-12 col-md-2 mt-4 align-right mb-5 text-md-left text-center" v-if="action ==='edit' ">
+                <div class="image-action col-12 col-md-2 mt-4 align-right mb-5 text-md-left text-center">
                     <button class="btn btn-danger mx-2 mt-md-5" @click.prevent="removeMedia(index)"><i class="far fa-trash-alt"></i>
                     </button>
                 </div>

@@ -44,25 +44,26 @@
                 <div class="row">
                     <div class="col-lg-7">
                         <div class="card border border-0" style="width: 100%; padding-bottom: 180px">
-                            <div id="demo" class="carousel slide" data-ride="carousel">
-                                <div class="row mt-3 carousel-indicators indicators">
-                                        <div class="col-4 p-0">
-                                            <a href="" data-target="#demo" data-slide-to="0">
-                                                <img src="/assets/images/img-12.jpg" alt="" width="90%" height="110">
+                            <div id="demo" class="carousel slide" data-ride="carousel" v-if="property">
+                                <div class="row mt-3 carousel-indicators indicators" >
+                                        <div class="col-4 p-0" v-for="(media,index) in property.media">
+                                            <a href="" data-target="#demo" :data-slide-to="index">
+                                                <img :src="'/' +media.disk +'/' +media.directory +'/' +media.filename +'.' +media.extension"
+                                                     :alt="media.filename" width="100" height="100">
                                             </a>
                                         </div>
-                                        <div class="col-4 p-0">
-                                            <a href="" data-target="#demo" data-slide-to="1">
-                                                <img src="/assets/images/img-12.jpg" alt="" width="90%" height="110">
-                                            </a>
-                                        </div>
-                                        <div class="col-4 p-0">
-                                            <a href="" data-target="#demo" data-slide-to="2">
-                                                <img src="/assets/images/img-12.jpg" alt="" width="90%" height="110">
-                                            </a>
-                                        </div>
-                                    </div>
-                                <div class="carousel-inner carousel-image carousel-hover" v-if="property">
+<!--                                        <div class="col-4 p-0">-->
+<!--                                            <a href="" data-target="#demo" data-slide-to="1">-->
+<!--                                                <img src="/assets/images/img-12.jpg" alt="" width="90%" height="110">-->
+<!--                                            </a>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-4 p-0">-->
+<!--                                            <a href="" data-target="#demo" data-slide-to="2">-->
+<!--                                                <img src="/assets/images/img-12.jpg" alt="" width="90%" height="110">-->
+<!--                                            </a>-->
+<!--                                        </div>-->
+                                </div>
+                                <div class="carousel-inner carousel-image carousel-hover" >
                                     <div class="carousel-item active image-div">
                                         <div class="image">
                                             <!--                                                {{property.media}}-->

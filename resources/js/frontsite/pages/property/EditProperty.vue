@@ -101,28 +101,28 @@
                                             </div>
                                         </div>
                                     </div>
-<!--                                    <div class="form-group row">-->
-<!--                                        <label class="col-lg-3 text-lg-right text-md-left line-height-9 letter-spacing font-weight-bold text-secondary text-2">City:</label>-->
-<!--                                        <div class="col-lg-9">-->
-<!--                                            <div class="d-flex align-items-center">-->
-<!--                                                <select class="form-control w-50" >-->
-<!--                                                    <option>Select City</option>-->
-<!--                                                    <option>Lahore</option>-->
-<!--                                                    <option>Karachi</option>-->
-<!--                                                    <option>Islamabad</option>-->
-<!--                                                    <option>Rawalpindi</option>-->
-<!--                                                    <option>Faisalabad</option>-->
-<!--                                                </select>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
+                                    <!--                                    <div class="form-group row">-->
+                                    <!--                                        <label class="col-lg-3 text-lg-right text-md-left line-height-9 letter-spacing font-weight-bold text-secondary text-2">City:</label>-->
+                                    <!--                                        <div class="col-lg-9">-->
+                                    <!--                                            <div class="d-flex align-items-center">-->
+                                    <!--                                                <select class="form-control w-50" >-->
+                                    <!--                                                    <option>Select City</option>-->
+                                    <!--                                                    <option>Lahore</option>-->
+                                    <!--                                                    <option>Karachi</option>-->
+                                    <!--                                                    <option>Islamabad</option>-->
+                                    <!--                                                    <option>Rawalpindi</option>-->
+                                    <!--                                                    <option>Faisalabad</option>-->
+                                    <!--                                                </select>-->
+                                    <!--                                            </div>-->
+                                    <!--                                        </div>-->
+                                    <!--                                    </div>-->
                                     <div class="form-group row" v-if="allCityLocations">
                                         <label class="col-lg-3 text-lg-right text-md-left line-height-9 letter-spacing font-weight-bold text-secondary text-2">Location:</label>
                                         <div class="col-lg-9">
                                             <div class="d-flex align-items-center">
                                                 <div class="form-group w-50">
                                                     <select  class="form-control "
-                                                            v-model="locationId"
+                                                             v-model="locationId"
                                                     >
                                                         <option v-for="location in allCityLocations" :value="location.id" :selected="location.id===locationId">{{location.name}}</option>
                                                     </select>
@@ -384,7 +384,7 @@
                                     <div class="form-group row">
                                         <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Lising Expiry:</label>
                                         <div class="col-lg-9">
-                                             <div class="d-flex align-items-center">
+                                            <div class="d-flex align-items-center">
                                                 <div class="d-flex align-items-center w-50">
                                                     <select class="form-control" >
                                                         <option>1 Month</option>
@@ -472,53 +472,53 @@
                                     <div class="main_subheader mb-4">Property Title and Description</div>
                                     <div class="col-lg-9">
                                         <div class="form-group row mt-4">
-                                        <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Property Tittle:</label>
-                                        <div class="col-lg-9">
-                                            <div class="d-flex align-items-center">
-                                                <div class="form-group w-100">
-                                                    <input
-                                                        v-model="title"
-                                                        @blur="v$.title.$touch()"
-                                                        type="text"
-                                                        class="form-control"
-                                                    >
-                                                    <div class="text-left">
-                                                        <div v-if="v$.title.$dirty">
-                                                            <sub v-if="v$.title.$error"
-                                                                 class="px-2 py-2 text-danger">
-                                                                Title is Required
-                                                            </sub>
+                                            <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Property Tittle:</label>
+                                            <div class="col-lg-9">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="form-group w-100">
+                                                        <input
+                                                            v-model="title"
+                                                            @blur="v$.title.$touch()"
+                                                            type="text"
+                                                            class="form-control"
+                                                        >
+                                                        <div class="text-left">
+                                                            <div v-if="v$.title.$dirty">
+                                                                <sub v-if="v$.title.$error"
+                                                                     class="px-2 py-2 text-danger">
+                                                                    Title is Required
+                                                                </sub>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="form-group row">
-                                        <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Description:</label>
-                                        <div class="col-lg-9">
-                                            <div class="d-flex align-items-center">
-                                                <div class="form-group w-100">
-                                                    <QuillEditor  ref="quillEditor" @blur="handleDescriptionValidation($event)" @input="handleDescriptionValidation($event)"  toolbar="minimal" theme="snow" v-model:content="description" contentType="html" :modules="modules"/>
-                                                    <div class="text-left">
-                                                        <div >
-                                                            <sub v-if="descriptionLength < 2"
-                                                                 class="px-2 py-2 text-danger">
-                                                                Description is Required
-                                                            </sub>
+                                        <div class="form-group row">
+                                            <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Description:</label>
+                                            <div class="col-lg-9">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="form-group w-100">
+                                                        <QuillEditor  ref="quillEditor" @blur="handleDescriptionValidation($event)" @input="handleDescriptionValidation($event)"  toolbar="minimal" theme="snow" v-model:content="description" contentType="html" :modules="modules"/>
+                                                        <div class="text-left">
+                                                            <div >
+                                                                <sub v-if="descriptionLength < 2"
+                                                                     class="px-2 py-2 text-danger">
+                                                                    Description is Required
+                                                                </sub>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
                                     </div>
 
                                     <div class="main_subheader mb-4">Add Images</div>
                                     <div class="col-lg-9">
                                         <div class="d-flex align-items-center">
-                                           <button @click.prevent="openConfirmImageModal=true" class="btn btn-secondary border-0 text-white w-25 letter-uppercase">Add Images</button>
+                                            <button @click.prevent="openConfirmImageModal=true" class="btn btn-secondary border-0 text-white w-25 letter-uppercase">Add Images</button>
                                         </div>
                                     </div>
                                     <div class="main_subheader mt-4"></div>
@@ -531,7 +531,7 @@
                                             Add property here
                                         </button>
                                         <button v-else @click.prevent="handleAddProperty"
-                                                 type="submit"
+                                                type="submit"
                                                 class="btn test-fancy border-0 text-white btn-color w-25 letter-uppercase"
                                         >
                                             Add property here
@@ -575,10 +575,10 @@ import propertyService from "../../services/propertyService";
 import router from "~/frontsite/router";
 
 export default {
-    name: "AddProperty",
+    name: "EditProperty",
     components: { QuillEditor,PropertyImagesModal},
     props:{
-      slug:String
+        slug:String
     },
     setup(props){
         const modules = {
@@ -694,9 +694,9 @@ export default {
                 is_possession_available: isPossessionAvailable.value,
             });
             if (response.status === ApiResponse.SUCCESS) {
-               const addResponse = propertyService.handleImages(dataFiles, fileProgress, response.payload.property_id);
-               const addMore = 3;
-               propertyService.getPropertiesBySlug(props.slug, {paginateData: addMore})
+                const addResponse = propertyService.handleImages(dataFiles, fileProgress, response.payload.property_id);
+                const addMore = 3;
+                propertyService.getPropertiesBySlug(props.slug, {paginateData: addMore})
                 router.push({path:'/'+props.slug});
 
             }
