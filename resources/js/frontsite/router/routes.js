@@ -105,6 +105,13 @@ export default [
         props: ({params}) => ({slug: params.slug || '' , propertyId:params.propertyId || 0}),
     },
     {
+        path: '/:slug/:propertyId/edit',
+        name: 'edit-property',
+        meta: {public: true, meta_title: 'KS Edit Property'},
+        component: page('property/EditProperty'),
+        props: ({params}) => ({slug: params.slug || '' , propertyId:params.propertyId || 0}),
+    },
+    {
         path: '/:slug/:anything',
         name: 'slug-not-found',
         meta: {public: true, meta_title: 'KS Property'},

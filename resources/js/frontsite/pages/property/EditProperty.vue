@@ -1,10 +1,10 @@
 <template>
-    <section id="add_property">
+    <section id="add_property" v-if="property">
         <div class="container py-2">
             <div class="card shadow-sm login-card w-100 text-left mt-5">
                 <div class="card-header bg-white border-bottom-0 mt-4">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h2 class="font-weight-bold add_property text-4 px-3">Add a Property</h2>
+                        <h2 class="font-weight-bold add_property text-4 px-3">Edit Property</h2>
                     </div>
                 </div>
                 <div class="card-body">
@@ -24,8 +24,8 @@
                                                                :value="PropertyPurpose.FOR_SALE"
                                                                id="purpose"
                                                                name="purpose"
-                                                               @blur="v$.purpose.$touch()"
-                                                               v-model="purpose"
+                                                               @blur="v$.property.purpose.$touch()"
+                                                               v-model="property.purpose"
                                                         >
                                                         <label class="form-check-label letter-spacing font-weight-bold text-secondary text-2" >For Sale</label>
                                                     </div>
@@ -36,15 +36,15 @@
                                                                :value="PropertyPurpose.FOR_RENT"
                                                                class="form-check-input"
                                                                name="purpose"
-                                                               v-model="purpose"
-                                                               @blur="v$.purpose.$touch()"
+                                                               v-model="property.purpose"
+                                                               @blur="v$.property.purpose.$touch()"
                                                         >
                                                         <label class="form-check-label letter-spacing font-weight-bold text-secondary text-2" >For Rent</label>
                                                     </div>
                                                 </div>
                                                 <div class="text-left">
-                                                    <div v-if="v$.purpose.$dirty">
-                                                        <sub v-if="v$.purpose.$error"
+                                                    <div v-if="v$.property.purpose.$dirty">
+                                                        <sub v-if="v$.property.purpose.$error"
                                                              class="px-2 py-2 text-danger">
                                                             Purpose is Required
                                                         </sub>
@@ -66,7 +66,7 @@
                                                             class="form-check-input"
                                                             :value="type.id"
                                                             @change="filterPropertyTypesById(type.id)"
-                                                            v-model="parentType"
+                                                            v-model="property.property_sub_type.property_type.id"
                                                             data-toggle="collapse"
                                                             data-target=".multi-collapse01"
                                                             aria-expanded="false"
@@ -87,7 +87,7 @@
                                                             <input
                                                                 :value="type.id"
                                                                 type="radio"
-                                                                v-model="subType"
+                                                                v-model="property.property_sub_type_id"
                                                                 name="sub_type"
                                                                 class="form-check-input"
                                                             >
@@ -122,9 +122,9 @@
                                             <div class="d-flex align-items-center">
                                                 <div class="form-group w-50">
                                                     <select  class="form-control "
-                                                             v-model="locationId"
+                                                             v-model="property.location_id"
                                                     >
-                                                        <option v-for="location in allCityLocations" :value="location.id" :selected="location.id===locationId">{{location.name}}</option>
+                                                        <option v-for="location in allCityLocations" :value="location.id" :selected="location.id===property.location_id">{{location.name}}</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -136,14 +136,14 @@
                                             <div class="d-flex align-items-center">
                                                 <div class="form-group w-50">
                                                     <input
-                                                        v-model="address"
-                                                        @blur="v$.address.$touch()"
+                                                        v-model="property.property_detail.address"
+                                                        @blur="v$.property.property_detail.address.$touch()"
                                                         type="text"
                                                         class="form-control"
                                                     >
                                                     <div class="text-left">
-                                                        <div v-if="v$.address.$dirty">
-                                                            <sub v-if="v$.address.$error"
+                                                        <div v-if="v$.property.property_detail.address.$dirty">
+                                                            <sub v-if="v$.property.property_detail.address.$error"
                                                                  class="px-2 py-2 text-danger">
                                                                 Address is Required
                                                             </sub>
@@ -163,13 +163,13 @@
                                                         <input
                                                             type="text"
                                                             class="form-control"
-                                                            v-model="area"
+                                                            v-model="property.area"
                                                             placeholder="Area"
-                                                            @blur="v$.area.$touch()"
+                                                            @blur="v$.property.area.$touch()"
                                                         >
                                                         <div class="text-left">
-                                                            <div v-if="v$.area.$dirty">
-                                                                <sub v-if="v$.area.$error"
+                                                            <div v-if="v$.property.area.$dirty">
+                                                                <sub v-if="v$.property.area.$error"
                                                                      class="px-2 py-2 text-danger">
                                                                     Area is Required
                                                                 </sub>
@@ -184,15 +184,15 @@
                                                     <div class="px-3 w-50" v-if="allAreaUnits">
                                                         <select
                                                             class="form-control"
-                                                            v-model="areaUnit"
-                                                            @blur="v$.areaUnit.$touch()"
+                                                            v-model="property.area_unit_id"
+                                                            @blur="v$.property.area_unit_id.$touch()"
                                                         >
                                                             <option value="0">--Select Area Unit--</option>
-                                                            <option v-for="unit in allAreaUnits" :value="unit.id" :selected="unit.id===areaUnit">{{unit.name}}</option>
+                                                            <option v-for="unit in allAreaUnits" :value="unit.id" :selected="unit.id===property.area_unit_id">{{unit.name}}</option>
                                                         </select>
                                                         <div class="text-left">
-                                                            <div v-if="v$.areaUnit.$dirty">
-                                                                <sub v-if="v$.areaUnit.$error"
+                                                            <div v-if="v$.property.area_unit_id.$dirty">
+                                                                <sub v-if="v$.property.area_unit_id.$error"
                                                                      class="px-2 py-2 text-danger">
                                                                     Area Unit is Required
                                                                 </sub>
@@ -203,21 +203,21 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div v-if="parentType == PropertyType.HOMES || parentType == PropertyType.COMMERCIAL">
+                                    <div v-if="property.property_sub_type?.property_type?.id == PropertyType.HOMES || property.property_sub_type?.property_type?.id == PropertyType.COMMERCIAL">
                                         <div class="form-group row">
                                             <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Bedrooms:</label>
                                             <div class="col-lg-9">
                                                 <div class="d-flex align-items-center">
                                                     <div class="form-group w-50">
                                                         <input
-                                                            v-model.number="bedrooms"
-                                                            @blur="v$.bedrooms.$touch()"
+                                                            v-model.number="property.property_detail.bedrooms"
+                                                            @blur="v$.property.property_detail.bedrooms.$touch()"
                                                             type="number"
                                                             class="form-control"
                                                         >
                                                         <div class="text-left">
-                                                            <div v-if="v$.bedrooms.$dirty">
-                                                                <sub v-if="v$.bedrooms.$error"
+                                                            <div v-if="v$.property.property_detail.bedrooms.$dirty">
+                                                                <sub v-if="v$.property.property_detail.bedrooms.$error"
                                                                      class="px-2 py-2 text-danger">
                                                                     Bedroom is Required
                                                                 </sub>
@@ -233,14 +233,14 @@
                                                 <div class="d-flex align-items-center">
                                                     <div class="form-group w-50">
                                                         <input
-                                                            v-model.number="bathrooms"
-                                                            @blur="v$.bathrooms.$touch()"
+                                                            v-model.number="property.property_detail.bathrooms"
+                                                            @blur="v$.property.property_detail.bathrooms.$touch()"
                                                             type="number"
                                                             class="form-control"
                                                         >
                                                         <div class="text-left">
-                                                            <div v-if="v$.bathrooms.$dirty">
-                                                                <sub v-if="v$.bathrooms.$error"
+                                                            <div v-if="v$.property.property_detail.bathrooms.$dirty">
+                                                                <sub v-if="v$.property.property_detail.bathrooms.$error"
                                                                      class="px-2 py-2 text-danger">
                                                                     Bathroom is Required
                                                                 </sub>
@@ -258,10 +258,10 @@
                                                 <div class="d-flex align-items-center w-50">
                                                     <select
                                                         class="form-control"
-                                                        v-model="isOccupancyStatus"
+                                                        v-model="property.property_detail.is_occupancy_status"
                                                     >
-                                                        <option value="1">Vacant</option>
-                                                        <option value="0">Occupied</option>
+                                                        <option value="1" :selected="property.property_detail.is_occupancy_status == OccupancyStatus.VACANT">Vacant</option>
+                                                        <option value="0" :selected="property.property_detail.is_occupancy_status == OccupancyStatus.OCCUPIED">Occupied</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -273,14 +273,14 @@
                                             <div class="d-flex align-items-center">
                                                 <div class="form-group w-50">
                                                     <input
-                                                        v-model="price"
-                                                        @blur="v$.price.$touch()"
+                                                        v-model="property.price"
+                                                        @blur="v$.property.price.$touch()"
                                                         type="text"
                                                         class="form-control"
                                                     >
                                                     <div class="text-left">
-                                                        <div v-if="v$.price.$dirty">
-                                                            <sub v-if="v$.price.$error"
+                                                        <div v-if="v$.property.price.$dirty">
+                                                            <sub v-if="v$.property.price.$error"
                                                                  class="px-2 py-2 text-danger">
                                                                 Price is Required
                                                             </sub>
@@ -290,11 +290,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group row" v-if="purpose == PropertyPurpose.FOR_SALE">
+                                    <div class="form-group row" v-if="property.purpose == PropertyPurpose.FOR_SALE">
                                         <label
                                             class="col-lg-3 text-lg-right text-md-left line-height-9 letter-spacing font-weight-bold text-secondary text-2"
                                         >Installment Available:</label>
-
                                         <div class="col-lg-9">
                                             <div class="d-flex align-items-center">
                                                 <div class="btn btn-check border-right">
@@ -303,7 +302,7 @@
                                                                class="form-check-input"
                                                                id="installment"
                                                                name="installment"
-                                                               v-model="isInstallmentAvailable"
+                                                               :checked="property.property_detail.is_installment_available"
                                                         >
                                                         <label
                                                             class="form-check-label letter-spacing font-weight-bold text-secondary text-2"
@@ -313,7 +312,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div v-if="isInstallmentAvailable">
+                                    <div v-if="property.property_detail.is_installment_available">
                                         <div class="form-group row">
                                             <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">
                                                 Advance/Initial Payment:</label>
@@ -357,7 +356,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group row" v-if="purpose == PropertyPurpose.FOR_SALE && showPossessionOnSubTypes(subType)">
+                                    <div class="form-group row" v-if="property.purpose == PropertyPurpose.FOR_SALE && showPossessionOnSubTypes(property.property_sub_type_id)">
                                         <label
                                             class="col-lg-3 text-lg-right text-md-left line-height-9 letter-spacing font-weight-bold text-secondary text-2"
                                         >Possession Available:</label>
@@ -370,7 +369,7 @@
                                                                class="form-check-input"
                                                                id="possesion"
                                                                name="possession"
-                                                               v-model="isPossessionAvailable"
+                                                               :checked="property.property_detail.is_possession_available"
                                                         >
                                                         <label
                                                             class="form-check-label letter-spacing font-weight-bold text-secondary text-2"
@@ -397,7 +396,7 @@
                                     </div>
 
                                     <!-- Rental Price Details -->
-                                    <div v-if="purpose == PropertyPurpose.FOR_RENT">
+                                    <div v-if="property.purpose == PropertyPurpose.FOR_RENT">
                                         <div class="main_subheader">Rental Price Details</div>
 
                                         <div class="form-group row mt-4">
@@ -477,14 +476,14 @@
                                                 <div class="d-flex align-items-center">
                                                     <div class="form-group w-100">
                                                         <input
-                                                            v-model="title"
-                                                            @blur="v$.title.$touch()"
+                                                            v-model="property.title"
+                                                            @blur="v$.property.title.$touch()"
                                                             type="text"
                                                             class="form-control"
                                                         >
                                                         <div class="text-left">
-                                                            <div v-if="v$.title.$dirty">
-                                                                <sub v-if="v$.title.$error"
+                                                            <div v-if="v$.property.title.$dirty">
+                                                                <sub v-if="v$.property.title.$error"
                                                                      class="px-2 py-2 text-danger">
                                                                     Title is Required
                                                                 </sub>
@@ -500,7 +499,7 @@
                                             <div class="col-lg-9">
                                                 <div class="d-flex align-items-center">
                                                     <div class="form-group w-100">
-                                                        <QuillEditor  ref="quillEditor" @blur="handleDescriptionValidation($event)" @input="handleDescriptionValidation($event)"  toolbar="minimal" theme="snow" v-model:content="description" contentType="html" :modules="modules"/>
+                                                        <QuillEditor  ref="quillEditor" @blur="handleDescriptionValidation($event)" @input="handleDescriptionValidation($event)"  toolbar="minimal" theme="snow" v-model:content="property.property_detail.description" contentType="html" :modules="modules"/>
                                                         <div class="text-left">
                                                             <div >
                                                                 <sub v-if="descriptionLength < 2"
@@ -545,6 +544,7 @@
             </div>
         </div>
     </section>
+    {{property}}
     <property-images-modal
         :openConfirmImageModal="openConfirmImageModal"
         @openConfirmImageModal = "openConfirmImageModal=false"
@@ -555,17 +555,18 @@
 
 <script>
 import BlotFormatter from "quill-blot-formatter";
-import {computed, ref, watch} from "vue";
+import {computed, ref,watch, watchEffect} from "vue";
 import {integer, minValue, required,requiredIf} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
-import {getAreaUnits, getParentTypes, getPropertyTypes} from "../../composables/property";
+import {getAreaUnits, getParentTypes, getProperty, getPropertyTypes} from "../../composables/property";
 import {
     ApiResponse,
     CommercialSubType,
     HomesSubType,
     PlotsSubType,
     PropertyPurpose,
-    PropertyType
+    PropertyType,
+    OccupancyStatus
 } from "../../../constants";
 import {getAllLocationsByCItyId} from "../../composables/country";
 import PropertyImagesModal from "../../components/property/PropertyImagesModal";
@@ -574,11 +575,13 @@ import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import propertyService from "../../services/propertyService";
 import router from "~/frontsite/router";
 
+
 export default {
     name: "EditProperty",
     components: { QuillEditor,PropertyImagesModal},
     props:{
-        slug:String
+        slug:String,
+        propertyId:Number
     },
     setup(props){
         const modules = {
@@ -588,19 +591,10 @@ export default {
         };
         const openConfirmImageModal = ref(false);
         const parentType = ref(null);
-        const title = ref('');
         const parentSubTypes = ref([]);
         const subType = ref(null);
-        const area = ref('');
-        const areaUnit = ref(0);
         const cityId = ref(4);
-        const purpose = ref();
-        const price = ref();
         const locationId = ref(1);
-        const description = ref('');
-        const address = ref('');
-        const bedrooms = ref(0);
-        const bathrooms = ref(0);
         const isOccupancyStatus = ref(1);
         const isInstallmentAvailable = ref(false);
         const isPossessionAvailable = ref(false);
@@ -610,7 +604,26 @@ export default {
         const allAreaUnits = getAreaUnits();
         const dataFiles = ref([]);
         const fileProgress = ref([]);
-
+        const property = ref(null);
+        getProperty(props.propertyId);
+        async function getProperty(propertyId){
+            property.value = await propertyService.getPropertyById(propertyId);
+        }
+        // const property = getProperty(props.propertyId, props.slug);
+        watch(property,()=>{
+            if(property.value){
+                filterPropertyTypesById(property.value.property_sub_type?.property_type?.id);
+            }
+            // if(propertyData.value && propertyData.value.property_detail) {
+            //     isInstallmentAvailable.value = propertyData.value.property_detail.is_installment_available;
+            //     isOccupancyStatus.value = propertyData.value.property_detail.is_occupancy_status;
+            //     isPossessionAvailable.value = propertyData.value.property_detail.is_possession_available;
+            // }
+            // if(propertyData.value && propertyData.value.media){
+            //     propertyMedia.value = propertyData.value.media;
+            // }
+            // console.log(propertyData.value,"propertyData.value");
+        })
         const showSubTypesArray = [HomesSubType.HOUSE,HomesSubType.FLAT,HomesSubType.FARM_HOUSE,HomesSubType.PENT_HOUSE,
             PlotsSubType.RESIDENTIAL_PLOT,PlotsSubType.COMMERCIAL_PLOT,CommercialSubType.SHOP];
         function filterPropertyTypesById(typeId){
@@ -629,42 +642,47 @@ export default {
 
         const validationRules = computed(() => {
             return {
-                purpose: {
-                    required,
-                },
-                title: {
-                    required,
-                },
-                area: {
-                    required,
-                    minValue: minValue(1)
-                },
-                areaUnit: {
-                    required,
-                    minValue: minValue(1)
-                },
-                price:{
-                    required,
-                    integer,
-                    minValue: minValue(1)
-                },
-                address:{
-                    required
-                },bedrooms:{
-                    required: requiredIf(() => {
-                        return parentType.value != PropertyType.PLOTS;
-                    }),
-                },bathrooms:{
-                    required: requiredIf(() => {
-                        return parentType.value != PropertyType.PLOTS;
-                    }),
-                },
+                property:{
+                    purpose: {
+                        required,
+                    },
+                    title: {
+                        required,
+                    },
+                    area_unit_id: {
+                        required,
+                        minValue: minValue(1)
+                    },
+                    area: {
+                        required,
+                        minValue: minValue(1)
+                    },
+                    price:{
+                        required,
+                        integer,
+                        minValue: minValue(1)
+                    },
+                    property_detail:{
+                        address:{
+                            required
+                        },bedrooms:{
+                            required: requiredIf(() => {
+                                return property.value?.property_sub_type?.property_type?.id.value != PropertyType.PLOTS;
+                            }),
+                        },bathrooms:{
+                            required: requiredIf(() => {
+                                return property.value?.property_sub_type?.property_type?.id.value != PropertyType.PLOTS;
+                            }),
+                        },
+                    }
+
+                }
+
             }
         });
         const v$ = useVuelidate(
             validationRules,
-            {purpose,title, area, price,locationId, address,areaUnit,bedrooms,
-                bathrooms}
+            {property}
         );
         const descriptionLength = ref();
         function handleDescriptionValidation(e){
@@ -676,53 +694,44 @@ export default {
             fileProgress.value = data.fileProgress.value
         }
         const handleAddProperty =  async () => {
-            const response = await propertyService.handleAddProperty({
-                title: title.value,
-                property_sub_type_id: subType.value,
-                area_unit_id: areaUnit.value,
-                area: area.value,
-                city_id: cityId.value,
-                purpose: purpose.value,
-                price: price.value,
-                location_id: locationId.value,
-                address: address.value,
-                bedrooms: bedrooms.value,
-                description: description.value,
-                bathrooms: bathrooms.value,
-                is_occupancy_status: isOccupancyStatus.value,
-                is_installment_available: isInstallmentAvailable.value,
-                is_possession_available: isPossessionAvailable.value,
-            });
-            if (response.status === ApiResponse.SUCCESS) {
-                const addResponse = propertyService.handleImages(dataFiles, fileProgress, response.payload.property_id);
-                const addMore = 3;
-                propertyService.getPropertiesBySlug(props.slug, {paginateData: addMore})
-                router.push({path:'/'+props.slug});
-
-            }
+            // const response = await propertyService.handleAddProperty({
+            //     title: title.value,
+            //     property_sub_type_id: subType.value,
+            //     area_unit_id: areaUnit.value,
+            //     area: area.value,
+            //     city_id: cityId.value,
+            //     purpose: purpose.value,
+            //     price: price.value,
+            //     location_id: locationId.value,
+            //     address: address.value,
+            //     bedrooms: bedrooms.value,
+            //     description: description.value,
+            //     bathrooms: bathrooms.value,
+            //     is_occupancy_status: isOccupancyStatus.value,
+            //     is_installment_available: isInstallmentAvailable.value,
+            //     is_possession_available: isPossessionAvailable.value,
+            // });
+            // if (response.status === ApiResponse.SUCCESS) {
+            //     const addResponse = propertyService.handleImages(dataFiles, fileProgress, response.payload.property_id);
+            //     const addMore = 3;
+            //     propertyService.getPropertiesBySlug(props.slug, {paginateData: addMore})
+            //     router.push({path:'/'+props.slug});
+            //
+            // }
         }
 
         return{
             v$,
-            title,
             subType,
             parentSubTypes,
-            areaUnit,
-            area,
             cityId,
-            purpose,
-            price,
             locationId,
-            address,
-            bedrooms,
-            bathrooms,
             isOccupancyStatus,
             isInstallmentAvailable,
             isPossessionAvailable,
             propertyTypes,
             allAreaUnits,
             // allCities,
-            description,
             handleAddProperty,
             modules,
             handleDescriptionValidation,
@@ -741,8 +750,9 @@ export default {
             // PlotsSubType,
             // CommercialSubType,
             showPossessionOnSubTypes,
-            handlePropertyImages
-
+            handlePropertyImages,
+            property,
+            OccupancyStatus
         }
     }
 }

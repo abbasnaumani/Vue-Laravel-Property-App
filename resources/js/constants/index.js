@@ -50,3 +50,7 @@ export const CommercialSubType = {
     BUILDING:18,
     OTHER:19
 }
+export const OccupancyStatus = {
+    VACANT:1,
+    OCCUPIED:0
+}

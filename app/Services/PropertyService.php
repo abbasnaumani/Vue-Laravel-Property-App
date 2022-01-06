@@ -104,7 +104,7 @@ class PropertyService extends BaseService
      */
     public function getPropertyById(int $id)
     {
-        $property = Property::with('propertyDetail', 'propertyFeature', 'media', 'user', 'location.city', 'areaUnit', 'propertySubType')
+        $property = Property::with('propertyDetail' ,'propertyFeature', 'media', 'user', 'location.city', 'areaUnit', 'propertySubType.propertyType')
             ->where('id', $id)->first();
         $this->setApiSuccessMessage(trans('generic.record_found'), $property);
     }

@@ -38,17 +38,7 @@ export const getPropertyMedia = (propertyId) => {
     }
     return propertyDetails;
 }
-export const getProperty = (propertyId) => {
-    const property = computed(() => {
-        return (store.getters.getProperty)
-            ? store.getters.getProperty(propertyId)
-            : null;
-    })
-    if (!property.value) {
-        propertyService.getUserPropertyList();
-    }
-    return property;
-}
+
 export const getPropertiesBySlug = (slug) => {
     const properties = computed(() => {
         return (store.getters.getPropertiesBySlug)
@@ -93,4 +83,15 @@ export const getAreaUnits = () => {
         propertyService.getAreaUnits();
     }
     return areaUnits;
+}
+export const getProperty = (propertyId) => (slug) => {
+    const property = computed(() => {
+        return (store.getters.getProperty)
+            ? store.getters.getProperty(propertyId)
+            : null;
+    })
+    if (!property.value) {
+        propertyService.getPropertiesBySlug(slug)
+    }
+    return property;
 }
