@@ -25,39 +25,39 @@
                                 <div class="block-content block-content-full">
                                     <!-- DataTables init on table by adding .js-dataTable-full-pagination class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
                                     <table
-                                        class="table table-responsive table-bordered table-striped table-vcenter  js-dataTable-buttons">
+                                        class="table table-responsive table-bordered table-striped table-vcenter js-dataTable-buttons">
                                         <thead>
                                         <tr class="text-center">
                                             <th class="col-1">ID</th>
                                             <th class="col-2">Name</th>
-                                            <th class="col-2 d-none d-sm-table-cell">Email</th>
-                                            <th class="col-2 d-none d-sm-table-cell">Phone Number</th>
-                                            <th class="col-2 d-none d-sm-table-cell">Access</th>
+                                            <th class="col-2">Email</th>
+                                            <th class="col-1">Phone Number</th>
+                                            <th class="col-2">Access</th>
                                             <th class="col-2">Registered</th>
-                                            <th colspan="2" class="col-1">Actions</th>
+                                            <th colspan="2" class="col-2">Actions</th>
                                         </tr>
                                         </thead>
                                         <tbody v-if="users && users.length > 0">
-                                        <tr v-for="(user,index) in users" :key="index">
-                                            <td class="text-center font-size-sm">{{ user.id }}</td>
-                                            <td class="font-w600 font-size-sm">{{ user.first_name }}
+                                        <tr v-for="(user,index) in users" :key="index" class="text-center">
+                                            <td class="font-w600 col-1 font-size-sm">{{ user.id }}</td>
+                                            <td class="font-w600 col-2 font-size-sm">{{ user.first_name }}
                                                 {{ user.last_name }}
                                             </td>
-                                            <td class="d-none d-sm-table-cell font-size-sm">
+                                            <td class="font-w600 col-2 font-size-sm">
                                                 <em class="text-muted">{{ user.email }}</em>
                                             </td>
-                                            <td class="font-w600 font-size-sm">{{ user.phone_number }}
+                                            <td class="font-w600 col-1 font-size-sm">{{ user.phone_number }}
                                             </td>
-                                            <td class="text-center d-none d-sm-table-cell">
+                                            <td class="font-w600 col-2 font-size-sm">
                                                 <span class="badge badge-primary">{{ user.roles[0].name || '' }}</span>
                                             </td>
                                             <td>
-                                                <em class="text-muted font-size-sm">
+                                                <em class="text-muted col-2 font-w600 font-size-sm">
                                                     {{(user.created_at) ? user.created_at : ''}} </em>
                                             </td>
-                                            <td class="btn-group text-center font-w600 font-size-sm">
-                                                <router-link :to="{path:'/admin/edit/user/'+user.id}" class="btn btn-primary "><i class="fa fa-edit"></i></router-link>
-                                                <button @click="openDeleteModal(user)" class="btn btn-danger mx-2"><i class="far fa-trash-alt"></i></button>
+                                            <td class="mx-auto font-w600 col-2 font-size-sm">
+                                                <router-link :to="{path:'/admin/edit/user/'+user.id}" class="btn btn-primary mx-1"><i class="fa fa-edit"></i></router-link>
+                                                <button @click="openDeleteModal(user)" class="btn btn-danger mx-1"><i class="far fa-trash-alt"></i></button>
                                             </td>
                                         </tr>
                                         </tbody>

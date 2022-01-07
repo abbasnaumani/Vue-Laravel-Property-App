@@ -1,42 +1,6 @@
 <template>
-    <section class="top-banner border-0 mt-5 py-3">
-        <div class="container py-3 mt-4 position-relative z-index-2">
-            <div class="row py-4 mb-4 d-flex flex-wrap-reverse">
-                <div class="col-md-8 order-2 order-md-1">
-                    <div
-                        class="main-heading text-lg-start d-flex flex-column"
-                        v-if="property"
-                    >
-                        <div class="d-flex justify-content-md-start justify-content-center">
-                            <h2 class="font-weight-extra-bold text-light mb-0 letter-spacing">
-                                {{ property.property_detail.address }}
-                            </h2>
-                        </div>
-                        <div class="d-flex justify-content-md-start justify-content-center">
-                            <p style="opacity: 0.5" class="text-white mb-0 px-1">
-                                {{ property.title }}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div
-                    class=" col-md-4 order-2 order-md-1 d-flex align-self-center justify-content-md-end justify-content-sm-center justify-content-center">
-                    <div class="main-links">
-                        <ul class="list-unstyled text-white">
-                            <li>
-                                <span style="font-size: 11.5px">HOME</span>
-                                <span style="opacity: 0.6; font-size: 11.5px"
-                                >> PROPERTIES</span
-                                >
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="container py-4 my-5">
+    <top-banner :pageName="property ? property.title : '' " link="Property-details"> </top-banner>
+    <section class="container py-4 my-5" v-if="property">
         <div class="row">
             <!-- row col-9  -->
             <div class="col-lg-9">
@@ -44,7 +8,7 @@
                 <div class="row">
                     <div class="col-lg-7">
                         <div class="card border border-0" style="width: 100%; padding-bottom: 180px">
-                            <div id="demo" class="carousel slide" data-ride="carousel" v-if="property">
+                            <div id="demo" class="carousel slide" data-ride="carousel">
                                 <div class="row mt-3 carousel-indicators indicators" >
                                         <div class="col-4 p-0" v-for="(media,index) in property.media">
                                             <a href="" data-target="#demo" :data-slide-to="index">
@@ -695,10 +659,11 @@ import propertyService from "../../services/propertyService";
 import ContactUs from "../../components/widgets/ContactUs";
 import BottomBanner from '../../components/utilities/BottomBanner.vue';
 import AgentsCarousel from "../../components/widgets/AgentsCarousel";
+import TopBanner from '../../components/utilities/TopBanner.vue';
 
 export default {
     name: "PropertyDetail",
-    components: {AgentsCarousel, ContactUs, BottomBanner},
+    components: {AgentsCarousel, ContactUs, BottomBanner, TopBanner},
     props: {
         slug: String,
         propertyId: Number,
