@@ -1,5 +1,4 @@
 import EventEmitter from "events";
-import {ApiResponse} from "../../constants";
 import appApi from "../../api";
 import errorHandlerService from "~/frontsite/services/errorHandlerService";
 import {useToast} from "vue-toastification";
@@ -11,12 +10,7 @@ class CountryService extends EventEmitter {
     async getCities() {
         try {
             const response = await appApi.get('/country/cities');
-            if (response.data.status === ApiResponse.SUCCESS) {
                 await store.dispatch('actionCities', response.data.payload);
-            } else {
-                toast.error(response.data.message);
-            }
-
         } catch (err) {
             console.log(err, "err err")
             const error = await errorHandlerService.errors.index(err);
@@ -26,12 +20,7 @@ class CountryService extends EventEmitter {
     async getAllLocationsByCItyId(cityId) {
         try {
             const response = await appApi.get('/country/'+cityId+'/locations');
-            if (response.data.status === ApiResponse.SUCCESS) {
                 await store.dispatch('actionLocationsByCityId', response.data.payload);
-            } else {
-                toast.error(response.data.message);
-            }
-
         } catch (err) {
             console.log(err, "err err")
             const error = await errorHandlerService.errors.index(err);

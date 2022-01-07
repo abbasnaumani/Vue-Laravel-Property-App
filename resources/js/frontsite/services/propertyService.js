@@ -10,22 +10,6 @@ import {getParentTypes} from "../composables/property";
 const toast = useToast();
 
 class PropertyService extends EventEmitter {
-    async getUserPropertyList() {
-        try {
-            const response = await appApi.get('/user/properties');
-            if (response.data.status === ApiResponse.SUCCESS) {
-                await store.dispatch('actionPropertyList', response.data.payload);
-            } else {
-                toast.error(response.data.message);
-            }
-
-        } catch (err) {
-            console.log(err, "err err")
-            toast.error(err.response.data.message);
-            const error = await errorHandlerService.errors.index(err);
-            console.log(error, "error catch")
-        }
-    }
     async getPropertiesBySlug(slug, paginateData) {
         console.log(paginateData, 'paginateData');
         try {
@@ -41,11 +25,7 @@ class PropertyService extends EventEmitter {
                     // max_price: paginateData.maxPrice.value
                 }
             });
-            if (response.data.status === ApiResponse.SUCCESS) {
-                console.log(response,"sadasdadasdasdsadasdsa");
-                // await store.dispatch('actionPropertiesBySlug', response.data.payload);
                 return response.data.payload;
-            }
 
         } catch (err) {
             // console.log(err, "err err")
@@ -58,13 +38,7 @@ class PropertyService extends EventEmitter {
     async getPropertyById(propertyId) {
         try {
             const response = await appApi.get('/property/' + propertyId)
-            if (response.data.status === ApiResponse.SUCCESS) {
-                // await store.dispatch('actionPropertiesBySlug', response.data.payload);
                 return response.data.payload;
-            } else {
-                toast.error(response.data.message);
-            }
-
         } catch (err) {
             console.log(err, "err err")
             toast.error(err.response.data.message);
@@ -75,12 +49,7 @@ class PropertyService extends EventEmitter {
     async getPropertyTypes() {
         try {
             const response = await appApi.get('/property/types');
-            if (response.data.status === ApiResponse.SUCCESS) {
                 await store.dispatch('actionPropertyTypes', response.data.payload);
-            } else {
-                toast.error(response.data.message);
-            }
-
         } catch (err) {
             console.log(err, "err err")
             toast.error(err.response.data.message);
@@ -91,11 +60,7 @@ class PropertyService extends EventEmitter {
     async getParentTypes(){
         try {
             const response = await appApi.get('/property/parent/types');
-            if (response.data.status === ApiResponse.SUCCESS) {
                 await store.dispatch('actionPropertyParentTypes', response.data.payload);
-            } else {
-                toast.error(response.data.message);
-            }
 
         } catch (err) {
             console.log(err, "err err")
@@ -107,11 +72,7 @@ class PropertyService extends EventEmitter {
     async getAreaUnits() {
         try {
             const response = await appApi.get('/property/area/unit');
-            if (response.data.status === ApiResponse.SUCCESS) {
                 await store.dispatch('actionAreaUnits', response.data.payload);
-            } else {
-                toast.error(response.data.message);
-            }
 
         } catch (err) {
             console.log(err, "err err")
@@ -123,15 +84,8 @@ class PropertyService extends EventEmitter {
     async handleAddProperty(newProperty) {
         try {
             const response = await appApi.post('/properties', newProperty);
-            if (response.data.status === ApiResponse.SUCCESS) {
-                // await store.dispatch('actionPropertyList', response.data.payload.data);
                 toast.success(response.data.message);
                 return response.data;
-                // router.push({name: 'property-dashboard'});
-            } else {
-                toast.error(response.data.message);
-            }
-
         } catch (err) {
             console.log(err, "err err")
             toast.error(err.response.data.message);
@@ -142,12 +96,8 @@ class PropertyService extends EventEmitter {
     async deleteProperty(propertyId) {
         try {
             const response = await appApi.delete('/properties/' + propertyId);
-            if (response.data.status === ApiResponse.SUCCESS) {
                 toast.success(response.data.message, );
                 return response.data;
-            } else {
-                toast.error(response.data.message);
-            }
 
         } catch (err) {
             console.log(err, "err err")
@@ -159,13 +109,7 @@ class PropertyService extends EventEmitter {
     async handleUpdateProperty(dataToUpdate, propertyId) {
         try {
             const response = await appApi.put('/properties/' + propertyId, dataToUpdate);
-            if (response.data.status === ApiResponse.SUCCESS) {
                 await store.dispatch('actionPropertyList', response.data.payload);
-                // router.push({ name: 'property-dashboard' });
-            } else {
-                toast.error(response.data.message);
-            }
-
         } catch (err) {
             console.log(err, "err err")
             toast.error(err.response.data.message);

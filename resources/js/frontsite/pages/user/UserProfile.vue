@@ -20,7 +20,8 @@
                                     <i class="fas fa-camera text-light"></i>
                                 </span>
                                 </div>
-                                <input type="file" id="file" class="form-control profile-image-input">
+<!--                                <drop-zone v-model="dataFiles"></drop-zone>-->
+
                             </div>
                         </div>
                     </div>
@@ -259,10 +260,16 @@ import {email, minLength, required, sameAs} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
 import userService from "~/frontsite/services/userService";
 import auth from "~/frontsite/services/authService";
+import DropZone from "../../../admin/pages/dropzone/DropZone";
 
 export default {
     name: "UserProfile",
-    setup() {
+    components: {DropZone},
+    props:{
+        slug:String
+    },
+    setup(props) {
+        const dataFiles = ref([]);
         const profileData = ref({
             user_email:auth.user().email,
             phone_number:auth.user().phone_number,
@@ -330,6 +337,7 @@ export default {
         );
         return {
             v$,
+            dataFiles,
             profileData,
             passwordData,
             updateUserProfile,

@@ -50,7 +50,6 @@ const actions = {
         commit('mutateAgencyBySlug', agency);
     },
 }
-
 export default {
     state,
     getters,

@@ -15,9 +15,11 @@ class CreateSubscribesTable extends Migration
     {
         Schema::create('subscribes', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('agency_id');
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamps();
+            $table->foreign('agency_id')->references('id')->on('agencies')->onDelete('cascade');
         });
     }
 

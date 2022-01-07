@@ -15,11 +15,13 @@ class CreateContactUsTable extends Migration
     {
         Schema::create('contact_us', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('agency_id');
             $table->string('name');
             $table->string('message');
             $table->string('email');
             $table->string('phone_number');
             $table->timestamps();
+            $table->foreign('agency_id')->references('id')->on('agencies')->onDelete('cascade');
         });
     }
 

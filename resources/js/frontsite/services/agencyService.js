@@ -3,9 +3,7 @@ import appApi from "../../api";
 import {ApiResponse} from "../../constants";
 import errorHandlerService from "~/frontsite/services/errorHandlerService";
 import {useToast} from "vue-toastification";
-import router from "~/frontsite/router";
 import store from "~/frontsite/store";
-import {getAllAgencies} from "../composables/agency";
 const toast = useToast();
 
 class AgencyService extends EventEmitter {

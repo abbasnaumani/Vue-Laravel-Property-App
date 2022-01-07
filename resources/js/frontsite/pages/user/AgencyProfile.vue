@@ -1,5 +1,5 @@
 <template>
-    <div class="container py-5">
+    <div class="container py-5" v-if="auth.user().roles[0].id == UserRoles.AGENCY_ADMIN">
         <div class="card shadow-sm login-card w-100 text-left mt-5">
             <div class="card-header bg-white border-bottom-0 mt-4">
                 <div class="d-flex justify-content-between align-items-center">
@@ -181,10 +181,18 @@ import useVuelidate from "@vuelidate/core";
 import userService from "~/frontsite/services/userService";
 import auth from "~/frontsite/services/authService";
 import agencyService from "../../services/agencyService";
+import {UserRoles} from "../../../constants";
+import router from "../../router";
 
 export default {
     name: "AgencyProfile",
-    setup() {
+    props:{
+      slug:String
+    },
+    setup(props) {
+        if(auth.user().roles[0].id !== UserRoles.AGENCY_ADMIN){
+            router.push({path:'/'+props.slug})
+        }
         const agencyData = ref({
             agency_name:auth.user().agencies[0].name,
             agency_phone_number:auth.user().agencies[0].phone_number,
@@ -232,7 +240,9 @@ export default {
         );
         return {
             v$,
+            auth,
             agencyData,
+            UserRoles,
             updateAgencyProfile,
         }
     }

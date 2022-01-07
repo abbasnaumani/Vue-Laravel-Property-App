@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Agency;
 use App\Models\ContactUs;
 use App\Services\BaseService\BaseService;
 use Illuminate\Http\Request;
@@ -26,7 +27,9 @@ class ContactUsService extends BaseService
     {
         DB::beginTransaction();
         try {
+            $agency = Agency::where('slug',$request->slug)->first();
             $contactUs = new ContactUs();
+            $contactUs->agency_id = $agency->id;
             $contactUs->name = $request->name;
             $contactUs->email = $request->email;
             $contactUs->message = $request->message;

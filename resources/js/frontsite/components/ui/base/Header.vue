@@ -55,10 +55,17 @@
                                                                     }}</p>
                                                             </a>
                                                             <router-link
-                                                                :to="{path:'/user/profile'}"
+                                                                :to="{path:'/'+slug+'/user/profile'}"
                                                                 class="dropdown-item">
                                                                 <p class="mb-0 mt-0 header-dropdown-links px-2">
-                                                                    My Account</p>
+                                                                    Profile</p>
+                                                            </router-link>
+                                                            <router-link
+                                                                v-if="profile.roles[0].id == UserRoles.AGENCY_ADMIN"
+                                                                :to="{path:'/'+slug+'/agency/profile'}"
+                                                                class="dropdown-item">
+                                                                <p class="mb-0 mt-0 header-dropdown-links px-2">
+                                                                    Agency Profile</p>
                                                             </router-link>
                                                             <router-link to="/logout"
                                                                          class="dropdown-item">
@@ -137,7 +144,7 @@
                                                 </li>
                                                 <li class="px-3">
                                                     <router-link class="secondary-nav-li text-decoration-none text-3"
-                                                                 :to="{path: '/' + slug + '/contact/us'}">Contact
+                                                                 :to="{path: '/' + slug + '/contactus'}">Contact
                                                     </router-link>
                                                 </li>
                                                 <li class="px-3">
@@ -566,7 +573,7 @@
                                         <div class="card-header card-padding">
                                             <router-link class="collapsed px-2 accordian-collapse card-link"
                                                          data-toggle="collapse"
-                                                         :to="{path: '/' + slug + '/contact/us'}">Contact
+                                                         :to="{path: '/' + slug + '/contactus'}">Contact
                                             </router-link>
                                         </div>
                                     </div>
@@ -740,6 +747,7 @@ import _ from 'lodash';
 import {useRoute} from 'vue-router'
 import agencyService from "../../../services/agencyService";
 import {getAgencyBySlug} from "../../../composables/agency";
+import {UserRoles} from "../../../../constants";
 
 export default {
     name: "Header",
@@ -823,11 +831,6 @@ export default {
                 stickyHeader.value = false;
             }
         }
-        // const handleOutsideClick = (event) => {
-        //     if (event.target.closest('.d-block')) {
-        //         stickySearchBar.value = false ;
-        //     }
-        // }
 
         onMounted(() => {
             // window.addEventListener("click", handleOutsideClick);
@@ -855,7 +858,9 @@ export default {
             agency,
             slug,
             handleSearchBar,
-            stickySearchBar
+            stickySearchBar,
+            UserRoles,
+
         }
     }
 }

@@ -130,47 +130,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="col-12 col-md-6 col-lg-12">
-                                <div id="card-crousel" class="card" style="width:100%;height:350px;">
-                                    <div class="card-body">
-                                        <h4 class="text-white text-center font-weight-bold letter-spacing">Our Agents</h4>
-                                        <div id="demo" class="carousel slide mt-4" data-ride="carousel">
-
-                                            <!-- Indicators -->
-                                            <ul class="carousel-indicators detail-circle">
-                                                <li data-target="#demo" data-slide-to="0" class="test-new"></li>
-                                                <li data-target="#demo" data-slide-to="1" class="test-new"></li>
-                                                <li data-target="#demo" data-slide-to="2" class="test-new"></li>
-                                            </ul>
-
-                                            <!-- The slideshow -->
-                                            <div class="carousel-inner">
-                                                <div class="carousel-item active text-center">
-                                                    <img style="max-width: 110px;border-radius: 100%;" id="img" src="/assets/images/img-13.jpg" alt="Los Angeles" width="100%" height="100px">
-                                                    <h5 class="text-white mt-3">John Doe</h5>
-                                                    <a id="carousel-a" href="#" class="text-white d-lg-block d-md-block d-sm-block d-block">(800)
-                                                        123-4567</a>
-                                                    <a id="carousel-a" href="#" class="text-white d-lg-block d-md-block d-sm-block d-block">you@domain.com</a>
-                                                </div>
-                                                <div class="carousel-item text-center">
-                                                    <img style="max-width: 110px;border-radius: 100%;" src="/assets/images/img-11.jpg" alt="Chicago" width="100%" height="100px">
-                                                    <h5 class="text-white mt-3">Janice Doe</h5>
-                                                    <a id="carousel-a" href="#" class="text-white d-lg-block d-md-block d-sm-block d-block">(800)
-                                                        123-4567</a>
-                                                    <a id="carousel-a" href="#" class="text-white d-lg-block d-md-block d-sm-block d-block">you@domain.com</a>
-                                                </div>
-                                                <div class="carousel-item text-center">
-                                                    <img style="max-width: 110px;border-radius: 100%;" src="/assets/images/img-12.jpg" alt="New York" width="100%" height="100px">
-                                                    <h5 class="text-white mt-3">Lisa Doe</h5>
-                                                    <a id="carousel-a" href="#" class="text-white d-lg-block d-md-block d-sm-block d-block">(800)
-                                                        123-4567</a>
-                                                    <a id="carousel-a" href="#" class="text-white d-lg-block d-md-block d-sm-block d-block">you@domain.com</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <agents-carousel :slug="slug"></agents-carousel>
                             <div class="col-12 col-md-6 col-lg-12 mt-md-4 mt-3">
                                 <h4 class="font-weight-bold letter-spacing">Featured Properties</h4>
                                 <div class="crousal-card ">
@@ -328,11 +288,15 @@ import {ApiResponse} from "../../constants";
 import {email, required} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
 import TopBanner from "../components/utilities/TopBanner";
+import AgentsCarousel from "../components/widgets/AgentsCarousel";
 
 export default {
     name: "ContactUs",
-    components: {TopBanner},
-    setup(){
+    components: {AgentsCarousel, TopBanner},
+    props:{
+        slug:String
+    },
+    setup(props){
         const name = ref('');
         const userEmail = ref('');
         const phone_number = ref('');
@@ -342,7 +306,8 @@ export default {
                 name: name.value,
                 email: userEmail.value,
                 phone_number:phone_number.value,
-                message:message.value
+                message:message.value,
+                slug:props.slug
             });
             if (response.status === ApiResponse.SUCCESS) {
                 name.value = '';

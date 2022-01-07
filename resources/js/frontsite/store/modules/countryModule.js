@@ -27,7 +27,6 @@ const actions = {
         commit('mutateLocationsByCityId', locations);
     }
 }
-
 export default {
     state,
     getters,

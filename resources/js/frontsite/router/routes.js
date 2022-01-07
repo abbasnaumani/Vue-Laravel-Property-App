@@ -39,22 +39,25 @@ export default [
         props: ({params}) => ({encodedToken: params.encodedToken || ''}),
     },
     {
-        path: '/user/profile',
+        path: '/:slug/user/profile',
         name: 'user-profile',
         meta: {public: false, meta_title: 'User Profile'},
         component: page('user/UserProfile'),
+        props: ({params}) => ({slug: params.slug || ''}),
     },
     {
-        path: '/agency/profile',
+        path: '/:slug/agency/profile',
         name: 'agency-profile',
         meta: {public: false, meta_title: 'Agency Profile'},
         component: page('user/AgencyProfile'),
+        props: ({params}) => ({slug: params.slug || ''}),
     },
     {
-        path: '/:slug/contact/us',
+        path: '/:slug/contactus',
         name: 'contact-us',
         meta: {public: true, meta_title: 'Contact Us'},
         component: page('ContactUs'),
+        props: ({params}) => ({slug: params.slug || ''}),
     },
     {
         path: '/logout',
@@ -116,13 +119,6 @@ export default [
         name: 'slug-not-found',
         meta: {public: true, meta_title: 'KS Property'},
         component: page('NotFound'),
-        props: ({params}) => ({slug: params.slug || ''}),
-    },
-    {
-        path: '/detail',
-        name: 'detail',
-        meta: {public: true, meta_title: 'KS Property'},
-        component: page('detail'),
         props: ({params}) => ({slug: params.slug || ''}),
     },
     {

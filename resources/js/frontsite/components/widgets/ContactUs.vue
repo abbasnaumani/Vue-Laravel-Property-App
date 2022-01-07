@@ -119,6 +119,9 @@ import useVuelidate from "@vuelidate/core";
 
 export default {
   name: "ContactUs",
+    props:{
+      slug:String
+    },
   setup(props) {
     const name = ref("");
     const userEmail = ref("");
@@ -130,6 +133,7 @@ export default {
         email: userEmail.value,
         phone_number: phone_number.value,
         message: message.value,
+        slug: props.slug,
       });
       if (response.status === ApiResponse.SUCCESS) {
         name.value = "";

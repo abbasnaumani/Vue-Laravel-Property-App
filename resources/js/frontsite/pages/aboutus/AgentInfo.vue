@@ -342,7 +342,7 @@
                                     </div>
                                 </div>
                             </div>
-                           <contact-us></contact-us>
+                           <contact-us :slug="slug"></contact-us>
                         </div>
                     </div>
                 </div>
@@ -356,7 +356,10 @@ import TopBanner from "../../components/utilities/TopBanner";
 import ContactUs from "../../components/widgets/ContactUs";
 export default {
     name: "AgentInfo",
-    components: {ContactUs, TopBanner}
+    components: {ContactUs, TopBanner},
+    props:{
+        slug:String
+    }
 }
 </script>
 

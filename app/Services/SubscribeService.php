@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Agency;
 use App\Models\Subscribe;
 use App\Services\BaseService\BaseService;
 use Illuminate\Http\Request;
@@ -26,7 +27,9 @@ class SubscribeService extends BaseService
     {
         DB::beginTransaction();
         try {
+            $agency = Agency::where('slug',$request->slug)->first();
             $subscription = Subscribe::firstOrNew(['email' => $request->email]);
+            $subscription->agency_id = $agency->id;
             $subscription->name = $request->name;
             $subscription->email = $request->email;
             $subscription->save();

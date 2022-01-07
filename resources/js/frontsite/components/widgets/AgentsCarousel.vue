@@ -24,7 +24,7 @@
                                 <a href="#" class="text-white carousel-a d-lg-block d-md-block d-sm-block d-block">you@domain.com</a>
                             </div>
                             <div class="carousel-item text-center" v-for="user in agencyUsers">
-                                <img style="max-width: 110px;border-radius: 100%;" src="/assets/images/img-13.jpg" alt="Chicago" width="100%" height="100px">
+                                <img style="max-width: 110px;border-radius: 100%;" src="/assets/images/img-13.jpg" alt="Chicago" width="100" height="100">
                                 <h5 class="text-white mt-3">{{user.first_name+' '+user.last_name}}</h5>
                                 <a href="#" class="text-white carousel-a d-lg-block d-md-block d-sm-block d-block">{{user.phone_number}}</a>
                                 <a href="#" class="text-white carousel-a d-lg-block d-md-block d-sm-block d-block">{{user.email}}</a>

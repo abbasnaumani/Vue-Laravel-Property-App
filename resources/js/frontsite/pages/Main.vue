@@ -119,7 +119,7 @@
                                 <!-- agents on carousel  -->
                                 <agents-carousel :slug="slug"></agents-carousel>
                                 <!-- News Letter for subscribe  -->
-                                <news-letter></news-letter>
+                                <news-letter :slug="slug"></news-letter>
                             </div>
                         </div>
                     </div>
@@ -144,19 +144,8 @@ export default {
     props:{
       slug:String,
     },
-    setup(props){
-
-        // let properties = ref([]);
-        // getPropertiesBySlug()
-        // async function getPropertiesBySlug(currentPage,perPage) {
-        //     const addMore = 3;
-        //     properties.value = await propertyService.getPropertiesBySlug(props.slug, {currentPage,perPage,addMore});
-        // }
-
+    setup(){
         return{
-            // PropertyPurpose,
-            // properties,
-            // getPropertiesBySlug,
         }
     }
 }

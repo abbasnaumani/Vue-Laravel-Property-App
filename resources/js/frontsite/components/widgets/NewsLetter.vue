@@ -70,12 +70,15 @@ import useVuelidate from "@vuelidate/core";
 
 export default {
     name: "NewsLetter",
-    setup() {
+    props:{
+        slug:String
+    },
+    setup(props) {
         const name = ref('');
         const userEmail = ref('');
 
         async function handleSubscription() {
-            const response = await subscribeService.handleSubscription({name: name.value, email: userEmail.value});
+            const response = await subscribeService.handleSubscription({name: name.value, email: userEmail.value,slug:props.slug});
             if (response.status === ApiResponse.SUCCESS) {
                 name.value = '';
                 userEmail.value = '';

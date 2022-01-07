@@ -279,126 +279,7 @@
             <div class="col-lg-3">
                 <!-- row of col-lg-3   -->
                 <div class="row">
-                    <div class="col-12 col-sm-6 col-lg-12 mt-5 mt-lg-0">
-                        <div
-                            id="card-crousel"
-                            class="card"
-                            style="width: 100%; height: 350px"
-                        >
-                            <div class="card-body">
-                                <h4 class="text-white text-center">Our Agents</h4>
-                                <div id="demo" class="carousel slide mt-4" data-ride="carousel">
-                                    <!-- Indicators -->
-                                    <ul class="carousel-indicators detail-circle">
-                                        <li
-                                            data-target="#demo"
-                                            data-slide-to="0"
-                                            class="test-new"
-                                        ></li>
-                                        <li
-                                            data-target="#demo"
-                                            data-slide-to="1"
-                                            class="test-new"
-                                        ></li>
-                                        <li
-                                            data-target="#demo"
-                                            data-slide-to="2"
-                                            class="test-new"
-                                        ></li>
-                                    </ul>
-
-                                    <!-- The slideshow -->
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item active text-center">
-                                            <img
-                                                style="max-width: 110px; border-radius: 100%"
-                                                id="img"
-                                                src="/assets/images/img-13.jpg"
-                                                alt="Los Angeles"
-                                                width="100%"
-                                                height="100px"
-                                            />
-                                            <h5 class="text-white mt-3">John Doe</h5>
-                                            <a
-                                                id="carousel-a"
-                                                href="#"
-                                                class="
-                          text-white
-                          d-lg-block d-md-block d-sm-block d-block
-                        "
-                                            >(800) 123-4567</a
-                                            >
-                                            <a
-                                                id="carousel-a"
-                                                href="#"
-                                                class="
-                          text-white
-                          d-lg-block d-md-block d-sm-block d-block
-                        "
-                                            >you@domain.com</a
-                                            >
-                                        </div>
-                                        <div class="carousel-item text-center">
-                                            <img
-                                                style="max-width: 110px; border-radius: 100%"
-                                                src="/assets/images/img-11.jpg"
-                                                alt="Chicago"
-                                                width="100%"
-                                                height="100px"
-                                            />
-                                            <h5 class="text-white mt-3">Janice Doe</h5>
-                                            <a
-                                                id="carousel-a"
-                                                href="#"
-                                                class="
-                          text-white
-                          d-lg-block d-md-block d-sm-block d-block
-                        "
-                                            >(800) 123-4567</a
-                                            >
-                                            <a
-                                                id="carousel-a"
-                                                href="#"
-                                                class="
-                          text-white
-                          d-lg-block d-md-block d-sm-block d-block
-                        "
-                                            >you@domain.com</a
-                                            >
-                                        </div>
-                                        <div class="carousel-item text-center">
-                                            <img
-                                                style="max-width: 110px; border-radius: 100%"
-                                                src="/assets/images/img-12.jpg"
-                                                alt="New York"
-                                                width="100%"
-                                                height="100px"
-                                            />
-                                            <h5 class="text-white mt-3">Lisa Doe</h5>
-                                            <a
-                                                id="carousel-a"
-                                                href="#"
-                                                class="
-                          text-white
-                          d-lg-block d-md-block d-sm-block d-block
-                        "
-                                            >(800) 123-4567</a
-                                            >
-                                            <a
-                                                id="carousel-a"
-                                                href="#"
-                                                class="
-                          text-white
-                          d-lg-block d-md-block d-sm-block d-block
-                        "
-                                            >you@domain.com</a
-                                            >
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <agents-carousel :slug="slug"></agents-carousel>
                     <div class="col-12 col-md-6 col-lg-12 mt-md-4 mt-3">
                         <h4 class="font-weight-bold letter-spacing">Featured Properties</h4>
                         <div class="crousal-card">
@@ -799,7 +680,7 @@
                             </div>
                         </div>
                     </div>
-                    <contact-us></contact-us>
+                    <contact-us :slug="slug"></contact-us>
                 </div>
             </div>
         </div>
@@ -813,10 +694,11 @@ import propertyService from "../../services/propertyService";
 // import PropertyFilesList from "../../property/PropertyFilesList";
 import ContactUs from "../../components/widgets/ContactUs";
 import BottomBanner from '../../components/utilities/BottomBanner.vue';
+import AgentsCarousel from "../../components/widgets/AgentsCarousel";
 
 export default {
     name: "PropertyDetail",
-    components: {ContactUs, BottomBanner},
+    components: {AgentsCarousel, ContactUs, BottomBanner},
     props: {
         slug: String,
         propertyId: Number,

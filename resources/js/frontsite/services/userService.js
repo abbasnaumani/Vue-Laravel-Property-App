@@ -1,5 +1,4 @@
 import EventEmitter from "events";
-import {ApiResponse} from "../../constants";
 import appApi from "../../api";
 import errorHandlerService from "~/frontsite/services/errorHandlerService";
 import {useToast} from "vue-toastification";
@@ -11,13 +10,8 @@ class UserService extends EventEmitter {
     async getAgencyUsersList() {
         try {
             const response = await appApi.get('/user/list');
-            if (response.data.status === ApiResponse.SUCCESS) {
                 toast.success(response.data.message);
                 await store.dispatch('setUsers', response.data.payload);
-            } else {
-                toast.error(response.data.message);
-            }
-
         } catch (err) {
             console.log(err, "err err")
             const error = await errorHandlerService.errors.index(err);
@@ -27,13 +21,8 @@ class UserService extends EventEmitter {
     async getAllRoles() {
         try {
             const response = await appApi.get('/roles');
-            if (response.data.status === ApiResponse.SUCCESS) {
                 toast.success(response.data.message);
                 await store.dispatch('setRoles', response.data.payload);
-            } else {
-                toast.error(response.data.message);
-            }
-
         } catch (err) {
             console.log(err, "err err")
             const error = await errorHandlerService.errors.index(err);
@@ -43,14 +32,9 @@ class UserService extends EventEmitter {
     async handleAddAgencyUser(agencyUserData) {
         try {
             const response = await appApi.post('/user/add',agencyUserData);
-            if (response.data.status === ApiResponse.SUCCESS) {
                 toast.success(response.data.message);
                 // await store.dispatch('setUsers', response.data.payload);
                 router.push({name: 'user-list'});
-            } else {
-                toast.error(response.data.message);
-            }
-
         } catch (err) {
             console.log(err, "err err")
             const error = await errorHandlerService.errors.index(err);
@@ -58,16 +42,6 @@ class UserService extends EventEmitter {
         }
     }
 
-    async getUserMenu() {
-        try {
-            const response = await appApi.get('/user/menu');
-            await store.dispatch('actionUserMenu', response.data.payload);
-        } catch (err) {
-            console.log(err, "err err");
-            const error = await errorHandlerService.errors.index(err);
-            toast.error(error.message);
-        }
-    }
     async handleUserChat(data){
         try {
             console.log(data,"Asdsadas");
@@ -83,13 +57,8 @@ class UserService extends EventEmitter {
     async deleteUser(userId){
         try {
             const response = await appApi.delete('/users/'+userId);
-            if (response.data.status === ApiResponse.SUCCESS) {
                 toast.success(response.data.message, );
                 return response.data;
-            } else {
-                toast.error(response.data.message);
-            }
-
         } catch (err) {
             console.log(err, "err err")
             toast.error(err.response.data.message);
@@ -100,13 +69,8 @@ class UserService extends EventEmitter {
     async updateUserProfile(profileData){
         try {
             const response = await appApi.put('/user/update/profile',profileData);
-            if (response.data.status === ApiResponse.SUCCESS) {
                 await store.dispatch('actionProfile', response.data.payload);
                 toast.success(response.data.message, );
-            } else {
-                toast.error(response.data.message);
-            }
-
         } catch (err) {
             console.log(err, "err err")
             toast.error(err.response.data.message);
@@ -117,13 +81,8 @@ class UserService extends EventEmitter {
     async updatePassword(passwordData){
         try {
             const response = await appApi.put('/user/update/password',passwordData);
-            if (response.data.status === ApiResponse.SUCCESS) {
                 toast.success(response.data.message, );
                 return response.data;
-            } else {
-                toast.error(response.data.message);
-            }
-
         } catch (err) {
             console.log(err, "err err")
             toast.error(err.response.data.message);
