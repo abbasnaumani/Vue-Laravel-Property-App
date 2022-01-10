@@ -516,9 +516,12 @@
                                     </div>
 
                                     <div class="main_subheader mb-4">Add Images</div>
-                                    <div class="col-lg-9">
+                                    <div class="col-lg-12">
                                         <div class="d-flex align-items-center">
                                            <button @click.prevent="openConfirmImageModal=true" class="btn btn-secondary border-0 text-white w-25 letter-uppercase">Add Images</button>
+                                        </div>
+                                        <div class="form-group w-100 pr-3">
+                                            <upload-list :items="dataFiles" :itemsProgress="fileProgress"></upload-list>
                                         </div>
                                     </div>
                                     <div class="main_subheader mt-4"></div>
@@ -573,10 +576,11 @@ import {QuillEditor} from "@vueup/vue-quill";
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import propertyService from "../../services/propertyService";
 import router from "~/frontsite/router";
+import UploadList from "../../../frontsite/pages/dropzone/UploadList";
 
 export default {
     name: "AddProperty",
-    components: { QuillEditor,PropertyImagesModal},
+    components: {UploadList, QuillEditor,PropertyImagesModal},
     props:{
       slug:String
     },
