@@ -269,7 +269,7 @@
                                                                 <div class="col-12">
                                                                     <ul class="nav nav-tabs flex-column mb-0">
                                                                         <li class="nav-item">
-                                                                            <a class="text-dark dash-links nav-link active" data-toggle="tab" href="#active-dropdown1">Link 1</a>
+                                                                            <a class="text-dark dash-links nav-link" data-toggle="tab" href="#active-dropdown1">Link 1</a>
                                                                         </li>
                                                                         <li class="nav-item">
                                                                             <a class="text-dark dash-links nav-link" data-toggle="tab" href="#active-dropdown2">Link 2</a>
@@ -284,28 +284,6 @@
                                                     </div>
                                                 </div>
                                             </li>
-                                            <li class="nav-item py-1  border border-top-0 border-right-0 border-left-0 border-bottom-1 dash-icon">
-                                                <div id="accordian">
-                                                    <i class="fas fa-angle-right move-arrow px-2"></i>
-                                                    <a class="text-dark text-4 dash-links" data-toggle="collapse" href="#edited-dropdown">
-                                                        Edited
-                                                    </a>
-                                                    <div id="edited-dropdown" class="collapse" data-parent="#accordion">
-                                                        <ul class="list-unstyled flex-column">
-                                                            <li><a class="nav-link dash-links px-5 text-dark text-4" data-toggle="tab" href="">
-                                                                    link 1
-                                                                </a></li>
-                                                            <li><a class="dash-links px-5 text-dark text-4" data-toggle="tab" href="">
-                                                                    link 2
-                                                                </a></li>
-                                                            <li><a class="dash-links px-5 text-dark text-4" data-toggle="tab" href="">
-                                                                    link 3
-                                                                </a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-
                                         </ul>
                                     </div>
                                 </div>
