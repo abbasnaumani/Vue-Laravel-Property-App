@@ -55,12 +55,13 @@ class ContactUsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  string  $slug
+     * @return JsonResponse
      */
-    public function show($id)
+    public function getContactUsDataByAgencySlug(string $slug): JsonResponse
     {
-        //
+        $this->contactUsService->getContactUsDataByAgencySlug($slug);
+        return $this->getApiResponse();
     }
 
     /**
@@ -92,7 +93,7 @@ class ContactUsController extends Controller
      * @param  int  $id
      * @return JsonResponse
      */
-    public function destroy($id): JsonResponse
+    public function destroy(int $id): JsonResponse
     {
         $contactUs = ContactUs::find($id);
         $contactUs->delete();

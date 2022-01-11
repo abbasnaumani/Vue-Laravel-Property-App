@@ -54,7 +54,7 @@
                                             <td class="font-w600 col-1 font-size-sm">   <span class="badge badge-primary">{{ contact.agency?.name }}</span>
                                             </td>
                                             <td class="font-w600 col-2 font-size-sm">
-                                                <router-link :to="{path:'/admin/edit/agency/'+contact.id}" class="btn btn-primary mx-1"><i class="fa fa-edit"></i></router-link>
+                                                <router-link :to="{path:'/admin/edit/agency/'+contact.id}" class="btn btn-primary mx-1"><i class="fa fa-reply"></i></router-link>
                                                 <button @click="openDeleteModal(contact)" class="btn btn-danger mx-1"><i class="far fa-trash-alt"></i></button>
                                                 <button @click.prevent="showMessage(contact)" class="btn btn-info mx-1"><i class="fa fa-arrow-circle-down"></i></button>
                                             </td>
@@ -82,7 +82,7 @@
                v-on:confirm="modalConfirmDelete(modalContactUs)"
                v-on:cancel="openConfirmDeleteModal=false">
         <div>
-            <p>Are you sure you want to delete message of </p><p class="mt-2 font-bold">{{modalContactUs.name}}</p>
+            <p>Are you sure you want to delete message of </p><p class="mt-2 font-bold">{{modalContactUs?.name}}</p>
         </div>
     </app-modal>
     <app-modal :open="openResponseModal"
@@ -98,8 +98,6 @@
 import AppModal from "../../components/ui/base/AppModal";
 import {ref} from "vue";
 import {getAllContactUsData} from "../../composables/contactus";
-import agencyService from "../../services/agencyService";
-import {updateAgencyData} from "../../composables/agency";
 import contactUsService from "../../services/contactUsService";
 import {ApiResponse} from "../../constants";
 export default {
@@ -110,7 +108,7 @@ export default {
         const openResponseModal = ref(false);
         const confirmationMessage = ref();
         const isConfirmButtonDisabled = ref(false);
-        const modalContactUs = ref();
+        const modalContactUs = ref('');
         const responseIcon = ref('');
         const messageBox = ref(false);
         const contactMessage = ref(null);
@@ -120,14 +118,13 @@ export default {
             contactMessage.value = contact.message;
             messageBox.value = !messageBox.value;
         }
-        function openDeleteModal(agency){
-            modalContactUs.value = agency;
+        function openDeleteModal(contact){
+            modalContactUs.value = contact;
             openConfirmDeleteModal.value = true;
         }
         async function modalConfirmDelete(contact) {
             isConfirmButtonDisabled.value = true;
             let response = await contactUsService.deleteContactUsMessage(contact.id);
-            updateAgencyData();
             showResponseModal(response);
         }
         function showResponseModal({message, status}) {

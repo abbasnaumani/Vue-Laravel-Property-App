@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Agency;
 use App\Models\ContactUs;
 use App\Services\BaseService\BaseService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use DB;
 use Exception;
@@ -40,6 +41,22 @@ class ContactUsService extends BaseService
             $this->setApiSuccessMessage(trans('contactus.contactus_store'));
         } catch (\Exception $e) {
             DB::rollback();
+            $this->setApiErrorMessage(trans('contactus.contactus_failed'));
+        }
+    }
+    /**
+     * Display the specified resource.
+     *
+     * @param  string  $slug
+     *
+     */
+    public function getContactUsDataByAgencySlug(string $slug)
+    {
+        try {
+            $agency = Agency::where('slug', $slug)->firstOrFail();
+            $contactUsData = $agency->contactUs()->get();
+            $this->setApiSuccessMessage(trans('contactus.contactus_found'),$contactUsData);
+        } catch (\Exception $e) {
             $this->setApiErrorMessage(trans('contactus.contactus_failed'));
         }
     }

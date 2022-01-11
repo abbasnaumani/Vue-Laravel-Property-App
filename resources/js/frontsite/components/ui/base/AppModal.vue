@@ -77,7 +77,7 @@ export default {
         },
         modalClass:{
             type:String,
-            default:'modal-sm'
+            default:'modal-md'
         },
         isConfirmButtonDisabled: {
             type: Boolean,

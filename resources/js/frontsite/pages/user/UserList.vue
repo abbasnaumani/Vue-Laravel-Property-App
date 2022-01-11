@@ -78,9 +78,9 @@
 								<a href="#" class="btn btn-primary mx-1">
 									<i class="fa fa-edit"></i>
 								</a>
-								<button class="btn btn-danger mx-1">
-									<i class="far fa-trash-alt"></i>
-								</button>
+                                <button class="btn btn-danger mx-1">
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
 								<a href="#" class="btn btn-info mx-1">
 									<i class="far fa-eye"></i>
 								</a>
@@ -103,7 +103,7 @@ export default {
     },
     setup(props) {
         return {
-            
+
         }
     }
 }

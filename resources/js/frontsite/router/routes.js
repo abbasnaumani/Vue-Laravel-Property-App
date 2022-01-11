@@ -60,6 +60,13 @@ export default [{
         props: ({ params }) => ({ slug: params.slug || '' }),
     },
     {
+        path: '/:slug/contactus/list',
+        name: 'contact-us-list',
+        meta: { public: true, meta_title: 'Contact Us List' },
+        component: page('user/ContactUsList'),
+        props: ({ params }) => ({ slug: params.slug || '' }),
+    },
+    {
         path: '/:slug/contactus',
         name: 'contact-us',
         meta: { public: true, meta_title: 'Contact Us' },
