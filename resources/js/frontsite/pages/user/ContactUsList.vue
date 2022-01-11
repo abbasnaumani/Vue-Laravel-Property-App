@@ -3,7 +3,7 @@
         <div class="card shadow-sm login-card w-100">
             <div class="card-header bg-white border-bottom-0 mt-3">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h4 class="login-text text-capitalize letter-spacing">Users</h4>
+                    <h4 class="login-text text-capitalize letter-spacing">Contact Us Record</h4>
                 </div>
             </div>
             <div class="card-body text-left">
@@ -34,7 +34,7 @@
                             {{ contact.phone_number }}
                         </td>
                         <td class="font-w600 col-1 font-size-sm">
-                            <em class="text-muted"> {{(contact.created_at) ? Date(contact.created_at)  : ''}}</em>
+                            <em class="text-muted"> {{(contact.created_at) ? (contact.created_at)  : ''}}</em>
                         </td>
                         <td class="font-w600 col-2 font-size-sm">
                             {{ contact.message }}

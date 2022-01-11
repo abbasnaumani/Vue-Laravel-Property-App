@@ -24,6 +24,7 @@
 						</tr>
 					</thead>
 					<tbody>
+                    {{ agencyUsers }}
 						<tr class="text-center">
 							<td class="font-w600 col-1 font-size-sm">
 								1
@@ -95,6 +96,7 @@
 
 <script>
 import {computed, ref} from "vue";
+import {getAgencyUsersList} from "../../composables/user";
 
 export default {
     name: "UserList",
@@ -102,8 +104,9 @@ export default {
         slug:String
     },
     setup(props) {
+        const agencyUsers = getAgencyUsersList();
         return {
-
+            agencyUsers
         }
     }
 }

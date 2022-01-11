@@ -11,7 +11,7 @@ class UserService extends EventEmitter {
         try {
             const response = await appApi.get('/user/list');
                 toast.success(response.data.message);
-                await store.dispatch('setUsers', response.data.payload);
+                await store.dispatch('actionUsers', response.data.payload);
         } catch (err) {
             console.log(err, "err err")
             const error = await errorHandlerService.errors.index(err);
@@ -22,7 +22,7 @@ class UserService extends EventEmitter {
         try {
             const response = await appApi.get('/roles');
                 toast.success(response.data.message);
-                await store.dispatch('setRoles', response.data.payload);
+                await store.dispatch('actionRoles', response.data.payload);
         } catch (err) {
             console.log(err, "err err")
             const error = await errorHandlerService.errors.index(err);

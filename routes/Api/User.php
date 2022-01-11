@@ -10,9 +10,7 @@ class User
 {
     static function register()
     {
-//        Route::get('/user/list', [UserController::class, 'getAgencyUsersList'])
-//            ->name('user.list')
-//            ->middleware('auth:sanctum');
+
         Route::get('/user/menu', [UserController::class, 'userMenu'])
             ->name('user.menu')
             ->middleware('auth:sanctum');
@@ -25,6 +23,11 @@ class User
             ->middleware('auth:sanctum');
 
         Route::put('/user/update/password', [UserController::class, 'updateUserPassword'])->name('user.update.password')
+            ->middleware('auth:sanctum');
+
+
+        Route::get('/user/list', [UserController::class, 'getAgencyUsersList'])
+            ->name('user.list')
             ->middleware('auth:sanctum');
 
         Route::post('/user/add', [UserController::class, 'store'])->name('user.store')

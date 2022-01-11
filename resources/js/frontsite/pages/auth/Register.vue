@@ -24,7 +24,7 @@
                                                 <i class="fal fa-user position-absolute p-3 text-primary"></i>
                                                 <input
                                                     type="text"
-                                                    class="pl-5 form-control form-control-lg"
+                                                    class="pl-5 form-control form-control-lg font-italic text-3"
                                                     id="first_name"
                                                     v-model="firstName"
                                                     placeholder="First Name"
@@ -41,8 +41,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card-body text-left">
                                     <div class="row">
                                         <div class="form-group col">
                                             <label class="form-label">Last Name</label>
@@ -50,7 +48,7 @@
                                                 <i class="fal fa-user position-absolute p-3 text-primary"></i>
                                                 <input
                                                     type="text"
-                                                    class="pl-5 form-control form-control-lg "
+                                                    class="pl-5 form-control form-control-lg font-italic text-3"
                                                     id="last_name"
                                                     v-model="lastName"
                                                     placeholder="Last Name"
@@ -67,8 +65,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card-body text-left">
                                     <div class="row">
                                         <div class="form-group col">
                                             <label class="form-label">Email</label>
@@ -76,7 +72,7 @@
                                                 <i class="fal fa-envelope position-absolute p-3 text-primary"></i>
                                                 <input
                                                     type="email"
-                                                    class="pl-5 form-control form-control-lg "
+                                                    class="pl-5 form-control form-control-lg font-italic text-3"
                                                     id="email"
                                                     v-model="userEmail"
                                                     placeholder="Email"
@@ -93,8 +89,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card-body text-left">
                                     <div class="row">
                                         <div class="form-group col">
                                             <label class="form-label">Phone Number</label>
@@ -102,7 +96,7 @@
                                                 <i class="fal fa-phone-alt position-absolute p-3 text-primary"></i>
                                                 <input
                                                     type="tel"
-                                                    class="pl-5 form-control form-control-lg "
+                                                    class="pl-5 form-control form-control-lg font-italic text-3"
                                                     id="phone"
                                                     v-model="phoneNumber"
                                                     @blur="v$.phoneNumber.$touch()"
@@ -119,8 +113,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card-body text-left">
                                     <div class="row">
                                         <div class="form-group col">
                                             <label class="form-label">Password</label>
@@ -128,7 +120,7 @@
                                                 <i class="fal fa-lock position-absolute p-3 text-primary"></i>
                                                 <input
                                                     type="password"
-                                                    class="pl-5 form-control form-control-lg "
+                                                    class="pl-5 form-control form-control-lg font-italic text-3"
                                                     id="password"
                                                     v-model="password"
                                                     @blur="v$.password.$touch()"
@@ -146,8 +138,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card-body text-left">
                                     <div class="row">
                                         <div class="form-group col">
                                             <label class="form-label">Confirm Password</label>
@@ -155,7 +145,7 @@
                                                 <i class="fal fa-lock position-absolute p-3 text-primary"></i>
                                                 <input
                                                     type="password"
-                                                    class="pl-5 form-control form-control-lg "
+                                                    class="pl-5 form-control form-control-lg font-italic text-3"
                                                     id="password_confirmation"
                                                     v-model="confirmPassword"
                                                     @blur="v$.confirmPassword.$touch()"
@@ -190,7 +180,7 @@
                                                 <i class="fal fa-building position-absolute p-3 text-primary"></i>
                                                 <input
                                                     type="tel"
-                                                    class="pl-5 form-control form-control-lg"
+                                                    class="pl-5 form-control form-control-lg font-italic text-3"
                                                     id="agency-name"
                                                     v-model="agencyName"
                                                     @blur="v$.agencyName.$touch()"
@@ -207,8 +197,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card-body text-left">
                                     <div class="row">
                                         <div class="form-group col">
                                             <label class="form-label">Agency Email</label>
@@ -216,7 +204,7 @@
                                                 <i class="fal fa-envelope position-absolute p-3 text-primary"></i>
                                                 <input
                                                     type="tel"
-                                                    class="pl-5 form-control form-control-lg "
+                                                    class="pl-5 form-control form-control-lg font-italic text-3"
                                                     id="agency-email"
                                                     v-model="agencyEmail"
                                                     @blur="v$.agencyEmail.$touch()"
@@ -233,8 +221,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card-body text-left">
                                     <div class="row">
                                         <div class="form-group col">
                                             <label class="form-label">Agency Phone Number</label>
@@ -242,7 +228,7 @@
                                                 <i class="fal fa-phone-alt position-absolute p-3 text-primary"></i>
                                                 <input
                                                     type="tel"
-                                                    class="pl-5 form-control form-control-lg "
+                                                    class="pl-5 form-control form-control-lg font-italic text-3"
                                                     id="agency-phone"
                                                     v-model="agencyPhoneNumber"
                                                     @blur="v$.agencyPhoneNumber.$touch()"
@@ -259,8 +245,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card-body text-left">
                                     <div class="row">
                                         <div class="form-group col">
                                             <label class="form-label">Agency Address</label>
@@ -268,7 +252,7 @@
                                                 <i class="fal fa-map-marker-alt position-absolute p-3 text-primary"></i>
                                                 <input
                                                     type="tel"
-                                                    class="pl-5 form-control form-control-lg "
+                                                    class="pl-5 form-control form-control-lg font-italic text-3"
                                                     id="agency-address"
                                                     v-model="agencyAddress"
                                                     @blur="v$.agencyAddress.$touch()"
@@ -283,6 +267,48 @@
                                                     </sub>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col">
+                                            <label class="form-label">Social Links</label>
+                                            <div class="position-relative">
+                                                <i class="fa fa-facebook position-absolute p-3 text-primary"></i>
+                                                <input
+                                                    type="tel"
+                                                    class="pl-5 form-control form-control-lg font-italic text-3"
+                                                    id="agency-address"
+                                                    placeholder="www.facebook.com/"
+                                                />
+                                            </div>
+                                            <!-- <div class="text-left">
+                                                <div v-if="v$.agencyAddress.$dirty">
+                                                    <sub v-if="v$.agencyAddress.$error"
+                                                         class="px-2 py-2 text-danger">
+                                                        Agency Address is Required
+                                                    </sub>
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group position-relative col-6">
+                                            <i class="fa fa-twitter position-absolute p-3 text-primary"></i>
+                                            <input
+                                                type="tel"
+                                                class="pl-5 form-control form-control-lg  font-italic text-3"
+                                                id="agency-address"
+                                                placeholder="www.twitter.com/"
+                                            />
+                                        </div>
+                                        <div class="form-group position-relative col-6">
+                                            <i class="fa fa-instagram position-absolute p-3 text-primary"></i>
+                                            <input
+                                                type="tel"
+                                                class="pl-5 form-control form-control-lg font-italic text-3"
+                                                id="agency-address"
+                                                placeholder="www.instagram.com/"
+                                            />
                                         </div>
                                     </div>
                                 </div>

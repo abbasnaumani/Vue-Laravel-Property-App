@@ -11,7 +11,7 @@ const getters = {
     }
 }
 const mutations = {
-    setUsers(state, users) {
+    mutateUsers(state, users) {
         state.users = users;
     },
     mutateRoles(state, roles) {
@@ -19,10 +19,10 @@ const mutations = {
     },
 }
 const actions = {
-    setUsers({commit, state},users){
-        commit('setUsers', users);
+    actionUsers({commit, state},users){
+        commit('mutateUsers', users);
     },
-    setRoles({commit, state},roles){
+    actionRoles({commit, state},roles){
         commit('mutateRoles', roles);
     },
 }

@@ -1,123 +1,150 @@
 <template>
-    <main id="main-container">
-        <div class="content">
-            <div id="agency-user-dashboard-section" class="block block-rounded">
-                <div class="block-header">
-                    <h3 class="block-title">Add New User </h3>
-                </div>
-                <div class="block-content block-content-full">
-                    <div class="row">
-                        <div class="col-sm-12 col-lg-12">
-                            <form>
-                                <div class="py-3">
-                                    <div class="form-group">
-                                        <input
-                                            type="text"
-                                            class="form-control form-control-lg form-control-alt"
-                                            id="first_name"
-                                            v-model="firstName"
-                                            placeholder="First Name"
-                                            autofocus
-                                            @blur="v$.firstName.$touch()"
-                                        />
-                                    </div>
-                                    <div class="text-left">
-                                        <div v-if="v$.firstName.$dirty">
-                                            <sub v-if="v$.firstName.$error"
-                                                 class="px-2 py-2 text-danger">
-                                                First Name is Required
-                                            </sub>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <input
-                                            type="text"
-                                            class="form-control form-control-lg form-control-alt"
-                                            id="last_name"
-                                            v-model="lastName"
-                                            placeholder="Last Name"
-                                            @blur="v$.lastName.$touch()"
-                                        />
-                                    </div>
-                                    <div class="text-left">
-                                        <div v-if="v$.lastName.$dirty">
-                                            <sub v-if="v$.lastName.$error"
-                                                 class="px-2 py-2 text-danger">
-                                                Last Name is Required
-                                            </sub>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <input
-                                            type="email"
-                                            class="form-control form-control-lg form-control-alt"
-                                            id="email"
-                                            v-model="userEmail"
-                                            placeholder="Email"
-                                            @blur="v$.userEmail.$touch()"
-                                        />
-                                    </div>
-                                    <div class="text-left">
-                                        <div v-if="v$.userEmail.$dirty">
-                                            <sub v-if="v$.userEmail.$error"
-                                                 class="px-2 py-2 text-danger">
-                                                Please enter a valid Email address
-                                            </sub>
-                                        </div>
-                                    </div>
-                                    <div class="form-group" v-if="roles">
-                                        <label>&nbsp Assign Role</label>
-                                        <select id="assign-role"
-                                                class="form-control form-control-lg form-control-alt"
-                                                v-model="role_id"
-                                        >
-                                            <option v-for="role in roles" :value="role.id" :selected="role.id===role_id">{{role.name}}</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <input
-                                            type="tel"
-                                            class="form-control form-control-lg form-control-alt"
-                                            id="phone"
-                                            v-model="phoneNumber"
-                                            @blur="v$.phoneNumber.$touch()"
-                                            placeholder="Phone Number"
-                                        />
-                                    </div>
-                                    <div class="text-left">
-                                        <div v-if="v$.phoneNumber.$dirty">
-                                            <sub v-if="v$.phoneNumber.$error"
-                                                 class="px-2 py-2 text-danger">
-                                                Phone Number is Required
-                                            </sub>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-md-6 col-xl-5">
-                                        <button
-                                            v-if="v$.$invalid"
-                                            type="submit"
-                                            class="btn btn-block btn-alt-primary cursor-not-allowed"
-                                            disabled
-                                        >
-                                            <i class="fa fa-fw fa-paper-plane mr-1"></i>Submit
-                                        </button>
-                                        <button v-else @click.prevent="handleAddAgencyUser"
-                                                type="submit"
-                                                class="btn btn-block btn-alt-primary"
-                                        >
-                                            <i class="fa fa-fw fa-paper-plane mr-1"></i>Submit
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+    <div class="container py-2">
+        <div class="card shadow-lg login-card w-50">
+            <div class="card-header bg-white border-bottom-0 mt-3">
+                <div class="d-flex justify-content-center align-items-center">
+                    <h4 class="login-text text-capitalize letter-spacing">Adding User to Agency</h4>
                 </div>
             </div>
+            <div class="card-body text-left">
+                <form>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label class="form-label">First Name</label>
+                            <div class="position-relative">
+                                <i class="fal fa-user position-absolute p-3 text-primary"></i>
+                                <input
+                                    type="text"
+                                    class="pl-5 form-control form-control-lg font-italic text-3"
+                                    id="first_name"
+                                    v-model="firstName"
+                                    placeholder="First Name"
+                                    @blur="v$.firstName.$touch()"
+                                />
+                            </div>
+                            <div class="text-left">
+                                <div v-if="v$.firstName.$dirty">
+                                    <sub v-if="v$.firstName.$error"
+                                         class="px-2 py-2 text-danger">
+                                        First Name is Required
+                                    </sub>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label class="form-label">Last Name</label>
+                            <div class="position-relative">
+                                <i class="fal fa-user position-absolute p-3 text-primary"></i>
+                                <input
+                                    type="text"
+                                    class="pl-5 form-control form-control-lg font-italic text-3"
+                                    id="last_name"
+                                    v-model="lastName"
+                                    placeholder="Last Name"
+                                    @blur="v$.lastName.$touch()"
+                                />
+                            </div>
+                            <div class="text-left">
+                                <div v-if="v$.lastName.$dirty">
+                                    <sub v-if="v$.lastName.$error"
+                                         class="px-2 py-2 text-danger">
+                                        Last Name is Required
+                                    </sub>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label class="form-label">Email</label>
+                            <div class="position-relative">
+                                <i class="fal fa-envelope position-absolute p-3 text-primary"></i>
+                                <input
+                                    type="email"
+                                    class="pl-5 form-control form-control-lg font-italic text-3"
+                                    id="email"
+                                    v-model="userEmail"
+                                    placeholder="Email"
+                                    @blur="v$.userEmail.$touch()"
+                                />
+                            </div>
+                            <div class="text-left">
+                                <div v-if="v$.userEmail.$dirty">
+                                    <sub v-if="v$.userEmail.$error"
+                                         class="px-2 py-2 text-danger">
+                                        Please enter a valid Email address
+                                    </sub>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label class="form-label">Email</label>
+                            <div class="position-relative">
+                                <i class="fal fa-user position-absolute p-3 text-primary"></i>
+                                <select id="assign-role"
+                                        class="pl-5 form-control form-control-lg font-italic text-3"
+                                        v-model="roleId"
+                                >
+                                    <option v-for="role in roles" :value="role.id" :selected="role.id===roleId">{{role.name}}</option>
+                                </select>
+                                <div class="text-left">
+                                    <div v-if="v$.roleId.$dirty">
+                                        <sub v-if="v$.roleId.$error"
+                                             class="px-2 py-2 text-danger">
+                                            Role Assigning Required
+                                        </sub>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label class="form-label">Phone Number</label>
+                            <div class="position-relative">
+                                <i class="fal fa-phone-alt position-absolute p-3 text-primary"></i>
+                                <input
+                                    type="tel"
+                                    class="pl-5 form-control form-control-lg font-italic text-3"
+                                    id="phone"
+                                    v-model="phoneNumber"
+                                    @blur="v$.phoneNumber.$touch()"
+                                    placeholder="Phone Number"
+                                />
+                            </div>
+                            <div class="text-left">
+                                <div v-if="v$.phoneNumber.$dirty">
+                                    <sub v-if="v$.phoneNumber.$error"
+                                         class="px-2 py-2 text-danger">
+                                        Phone Number is Required
+                                    </sub>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="form-group d-flex justify-content-end">
+                            <button type="submit"
+                                    class="btn btn-primary text-white btn-modern test-fancy border-0 btn-color cursor-not-allowed"
+                                    v-if="v$.$invalid" disabled>
+                                <i class="fal fa-fw fa-sign-in-alt mr-1"></i>Submit
+                            </button>
+                            <button v-else @click.prevent="handleAddAgencyUser"
+                                    type="submit"
+                                    class="btn btn-primary text-white btn-modern test-fancy border-0 btn-color"
+                            >
+                                <i class="fal fa-fw fa-sign-in-alt mr-1"></i>Submit
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-    </main>
+    </div>
 </template>
 
 <script>
@@ -126,15 +153,19 @@ import {email, required} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
 import userService from "../../services/userService";
 import {getAllRoles} from "../../composables/user";
+import auth from "../../services/authService";
 
 export default {
     name: "AddAgencyUser",
-    setup(){
+    props:{
+        slug:String
+    },
+    setup(props){
         const firstName = ref('');
         const lastName = ref('');
         const userEmail = ref('');
         const phoneNumber = ref('');
-        const role_id = ref(3);
+        const roleId = ref(3);
         const roles = getAllRoles();
         const handleAddAgencyUser = () => {
             userService.handleAddAgencyUser({
@@ -142,7 +173,8 @@ export default {
                 phone_number: phoneNumber.value,
                 first_name: firstName.value,
                 last_name: lastName.value,
-                role_id: role_id.value,
+                role_id: roleId.value,
+                agency_id: auth.user()?.agencies?.[0].id
             });
         }
 
@@ -161,14 +193,14 @@ export default {
                 phoneNumber: {
                     required
                 },
-                role_id: {
+                roleId: {
                     required
                 },
             }
         });
         const v$ = useVuelidate(
             validationRules,
-            {userEmail, lastName, firstName, phoneNumber,role_id}
+            {userEmail, lastName, firstName, phoneNumber,roleId}
         );
         return {
             v$,
@@ -178,7 +210,7 @@ export default {
             phoneNumber,
             handleAddAgencyUser,
             roles,
-            role_id
+            roleId
         }
     }
 }

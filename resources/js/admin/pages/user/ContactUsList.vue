@@ -49,7 +49,7 @@
                                             </td>
                                             <td class="font-w600 col-1 font-size-sm">
                                                 <em class="text-muted">
-                                                    {{(contact.created_at) ? Date(contact.created_at)  : ''}} </em>
+                                                    {{(contact.created_at) ? (contact.created_at)  : ''}} </em>
                                             </td>
                                             <td class="font-w600 col-1 font-size-sm">   <span class="badge badge-primary">{{ contact.agency?.name }}</span>
                                             </td>

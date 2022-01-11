@@ -34,14 +34,14 @@ class UserController extends Controller
 //     * Display a listing of the users
 //     *
 //     */
-//    public function getAgencyUsersList()
-//    {
-//        $user = $this->getAuthUser();
-//        $agency = $user->agencies()->first();
-//        $users = $agency->users()->with('roles')->get();
-//        $this->setApiSuccessMessage(trans('user.get_user_list'), $users);
-//        return $this->getApiResponse();
-//    }
+    public function getAgencyUsersList()
+    {
+        $user = $this->getAuthUser();
+        $agency = $user->agencies()->first();
+        $users = $agency->users()->with('roles')->get();
+        $this->setApiSuccessMessage(trans('user.get_user_list'), $users);
+        return $this->getApiResponse();
+    }
     /**
      * Edit the user profile
      *
