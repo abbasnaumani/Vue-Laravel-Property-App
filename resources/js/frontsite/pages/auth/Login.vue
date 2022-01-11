@@ -1,6 +1,6 @@
 <template>
     <div class="container py-5">
-        <div class="card shadow-sm login-card w-50">
+        <div class="card shadow-lg login-card w-50">
             <div class="card-header bg-white border-bottom-0 mt-3">
                 <div class="d-flex justify-content-between align-items-center">
                     <h4 class="login-text text-uppercase letter-spacing">I'm a Returning Customer</h4>
