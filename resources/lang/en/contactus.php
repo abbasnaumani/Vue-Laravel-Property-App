@@ -14,6 +14,7 @@ return [
     */
 
     'contactus_store' => 'Your message has sent to us.',
+    'contactus_delete' => 'Message has Deleted Successfully.',
     'contactus_found' => 'Contact us Messages Found Successfully.',
     'contactus_failed' => 'Subscription Failed.',
 

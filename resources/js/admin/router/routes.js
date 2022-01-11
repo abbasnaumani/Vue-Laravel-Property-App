@@ -104,6 +104,12 @@ export default [
         component: page('user/UserDashboard'),
     },
     {
+        path: routePath('/contactus'),
+        name: 'contact-us',
+        meta: {public: false, meta_title: 'Contact Us'},
+        component: page('user/ContactUsList'),
+    },
+    {
         path: '/logout',
         name: 'admin-logout',
         meta: {logout: true, meta_title: 'Logout'},

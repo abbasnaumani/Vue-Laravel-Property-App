@@ -21,6 +21,7 @@ class MenusTableSeeder extends Seeder
             ['id' => 4, 'name' => 'Role', 'parent_id' => 0, 'route' => 'role/list', 'sort_order' => 0, 'class' => 'nav-main-link-name', 'icon' => 'fa fa-user', 'is_count' => 0, 'is_active' => 1],
             ['id' => 5, 'name' => 'Agency Section', 'parent_id' => 0, 'route' => 'user/*', 'sort_order' => 0, 'class' => 'nav-main-link-name', 'icon' => 'fa fa-user', 'is_count' => 0, 'is_active' => 1],
             ['id' => 6, 'name' => 'Property', 'parent_id' => 0, 'route' => 'property', 'sort_order' => 0, 'class' => 'nav-main-link-name', 'icon' => 'fa fa-user', 'is_count' => 0, 'is_active' => 1],
+            ['id' => 7, 'name' => 'Messages', 'parent_id' => 0, 'route' => 'contactus', 'sort_order' => 0, 'class' => 'nav-main-link-name', 'icon' => 'fa fa-user', 'is_count' => 0, 'is_active' => 1],
         ];
         DB::table('menus')->insert($menus);
     }

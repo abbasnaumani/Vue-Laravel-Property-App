@@ -17,48 +17,48 @@
                         <div class="block-content block-content-full">
                             <div id="property-dashboard-section" class="block block-rounded">
                                 <div class="block-header">
-                                    <h3 class="block-title">User Record </h3>
-                                    <router-link class="btn btn-primary" data-validation="validation-span-id"
-                                                 :to="{path:'/admin/'+agencyId+'/user/add'}">Add
-                                    </router-link>
+                                    <h3 class="block-title">Contact Us Record </h3>
                                 </div>
                                 <div class="block-content block-content-full">
                                     <!-- DataTables init on table by adding .js-dataTable-full-pagination class, functionality is initialized in js/pages/be_tables_datatables.min.js which was auto compiled from _js/pages/be_tables_datatables.js -->
                                     <table
-                                        class="table table-responsive table-bordered table-striped table-vcenter js-dataTable-buttons">
+                                        class="table table-responsive table-bordered table-striped table-vcenter  js-dataTable-buttons">
                                         <thead>
                                         <tr class="text-center">
                                             <th class="col-1">ID</th>
-                                            <th class="col-2">Name</th>
+                                            <th class="col-1">Name</th>
                                             <th class="col-2">Email</th>
                                             <th class="col-1">Phone Number</th>
-                                            <th class="col-2">Access</th>
-                                            <th class="col-2">Registered On</th>
-                                            <th colspan="2" class="col-2">Actions</th>
+                                            <th class="col-3">Message</th>
+                                            <th class="col-1">Contacted on</th>
+                                            <th class="col-1">Agency Name</th>
+                                            <th class="col-2">Actions</th>
                                         </tr>
                                         </thead>
-                                        <tbody v-if="users && users.length > 0">
-                                        <tr v-for="(user,index) in users" :key="index" class="text-center">
-                                            <td class="font-w600 col-1 font-size-sm">{{ user.id }}</td>
-                                            <td class="font-w600 col-2 font-size-sm">{{ user.first_name }}
-                                                {{ user.last_name }}
+                                        <tbody v-if="contactUsData && contactUsData.length > 0">
+                                        <tr v-for="(contact,index) in contactUsData" :key="index" class="text-center">
+                                            <td class="font-w600 col-1 font-size-sm">{{ contact.id }}</td>
+                                            <td class="font-w600 col-1 font-size-sm">{{ contact.name }}
                                             </td>
                                             <td class="font-w600 col-2 font-size-sm">
-                                                <em class="text-muted">{{ user.email }}</em>
+                                                <em class="text-muted">{{ contact.email }}</em>
                                             </td>
-                                            <td class="font-w600 col-1 font-size-sm">{{ user.phone_number }}
+                                            <td class="font-w600 col-1 font-size-sm">{{ contact.phone_number }}
+                                            </td>
+                                            <td class="font-w600 col-3 font-size-sm">{{ contact.message }}
+                                            </td>
+                                            <td class="font-w600 col-1 font-size-sm">
+                                                <em class="text-muted">
+                                                    {{(contact.created_at) ? Date(contact.created_at)  : ''}} </em>
+                                            </td>
+                                            <td class="font-w600 col-1 font-size-sm">   <span class="badge badge-primary">{{ contact.agency?.name }}</span>
                                             </td>
                                             <td class="font-w600 col-2 font-size-sm">
-                                                <span class="badge badge-primary">{{ user.roles[0].name || '' }}</span>
+                                                <router-link :to="{path:'/admin/edit/agency/'+contact.id}" class="btn btn-primary mx-1"><i class="fa fa-edit"></i></router-link>
+                                                <button @click="openDeleteModal(contact)" class="btn btn-danger mx-1"><i class="far fa-trash-alt"></i></button>
+                                                <button @click.prevent="showMessage(contact)" class="btn btn-info mx-1"><i class="fa fa-arrow-circle-down"></i></button>
                                             </td>
-                                            <td>
-                                                <em class="text-muted col-2 font-w600 font-size-sm">
-                                                    {{(user.created_at) ? user.created_at : ''}} </em>
-                                            </td>
-                                            <td class="mx-auto font-w600 col-2 font-size-sm">
-                                                <router-link :to="{path:'/admin/edit/user/'+user.id}" class="btn btn-primary mx-1"><i class="fa fa-edit"></i></router-link>
-                                                <button @click="openDeleteModal(user)" class="btn btn-danger mx-1"><i class="far fa-trash-alt"></i></button>
-                                            </td>
+
                                         </tr>
                                         </tbody>
                                         <tbody v-else class="d-flex justify-content-center mt-3">
@@ -74,15 +74,15 @@
         </div>
     </main>
     <app-modal :open="openConfirmDeleteModal"
-               confirmLabel="Delete User?"
+               confirmLabel="Delete Agency?"
                cancelLabel="Cancel"
-               title="Confirm Delete Agency User"
+               title="Confirm Delete Agency"
                icon="warning"
                :isConfirmButtonDisabled="isConfirmButtonDisabled"
-               v-on:confirm="modalConfirmDelete(modalUser)"
+               v-on:confirm="modalConfirmDelete(modalContactUs)"
                v-on:cancel="openConfirmDeleteModal=false">
         <div>
-            <p>Are you sure you want to delete this user from agency?</p><p class="mt-2 font-bold">{{modalUser.title}}</p>
+            <p>Are you sure you want to delete message of </p><p class="mt-2 font-bold">{{modalContactUs.name}}</p>
         </div>
     </app-modal>
     <app-modal :open="openResponseModal"
@@ -92,43 +92,42 @@
                :icon="responseIcon"
                v-on:confirm="openResponseModal=false">
     </app-modal>
-
 </template>
 
 <script>
-import {ref} from "vue";
 import AppModal from "../../components/ui/base/AppModal";
-import {ApiResponse} from "~/constants";
-import userService from "../../services/userService";
-import {getAgencyUsersList} from "~/admin/composables/agency";
-import {updateUserData} from "../../composables/user";
-import {updateAgencyUsersData} from "../../composables/agency";
-
+import {ref} from "vue";
+import {getAllContactUsData} from "../../composables/contactus";
+import agencyService from "../../services/agencyService";
+import {updateAgencyData} from "../../composables/agency";
+import contactUsService from "../../services/contactUsService";
+import {ApiResponse} from "../../constants";
 export default {
-    name: "AgencyUserList",
-    props: {
-        agencyId: Number
-    },
+    name: "ContactUsList",
     components: {AppModal},
-    setup(props) {
+    setup(){
         const openConfirmDeleteModal = ref(false);
         const openResponseModal = ref(false);
         const confirmationMessage = ref();
         const isConfirmButtonDisabled = ref(false);
-        const modalUser = ref();
+        const modalContactUs = ref();
         const responseIcon = ref('');
-        const users = getAgencyUsersList(props.agencyId);
+        const messageBox = ref(false);
+        const contactMessage = ref(null);
+        const contactUsData = getAllContactUsData();
 
-        function openDeleteModal(user){
-            modalUser.value = user;
+        function showMessage(contact){
+            contactMessage.value = contact.message;
+            messageBox.value = !messageBox.value;
+        }
+        function openDeleteModal(agency){
+            modalContactUs.value = agency;
             openConfirmDeleteModal.value = true;
         }
-        async function modalConfirmDelete(user) {
+        async function modalConfirmDelete(contact) {
             isConfirmButtonDisabled.value = true;
-            let response = await userService.deleteUser(user.id);
-            // if(response.status === ApiResponse.SUCCESS){
-            //     updateAgencyUsersData(props.agencyId);
-            // }
+            let response = await contactUsService.deleteContactUsMessage(contact.id);
+            updateAgencyData();
             showResponseModal(response);
         }
         function showResponseModal({message, status}) {
@@ -138,18 +137,21 @@ export default {
             openResponseModal.value = true;
             responseIcon.value = status === ApiResponse.SUCCESS ? 'success' : 'warning';
         }
-        return {
-            users,
-            openDeleteModal,
-            modalUser,
-            modalConfirmDelete,
+        return{
             openConfirmDeleteModal,
-            responseIcon,
-            confirmationMessage,
             openResponseModal,
-            isConfirmButtonDisabled
+            confirmationMessage,
+            isConfirmButtonDisabled,
+            modalContactUs,
+            responseIcon,
+            contactUsData,
+            openDeleteModal,
+            modalConfirmDelete,
+            showMessage,
+            messageBox,
+            contactMessage
         }
-    },
+    }
 }
 </script>
 

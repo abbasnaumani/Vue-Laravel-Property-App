@@ -15,8 +15,8 @@ class ContactUsService extends BaseService
      * Get All Subscribers
      */
     public function getAllContactUSList(){
-        $contactUs = ContactUs::all();
-        $this->setApiSuccessMessage(trans('contactus.contactus_found'),['contact_us'=>$contactUs]);
+        $contactUs = ContactUs::with('agency')->get();
+        $this->setApiSuccessMessage(trans('contactus.contactus_found'),$contactUs);
     }
     /**
      * Store a newly created resource in storage.

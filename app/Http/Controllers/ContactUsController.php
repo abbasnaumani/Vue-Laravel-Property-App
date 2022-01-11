@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactUs\ContactUsRequest;
+use App\Models\ContactUs;
 use App\Services\ContactUsService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -89,10 +90,13 @@ class ContactUsController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
-    public function destroy($id)
+    public function destroy($id): JsonResponse
     {
-        //
+        $contactUs = ContactUs::find($id);
+        $contactUs->delete();
+        $this->setApiSuccessMessage(trans('contactus.contactus_delete'));
+        return $this->getApiResponse();
     }
 }

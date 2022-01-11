@@ -61,6 +61,15 @@ class Agency extends Model
     {
         return $this->hasMany(Property::class);
     }
+    /**
+     * An agency has one or more contact us.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function contactUs(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(ContactUs::class);
+    }
 
     /**
      * User Belongs To An agency
