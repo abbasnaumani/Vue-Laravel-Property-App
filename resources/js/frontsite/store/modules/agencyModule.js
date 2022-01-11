@@ -19,7 +19,7 @@ const getters = {
         return state.defaultAgencySlug;
     },
     getAgencyBySlug:(state) => (slug) =>{ // get specific agency by slug
-        return state.agencyBySlug
+        return state.agencyBySlug;
     }
 }
 const mutations = {
@@ -33,7 +33,8 @@ const mutations = {
         state.agencies = agencies;
     },
     mutateAgencyBySlug(state, agency) {
-        state.agencyBySlug = agency;
+        state.agencyBySlug = null;
+        state.agencyBySlug = JSON.parse(JSON.stringify(agency));
     },
 }
 const actions = {

@@ -313,50 +313,50 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div v-if="isInstallmentAvailable">
-                                        <div class="form-group row">
-                                            <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">
-                                                Advance/Initial Payment:</label>
-                                            <div class="col-lg-9">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="form-group w-50">
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                        >
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">
-                                                No. of Remaining Installments:</label>
-                                            <div class="col-lg-9">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="form-group w-50">
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                        >
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">
-                                                Monthly Installment:</label>
-                                            <div class="col-lg-9">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="form-group w-50">
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                        >
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+<!--                                    <div v-if="isInstallmentAvailable">-->
+<!--                                        <div class="form-group row">-->
+<!--                                            <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">-->
+<!--                                                Advance/Initial Payment:</label>-->
+<!--                                            <div class="col-lg-9">-->
+<!--                                                <div class="d-flex align-items-center">-->
+<!--                                                    <div class="form-group w-50">-->
+<!--                                                        <input-->
+<!--                                                            type="text"-->
+<!--                                                            class="form-control"-->
+<!--                                                        >-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="form-group row">-->
+<!--                                            <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">-->
+<!--                                                No. of Remaining Installments:</label>-->
+<!--                                            <div class="col-lg-9">-->
+<!--                                                <div class="d-flex align-items-center">-->
+<!--                                                    <div class="form-group w-50">-->
+<!--                                                        <input-->
+<!--                                                            type="text"-->
+<!--                                                            class="form-control"-->
+<!--                                                        >-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="form-group row">-->
+<!--                                            <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">-->
+<!--                                                Monthly Installment:</label>-->
+<!--                                            <div class="col-lg-9">-->
+<!--                                                <div class="d-flex align-items-center">-->
+<!--                                                    <div class="form-group w-50">-->
+<!--                                                        <input-->
+<!--                                                            type="text"-->
+<!--                                                            class="form-control"-->
+<!--                                                        >-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
                                     <div class="form-group row" v-if="purpose == PropertyPurpose.FOR_SALE && showPossessionOnSubTypes(subType)">
                                         <label
                                             class="col-lg-3 text-lg-right text-md-left line-height-9 letter-spacing font-weight-bold text-secondary text-2"
@@ -397,78 +397,78 @@
                                     </div>
 
                                     <!-- Rental Price Details -->
-                                    <div v-if="purpose == PropertyPurpose.FOR_RENT">
-                                        <div class="main_subheader">Rental Price Details</div>
+<!--                                    <div v-if="purpose == PropertyPurpose.FOR_RENT">-->
+<!--                                        <div class="main_subheader">Rental Price Details</div>-->
 
-                                        <div class="form-group row mt-4">
-                                            <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Minimum Contract Period:</label>
-                                            <div class="col-lg-9">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="d-flex align-items-center w-25 pr-2">
-                                                        <select class="form-control" >
-                                                            <option>1</option>
-                                                            <option>2</option>
-                                                            <option>3</option>
-                                                            <option>4</option>
-                                                            <option>5</option>
-                                                            <option>6</option>
-                                                            <option>7</option>
-                                                            <option>8</option>
-                                                            <option>9</option>
-                                                            <option>10</option>
-                                                            <option>11</option>
-                                                            <option>12</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="d-flex align-items-center w-25">
-                                                        <select class="form-control" >
-                                                            <option>Month</option>
-                                                            <option>Year</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Monthly Rent:</label>
-                                            <div class="col-lg-9">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="form-group w-50">
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                        >
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Security Deposit:</label>
-                                            <div class="col-lg-9">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="form-group w-50">
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                        >
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Advance Rent:</label>
-                                            <div class="col-lg-9">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="form-group w-50">
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                        >
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+<!--                                        <div class="form-group row mt-4">-->
+<!--                                            <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Minimum Contract Period:</label>-->
+<!--                                            <div class="col-lg-9">-->
+<!--                                                <div class="d-flex align-items-center">-->
+<!--                                                    <div class="d-flex align-items-center w-25 pr-2">-->
+<!--                                                        <select class="form-control" >-->
+<!--                                                            <option>1</option>-->
+<!--                                                            <option>2</option>-->
+<!--                                                            <option>3</option>-->
+<!--                                                            <option>4</option>-->
+<!--                                                            <option>5</option>-->
+<!--                                                            <option>6</option>-->
+<!--                                                            <option>7</option>-->
+<!--                                                            <option>8</option>-->
+<!--                                                            <option>9</option>-->
+<!--                                                            <option>10</option>-->
+<!--                                                            <option>11</option>-->
+<!--                                                            <option>12</option>-->
+<!--                                                        </select>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="d-flex align-items-center w-25">-->
+<!--                                                        <select class="form-control" >-->
+<!--                                                            <option>Month</option>-->
+<!--                                                            <option>Year</option>-->
+<!--                                                        </select>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="form-group row">-->
+<!--                                            <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Monthly Rent:</label>-->
+<!--                                            <div class="col-lg-9">-->
+<!--                                                <div class="d-flex align-items-center">-->
+<!--                                                    <div class="form-group w-50">-->
+<!--                                                        <input-->
+<!--                                                            type="text"-->
+<!--                                                            class="form-control"-->
+<!--                                                        >-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="form-group row">-->
+<!--                                            <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Security Deposit:</label>-->
+<!--                                            <div class="col-lg-9">-->
+<!--                                                <div class="d-flex align-items-center">-->
+<!--                                                    <div class="form-group w-50">-->
+<!--                                                        <input-->
+<!--                                                            type="text"-->
+<!--                                                            class="form-control"-->
+<!--                                                        >-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="form-group row">-->
+<!--                                            <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Advance Rent:</label>-->
+<!--                                            <div class="col-lg-9">-->
+<!--                                                <div class="d-flex align-items-center">-->
+<!--                                                    <div class="form-group w-50">-->
+<!--                                                        <input-->
+<!--                                                            type="text"-->
+<!--                                                            class="form-control"-->
+<!--                                                        >-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
                                     <div class="main_subheader mb-4">Property Title and Description</div>
                                     <div class="col-lg-9">
                                         <div class="form-group row mt-4">
@@ -516,9 +516,12 @@
                                     </div>
 
                                     <div class="main_subheader mb-4">Add Images</div>
-                                    <div class="col-lg-9">
+                                    <div class="col-lg-12">
                                         <div class="d-flex align-items-center">
                                            <button @click.prevent="openConfirmImageModal=true" class="btn btn-secondary border-0 text-white w-25 letter-uppercase">Add Images</button>
+                                        </div>
+                                        <div class="form-group w-100 px-3">
+                                            <upload-list :items="dataFiles" :itemsProgress="fileProgress"></upload-list>
                                         </div>
                                     </div>
                                     <div class="main_subheader mt-4"></div>
@@ -573,10 +576,11 @@ import {QuillEditor} from "@vueup/vue-quill";
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import propertyService from "../../services/propertyService";
 import router from "~/frontsite/router";
+import UploadList from "../../../admin/pages/dropzone/UploadList";
 
 export default {
     name: "AddProperty",
-    components: { QuillEditor,PropertyImagesModal},
+    components: {UploadList, QuillEditor,PropertyImagesModal},
     props:{
       slug:String
     },

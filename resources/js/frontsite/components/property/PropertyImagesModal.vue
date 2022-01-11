@@ -12,7 +12,7 @@
     >
         <div class="py-2 row">
             <div class="form-group col-10 offset-1">
-                <drop-zone v-model="dataFiles"></drop-zone>
+                <drop-zone v-model="dataFiles" :isMultiple="true"></drop-zone>
             </div>
         </div>
         <div class="py-2 row">

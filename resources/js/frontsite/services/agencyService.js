@@ -10,7 +10,6 @@ class AgencyService extends EventEmitter {
 
     async getAgencyUsersBySlug(slug) {
         try {
-            console.log(slug,"slug")
             const response = await appApi.get('/'+slug+'/agency/users');
             if (response.data.status === ApiResponse.SUCCESS) {
                 await store.dispatch('actionAgencyUsersBySlug', response.data.payload);

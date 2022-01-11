@@ -59,7 +59,7 @@
                                             </td>
                                             <td class="btn-group text-center font-w600 font-size-sm">
                                                 <router-link :to="{path:'/admin/edit/agency/'+agency.id}" class="btn btn-primary "><i class="fa fa-edit"></i></router-link>
-                                                <button @click="openDeleteModal(agency)" class="btn btn-danger mx-2"><i class="far fa-trash-alt"></i></button>
+                                                <button v-if="agency.users[index]?.id !== loggedInUserId" @click="openDeleteModal(agency)" class="btn btn-danger mx-2"><i class="far fa-trash-alt"></i></button>
                                                 <router-link :to="{path:'/admin/'+agency.id+'/users/'}" class="btn btn-info mx-2"><i class="far fa-eye"></i></router-link>
                                             </td>
                                         </tr>
@@ -99,19 +99,21 @@
 </template>
 
 <script>
-// import {updateUserData} from "../../composables/user";
+
 import {ref} from "vue";
 import AppModal from "../../components/ui/base/AppModal";
-import {ApiResponse} from "~/constants";
-import userService from "~/admin/services/userService";
+import {ApiResponse,UserRoles} from "~/constants";
 import {getAgencyList} from "~/admin/composables/agency";
 import {updateAgencyData} from "../../composables/agency";
 import agencyService from "../../services/agencyService";
+import auth from "../../services/authService";
+
 
 export default {
     name: "AgencyList",
     components: {AppModal},
     setup(props) {
+
         const openConfirmDeleteModal = ref(false);
         const openResponseModal = ref(false);
         const confirmationMessage = ref();
@@ -119,7 +121,7 @@ export default {
         const modalAgency = ref();
         const responseIcon = ref('');
         const agencies = getAgencyList();
-
+        const loggedInUserId = auth.user().id;
         function openDeleteModal(agency){
             modalAgency.value = agency;
             openConfirmDeleteModal.value = true;
@@ -146,7 +148,9 @@ export default {
             responseIcon,
             confirmationMessage,
             openResponseModal,
-            isConfirmButtonDisabled
+            isConfirmButtonDisabled,
+            UserRoles,
+            loggedInUserId,
         }
     },
 }

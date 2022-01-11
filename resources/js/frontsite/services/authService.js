@@ -17,8 +17,11 @@ class AuthService extends EventEmitter {
             if (response.data.status === ApiResponse.SUCCESS) {
                 toast.success("Registration Completed!");
                 await store.dispatch('actionAuthState', response.data.payload);
-                if(response.data.payload.user.roles[0].id !== UserRoles.SUPER_ADMIN)
-                    router.push({path: '/'+response.data.payload.user.agencies[0].slug});
+                // await store.dispatch('actionAgencyBySlug', response.data.payload.user.agencies[0]);
+                if(response.data.payload.user.roles[0].id !== UserRoles.SUPER_ADMIN) {
+                    store.dispatch('actionAgencyBySlug',response.data.payload.user.agencies[0])
+                    router.push({path: '/' + response.data.payload.user.agencies[0].slug});
+                }
             } else {
                 toast.error(response.data.message);
             }
@@ -36,8 +39,7 @@ class AuthService extends EventEmitter {
             if (response.data.status === ApiResponse.SUCCESS) {
                 console.log(response.data,"login success");
                 await store.dispatch('actionAuthState', response.data.payload);
-                await store.dispatch('actionAgencyBySlug', response.data.payload.user.agencies[0]);
-                if(response.data.payload.user.roles[0].id !== UserRoles.SUPER_ADMIN)
+                // if(response.data.payload.user.roles[0].id !== UserRoles.SUPER_ADMIN)
                 router.push({path: '/'+response.data.payload.user.agencies[0].slug});
             } else {
                 toast.error(response.data.message);

@@ -56,6 +56,9 @@ class AuthService extends EventEmitter {
         const roles = store.getters['getRoleIds'];
         return roles.some(v => userRoleIds.indexOf(v) >= 0);
     }
+    user() {
+        return store.getters['getProfile'];
+    }
     async handleLogout() {
         try {
             const response = await appApi.post('/logout');

@@ -38,7 +38,11 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="top-right-navs" v-if="isAuthenticated">
+                                <div class="top-right-navs d-flex" v-if="isAuthenticated">
+                                    <router-link v-if="route.fullPath !== routeAddProperty"
+                                                 class="btn btn-sm text-center" :to="{path:'/'+slug+'/add/property'}">
+                                        Add Property
+                                    </router-link>
                                     <div class="right-nav-links d-flex align-items-center">
                                         <ul class="list-unstyled">
                                             <li class="float-left px-2">
@@ -82,9 +86,11 @@
                                 <div class="top-right-navs" v-else>
                                     <div class="right-nav-links d-flex align-items-center">
                                         <ul class="list-unstyled">
-                                            <li class="float-left px-2"><router-link class="text-decoration-none right-navs"
-                                                                           :to="{path:'/login'}">LOGIN<span
-                                                style="font-size: 15px;">/</span>REGISTER</router-link>
+                                            <li class="float-left px-2">
+                                                <router-link class="text-decoration-none right-navs"
+                                                             :to="{path:'/login'}">LOGIN<span
+                                                    style="font-size: 15px;">/</span>REGISTER
+                                                </router-link>
                                             </li>
                                         </ul>
                                     </div>
@@ -110,13 +116,13 @@
                                                 <li class="px-3">
                                                     <router-link :to="{path: '/' + slug}"
                                                                  class="secondary-nav-li text-decoration-none  py-4 text-3"
-                                                                >Home
+                                                    >Home
                                                     </router-link>
                                                 </li>
                                                 <li class="px-3">
                                                     <router-link :to="{path: '/' + slug + '/properties'}"
                                                                  class="secondary-nav-li text-decoration-none py-4 text-3"
-                                                                >Properties
+                                                    >Properties
                                                     </router-link>
                                                 </li>
                                                 <li class="px-3">
@@ -155,7 +161,8 @@
                                                             <i class="fas fa-search px-1"></i>
                                                             Search
                                                         </a>
-                                                        <div class="dropdown-mega-menu " :class='{"d-block":stickySearchBar}'>
+                                                        <div class="dropdown-mega-menu "
+                                                             :class='{"d-block":stickySearchBar}'>
                                                             <div
                                                                 class="d-flex align-items-center justify-content-center mt-5 mb-5">
                                                                 <!-- 1st child select tag -->
@@ -742,11 +749,8 @@ import {getAllLocationsByCItyId} from "../../../composables/country";
 import {computed, ref, watchEffect, watch, onMounted, onUnmounted} from "vue";
 import Select2 from "vue3-select2-component";
 import store from "~/frontsite/store";
-import {useStore} from 'vuex';
-import _ from 'lodash';
 import {useRoute} from 'vue-router'
-import agencyService from "../../../services/agencyService";
-import {getAgencyBySlug} from "../../../composables/agency";
+import {fetchAgencyBySlug, getAgencyBySlug} from "../../../composables/agency";
 import {UserRoles} from "../../../../constants";
 
 export default {
@@ -758,32 +762,43 @@ export default {
         isAuthenticated: String,
     },
     setup(props) {
-
         const route = useRoute();
         const profile = computed(() => {
             return store.getters.getProfile ? store.getters.getProfile : null;
         });
-
-        const slug = computed(() => {
-            console.log('route.params.slug ',route.params)
-            return  route.params.slug && route.params.slug !=='' ? route.params.slug
+        // const slug = computed(() => {
+        //     console.log(route.params.slug,profile.value?.agencies[0].slug, 'from computed header hum1')
+        //     return route.params.slug && route.params.slug !== '' ? route.params.slug
+        //         : ((props.isAuthenticated) ? profile.value.agencies[0].slug
+        //             : store.getters.getDefaultAgencySlug)
+        // });
+        const slug = ref(null);
+        watch(()=>route.path,() => {
+            slug.value = route.params.slug && route.params.slug !== '' ? route.params.slug
                 : ((props.isAuthenticated) ? profile.value.agencies[0].slug
                     : store.getters.getDefaultAgencySlug)
-        });
-        console.log(' slug action slug', slug.value);
-        store.dispatch('actionCurrentAgencySlug', slug.value);
+            store.dispatch('actionCurrentAgencySlug', slug.value);
 
+        },{
+            deep:true,
+                immediate:true
+        });
+        const routeAddProperty = '/' + slug.value + '/add/property';
+        let agency = null;
+        watch(() => slug.value, (newSlug, oldSlug) => {
+            agency = getAgencyBySlug(newSlug);
+            fetchAgencyBySlug(newSlug);
+        },{
+            deep:true,
+            immediate:true
+        });
 
         const userName = computed(() => store.getters.getUserName, {
             onTrack(e) {
                 console.log('onTrack', e);
-                // triggered when count.value is tracked as a dependency
-                // debugger
             },
             onTrigger(e) {
                 console.log('onTrigger', e);
-                // triggered when count.value is mutated
-                //    debugger
             }
         });
         const options = getAllLocationsByCItyId(4);
@@ -793,8 +808,8 @@ export default {
         const model = ref();
         const stickySearchBar = ref(false);
 
-        function handleSearchBar(){
-            stickySearchBar.value = !stickySearchBar.value ;
+        function handleSearchBar() {
+            stickySearchBar.value = !stickySearchBar.value;
         }
 
         function openSearchDropDown() {
@@ -802,7 +817,7 @@ export default {
         }
 
         // getAgencyDataBySlug();
-        const agency = getAgencyBySlug(slug.value);
+
 
         // watchEffect(()=>{
         //     if(options.value){
@@ -860,7 +875,7 @@ export default {
             handleSearchBar,
             stickySearchBar,
             UserRoles,
-
+            routeAddProperty,
         }
     }
 }

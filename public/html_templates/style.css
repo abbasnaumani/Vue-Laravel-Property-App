@@ -979,7 +979,7 @@ body {
     top: 0 !important;
     height: 100% !important;
     opacity: 0 !important;
-    z-index: 3 !important;
+    z-index: 13 !important;
     cursor: pointer !important;
 }
 

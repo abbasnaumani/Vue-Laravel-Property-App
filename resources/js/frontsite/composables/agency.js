@@ -17,9 +17,7 @@ export const getAgencyUsersBySlug = (slug) => {
 }
 export const getAgencyBySlug = (slug) => {
     const agency = computed(() => {
-        return (store.getters.getAgencyBySlug)
-            ? store.getters.getAgencyBySlug(slug)
-            : null;
+        return store.getters.getAgencyBySlug(slug);
     });
     if (!agency.value) {
         agencyService.getAgencyBySlug(slug);
@@ -27,6 +25,11 @@ export const getAgencyBySlug = (slug) => {
     return agency;
 
 }
+
+export const fetchAgencyBySlug = (slug) => {
+    agencyService.getAgencyBySlug(slug);
+}
+
 export const getCurrentAgency = () => {
     return computed(()=> {
         return store.getters.getCurrentAgency;

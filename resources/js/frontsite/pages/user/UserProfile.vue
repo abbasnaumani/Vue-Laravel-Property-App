@@ -14,13 +14,14 @@
                     <div class="col-lg-3 mt-4 mt-lg-0">
                         <div class="d-flex justify-content-center mb-4">
                             <div class="profile-image-outer-container">
-                                <div class="profile-image-inner-container bg-color-primary">
-                                    <img src="/assets/images/user-profile.png" class="rounded-circle" height="210" width="210">
+                                <div class="profile-image-inner-container bg-color-primary ">
+                                    <img src="/assets/images/user-profile.png" class="rounded-circle  " height="210" width="210">
+<!--                                    <img :src="'/'+property.media[0].disk+'/'+property.media[0].directory+'/'+property.media[0].filename+'.'+property.media[0].extension" :alt="property.media[0].filename">-->
                                     <span class="profile-image-button bg-color-dark">
-                                    <i class="fas fa-camera text-light"></i>
-                                </span>
+                                        <i class="fas fa-camera text-light"></i>
+                                    </span>
                                 </div>
-<!--                                <drop-zone v-model="dataFiles"></drop-zone>-->
+                                <drop-zone v-model="dataFiles" class="form-control profile-image-input "></drop-zone>
 
                             </div>
                         </div>
@@ -261,15 +262,17 @@ import useVuelidate from "@vuelidate/core";
 import userService from "~/frontsite/services/userService";
 import auth from "~/frontsite/services/authService";
 import DropZone from "../../../admin/pages/dropzone/DropZone";
+import UploadList from "../../../admin/pages/dropzone/UploadList";
 
 export default {
     name: "UserProfile",
-    components: {DropZone},
+    components: {UploadList, DropZone},
     props:{
         slug:String
     },
     setup(props) {
         const dataFiles = ref([]);
+        const fileProgress = ref([]);
         const profileData = ref({
             user_email:auth.user().email,
             phone_number:auth.user().phone_number,
@@ -338,6 +341,7 @@ export default {
         return {
             v$,
             dataFiles,
+            fileProgress,
             profileData,
             passwordData,
             updateUserProfile,
@@ -352,4 +356,5 @@ export default {
 .cursor-not-allowed {
     cursor: not-allowed;
 }
+
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div class="dropzone">
-        <input type="file" id="dropzone-file" class="dropzone-file" multiple accept="image/*"
+        <input type="file" id="dropzone-file" class="dropzone-file" :multiple="isMultiple" accept="image/*"
                ref="dropzoneFile" @change="handleFiles">
         <div class="dropzone-wrapper" @dragenter.prevent="" @dragover.prevent=""
              @drop.prevent="handleFiles">
@@ -28,7 +28,7 @@
 <script>
 export default {
     name: "DropZone",
-    props: ['modelValue'],
+    props: ['modelValue', 'isMultiple'],
     emits: ['update:modelValue', 'newFile'],
     data() {
         return {
