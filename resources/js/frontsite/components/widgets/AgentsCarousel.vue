@@ -4,14 +4,14 @@
             <div class="card card-crousel mt-2" style="width:100%;height: 330px;">
                 <div class="card-body">
                     <h4 class="text-white text-center letter-spacing font-weight-bold mt-3">Our Agents</h4>
-                    <div id="demo" class="carousel slide mt-4" data-ride="carousel">
+                    <div id="agentCarosuel" class="carousel slide mt-4" data-ride="carousel">
 
                         <!-- Indicators -->
                         <ul class="carousel-indicators circle">
-                            <li data-target="#demo" data-slide-to="0" class="active test">
+                            <li data-target="#agentCarosuel" data-slide-to="0" class="active test">
                             </li>
-                            <li data-target="#demo" data-slide-to="1" class="test"></li>
-                            <li data-target="#demo" data-slide-to="2" class="test"></li>
+                            <li data-target="#agentCarosuel" data-slide-to="1" class="test"></li>
+                            <li data-target="#agentCarosuel" data-slide-to="2" class="test"></li>
                         </ul>
 
                         <!-- The slideshow -->

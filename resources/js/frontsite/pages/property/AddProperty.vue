@@ -576,7 +576,7 @@ import {QuillEditor} from "@vueup/vue-quill";
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import propertyService from "../../services/propertyService";
 import router from "~/frontsite/router";
-import UploadList from "../../../admin/pages/dropzone/UploadList";
+import UploadList from "../../../frontsite/pages/dropzone/UploadList";
 
 export default {
     name: "AddProperty",

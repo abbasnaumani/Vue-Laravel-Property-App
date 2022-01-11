@@ -30,37 +30,37 @@
                                         <tr class="text-center">
                                             <th class="col-1">ID</th>
                                             <th class="col-1">Name</th>
-                                            <th class="col-2 d-none d-sm-table-cell">Email</th>
-                                            <th class="col-2 d-none d-sm-table-cell">Phone Number</th>
-                                            <th class="col-3">Address</th>
+                                            <th class="col-2">Email</th>
+                                            <th class="col-1">Phone Number</th>
+                                            <th class="col-2">Address</th>
                                             <th class="col-1">Active</th>
-                                            <th class="col-1">Registered on</th>
-                                            <th class="col-1">Actions</th>
+                                            <th class="col-2">Registered on</th>
+                                            <th class="col-2">Actions</th>
                                         </tr>
                                         </thead>
                                         <tbody v-if="agencies && agencies.length > 0">
-                                        <tr v-for="(agency,index) in agencies" :key="index">
-                                            <td class="text-center font-size-sm">{{ agency.id }}</td>
-                                            <td class="font-w600 font-size-sm">{{ agency.name }}
+                                        <tr v-for="(agency,index) in agencies" :key="index" class="text-center">
+                                            <td class="font-w600 col-1 font-size-sm">{{ agency.id }}</td>
+                                            <td class="font-w600 col-1 font-size-sm">{{ agency.name }}
                                             </td>
-                                            <td class="d-none d-sm-table-cell font-size-sm">
+                                            <td class="font-w600 col-2 font-size-sm">
                                                 <em class="text-muted">{{ agency.email }}</em>
                                             </td>
-                                            <td class="font-w600 font-size-sm">{{ agency.phone_number }}
+                                            <td class="font-w600 col-1 font-size-sm">{{ agency.phone_number }}
                                             </td>
-                                            <td class="font-w600 font-size-sm">{{ agency.address }}
+                                            <td class="font-w600 col-2 font-size-sm">{{ agency.address }}
                                             </td>
-                                            <td class="d-none d-sm-table-cell">
+                                            <td class="font-w600 col-1 font-size-sm">
                                                 <span class="badge badge-primary">{{ (agency.is_active == 1)?  'Yes' : 'No' }}</span>
                                             </td>
-                                            <td>
-                                                <em class="text-muted font-size-sm">
+                                            <td class="font-w600 col-2 font-size-sm">
+                                                <em class="text-muted">
                                                     {{(agency.created_at) ? agency.created_at : ''}} </em>
                                             </td>
-                                            <td class="btn-group text-center font-w600 font-size-sm">
-                                                <router-link :to="{path:'/admin/edit/agency/'+agency.id}" class="btn btn-primary "><i class="fa fa-edit"></i></router-link>
-                                                <button v-if="agency.users[index]?.id !== loggedInUserId" @click="openDeleteModal(agency)" class="btn btn-danger mx-2"><i class="far fa-trash-alt"></i></button>
-                                                <router-link :to="{path:'/admin/'+agency.id+'/users/'}" class="btn btn-info mx-2"><i class="far fa-eye"></i></router-link>
+                                            <td class="font-w600 col-2 font-size-sm">
+                                                <router-link :to="{path:'/admin/edit/agency/'+agency.id}" class="btn btn-primary mx-1"><i class="fa fa-edit"></i></router-link>
+                                                <button @click="openDeleteModal(agency)" class="btn btn-danger mx-1"><i class="far fa-trash-alt"></i></button>
+                                                <router-link :to="{path:'/admin/'+agency.id+'/users/'}" class="btn btn-info mx-1"><i class="far fa-eye"></i></router-link>
                                             </td>
                                         </tr>
                                         </tbody>

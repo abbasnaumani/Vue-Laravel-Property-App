@@ -1009,7 +1009,8 @@ body {
     color: var(--ks-bg-primary-color);
 }
 
-input[type="radio"],input[type="checkbox"] {
+input[type="radio"],
+input[type="checkbox"] {
     box-sizing: border-box;
     appearance: none;
     border: 1px solid rgb(204, 204, 204);
@@ -1018,7 +1019,8 @@ input[type="radio"],input[type="checkbox"] {
     height: 15px;
 }
 
-input[type="radio"]:checked ,input[type="checkbox"]:checked{
+input[type="radio"]:checked,
+input[type="checkbox"]:checked {
     background-image: url("/assets/images/tick.png") !important;
     width: 30px;
     height: 30px;
@@ -1193,7 +1195,6 @@ input[type="radio"]:checked ,input[type="checkbox"]:checked{
 .test-fancy:hover::before {
     width: 100%;
 }
-
 
 .button-carosuaol {
     display: inline-block;

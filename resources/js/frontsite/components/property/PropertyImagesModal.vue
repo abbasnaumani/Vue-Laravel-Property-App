@@ -5,7 +5,7 @@
         cancelLabel="Cancel"
         title="Confirm Property Images"
         icon="warning"
-        modalClass="modal-lg"
+        modalClass="modal-lg w-100"
         :isConfirmButtonDisabled="isConfirmButtonDisabled"
         v-on:confirm="modalConfirmPropertyImage"
         v-on:cancel="$emit('cancel')"
@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="py-2 row">
-            <div class="form-group w-100 px-3">
+            <div class="form-group w-100 pr-5">
                 <upload-list :items="dataFiles" :itemsProgress="fileProgress"></upload-list>
             </div>
         </div>
