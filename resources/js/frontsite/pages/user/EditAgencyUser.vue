@@ -6,9 +6,9 @@
                     <h4 class="login-text text-capitalize letter-spacing">Adding User to Agency</h4>
                 </div>
             </div>
-            <div class="card-body text-left">
+            <div class="card-body text-left" v-if="userData">
                 <form>
-                    <div class="row">
+                    <div class="row" >
                         <div class="form-group col">
                             <label class="form-label">First Name</label>
                             <div class="position-relative">
@@ -17,14 +17,14 @@
                                     type="text"
                                     class="pl-5 form-control form-control-lg font-italic text-3"
                                     id="first_name"
-                                    v-model="firstName"
+                                    v-model="userData.first_name"
                                     placeholder="First Name"
-                                    @blur="v$.firstName.$touch()"
+                                    @blur="v$.userData.first_name.$touch()"
                                 />
                             </div>
                             <div class="text-left">
-                                <div v-if="v$.firstName.$dirty">
-                                    <sub v-if="v$.firstName.$error"
+                                <div v-if="v$.userData.first_name.$dirty">
+                                    <sub v-if="v$.userData.first_name.$error"
                                          class="px-2 py-2 text-danger">
                                         First Name is Required
                                     </sub>
@@ -41,14 +41,14 @@
                                     type="text"
                                     class="pl-5 form-control form-control-lg font-italic text-3"
                                     id="last_name"
-                                    v-model="lastName"
+                                    v-model="userData.last_name"
                                     placeholder="Last Name"
-                                    @blur="v$.lastName.$touch()"
+                                    @blur="v$.userData.last_name.$touch()"
                                 />
                             </div>
                             <div class="text-left">
-                                <div v-if="v$.lastName.$dirty">
-                                    <sub v-if="v$.lastName.$error"
+                                <div v-if="v$.userData.last_name.$dirty">
+                                    <sub v-if="v$.userData.last_name.$error"
                                          class="px-2 py-2 text-danger">
                                         Last Name is Required
                                     </sub>
@@ -65,14 +65,14 @@
                                     type="email"
                                     class="pl-5 form-control form-control-lg font-italic text-3"
                                     id="email"
-                                    v-model="userEmail"
+                                    v-model="userData.email"
                                     placeholder="Email"
-                                    @blur="v$.userEmail.$touch()"
+                                    @blur="v$.userData.email.$touch()"
                                 />
                             </div>
                             <div class="text-left">
-                                <div v-if="v$.userEmail.$dirty">
-                                    <sub v-if="v$.userEmail.$error"
+                                <div v-if="v$.userData.email.$dirty">
+                                    <sub v-if="v$.userData.email.$error"
                                          class="px-2 py-2 text-danger">
                                         Please enter a valid Email address
                                     </sub>
@@ -87,18 +87,18 @@
                                 <i class="fal fa-user position-absolute p-3 text-primary"></i>
                                 <select id="assign-role"
                                         class="pl-5 form-control form-control-lg font-italic text-3"
-                                        v-model="roleId"
+                                        v-model="userData.roles[0].id"
                                 >
-                                    <option v-for="role in roles" :value="role.id" :selected="role.id===roleId">{{role.name}}</option>
+                                    <option v-for="role in roles" :value="role.id" :selected="role.id===userData.roles?.[0].id">{{role.name}}</option>
                                 </select>
-                                <div class="text-left">
-                                    <div v-if="v$.roleId.$dirty">
-                                        <sub v-if="v$.roleId.$error"
-                                             class="px-2 py-2 text-danger">
-                                            Role Assigning Required
-                                        </sub>
-                                    </div>
-                                </div>
+<!--                                <div class="text-left">-->
+<!--                                    <div v-if="v$.roleId.$dirty">-->
+<!--                                        <sub v-if="v$.roleId.$error"-->
+<!--                                             class="px-2 py-2 text-danger">-->
+<!--                                            Role Assigning Required-->
+<!--                                        </sub>-->
+<!--                                    </div>-->
+<!--                                </div>-->
                             </div>
                         </div>
                     </div>
@@ -111,14 +111,14 @@
                                     type="tel"
                                     class="pl-5 form-control form-control-lg font-italic text-3"
                                     id="phone"
-                                    v-model="phoneNumber"
-                                    @blur="v$.phoneNumber.$touch()"
+                                    v-model="userData.phone_number"
+                                    @blur="v$.userData.phone_number.$touch()"
                                     placeholder="Phone Number"
                                 />
                             </div>
                             <div class="text-left">
-                                <div v-if="v$.phoneNumber.$dirty">
-                                    <sub v-if="v$.phoneNumber.$error"
+                                <div v-if="v$.userData.phone_number.$dirty">
+                                    <sub v-if="v$.userData.phone_number.$error"
                                          class="px-2 py-2 text-danger">
                                         Phone Number is Required
                                     </sub>
@@ -131,13 +131,13 @@
                             <button type="submit"
                                     class="btn btn-primary text-white btn-modern test-fancy border-0 btn-color cursor-not-allowed"
                                     v-if="v$.$invalid" disabled>
-                                <i class="fal fa-fw fa-sign-in-alt mr-1"></i>Submit
+                                <i class="fal fa-fw fa-sign-in-alt mr-1"></i>Update
                             </button>
-                            <button v-else @click.prevent="handleAddAgencyUser"
+                            <button v-else @click.prevent="handleUpdateAgencyUser"
                                     type="submit"
                                     class="btn btn-primary text-white btn-modern test-fancy border-0 btn-color"
                             >
-                                <i class="fal fa-fw fa-sign-in-alt mr-1"></i>Submit
+                                <i class="fal fa-fw fa-sign-in-alt mr-1"></i>Update
                             </button>
                         </div>
                     </div>
@@ -152,21 +152,16 @@ import {computed, ref, watch} from "vue";
 import {email, required} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
 import userService from "../../services/userService";
-import {getAllRoles} from "../../composables/user";
-import auth from "../../services/authService";
+import {getAgencyUserById, getAllRoles} from "../../composables/user";
 import {UserRoles} from "../../../constants";
 
 export default {
-    name: "AddAgencyUser",
+    name: "EditAgencyUser",
     props:{
-        slug:String
+        slug:String,
+        userId:Number
     },
     setup(props){
-        const firstName = ref('');
-        const lastName = ref('');
-        const userEmail = ref('');
-        const phoneNumber = ref('');
-        const roleId = ref(3);
         const rolesData = getAllRoles();
         const roles = ref();
         watch(rolesData,()=>{
@@ -179,51 +174,46 @@ export default {
             deep:true,
             immediate:true
         });
-
-        const handleAddAgencyUser = () => {
-            userService.handleAddAgencyUser({
-                email: userEmail.value,
-                phone_number: phoneNumber.value,
-                first_name: firstName.value,
-                last_name: lastName.value,
-                role_id: roleId.value,
-                agency_id: auth.user()?.agencies?.[0].id
-            });
+        const userData = getAgencyUserById(props.userId);
+        const handleUpdateAgencyUser = () => {
+            userService.handleUpdateAgencyUser({
+                email: userData.value.email,
+                phone_number: userData.value.phone_number,
+                first_name: userData.value.first_name,
+                last_name: userData.value.last_name,
+                role_id: userData.value.roles?.[0].id,
+            },props.userId);
         }
 
         const validationRules = computed(() => {
             return {
-                userEmail: {
-                    required,
-                    email
+                userData:{
+                    email: {
+                        required,
+                        email
+                    },
+                    first_name: {
+                        required
+                    },
+                    last_name: {
+                        required
+                    },
+                    phone_number: {
+                        required
+                    },
                 },
-                firstName: {
-                    required
-                },
-                lastName: {
-                    required
-                },
-                phoneNumber: {
-                    required
-                },
-                roleId: {
-                    required
-                },
+
             }
         });
         const v$ = useVuelidate(
             validationRules,
-            {userEmail, lastName, firstName, phoneNumber,roleId}
+            {userData}
         );
         return {
             v$,
-            firstName,
-            lastName,
-            userEmail,
-            phoneNumber,
-            handleAddAgencyUser,
+            userData,
+            handleUpdateAgencyUser,
             roles,
-            roleId
         }
     }
 }

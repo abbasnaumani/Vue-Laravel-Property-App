@@ -14,7 +14,18 @@ export const getAgencyUsersList = () => {
     return users;
 
 }
-export const updateUserData = () => {
+export const getAgencyUserById = (userId) => {
+    const user = computed(() => {
+        return (store.getters.getAgencyUserById)
+            ? store.getters.getAgencyUserById(userId)
+            : null;
+    });
+    if (!user.value) {
+        userService.getAgencyUsersList();
+    }
+    return user;
+}
+export const updateUserData = () => {  // not use
     userService.getAgencyUsersList();
 }
 export const getAllRoles = () => {

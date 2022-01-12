@@ -5,12 +5,13 @@ import {useToast} from "vue-toastification";
 import router from "~/frontsite/router";
 const toast = useToast();
 import store from "../store";
+import agencyService from "../../admin/services/agencyService";
 
 class UserService extends EventEmitter {
     async getAgencyUsersList() {
         try {
             const response = await appApi.get('/user/list');
-                toast.success(response.data.message);
+                // toast.success(response.data.message);
                 await store.dispatch('actionUsers', response.data.payload);
         } catch (err) {
             console.log(err, "err err")
@@ -21,7 +22,7 @@ class UserService extends EventEmitter {
     async getAllRoles() {
         try {
             const response = await appApi.get('/roles');
-                toast.success(response.data.message);
+                // toast.success(response.data.message);
                 await store.dispatch('actionRoles', response.data.payload);
         } catch (err) {
             console.log(err, "err err")
@@ -41,7 +42,18 @@ class UserService extends EventEmitter {
             toast.error(error.message);
         }
     }
-
+    async handleUpdateAgencyUser(userData,userId) {
+        try {
+            const response = await appApi.put('/user/'+userId,userData);
+            toast.success(response.data.message);
+            await this.getAgencyUsersList()
+            router.push({name: 'user-list'});
+        } catch (err) {
+            console.log(err, "err err")
+            const error = await errorHandlerService.errors.index(err);
+            toast.error(error.message);
+        }
+    }
     async handleUserChat(data){
         try {
             console.log(data,"Asdsadas");
@@ -56,8 +68,9 @@ class UserService extends EventEmitter {
     }
     async deleteUser(userId){
         try {
-            const response = await appApi.delete('/users/'+userId);
+            const response = await appApi.delete('/user/'+userId);
                 toast.success(response.data.message, );
+                await this.getAgencyUsersList()
                 return response.data;
         } catch (err) {
             console.log(err, "err err")

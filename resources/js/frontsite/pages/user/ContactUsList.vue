@@ -15,8 +15,8 @@
                         <th class="col-2">Email</th>
                         <th class="col-1">Phone Number</th>
                         <th class="col-1">Contact On</th>
-                        <th class="col-2">Message</th>
-                        <th class="col-3">Actions</th>
+                        <th class="col-3">Message</th>
+                        <th class="col-2">Actions</th>
                     </tr>
                     </thead>
                     <tbody v-if="contactUs && contactUs.length > 0">
@@ -36,19 +36,19 @@
                         <td class="font-w600 col-1 font-size-sm">
                             <em class="text-muted"> {{(contact.created_at) ? (contact.created_at)  : ''}}</em>
                         </td>
-                        <td class="font-w600 col-2 font-size-sm">
+                        <td class="font-w600 col-3 font-size-sm">
                             {{ contact.message }}
                         </td>
-                        <td class="font-w600 col-3 font-size-sm">
-                            <a href="#" class="btn btn-primary mx-1">
-                                <i class="fa fa-reply"></i>
-                            </a>
+                        <td class="font-w600 col-2 font-size-sm">
+<!--                            <a href="#" class="btn btn-primary mx-1">-->
+<!--                                <i class="fa fa-reply"></i>-->
+<!--                            </a>-->
                             <button @click="openDeleteModal(contact)" class="btn btn-danger mx-1">
                                 <i class="far fa-trash-alt"></i>
                             </button>
-                            <button  class="btn btn-info mx-1">
-                                <i class="far fa-eye"></i>
-                            </button>
+<!--                            <button  class="btn btn-info mx-1">-->
+<!--                                <i class="far fa-eye"></i>-->
+<!--                            </button>-->
                         </td>
                     </tr>
                     </tbody>

@@ -54,9 +54,9 @@
                                             <td class="font-w600 col-1 font-size-sm">   <span class="badge badge-primary">{{ contact.agency?.name }}</span>
                                             </td>
                                             <td class="font-w600 col-2 font-size-sm">
-                                                <router-link :to="{path:'/admin/edit/agency/'+contact.id}" class="btn btn-primary mx-1"><i class="fa fa-reply"></i></router-link>
+<!--                                                <router-link :to="{path:'/admin/edit/agency/'+contact.id}" class="btn btn-primary mx-1"><i class="fa fa-reply"></i></router-link>-->
                                                 <button @click="openDeleteModal(contact)" class="btn btn-danger mx-1"><i class="far fa-trash-alt"></i></button>
-                                                <button @click.prevent="showMessage(contact)" class="btn btn-info mx-1"><i class="fa fa-arrow-circle-down"></i></button>
+<!--                                                <button @click.prevent="showMessage(contact)" class="btn btn-info mx-1"><i class="fa fa-arrow-circle-down"></i></button>-->
                                             </td>
 
                                         </tr>
@@ -114,10 +114,10 @@ export default {
         const contactMessage = ref(null);
         const contactUsData = getAllContactUsData();
 
-        function showMessage(contact){
-            contactMessage.value = contact.message;
-            messageBox.value = !messageBox.value;
-        }
+        // function showMessage(contact){
+        //     contactMessage.value = contact.message;
+        //     messageBox.value = !messageBox.value;
+        // }
         function openDeleteModal(contact){
             modalContactUs.value = contact;
             openConfirmDeleteModal.value = true;
@@ -144,7 +144,6 @@ export default {
             contactUsData,
             openDeleteModal,
             modalConfirmDelete,
-            showMessage,
             messageBox,
             contactMessage
         }

@@ -8,7 +8,10 @@ const getters = {
     },
     getAllRoles(state){
         return state.roles
-    }
+    },
+    getAgencyUserById:(state) => (userId) =>{
+      return state.users !==null ? state.users.find(user => user.id == userId) : null;
+    },
 }
 const mutations = {
     mutateUsers(state, users) {

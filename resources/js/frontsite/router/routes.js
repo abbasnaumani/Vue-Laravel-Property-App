@@ -60,6 +60,13 @@ export default [{
         props: ({params}) => ({slug: params.slug || ''}),
     },
     {
+        path: '/:slug/edit/user/:userId',
+        name: 'edit-agency-user',
+        meta: {public: true, meta_title: 'Edit User'},
+        component: page('user/EditAgencyUser'),
+        props: ({params}) => ({slug: params.slug || '', userId: params.userId || 0}),
+    },
+    {
         path: '/:slug/contactus/list',
         name: 'contact-us-list',
         meta: {public: true, meta_title: 'Contact Us List'},

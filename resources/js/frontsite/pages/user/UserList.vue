@@ -4,7 +4,7 @@
             <div class="card-header bg-white border-bottom-0 mt-3">
                 <div class="d-flex justify-content-between align-items-center">
                     <h4 class="login-text text-uppercase letter-spacing">Users</h4>
-                    <router-link to="/signup"
+                    <router-link :to="{path:'/'+slug+'/add/user'}"
                                  class="float-end btn btn-primary">
                         Add
                     </router-link>
@@ -17,96 +17,120 @@
 							<th class="col-1">Id</th>
 							<th class="col-2">Name</th>
 							<th class="col-2">Email</th>
-							<th class="col-1">Phone Number</th>
+							<th class="col-2">Phone Number</th>
                             <th class="col-1">Access</th>
                             <th class="col-2">Registered On</th>
-                            <th colspan="2" class="col-3">Actions</th>
+                            <th class="col-2">Actions</th>
 						</tr>
 					</thead>
-					<tbody>
-                    {{ agencyUsers }}
-						<tr class="text-center">
+					<tbody v-if="agencyUsers && agencyUsers.length > 0">
+                    	<tr class="text-center" v-for="user in agencyUsers">
 							<td class="font-w600 col-1 font-size-sm">
-								1
+                                {{ user.id }}
 							</td>
 							<td class="font-w600 col-2 font-size-sm">
-								test
+                                {{ user.first_name+' '+user.last_name }}
 							</td>
 							<td class="font-w600 col-2 font-size-sm">
-								<em class="text-muted">test@gmail.com</em>
+								<em class="text-muted">{{ user.email }}</em>
 							</td>
-							<td class="font-w600 col-1 font-size-sm">
-								1234567890
+							<td class="font-w600 col-2 font-size-sm">
+                                {{ user.phone_number }}
 							</td>
                             <td class="font-w600 col-1 font-size-sm">
-                                <span class="badge badge-primary">Agency Admin</span>
+                                <span class="badge badge-primary">{{ user.roles[0].name }}</span>
 							</td>
                             <td class="font-w600 col-2 font-size-sm">
-								<em class="text-muted">2022-01-03T12:27:25.000000Z</em>
+								<em class="text-muted">{{ user.created_at }}</em>
 							</td>
-                            <td class="font-w600 col-3 font-size-sm">
-								<a href="#" class="btn btn-primary mx-1">
+                            <td class="font-w600 col-2 font-size-sm">
+								<router-link :to="{path:'/'+slug+'/edit/user/'+user.id}" class="btn btn-primary mx-1">
 									<i class="fa fa-edit"></i>
-								</a>
-								<button class="btn btn-danger mx-1">
+								</router-link>
+								<button @click="openDeleteModal(user)" class="btn btn-danger mx-1">
 									<i class="far fa-trash-alt"></i>
 								</button>
-								<a href="#" class="btn btn-info mx-1">
-									<i class="far fa-eye"></i>
-								</a>
-							</td>
-						</tr>
-						<tr class="text-center">
-							<td class="font-w600 col-1 font-size-sm">
-								1
-							</td>
-							<td class="font-w600 col-2 font-size-sm">
-								test
-							</td>
-							<td class="font-w600 col-2 font-size-sm">
-								<em class="text-muted">test@gmail.com</em>
-							</td>
-							<td class="font-w600 col-1 font-size-sm">
-								1234567890
-							</td>
-                            <td class="font-w600 col-1 font-size-sm">
-                                <span class="badge badge-primary">Agency Admin</span>
-							</td>
-                            <td class="font-w600 col-2 font-size-sm">
-								<em class="text-muted">2022-01-03T12:27:25.000000Z</em>
-							</td>
-                            <td class="font-w600 col-3 font-size-sm">
-								<a href="#" class="btn btn-primary mx-1">
-									<i class="fa fa-edit"></i>
-								</a>
-                                <button class="btn btn-danger mx-1">
-                                    <i class="far fa-trash-alt"></i>
-                                </button>
-								<a href="#" class="btn btn-info mx-1">
-									<i class="far fa-eye"></i>
-								</a>
 							</td>
 						</tr>
 					</tbody>
+                    <tbody v-else>
+                    <p class="d-flex justify-content-center text-center">No Record Found</p>
+                    </tbody>
 				</table>
             </div>
         </div>
     </div>
+    <app-modal :open="openConfirmDeleteModal"
+               confirmLabel="Delete Agency?"
+               cancelLabel="Cancel"
+               title="Confirm Delete Agency"
+               icon="warning"
+               :isConfirmButtonDisabled="isConfirmButtonDisabled"
+               v-on:confirm="modalConfirmDelete(modalUser)"
+               v-on:cancel="openConfirmDeleteModal=false">
+        <div>
+            <p>Are you sure you want to delete user </p><p class="mt-2 font-bold">{{modalUser.first_name+' '+modalUser.last_name}}</p>
+        </div>
+    </app-modal>
+    <app-modal :open="openResponseModal"
+               confirmLabel="OK"
+               title="Results"
+               :description="confirmationMessage"
+               :icon="responseIcon"
+               v-on:confirm="openResponseModal=false">
+    </app-modal>
 </template>
 
 <script>
-import {computed, ref} from "vue";
+
 import {getAgencyUsersList} from "../../composables/user";
+import AppModal from "~/frontsite/components/ui/base/AppModal";
+import {ref} from "vue";
+import contactUsService from "../../services/contactUsService";
+import {ApiResponse} from "../../../constants";
+import userService from "../../services/userService";
 
 export default {
     name: "UserList",
+    components: {AppModal},
     props:{
         slug:String
     },
     setup(props) {
+        const openConfirmDeleteModal = ref(false);
+        const openResponseModal = ref(false);
+        const confirmationMessage = ref();
+        const isConfirmButtonDisabled = ref(false);
+        const modalUser = ref('');
+        const responseIcon = ref('');
         const agencyUsers = getAgencyUsersList();
+
+        function openDeleteModal(user){
+            modalUser.value = user;
+            openConfirmDeleteModal.value = true;
+        }
+        async function modalConfirmDelete(user) {
+            isConfirmButtonDisabled.value = true;
+            let response = await userService.deleteUser(user.id);
+            showResponseModal(response);
+        }
+        function showResponseModal({message, status}) {
+            openConfirmDeleteModal.value = false;
+            isConfirmButtonDisabled.value = false;
+            confirmationMessage.value = message ?? '';
+            openResponseModal.value = true;
+            responseIcon.value = status === ApiResponse.SUCCESS ? 'success' : 'warning';
+        }
         return {
-            agencyUsers
+            openConfirmDeleteModal,
+            openResponseModal,
+            confirmationMessage,
+            isConfirmButtonDisabled,
+            modalUser,
+            responseIcon,
+            agencyUsers,
+            openDeleteModal,
+            modalConfirmDelete
         }
     }
 }
