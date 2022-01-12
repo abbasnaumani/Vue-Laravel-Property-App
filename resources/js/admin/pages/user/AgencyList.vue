@@ -59,7 +59,7 @@
                                             </td>
                                             <td class="font-w600 col-2 font-size-sm">
                                                 <router-link :to="{path:'/admin/edit/agency/'+agency.id}" class="btn btn-primary mx-1"><i class="fa fa-edit"></i></router-link>
-                                                <button @click="openDeleteModal(agency)" class="btn btn-danger mx-1"><i class="far fa-trash-alt"></i></button>
+                                                <button v-if="agency.users?.[index]?.roles?.[0].id!== UserRoles.SUPER_ADMIN" @click="openDeleteModal(agency)" class="btn btn-danger mx-1"><i class="far fa-trash-alt"></i></button>
                                                 <router-link :to="{path:'/admin/'+agency.id+'/users/'}" class="btn btn-info mx-1"><i class="far fa-eye"></i></router-link>
                                             </td>
                                         </tr>

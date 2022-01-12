@@ -381,20 +381,20 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
-                                        <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Lising Expiry:</label>
-                                        <div class="col-lg-9">
-                                             <div class="d-flex align-items-center">
-                                                <div class="d-flex align-items-center w-50">
-                                                    <select class="form-control" >
-                                                        <option>1 Month</option>
-                                                        <option>3 Month</option>
-                                                        <option>6 Month</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+<!--                                    <div class="form-group row">-->
+<!--                                        <label class="col-lg-3 text-lg-right text-md-left letter-spacing font-weight-bold text-secondary text-2">Lising Expiry:</label>-->
+<!--                                        <div class="col-lg-9">-->
+<!--                                             <div class="d-flex align-items-center">-->
+<!--                                                <div class="d-flex align-items-center w-50">-->
+<!--                                                    <select class="form-control" >-->
+<!--                                                        <option>1 Month</option>-->
+<!--                                                        <option>3 Month</option>-->
+<!--                                                        <option>6 Month</option>-->
+<!--                                                    </select>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
 
                                     <!-- Rental Price Details -->
 <!--                                    <div v-if="purpose == PropertyPurpose.FOR_RENT">-->
