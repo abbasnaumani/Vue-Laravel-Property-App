@@ -111,9 +111,10 @@
                                     type="tel"
                                     class="pl-5 form-control form-control-lg font-italic text-3"
                                     id="phone"
-                                    v-model="phoneNumber"
+                                    v-model.number="phoneNumber"
                                     @blur="v$.phoneNumber.$touch()"
                                     placeholder="Phone Number"
+                                    oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');"
                                 />
                             </div>
                             <div class="text-left">

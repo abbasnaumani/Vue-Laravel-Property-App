@@ -108,7 +108,7 @@ export default {
         }
         async function modalConfirmDelete(contact) {
             isConfirmButtonDisabled.value = true;
-            let response = await contactUsService.deleteContactUsMessage(contact.id);
+            let response = await contactUsService.deleteContactUsMessage(contact.id,props.slug);
             showResponseModal(response);
         }
         function showResponseModal({message, status}) {

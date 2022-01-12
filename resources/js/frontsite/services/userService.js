@@ -1,7 +1,7 @@
 import EventEmitter from "events";
 import appApi from "../../api";
 import errorHandlerService from "~/frontsite/services/errorHandlerService";
-import {useToast} from "vue-toastification";
+import { useToast } from "vue-toastification";
 import router from "~/frontsite/router";
 const toast = useToast();
 import store from "../store";
@@ -11,8 +11,8 @@ class UserService extends EventEmitter {
     async getAgencyUsersList() {
         try {
             const response = await appApi.get('/user/list');
-                // toast.success(response.data.message);
-                await store.dispatch('actionUsers', response.data.payload);
+            // toast.success(response.data.message);
+            await store.dispatch('actionUsers', response.data.payload);
         } catch (err) {
             console.log(err, "err err")
             const error = await errorHandlerService.errors.index(err);
@@ -22,8 +22,8 @@ class UserService extends EventEmitter {
     async getAllRoles() {
         try {
             const response = await appApi.get('/roles');
-                // toast.success(response.data.message);
-                await store.dispatch('actionRoles', response.data.payload);
+            // toast.success(response.data.message);
+            await store.dispatch('actionRoles', response.data.payload);
         } catch (err) {
             console.log(err, "err err")
             const error = await errorHandlerService.errors.index(err);
@@ -32,32 +32,33 @@ class UserService extends EventEmitter {
     }
     async handleAddAgencyUser(agencyUserData) {
         try {
-            const response = await appApi.post('/user/add',agencyUserData);
-                toast.success(response.data.message);
-                // await store.dispatch('setUsers', response.data.payload);
-                router.push({name: 'user-list'});
-        } catch (err) {
-            console.log(err, "err err")
-            const error = await errorHandlerService.errors.index(err);
-            toast.error(error.message);
-        }
-    }
-    async handleUpdateAgencyUser(userData,userId) {
-        try {
-            const response = await appApi.put('/user/'+userId,userData);
+            const response = await appApi.post('/user/add', agencyUserData);
             toast.success(response.data.message);
             await this.getAgencyUsersList()
-            router.push({name: 'user-list'});
+                // await store.dispatch('setUsers', response.data.payload);
+            router.push({ name: 'user-list' });
         } catch (err) {
             console.log(err, "err err")
             const error = await errorHandlerService.errors.index(err);
             toast.error(error.message);
         }
     }
-    async handleUserChat(data){
+    async handleUpdateAgencyUser(userData, userId) {
         try {
-            console.log(data,"Asdsadas");
-            const response = await appApi.post('/user/chat/send/message',data);
+            const response = await appApi.put('/user/' + userId, userData);
+            toast.success(response.data.message);
+            await this.getAgencyUsersList()
+            router.push({ name: 'user-list' });
+        } catch (err) {
+            console.log(err, "err err")
+            const error = await errorHandlerService.errors.index(err);
+            toast.error(error.message);
+        }
+    }
+    async handleUserChat(data) {
+        try {
+            console.log(data, "Asdsadas");
+            const response = await appApi.post('/user/chat/send/message', data);
             toast.success(response.data.message);
             // await store.dispatch('actionUserMenu', response.data.payload);
         } catch (err) {
@@ -66,12 +67,12 @@ class UserService extends EventEmitter {
             toast.error(error.message);
         }
     }
-    async deleteUser(userId){
+    async deleteUser(userId) {
         try {
-            const response = await appApi.delete('/user/'+userId);
-                toast.success(response.data.message, );
-                await this.getAgencyUsersList()
-                return response.data;
+            const response = await appApi.delete('/user/' + userId);
+            toast.success(response.data.message, );
+            await this.getAgencyUsersList()
+            return response.data;
         } catch (err) {
             console.log(err, "err err")
             toast.error(err.response.data.message);
@@ -79,11 +80,11 @@ class UserService extends EventEmitter {
             console.log(error, "error catch")
         }
     }
-    async updateUserProfile(profileData){
+    async updateUserProfile(profileData) {
         try {
-            const response = await appApi.put('/user/update/profile',profileData);
-                await store.dispatch('actionProfile', response.data.payload);
-                toast.success(response.data.message, );
+            const response = await appApi.put('/user/update/profile', profileData);
+            await store.dispatch('actionProfile', response.data.payload);
+            toast.success(response.data.message, );
         } catch (err) {
             console.log(err, "err err")
             toast.error(err.response.data.message);
@@ -91,11 +92,11 @@ class UserService extends EventEmitter {
             console.log(error, "error catch")
         }
     }
-    async updatePassword(passwordData){
+    async updatePassword(passwordData) {
         try {
-            const response = await appApi.put('/user/update/password',passwordData);
-                toast.success(response.data.message, );
-                return response.data;
+            const response = await appApi.put('/user/update/password', passwordData);
+            toast.success(response.data.message, );
+            return response.data;
         } catch (err) {
             console.log(err, "err err")
             toast.error(err.response.data.message);
