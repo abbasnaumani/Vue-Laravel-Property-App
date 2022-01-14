@@ -509,12 +509,12 @@
                                                    ><i class="fa fa-facebook px-1"></i></a>
                                             </li>
                                             <li class="py-3">
-                                                <router-link class="d-lg-inline d-md-inline d-sm-none d-none twitter-header"
-                                                             :to="agency?.twitter"><i class="fab fa-twitter p-1"></i></router-link>
+                                                <a class="d-lg-inline d-md-inline d-sm-none d-none twitter-header"
+                                                             :href="'https://www.twitter.com/'+agency?.twitter"><i class="fab fa-twitter p-1"></i></a>
                                             </li>
                                             <li class="py-3">
-                                                <router-link class="d-lg-inline d-md-inline d-sm-none d-none instagram"
-                                                             :to="agency?.instagram"><i class="fab fa-instagram p-1"></i></router-link>
+                                                <a class="d-lg-inline d-md-inline d-sm-none d-none instagram"
+                                                             :href="'https://www.instagram.com/'+agency?.instagram"><i class="fab fa-instagram p-1"></i></a>
                                             </li>
                                             <li class="d-lg-none d-md-inline d-sm-inline d-inline py-2 px-2">
                                                 <button type="button" data-toggle="collapse"
