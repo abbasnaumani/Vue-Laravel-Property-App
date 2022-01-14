@@ -58,6 +58,9 @@ class RegisterController extends Controller
                 'slug' => $agencySlug,
                 'phone_number' => $request->agency_phone_number,
                 'address' => $request->agency_address,
+                'facebook' => $request->agency_facebook ?? '',
+                'twitter' => $request->agency_twitter ?? '',
+                'instagram' => $request->agency_instagram ?? '',
             ]);
 
             $agencyId = $agency->id ?? 0;

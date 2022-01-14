@@ -272,13 +272,22 @@
                                     <div class="row">
                                         <div class="form-group col">
                                             <label class="form-label">Social Links</label>
-                                            <div class="position-relative">
+                                            <div class="position-relative d-flex">
                                                 <i class="fa fa-facebook position-absolute p-3 text-primary"></i>
                                                 <input
                                                     type="tel"
                                                     class="pl-5 form-control form-control-lg font-italic text-3"
-                                                    id="agency-address"
+                                                    id="agency-facebook-url"
+                                                    value="www.facebook.com/"
+                                                    disabled
                                                     placeholder="www.facebook.com/"
+                                                />
+                                                <input
+                                                    type="tel"
+                                                    class="pl-5 form-control form-control-lg font-italic text-3"
+                                                    id="agency-facebook"
+                                                    v-model="agencyFacebook"
+                                                    placeholder="UserName"
                                                 />
                                             </div>
                                             <!-- <div class="text-left">
@@ -291,25 +300,43 @@
                                             </div> -->
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="form-group position-relative col-6">
-                                            <i class="fa fa-twitter position-absolute p-3 text-primary"></i>
-                                            <input
-                                                type="tel"
-                                                class="pl-5 form-control form-control-lg  font-italic text-3"
-                                                id="agency-address"
-                                                placeholder="www.twitter.com/"
-                                            />
-                                        </div>
-                                        <div class="form-group position-relative col-6">
-                                            <i class="fa fa-instagram position-absolute p-3 text-primary"></i>
-                                            <input
-                                                type="tel"
-                                                class="pl-5 form-control form-control-lg font-italic text-3"
-                                                id="agency-address"
-                                                placeholder="www.instagram.com/"
-                                            />
-                                        </div>
+                                    <div class="form-group position-relative d-flex">
+                                        <i class="fa fa-twitter position-absolute p-3 text-primary"></i>
+
+                                        <input
+                                            type="tel"
+                                            class="pl-5 form-control form-control-lg  font-italic text-3"
+                                            id="agency-twitter-url"
+                                            value="www.twitter.com/"
+                                            placeholder="User Name"
+                                            disabled
+                                        />
+                                        <input
+                                            type="tel"
+                                            class="pl-5 form-control form-control-lg  font-italic text-3"
+                                            id="agency-twitter"
+                                            v-model="agencyTwitter"
+                                            placeholder="www.twitter.com/"
+                                        />
+                                    </div>
+                                    <div class="form-group position-relative  d-flex">
+                                        <i class="fa fa-instagram position-absolute p-3 text-primary "></i>
+                                        <input
+                                            type="tel"
+                                            class="pl-5 form-control form-control-lg font-italic text-3"
+                                            id="agency-insta-url"
+                                            value="www.instagram.com/"
+                                            placeholder="User Name"
+                                            disabled
+                                        />
+                                        <input
+                                            type="tel"
+                                            class="pl-5 form-control form-control-lg font-italic text-3"
+                                            id="agency-insta"
+                                            v-model="agencyInstagram"
+                                            placeholder="www.instagram.com/"
+                                        />
+
                                     </div>
                                 </div>
                             </div>
@@ -357,6 +384,9 @@ export default {
         const agencyAddress = ref('');
         const password = ref('');
         const confirmPassword = ref('');
+        const agencyFacebook = ref('');
+        const agencyTwitter = ref('');
+        const agencyInstagram = ref('');
         const handleRegistration = () => {
             authService.handleRegistration({
                 email: userEmail.value,
@@ -368,7 +398,10 @@ export default {
                 agency_name: agencyName.value,
                 agency_email: agencyEmail.value,
                 agency_phone_number: agencyPhoneNumber.value,
-                agency_address: agencyAddress.value
+                agency_address: agencyAddress.value,
+                agency_facebook: agencyFacebook.value,
+                agency_twitter: agencyTwitter.value,
+                agency_instagram: agencyInstagram.value
             });
         }
         const validationRules = computed(() => {
@@ -436,7 +469,10 @@ export default {
             agencyEmail,
             agencyPhoneNumber,
             agencyAddress,
-            handleRegistration
+            handleRegistration,
+            agencyFacebook,
+            agencyTwitter,
+            agencyInstagram
         }
     },
 }

@@ -29,6 +29,9 @@ const mutations = {
     mutateProfile(state, user) {
         state.profile = user;
     },
+    mutateAgencyProfile(state, agency) {
+        state.profile = {...state.profile, agencies: agency};
+    },
     mutateAuthState(state, {user, token}) {
         state.profile = user;
         state.accessToken = token;
@@ -42,6 +45,12 @@ const actions = {
     async actionProfile({commit}, profile) {
         commit('mutateProfile', profile);
         localStorage.setItem(LocalStorageKeys.PROFILE, JSON.stringify(profile));
+    },
+    async actionAgencyProfile({commit}, agency) {
+        commit('mutateAgencyProfile', agency);
+        let profile = JSON.parse(localStorage.getItem(LocalStorageKeys.PROFILE));
+        let agencyData = {...profile,agencies: agency};
+        localStorage.setItem(LocalStorageKeys.PROFILE, JSON.stringify(agencyData));
     },
     actionAuthState({commit}, {user, token}) {
         commit('mutateAuthState', {user, token});

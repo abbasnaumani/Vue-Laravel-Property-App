@@ -82,6 +82,57 @@
                                             </sub>
                                         </div>
                                     </div>
+                                    <div class="form-group d-flex">
+                                        <input
+                                            type="tel"
+                                            class="form-control form-control-lg form-control-alt"
+                                            id="agency-facebook-url"
+                                            value="www.facebook.com/"
+                                            placeholder="User Name"
+                                            disabled
+                                        />
+                                        <input
+                                            type="tel"
+                                            class="form-control form-control-lg form-control-alt"
+                                            id="facebook"
+                                            v-model="agencyFacebook"
+                                            placeholder="www.facebook.com/"
+                                        />
+                                    </div>
+                                    <div class="form-group d-flex">
+                                        <input
+                                            type="tel"
+                                            class="form-control form-control-lg form-control-alt"
+                                            id="agency-twitter-url"
+                                            value="www.twitter.com/"
+                                            placeholder="User Name"
+                                            disabled
+                                        />
+                                        <input
+                                            type="tel"
+                                            class="form-control form-control-lg form-control-alt"
+                                            id="twitter"
+                                            v-model="agencyTwitter"
+                                            placeholder="www.twitter.com/"
+                                        />
+                                    </div>
+                                    <div class="form-group d-flex">
+                                        <input
+                                            type="tel"
+                                            class="form-control form-control-lg form-control-alt"
+                                            id="agency-insta-url"
+                                            value="www.instagram.com/"
+                                            placeholder="User Name"
+                                            disabled
+                                        />
+                                        <input
+                                            type="tel"
+                                            class="form-control form-control-lg form-control-alt"
+                                            id="insta"
+                                            v-model="agencyInstagram"
+                                            placeholder="www.instagram.com/"
+                                        />
+                                    </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-6 col-xl-5">
@@ -123,13 +174,18 @@ export default {
         const agencyEmail = ref('');
         const agencyPhoneNumber = ref('');
         const agencyAddress = ref('');
-
+        const agencyFacebook = ref('');
+        const agencyTwitter = ref('');
+        const agencyInstagram = ref('');
         const handleAddAgency = () => {
             agencyService.handleAddAgency({
                 agency_email: agencyEmail.value,
                 agency_phone_number: agencyPhoneNumber.value,
                 agency_name: agencyName.value,
-               agency_address:agencyAddress.value
+               agency_address:agencyAddress.value,
+               agency_facebook:agencyFacebook.value,
+               agency_twitter:agencyTwitter.value,
+               agency_instagram:agencyInstagram.value
             });
         }
 

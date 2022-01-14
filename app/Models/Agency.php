@@ -9,7 +9,7 @@ use Plank\Mediable\Mediable;
 class Agency extends Model
 {
     use Mediable;
-    protected $fillable = ['name','slug','email','phone_number','address'];
+    protected $fillable = ['name','slug','email','phone_number','address','facebook','twitter','instagram'];
 
 //    use InteractsWithMedia;
 

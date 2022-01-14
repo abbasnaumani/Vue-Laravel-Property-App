@@ -502,19 +502,19 @@
                                     </div>
                                 </div>
                                 <div class="secondary-nav-icons px-3">
-                                    <div class="d-flex align-items-center justify-content-end">
+                                    <div class="d-flex align-items-center justify-content-end" v-if="agency">
                                         <ul class="list-unstyled d-flex align-items-center m-0">
                                             <li class="py-3">
-                                                <a class="d-lg-inline d-md-inline d-sm-none d-none facebook"
-                                                   href="#"><i class="fa fa-facebook px-1"></i></a>
+                                                <a :href="'https://www.facebook.com/'+agency?.facebook" class="d-lg-inline d-md-inline d-sm-none d-none facebook"
+                                                   ><i class="fa fa-facebook px-1"></i></a>
                                             </li>
                                             <li class="py-3">
-                                                <a class="d-lg-inline d-md-inline d-sm-none d-none twitter-header"
-                                                   href="#"><i class="fab fa-twitter p-1"></i></a>
+                                                <router-link class="d-lg-inline d-md-inline d-sm-none d-none twitter-header"
+                                                             :to="agency?.twitter"><i class="fab fa-twitter p-1"></i></router-link>
                                             </li>
                                             <li class="py-3">
-                                                <a class="d-lg-inline d-md-inline d-sm-none d-none instagram"
-                                                   href="#"><i class="fab fa-instagram p-1"></i></a>
+                                                <router-link class="d-lg-inline d-md-inline d-sm-none d-none instagram"
+                                                             :to="agency?.instagram"><i class="fab fa-instagram p-1"></i></router-link>
                                             </li>
                                             <li class="d-lg-none d-md-inline d-sm-inline d-inline py-2 px-2">
                                                 <button type="button" data-toggle="collapse"

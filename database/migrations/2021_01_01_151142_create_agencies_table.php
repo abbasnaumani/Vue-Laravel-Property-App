@@ -20,6 +20,9 @@ class CreateAgenciesTable extends Migration
             $table->string('email')->unique();
             $table->string('phone_number');
             $table->string('address');
+            $table->string('facebook')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('instagram')->nullable();
             $table->json('custom_properties')->nullable();
             $table->string('image_path')->nullable();
             $table->tinyInteger('is_active')->default('0');

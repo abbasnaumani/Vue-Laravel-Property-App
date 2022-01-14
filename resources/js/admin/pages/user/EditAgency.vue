@@ -100,6 +100,57 @@
                                             </sub>
                                         </div>
                                     </div>
+                                    <div class="form-group d-flex">
+                                        <input
+                                            type="tel"
+                                            class="form-control form-control-lg form-control-alt"
+                                            id="agency-facebook-url"
+                                            value="www.facebook.com/"
+                                            placeholder="User Name"
+                                            disabled
+                                        />
+                                        <input
+                                            type="tel"
+                                            class="form-control form-control-lg form-control-alt"
+                                            id="facebook"
+                                            v-model="agencyData.facebook"
+                                            placeholder="www.facebook.com/"
+                                        />
+                                    </div>
+                                    <div class="form-group d-flex">
+                                        <input
+                                            type="tel"
+                                            class="form-control form-control-lg form-control-alt"
+                                            id="agency-twitter-url"
+                                            value="www.twitter.com/"
+                                            placeholder="User Name"
+                                            disabled
+                                        />
+                                        <input
+                                            type="tel"
+                                            class="form-control form-control-lg form-control-alt"
+                                            id="twitter"
+                                            v-model="agencyData.twitter"
+                                            placeholder="www.twitter.com/"
+                                        />
+                                    </div>
+                                    <div class="form-group d-flex">
+                                        <input
+                                            type="tel"
+                                            class="form-control form-control-lg form-control-alt"
+                                            id="agency-insta-url"
+                                            value="www.instagram.com/"
+                                            placeholder="User Name"
+                                            disabled
+                                        />
+                                        <input
+                                            type="tel"
+                                            class="form-control form-control-lg form-control-alt"
+                                            id="insta"
+                                            v-model="agencyData.instagram"
+                                            placeholder="www.instagram.com/"
+                                        />
+                                    </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-6 col-xl-5">
@@ -148,7 +199,10 @@ export default {
                 agency_phone_number: agencyData.value.phone_number,
                 agency_name: agencyData.value.name,
                 agency_address:agencyData.value.address,
-                agency_slug:agencyData.value.slug
+                agency_slug:agencyData.value.slug,
+                agency_facebook:agencyData.value.facebook,
+                agency_twitter:agencyData.value.twitter,
+                agency_instagram:agencyData.value.instagram,
             },props.agencyId);
         }
 

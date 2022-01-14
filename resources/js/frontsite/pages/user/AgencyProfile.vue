@@ -130,6 +130,66 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label line-height-9 pt-2 text-2">Agency Facebook</label>
+                            <div class="col-lg-9">
+                                <input
+                                    type="tel"
+                                    class="form-control form-control-lg form-control-alt"
+                                    id="agency-facebook-url"
+                                    value="www.facebook.com/"
+                                    placeholder="User Name"
+                                    disabled
+                                />
+                                <input
+                                    type="tel"
+                                    class="form-control text-3 h-auto py-2"
+                                    id="agency-facebook"
+                                    v-model="agencyData.agency_facebook"
+                                    placeholder="www.facebook.com/"
+                                />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label line-height-9 pt-2 text-2">Agency Twitter</label>
+                            <div class="col-lg-9">
+                                <input
+                                    type="tel"
+                                    class="form-control form-control-lg form-control-alt"
+                                    id="agency-twitter-url"
+                                    value="www.twitter.com/"
+                                    placeholder="User Name"
+                                    disabled
+                                />
+                                <input
+                                    type="tel"
+                                    class="form-control text-3 h-auto py-2"
+                                    id="agency-twitter"
+                                    v-model="agencyData.agency_twitter"
+                                    placeholder="www.twitter.com/"
+                                />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label line-height-9 pt-2 text-2">Agency Instagram</label>
+                            <div class="col-lg-9">
+                                <input
+                                    type="tel"
+                                    class="form-control form-control-lg form-control-alt"
+                                    id="agency-instagram-url"
+                                    value="www.instagram.com/"
+                                    placeholder="User Name"
+                                    disabled
+                                />
+                                <input
+                                    type="tel"
+                                    class="form-control text-3 h-auto py-2"
+                                    id="agency-insta"
+                                    v-model="agencyData.agency_instagram"
+                                    placeholder="www.instagram.com/"
+                                />
+                            </div>
+                        </div>
                         <div class="d-flex justify-content-center">
                             <p class="mb-0 text-info font-italic">please enter your password to update the information</p>
                         </div>
@@ -199,6 +259,9 @@ export default {
             agency_address:auth.user().agencies[0].address,
             agency_email:auth.user().agencies[0].email,
             agency_slug:auth.user().agencies[0].slug,
+            agency_facebook:auth.user().agencies[0].facebook,
+            agency_twitter:auth.user().agencies[0].twitter,
+            agency_instagram:auth.user().agencies[0].instagram,
             password:''
         });
 

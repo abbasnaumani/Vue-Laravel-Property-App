@@ -29,8 +29,8 @@ class AgencyService extends EventEmitter {
         try {
             const response = await appApi.put('/agency/update/profile',profileData);
             if (response.data.status === ApiResponse.SUCCESS) {
-                await store.dispatch('setProfile', response.data.payload);
-                console.log(response.data.payload);
+                await store.dispatch('actionAgencyProfile', response.data.payload);
+                console.log(response.data.payload,"asdjhaskhdakshdk");
                 toast.success(response.data.message, );
                 return response.data;
             } else {
