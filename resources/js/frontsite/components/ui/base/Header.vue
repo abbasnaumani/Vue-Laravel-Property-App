@@ -65,6 +65,12 @@
                                                                     Profile</p>
                                                             </router-link>
                                                             <router-link
+                                                                :to="{path:'/'+slug+'/user/dashboard'}"
+                                                                class="dropdown-item">
+                                                                <p class="mb-0 mt-0 header-dropdown-links px-2">
+                                                                    Dashboard</p>
+                                                            </router-link>
+                                                            <router-link
                                                                 v-if="profile.roles[0].id == UserRoles.AGENCY_ADMIN"
                                                                 :to="{path:'/'+slug+'/agency/profile'}"
                                                                 class="dropdown-item">
@@ -501,20 +507,20 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="secondary-nav-icons px-3">
-                                    <div class="d-flex align-items-center justify-content-end" v-if="agency">
+                                <div class="secondary-nav-icons px-3" v-if="agency">
+                                    <div class="d-flex align-items-center justify-content-end" >
                                         <ul class="list-unstyled d-flex align-items-center m-0">
                                             <li class="py-3">
-                                                <a :href="'https://www.facebook.com/'+agency?.facebook" class="d-lg-inline d-md-inline d-sm-none d-none facebook"
+                                                <a :href="'https://www.facebook.com/'+agency.facebook" class="d-lg-inline d-md-inline d-sm-none d-none facebook"
                                                    ><i class="fa fa-facebook px-1"></i></a>
                                             </li>
                                             <li class="py-3">
                                                 <a class="d-lg-inline d-md-inline d-sm-none d-none twitter-header"
-                                                             :href="'https://www.twitter.com/'+agency?.twitter"><i class="fab fa-twitter p-1"></i></a>
+                                                             :href="'https://www.twitter.com/'+agency.twitter"><i class="fab fa-twitter p-1"></i></a>
                                             </li>
                                             <li class="py-3">
                                                 <a class="d-lg-inline d-md-inline d-sm-none d-none instagram"
-                                                             :href="'https://www.instagram.com/'+agency?.instagram"><i class="fab fa-instagram p-1"></i></a>
+                                                             :href="'https://www.instagram.com/'+agency.instagram"><i class="fab fa-instagram p-1"></i></a>
                                             </li>
                                             <li class="d-lg-none d-md-inline d-sm-inline d-inline py-2 px-2">
                                                 <button type="button" data-toggle="collapse"

@@ -46,6 +46,13 @@ export default [{
         props: ({params}) => ({slug: params.slug || ''}),
     },
     {
+        path: '/:slug/user/dashboard',
+        name: 'user-dashboard',
+        meta: {public: false, meta_title: 'User Dashboard'},
+        component: page('user/UserDashboard'),
+        props: ({params}) => ({slug: params.slug || ''}),
+    },
+    {
         path: '/:slug/agency/profile',
         name: 'agency-profile',
         meta: {public: false, meta_title: 'Agency Profile'},
