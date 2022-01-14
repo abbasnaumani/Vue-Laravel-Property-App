@@ -272,71 +272,52 @@
                                     <div class="row">
                                         <div class="form-group col">
                                             <label class="form-label">Social Links</label>
-                                            <div class="position-relative d-flex">
-                                                <i class="fa fa-facebook position-absolute p-3 text-primary"></i>
+                                            <div class="input-group mb-3 input-group-lg">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-3">
+                                                        <i class="fa fa-facebook position-absolute text-primary"></i>
+                                                        <p class="font-italic pl-3 pt-3">www.facebook.com/ </p>
+                                                    </span>
+                                                </div>
                                                 <input
-                                                    type="tel"
-                                                    class="pl-5 form-control form-control-lg font-italic text-3"
-                                                    id="agency-facebook-url"
-                                                    value="www.facebook.com/"
-                                                    disabled
-                                                    placeholder="www.facebook.com/"
-                                                />
-                                                <input
-                                                    type="tel"
-                                                    class="pl-5 form-control form-control-lg font-italic text-3"
+                                                    type="text"
+                                                    class="pl-2 form-control form-control-lg font-italic text-3"
                                                     id="agency-facebook"
                                                     v-model="agencyFacebook"
-                                                    placeholder="UserName"
+                                                    placeholder="username"
                                                 />
                                             </div>
-                                            <!-- <div class="text-left">
-                                                <div v-if="v$.agencyAddress.$dirty">
-                                                    <sub v-if="v$.agencyAddress.$error"
-                                                         class="px-2 py-2 text-danger">
-                                                        Agency Address is Required
-                                                    </sub>
+                                            <div class="input-group mb-3 input-group-lg">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-3">
+                                                        <i class="fa fa-twitter position-absolute text-primary"></i>
+                                                        <p class="font-italic pl-3 pt-3">www.twitter.com/ </p>
+                                                    </span>
                                                 </div>
-                                            </div> -->
+                                                <input
+                                                    type="text"
+                                                    class="pl-2 form-control form-control-lg font-italic text-3"
+                                                    id="agency-twitter"
+                                                    v-model="agencyTwitter"
+                                                    placeholder="username"
+                                                />
+                                            </div>
+                                            <div class="input-group input-group-lg">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-3">
+                                                        <i class="fa fa-instagram position-absolute text-primary"></i>
+                                                        <p class="font-italic pl-3 pt-3">www.instagram.com/ </p>
+                                                    </span>
+                                                </div>
+                                                <input
+                                                    type="text"
+                                                    class="pl-2 form-control form-control-lg font-italic text-3"
+                                                    id="agency-insta"
+                                                    v-model="agencyInstagram"
+                                                    placeholder="username"
+                                                />
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group position-relative d-flex">
-                                        <i class="fa fa-twitter position-absolute p-3 text-primary"></i>
-
-                                        <input
-                                            type="tel"
-                                            class="pl-5 form-control form-control-lg  font-italic text-3"
-                                            id="agency-twitter-url"
-                                            value="www.twitter.com/"
-                                            placeholder="User Name"
-                                            disabled
-                                        />
-                                        <input
-                                            type="tel"
-                                            class="pl-5 form-control form-control-lg  font-italic text-3"
-                                            id="agency-twitter"
-                                            v-model="agencyTwitter"
-                                            placeholder="www.twitter.com/"
-                                        />
-                                    </div>
-                                    <div class="form-group position-relative  d-flex">
-                                        <i class="fa fa-instagram position-absolute p-3 text-primary "></i>
-                                        <input
-                                            type="tel"
-                                            class="pl-5 form-control form-control-lg font-italic text-3"
-                                            id="agency-insta-url"
-                                            value="www.instagram.com/"
-                                            placeholder="User Name"
-                                            disabled
-                                        />
-                                        <input
-                                            type="tel"
-                                            class="pl-5 form-control form-control-lg font-italic text-3"
-                                            id="agency-insta"
-                                            v-model="agencyInstagram"
-                                            placeholder="www.instagram.com/"
-                                        />
-
                                     </div>
                                 </div>
                             </div>
