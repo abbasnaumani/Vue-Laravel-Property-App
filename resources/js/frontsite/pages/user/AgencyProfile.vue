@@ -133,61 +133,61 @@
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label line-height-9 pt-2 text-2">Agency Facebook</label>
                             <div class="col-lg-9">
-                                <input
-                                    type="tel"
-                                    class="form-control form-control-lg form-control-alt"
-                                    id="agency-facebook-url"
-                                    value="www.facebook.com/"
-                                    placeholder="User Name"
-                                    disabled
-                                />
-                                <input
-                                    type="tel"
-                                    class="form-control text-3 h-auto py-2"
-                                    id="agency-facebook"
-                                    v-model="agencyData.agency_facebook"
-                                    placeholder="www.facebook.com/"
-                                />
+                                <div class="input-group input-group-lg">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text text-3">
+                                            <i class="fa fa-facebook position-absolute text-primary"></i>
+                                            <p class="font-italic pl-3 pt-3">www.facebook.com/ </p>
+                                        </span>
+                                    </div>
+                                    <input
+                                        type="text"
+                                        class="pl-2 form-control form-control-lg font-italic text-3"
+                                        id="agency-facebook"
+                                        v-model="agencyFacebook"
+                                        placeholder="username"
+                                    />
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label line-height-9 pt-2 text-2">Agency Twitter</label>
                             <div class="col-lg-9">
-                                <input
-                                    type="tel"
-                                    class="form-control form-control-lg form-control-alt"
-                                    id="agency-twitter-url"
-                                    value="www.twitter.com/"
-                                    placeholder="User Name"
-                                    disabled
-                                />
-                                <input
-                                    type="tel"
-                                    class="form-control text-3 h-auto py-2"
-                                    id="agency-twitter"
-                                    v-model="agencyData.agency_twitter"
-                                    placeholder="www.twitter.com/"
-                                />
+                                <div class="input-group input-group-lg">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text text-3">
+                                            <i class="fa fa-twitter position-absolute text-primary"></i>
+                                            <p class="font-italic pl-3 pt-3">www.twitter.com/ </p>
+                                        </span>
+                                    </div>
+                                    <input
+                                        type="text"
+                                        class="pl-2 form-control form-control-lg font-italic text-3"
+                                        id="agency-twitter"
+                                        v-model="agencyTwitter"
+                                        placeholder="username"
+                                    />
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label line-height-9 pt-2 text-2">Agency Instagram</label>
                             <div class="col-lg-9">
-                                <input
-                                    type="tel"
-                                    class="form-control form-control-lg form-control-alt"
-                                    id="agency-instagram-url"
-                                    value="www.instagram.com/"
-                                    placeholder="User Name"
-                                    disabled
-                                />
-                                <input
-                                    type="tel"
-                                    class="form-control text-3 h-auto py-2"
-                                    id="agency-insta"
-                                    v-model="agencyData.agency_instagram"
-                                    placeholder="www.instagram.com/"
-                                />
+                                <div class="input-group input-group-lg">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text text-3">
+                                            <i class="fa fa-instagram position-absolute text-primary"></i>
+                                            <p class="font-italic pl-3 pt-3">www.instagram.com/ </p>
+                                        </span>
+                                    </div>
+                                    <input
+                                        type="text"
+                                        class="pl-2 form-control form-control-lg font-italic text-3"
+                                        id="agency-insta"
+                                        v-model="agencyInstagram"
+                                        placeholder="username"
+                                    />
+                                </div>
                             </div>
                         </div>
                         <div class="d-flex justify-content-center">
