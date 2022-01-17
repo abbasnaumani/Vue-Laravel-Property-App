@@ -23,13 +23,24 @@
                     </div>
                 </div>
                 <div class="image-action col-12 col-md-2 mt-4 align-right" v-if="action ==='edit' ">
-                    <button class="btn btn-danger mx-2" @click.prevent="deleteImage(media.id)"><i class="far fa-trash-alt"></i>
+                    <button class="btn btn-danger mx-2" @click.prevent="openDeleteModal(media)"><i class="far fa-trash-alt"></i>
                     </button>
                 </div>
             </div>
         </li>
     </ul>
-
+    <app-modal :open="openConfirmDeleteModal"
+               confirmLabel="Delete Property?"
+               cancelLabel="Cancel"
+               title="Confirm Delete Property"
+               icon="warning"
+               :isConfirmButtonDisabled="isConfirmButtonDisabled"
+               v-on:confirm="modalConfirmDelete(modalImage)"
+               v-on:cancel="openConfirmDeleteModal=false">
+        <div>
+            <p>Are you sure you want to delete this property?</p><p class="mt-2 font-bold">{{modalImage.title}}</p>
+        </div>
+    </app-modal>
 </template>
 
 <script>
@@ -38,17 +49,40 @@ import {
     getFileDate,
 } from '../../utils/file';
 import mediaService from "../../services/mediaService";
+import AppModal from "../../components/ui/base/AppModal";
+import {ref} from "vue";
 export default {
     name: "PropertyFilesList",
+    components: {AppModal},
     props: ['propertyMedia','action'],
     setup(){
-        async function deleteImage(mediaId) {
-            await mediaService.deleteMedia(mediaId);
+        const openConfirmDeleteModal = ref(false);
+        const openResponseModal = ref(false);
+        const confirmationMessage = ref();
+        const isConfirmButtonDisabled = ref(false);
+        const modalImage = ref();
+        const responseIcon = ref('');
+        function openDeleteModal(media){
+            modalImage.value = media;
+            openConfirmDeleteModal.value = true;
+        }
+        async function modalConfirmDelete(media) {
+            isConfirmButtonDisabled.value = true;
+            await mediaService.deleteMedia(media.id);
+            openConfirmDeleteModal.value = false;
+            isConfirmButtonDisabled.value = false;
         }
         return{
-            deleteImage,
             getFileSize,
-            getFileDate
+            getFileDate,
+            openConfirmDeleteModal,
+            openResponseModal,
+            confirmationMessage,
+            isConfirmButtonDisabled,
+            modalImage,
+            responseIcon,
+            openDeleteModal,
+            modalConfirmDelete
         }
     },
     computed: {

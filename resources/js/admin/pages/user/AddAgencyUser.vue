@@ -120,11 +120,12 @@
 </template>
 
 <script>
-import {computed, ref} from "vue";
+import {computed, ref,watch} from "vue";
 import {email, required} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
 import userService from "../../services/userService";
 import {getAllRoles} from "../../composables/user";
+import {UserRoles} from "../../../constants";
 
 export default {
     name: "AddAgencyUser",
@@ -137,7 +138,18 @@ export default {
         const userEmail = ref('');
         const phoneNumber = ref('');
         const role_id = ref(3);
-        const roles = getAllRoles();
+        const roles = ref();
+        const rolesData = getAllRoles();
+        watch(rolesData,()=>{
+            if(rolesData.value) {
+                roles.value = rolesData.value.filter(function (role) {
+                    return role.id !== UserRoles.SUPER_ADMIN;
+                })
+            }
+        },{
+            deep:true,
+            immediate:true
+        });
         const handleAddAgencyUser = () => {
             userService.handleAddAgencyUser({
                 email: userEmail.value,

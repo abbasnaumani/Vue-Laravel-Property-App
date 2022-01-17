@@ -175,18 +175,10 @@
                                                                 <div class="px-3">
                                                                     <select
                                                                         class="select form-control"
-                                                                        name="property"
-                                                                        id="property">
-                                                                        <option
-                                                                            value="property type">
-                                                                            Property type
-                                                                        </option>
-                                                                        <option value="Apartment">
-                                                                            Apartment
-                                                                        </option>
-                                                                        <option value="Houses">
-                                                                            Houses
-                                                                        </option>
+                                                                        v-model="typeId"
+                                                                        id="property-type">
+                                                                        <option value="0"> Property Type</option>
+                                                                        <option v-for="propertyType in propertyTypes" :value="propertyType.id" :selected="propertyType.id===typeId">{{propertyType.name}}</option>
                                                                     </select>
                                                                 </div>
                                                                 <!-- 2nd child select tag -->
@@ -199,296 +191,281 @@
                                                                         @select="mySelectEvent($event)"
                                                                     />
                                                                 </div>
-<!--                                                                    <select-->
-<!--                                                                        class="select form-control"-->
-<!--                                                                        name="Location"-->
-<!--                                                                        id="Location">-->
-<!--                                                                        <option value="Location">-->
-<!--                                                                            Location-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="Miami">-->
-<!--                                                                            Miami-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="New York">New-->
-<!--                                                                            York-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="Houston">-->
-<!--                                                                            Houston-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="Los Angeles">-->
-<!--                                                                            Los Angeles-->
-<!--                                                                        </option>-->
-<!--                                                                    </select>-->
-<!--                                                                &lt;!&ndash; 3rd child select tag &ndash;&gt;-->
-<!--                                                                <div class="px-3">-->
-<!--                                                                    <select-->
-<!--                                                                        class="select form-control"-->
-<!--                                                                        name="beds" id="beds">-->
-<!--                                                                        <option value="Min Beds">Min-->
-<!--                                                                            Beds-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="1">1</option>-->
-<!--                                                                        <option value="2">2</option>-->
-<!--                                                                        <option value="3">3</option>-->
-<!--                                                                        <option value="4">4</option>-->
-<!--                                                                    </select>-->
-<!--                                                                </div>-->
-<!--                                                                &lt;!&ndash; 4rd child select tag &ndash;&gt;-->
-<!--                                                                <div class="px-3">-->
-<!--                                                                    <select-->
-<!--                                                                        class="select form-control"-->
-<!--                                                                        name="min Price"-->
-<!--                                                                        id="min price">-->
-<!--                                                                        <option value="Min price">-->
-<!--                                                                            Min Price-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="150000">-->
-<!--                                                                            $150,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="200000">-->
-<!--                                                                            $200,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="250000">-->
-<!--                                                                            $250,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="300000">-->
-<!--                                                                            $300,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="350000">-->
-<!--                                                                            $350,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="400000">-->
-<!--                                                                            $400,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="450000">-->
-<!--                                                                            $450,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="550000">-->
-<!--                                                                            $500,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="550000">-->
-<!--                                                                            $550,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="600000">-->
-<!--                                                                            $600,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="650000">-->
-<!--                                                                            $650,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="700000">-->
-<!--                                                                            $700,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="750000">-->
-<!--                                                                            $750,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="800000">-->
-<!--                                                                            $800,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="850000">-->
-<!--                                                                            $850,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="900000">-->
-<!--                                                                            $900,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="950000">-->
-<!--                                                                            $950,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="1000000">-->
-<!--                                                                            $1,000,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="1250000">-->
-<!--                                                                            $1,250,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="1500000">-->
-<!--                                                                            $1,500,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="1750000">-->
-<!--                                                                            $1,750,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="2000000">-->
-<!--                                                                            $2,000,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="2500000">-->
-<!--                                                                            $2,500,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="2500000">-->
-<!--                                                                            $2,500,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="2750000">-->
-<!--                                                                            $2,750,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="3000000">-->
-<!--                                                                            $3,000,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="3250000">-->
-<!--                                                                            $3,250,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="3500000">-->
-<!--                                                                            $3,500,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="3750000">-->
-<!--                                                                            $3,750,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="4000000">-->
-<!--                                                                            $4,000,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="4250000">-->
-<!--                                                                            $4,250,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="4500000">-->
-<!--                                                                            $4,500,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="4750000">-->
-<!--                                                                            $4,750,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="5000000">-->
-<!--                                                                            $5,000,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="6000000">-->
-<!--                                                                            $6,000,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="7000000">-->
-<!--                                                                            $7,000,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="8000000">-->
-<!--                                                                            $8,000,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="9000000">-->
-<!--                                                                            $9,000,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="8000000">-->
-<!--                                                                            $8,000,000-->
-<!--                                                                        </option>-->
-<!--                                                                    </select>-->
-<!--                                                                </div>-->
-<!--                                                                &lt;!&ndash; 5rd child select tag &ndash;&gt;-->
-<!--                                                                <div class="px-3">-->
-<!--                                                                    <select-->
-<!--                                                                        class="select form-control"-->
-<!--                                                                        name="min Price"-->
-<!--                                                                        id="min price">-->
-<!--                                                                        <option value="Min price">-->
-<!--                                                                            Min Price-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="150000">-->
-<!--                                                                            $150,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="200000">-->
-<!--                                                                            $200,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="250000">-->
-<!--                                                                            $250,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="300000">-->
-<!--                                                                            $300,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="350000">-->
-<!--                                                                            $350,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="400000">-->
-<!--                                                                            $400,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="450000">-->
-<!--                                                                            $450,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="550000">-->
-<!--                                                                            $500,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="550000">-->
-<!--                                                                            $550,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="600000">-->
-<!--                                                                            $600,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="650000">-->
-<!--                                                                            $650,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="700000">-->
-<!--                                                                            $700,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="750000">-->
-<!--                                                                            $750,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="800000">-->
-<!--                                                                            $800,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="850000">-->
-<!--                                                                            $850,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="900000">-->
-<!--                                                                            $900,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="950000">-->
-<!--                                                                            $950,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="1000000">-->
-<!--                                                                            $1,000,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="1250000">-->
-<!--                                                                            $1,250,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="1500000">-->
-<!--                                                                            $1,500,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="1750000">-->
-<!--                                                                            $1,750,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="2000000">-->
-<!--                                                                            $2,000,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="2500000">-->
-<!--                                                                            $2,500,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="2500000">-->
-<!--                                                                            $2,500,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="2750000">-->
-<!--                                                                            $2,750,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="3000000">-->
-<!--                                                                            $3,000,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="3250000">-->
-<!--                                                                            $3,250,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="3500000">-->
-<!--                                                                            $3,500,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="3750000">-->
-<!--                                                                            $3,750,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="4000000">-->
-<!--                                                                            $4,000,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="4250000">-->
-<!--                                                                            $4,250,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="4500000">-->
-<!--                                                                            $4,500,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="4750000">-->
-<!--                                                                            $4,750,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="5000000">-->
-<!--                                                                            $5,000,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="6000000">-->
-<!--                                                                            $6,000,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="7000000">-->
-<!--                                                                            $7,000,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="8000000">-->
-<!--                                                                            $8,000,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="9000000">-->
-<!--                                                                            $9,000,000-->
-<!--                                                                        </option>-->
-<!--                                                                        <option value="8000000">-->
-<!--                                                                            $8,000,000-->
-<!--                                                                        </option>-->
-<!--                                                                    </select>-->
-<!--                                                                </div>-->
+                                                                <div class="px-3">
+                                                                    <select
+                                                                        class="select form-control"
+                                                                        v-model="beds" id="beds">
+                                                                        <option value="0">Min
+                                                                            Beds
+                                                                        </option>
+                                                                        <option value="1">1</option>
+                                                                        <option value="2">2</option>
+                                                                        <option value="3">3</option>
+                                                                        <option value="4">4</option>
+                                                                        <option value="5">5</option>
+                                                                        <option value="6">6</option>
+                                                                        <option value="7">7</option>
+                                                                        <option value="8">8</option>
+                                                                        <option value="9">9</option>
+                                                                        <option value="10">10</option>
+                                                                    </select>
+                                                                </div>
+                                                                <!-- 4rd child select tag -->
+                                                                <div class="px-3">
+                                                                    <select
+                                                                        class="select form-control"
+                                                                        name="min Price"
+                                                                        id="min price">
+                                                                        <option value="Min price">
+                                                                            Min Price
+                                                                        </option>
+                                                                        <option value="150000">
+                                                                            $150,000
+                                                                        </option>
+                                                                        <option value="200000">
+                                                                            $200,000
+                                                                        </option>
+                                                                        <option value="250000">
+                                                                            $250,000
+                                                                        </option>
+                                                                        <option value="300000">
+                                                                            $300,000
+                                                                        </option>
+                                                                        <option value="350000">
+                                                                            $350,000
+                                                                        </option>
+                                                                        <option value="400000">
+                                                                            $400,000
+                                                                        </option>
+                                                                        <option value="450000">
+                                                                            $450,000
+                                                                        </option>
+                                                                        <option value="550000">
+                                                                            $500,000
+                                                                        </option>
+                                                                        <option value="550000">
+                                                                            $550,000
+                                                                        </option>
+                                                                        <option value="600000">
+                                                                            $600,000
+                                                                        </option>
+                                                                        <option value="650000">
+                                                                            $650,000
+                                                                        </option>
+                                                                        <option value="700000">
+                                                                            $700,000
+                                                                        </option>
+                                                                        <option value="750000">
+                                                                            $750,000
+                                                                        </option>
+                                                                        <option value="800000">
+                                                                            $800,000
+                                                                        </option>
+                                                                        <option value="850000">
+                                                                            $850,000
+                                                                        </option>
+                                                                        <option value="900000">
+                                                                            $900,000
+                                                                        </option>
+                                                                        <option value="950000">
+                                                                            $950,000
+                                                                        </option>
+                                                                        <option value="1000000">
+                                                                            $1,000,000
+                                                                        </option>
+                                                                        <option value="1250000">
+                                                                            $1,250,000
+                                                                        </option>
+                                                                        <option value="1500000">
+                                                                            $1,500,000
+                                                                        </option>
+                                                                        <option value="1750000">
+                                                                            $1,750,000
+                                                                        </option>
+                                                                        <option value="2000000">
+                                                                            $2,000,000
+                                                                        </option>
+                                                                        <option value="2500000">
+                                                                            $2,500,000
+                                                                        </option>
+                                                                        <option value="2500000">
+                                                                            $2,500,000
+                                                                        </option>
+                                                                        <option value="2750000">
+                                                                            $2,750,000
+                                                                        </option>
+                                                                        <option value="3000000">
+                                                                            $3,000,000
+                                                                        </option>
+                                                                        <option value="3250000">
+                                                                            $3,250,000
+                                                                        </option>
+                                                                        <option value="3500000">
+                                                                            $3,500,000
+                                                                        </option>
+                                                                        <option value="3750000">
+                                                                            $3,750,000
+                                                                        </option>
+                                                                        <option value="4000000">
+                                                                            $4,000,000
+                                                                        </option>
+                                                                        <option value="4250000">
+                                                                            $4,250,000
+                                                                        </option>
+                                                                        <option value="4500000">
+                                                                            $4,500,000
+                                                                        </option>
+                                                                        <option value="4750000">
+                                                                            $4,750,000
+                                                                        </option>
+                                                                        <option value="5000000">
+                                                                            $5,000,000
+                                                                        </option>
+                                                                        <option value="6000000">
+                                                                            $6,000,000
+                                                                        </option>
+                                                                        <option value="7000000">
+                                                                            $7,000,000
+                                                                        </option>
+                                                                        <option value="8000000">
+                                                                            $8,000,000
+                                                                        </option>
+                                                                        <option value="9000000">
+                                                                            $9,000,000
+                                                                        </option>
+                                                                        <option value="8000000">
+                                                                            $8,000,000
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                                <!-- 5rd child select tag -->
+                                                                <div class="px-3">
+                                                                    <select
+                                                                        class="select form-control"
+                                                                        name="min Price"
+                                                                        id="min price">
+                                                                        <option value="Min price">
+                                                                            Min Price
+                                                                        </option>
+                                                                        <option value="150000">
+                                                                            $150,000
+                                                                        </option>
+                                                                        <option value="200000">
+                                                                            $200,000
+                                                                        </option>
+                                                                        <option value="250000">
+                                                                            $250,000
+                                                                        </option>
+                                                                        <option value="300000">
+                                                                            $300,000
+                                                                        </option>
+                                                                        <option value="350000">
+                                                                            $350,000
+                                                                        </option>
+                                                                        <option value="400000">
+                                                                            $400,000
+                                                                        </option>
+                                                                        <option value="450000">
+                                                                            $450,000
+                                                                        </option>
+                                                                        <option value="550000">
+                                                                            $500,000
+                                                                        </option>
+                                                                        <option value="550000">
+                                                                            $550,000
+                                                                        </option>
+                                                                        <option value="600000">
+                                                                            $600,000
+                                                                        </option>
+                                                                        <option value="650000">
+                                                                            $650,000
+                                                                        </option>
+                                                                        <option value="700000">
+                                                                            $700,000
+                                                                        </option>
+                                                                        <option value="750000">
+                                                                            $750,000
+                                                                        </option>
+                                                                        <option value="800000">
+                                                                            $800,000
+                                                                        </option>
+                                                                        <option value="850000">
+                                                                            $850,000
+                                                                        </option>
+                                                                        <option value="900000">
+                                                                            $900,000
+                                                                        </option>
+                                                                        <option value="950000">
+                                                                            $950,000
+                                                                        </option>
+                                                                        <option value="1000000">
+                                                                            $1,000,000
+                                                                        </option>
+                                                                        <option value="1250000">
+                                                                            $1,250,000
+                                                                        </option>
+                                                                        <option value="1500000">
+                                                                            $1,500,000
+                                                                        </option>
+                                                                        <option value="1750000">
+                                                                            $1,750,000
+                                                                        </option>
+                                                                        <option value="2000000">
+                                                                            $2,000,000
+                                                                        </option>
+                                                                        <option value="2500000">
+                                                                            $2,500,000
+                                                                        </option>
+                                                                        <option value="2500000">
+                                                                            $2,500,000
+                                                                        </option>
+                                                                        <option value="2750000">
+                                                                            $2,750,000
+                                                                        </option>
+                                                                        <option value="3000000">
+                                                                            $3,000,000
+                                                                        </option>
+                                                                        <option value="3250000">
+                                                                            $3,250,000
+                                                                        </option>
+                                                                        <option value="3500000">
+                                                                            $3,500,000
+                                                                        </option>
+                                                                        <option value="3750000">
+                                                                            $3,750,000
+                                                                        </option>
+                                                                        <option value="4000000">
+                                                                            $4,000,000
+                                                                        </option>
+                                                                        <option value="4250000">
+                                                                            $4,250,000
+                                                                        </option>
+                                                                        <option value="4500000">
+                                                                            $4,500,000
+                                                                        </option>
+                                                                        <option value="4750000">
+                                                                            $4,750,000
+                                                                        </option>
+                                                                        <option value="5000000">
+                                                                            $5,000,000
+                                                                        </option>
+                                                                        <option value="6000000">
+                                                                            $6,000,000
+                                                                        </option>
+                                                                        <option value="7000000">
+                                                                            $7,000,000
+                                                                        </option>
+                                                                        <option value="8000000">
+                                                                            $8,000,000
+                                                                        </option>
+                                                                        <option value="9000000">
+                                                                            $9,000,000
+                                                                        </option>
+                                                                        <option value="8000000">
+                                                                            $8,000,000
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
                                                                 <!-- button  -->
                                                                 <div class="px-3">
                                                                     <button
@@ -765,6 +742,7 @@ import store from "~/frontsite/store";
 import {useRoute} from 'vue-router'
 import {fetchAgencyBySlug, getAgencyBySlug} from "../../../composables/agency";
 import {UserRoles} from "../../../../constants";
+import {getPropertyTypes} from "../../../composables/property";
 
 export default {
     name: "Header",
@@ -816,17 +794,15 @@ export default {
         });
         const options = getAllLocationsByCItyId(4);
         const locationId = ref(0);
+        const typeId = ref(0);
+        const beds = ref(0);
         const myOptions = ref([]);
         const model = ref();
         const stickySearchBar = ref(false);
-
+        const propertyTypes = getPropertyTypes();
         function handleSearchBar() {
             stickySearchBar.value = !stickySearchBar.value;
         }
-
-
-        // getAgencyDataBySlug();
-
 
         watchEffect(()=>{
             if(options.value){
@@ -883,6 +859,9 @@ export default {
             stickySearchBar,
             UserRoles,
             routeAddProperty,
+            propertyTypes,
+            typeId,
+            beds
         }
     }
 }

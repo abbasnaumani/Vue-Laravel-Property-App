@@ -1,11 +1,11 @@
 <template>
     <top-banner :pageName="property ? property.title : '' " link="Property-details"> </top-banner>
-    <section class="container py-4 my-5" v-if="property">
+    <section class="container py-4 my-5">
         <div class="row">
             <!-- row col-9  -->
             <div class="col-lg-9">
                 <!-- row in col-lg-9  -->
-                <div class="row">
+                <div class="row" v-if="property">
                     <div class="col-lg-7">
                         <div class="card border border-0" style="width: 100%; padding-bottom: 180px">
                             <div id="demo" class="carousel slide" data-ride="carousel">
@@ -107,10 +107,6 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="font-weight-bold">Neighborhood</td>
-                                    <td>Porto Village</td>
-                                </tr>
-                                <tr>
                                     <td class="font-weight-bold">Beds</td>
                                     <td>
                                         {{ property.property_detail.bedrooms }}
@@ -123,22 +119,10 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="font-weight-bold">Garages</td>
-                                    <td>2</td>
-                                </tr>
-                                <tr>
                                     <td class="font-weight-bold">Area</td>
                                     <td>
                                         {{ property.area + " " + property.area_unit.name }}
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bold">Lot Size</td>
-                                    <td>20,000</td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bold">Year Built</td>
-                                    <td>1999</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -162,78 +146,6 @@
                                 leo. Vestibulum ante ipsum primis in faucibus orci.
                             </p>
                             <hr class="solid my-5"/>
-                            <h5 class="mt-5 mb-2 font-weight-bold text-6 letter-spacing">
-                                Features
-                            </h5>
-                            <ul
-                                class=" row list list-unstyled list-icons text-secondary paragraph-agents list-primary my-4"
-                            >
-                                <li class="col-sm-6 col-lg-4 p-2">
-                                    <i class="fas fa-check tick-2 text-4"></i>
-                                    <span class="text-secondary px-2 col-list"
-                                    >Air conditioning</span
-                                    >
-                                </li>
-                                <li class="col-sm-6 col-lg-4 p-2">
-                                    <i class="fas fa-check tick-2 text-4"></i>
-                                    <span class="text-secondary px-2 col-list">Home Theater</span>
-                                </li>
-                                <li class="col-sm-6 col-lg-4 p-2">
-                                    <i class="fas fa-check tick-2 text-4"></i>
-                                    <span class="text-secondary px-2 col-list"
-                                    >Central Heating</span
-                                    >
-                                </li>
-                                <li class="col-sm-6 col-lg-4 p-2">
-                                    <i class="fas fa-check tick-2 text-4"></i>
-                                    <span class="text-secondary px-2 col-list">Laundry</span>
-                                </li>
-                                <li class="col-sm-6 col-lg-4 p-2">
-                                    <i class="fas fa-check tick-2 text-4"></i>
-                                    <span class="text-secondary px-2 col-list">Balcony</span>
-                                </li>
-                                <li class="col-sm-6 col-lg-4 p-2">
-                                    <i class="fas fa-check tick-2 text-4"></i>
-                                    <span class="text-secondary px-2 col-list">Storage</span>
-                                </li>
-                                <li class="col-sm-6 col-lg-4 p-2">
-                                    <i class="fas fa-check tick-2 text-4"></i>
-                                    <span class="text-secondary px-2 col-list">Garage</span>
-                                </li>
-                                <li class="col-sm-6 col-lg-4 p-2">
-                                    <i class="fas fa-check tick-2 text-4"></i>
-                                    <span class="text-secondary px-2 col-list">Yard</span>
-                                </li>
-                                <li class="col-sm-6 col-lg-4 p-2">
-                                    <i class="fas fa-check tick-2 text-4"></i>
-                                    <span class="text-secondary px-2 col-list">
-                    Electric Water Heater</span
-                                    >
-                                </li>
-                                <li class="col-sm-6 col-lg-4 p-2">
-                                    <i class="fas fa-check tick-2 text-4"></i>
-                                    <span class="text-secondary px-2 col-list">Deck</span>
-                                </li>
-                                <li class="col-sm-6 col-lg-4 p-2">
-                                    <i class="fas fa-check tick-2 text-4"></i>
-                                    <span class="text-secondary px-2 col-list">Gym</span>
-                                </li>
-                                <li class="col-sm-6 col-lg-4 p-2">
-                                    <i class="fas fa-check tick-2 text-4"></i>
-                                    <span class="text-secondary px-2 col-list">Ocean View</span>
-                                </li>
-                            </ul>
-                            <hr class="solid my-5"/>
-                            <div class="maps">
-                                <h5 class="mt-5 mb-2 font-weight-bold text-6 letter-spacing">
-                                    Map Location
-                                </h5>
-                                <div class="map-section">
-                                    <div id="map"></div>
-                                    <!--                                        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"-->
-                                    <!--                                                async></script>-->
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

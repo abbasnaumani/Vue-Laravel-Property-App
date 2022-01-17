@@ -26,43 +26,49 @@
                     <div class="row d-flex align-items-center">
                         <div class="col-lg-2 mb-2 mb-lg-0">
                             <div class="">
-                                <select class="select-properites py-3 px-1 btn-block rounded" name="property"
-                                        id="property">
-                                    <option value="property type">Property type
-                                    </option>
-                                    <option value="Apartment">Apartment</option>
-                                    <option value="Houses">Houses</option>
+                                <select
+                                    class="select-properites py-3 px-1 btn-block rounded"
+                                    v-model="typeId"
+                                    id="property-type">
+                                    <option value="0"> Property Type</option>
+                                    <option v-for="propertyType in propertyTypes" :value="propertyType.id" :selected="propertyType.id===typeId">{{propertyType.name}}</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-2 mb-2 mb-lg-0">
-                            <div class="">
-                                <select class="select-properites py-3 px-1 btn-block rounded" name="Location"
-                                        id="Location">
-                                    <option value="Location">Location</option>
-                                    <option value="Miami">Miami</option>
-                                    <option value="New York">New York</option>
-                                    <option value="Houston">Houston</option>
-                                    <option value="Los Angeles">Los Angeles</option>
-                                </select>
+                            <div class="px-3">
+                                <Select2
+                                    v-model="locationId"
+                                    :options="myOptions"
+                                    :settings="{ settingOption: value, settingOption: value }"
+                                    @change="myChangeEvent($event)"
+                                    @select="mySelectEvent($event)"
+                                />
                             </div>
                         </div>
                         <div class="col-lg-2 mb-2 mb-lg-0">
                             <div class="">
-                                <select class="select-properites py-3 px-1 btn-block rounded" name="beds" id="beds">
-                                    <option value="Min Beds">Min Beds</option>
+                                <select class="select-properites py-3 px-1 btn-block rounded"
+                                        v-model="beds" id="beds">
+                                    <option value="0">Min Beds</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-2 mb-2 mb-lg-0">
                             <div class="">
-                                <select class="select-properites py-3 px-1 btn-block rounded" name="min Price"
-                                        id="min price">
-                                    <option value="Min price">Min Price</option>
+                                <select class="select-properites py-3 px-1 btn-block rounded" v-model="minPrice"
+                                        id="min-price">
+                                    <option value="0">Min Price</option>
                                     <option value="150000">$150,000</option>
                                     <option value="200000">$200,000</option>
                                     <option value="250000">$250,000</option>
@@ -107,9 +113,9 @@
                         </div>
                         <div class="col-lg-2 mb-2 mb-lg-0">
                             <div class="">
-                                <select class="select-properites py-3 px-1 btn-block rounded" name="min Price"
-                                        id="min price">
-                                    <option value="Min price">Min Price</option>
+                                <select class="select-properites py-3 px-1 btn-block rounded" v-model="maxPrice"
+                                        id="max-price">
+                                    <option value="0">Max Price</option>
                                     <option value="150000">$150,000</option>
                                     <option value="200000">$200,000</option>
                                     <option value="250000">$250,000</option>
@@ -154,9 +160,9 @@
                         </div>
                         <div class="col-lg-2 mb-2 mb-lg-0">
                             <div class="select-button">
-                                <a href="#" class="btn border-0 btn-block test-fancy text-white text-center btn-color py-3">
+                                <button @click.prevent="searchPropert" class="btn border-0 btn-block test-fancy text-white text-center btn-color py-3">
                                     Search Now
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -167,11 +173,62 @@
 </template>
 
 <script>
+import {getAllLocationsByCItyId} from "../../composables/country";
+import {ref, watchEffect} from "vue";
+import {getPropertyTypes} from "../../composables/property";
+import Select2 from "vue3-select2-component";
+
 export default {
-    name: "SearchBanner"
+    name: "SearchBanner",
+    components:{Select2},
+    setup(){
+        const options = getAllLocationsByCItyId(4);
+        const locationId = ref(0);
+        const typeId = ref(0);
+        const beds = ref(0);
+        const minPrice = ref(0);
+        const maxPrice = ref(0);
+        const myOptions = ref([]);
+        const model = ref();
+        const propertyTypes = getPropertyTypes();
+
+        watchEffect(()=>{
+            if(options.value){
+                myOptions.value = [{id:0,text:'Location'}];
+                model.value = options.value[0];
+                options.value.forEach(function (option){
+                    myOptions.value = [{id:option.id,text:option.name},...myOptions.value];
+
+                })
+            }
+        });
+        function myChangeEvent(val) {
+            console.log(val);
+        }
+
+        function mySelectEvent({id, text}) {
+            console.log({id, text})
+        }
+        return{
+            options,
+            locationId,
+            typeId,
+            beds,
+            myOptions,
+            model,
+            propertyTypes,
+            myChangeEvent,
+            mySelectEvent,
+            minPrice,
+            maxPrice
+        }
+    }
 }
 </script>
 
-<style scoped>
-
+<style >
+.select2-container .select2-selection--single{
+    width: 150px !important;
+    height: 45px !important;
+}
 </style>
