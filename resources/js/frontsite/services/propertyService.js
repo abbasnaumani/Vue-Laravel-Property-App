@@ -10,19 +10,19 @@ import {getParentTypes} from "../composables/property";
 const toast = useToast();
 
 class PropertyService extends EventEmitter {
-    async getPropertiesBySlug(slug, paginateData) {
-        console.log(paginateData, 'paginateData');
+    async getPropertiesBySlug(slug,filters,paginateData) {
+        console.log(filters, 'filters');
         try {
             const response = await appApi.get('/' + slug + '/properties', {
                 params: {
                     current_page: paginateData.currentPage,
                     per_page: paginateData.perPage,
                     add_more: paginateData.addMore,
-                    // type: paginateData.type.value,
-                    // location: paginateData.location.value,
-                    // beds: paginateData.beds.value,
-                    // min_price: paginateData.minPrice.value,
-                    // max_price: paginateData.maxPrice.value
+                    type: (filters && filters.typeId.value > 0) ? filters.typeId.value : null,
+                    // location: (filters) ? filters.locationId.value : null,
+                    // beds: (filters) ? filters.beds.value : null,
+                    // min_price: (filters) ? filters.minPrice.value : null,
+                    // max_price: (filters) ? filters.maxPrice.value : null
                 }
             });
                 return response.data.payload;

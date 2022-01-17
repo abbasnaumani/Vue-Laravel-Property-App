@@ -33,6 +33,7 @@ class AuthService extends EventEmitter {
             const response = await appApi.post('/login', credentials);
             if (response.data.status === ApiResponse.SUCCESS) {
                 await store.dispatch('actionAuthState', response.data.payload);
+                console.log(response.data.payload,"HELLO WORLd");
                 router.push({name: 'dashboard'});
             } else {
                 toast.error(response.data.message);

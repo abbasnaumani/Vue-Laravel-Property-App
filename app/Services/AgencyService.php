@@ -53,7 +53,7 @@ class AgencyService extends BaseService
         $agency->twitter = $request->agency_twitter??'';
         $agency->instagram = $request->agency_instagram??'';
         $agency->save();
-        $this->setApiSuccessMessage(trans('agency.add_agency'));
+        $this->setApiSuccessMessage(trans('agency.update_agency'));
 
         // } catch (\Exception $e) {
         //     //dd($e->errorInfo);

@@ -33,7 +33,7 @@ class PropertyService extends BaseService
 //    }
     public function getPropertyListBySlug(Request $request, string $slug)
     {
-
+//        dd($request->all());
         try {
             $agency = Agency::where('slug', $slug)->firstOrFail();
             $agencyUsers = $agency->users ?? null;
@@ -58,11 +58,11 @@ class PropertyService extends BaseService
      */
     public function applyPropertyFilters($request)
     {
-        if (isset($request->location) && !empty($request->location)) {
-            $this->properties = $this->properties->where(['location_id' => $request->location]);
+        if (isset($request->locationId) && !empty($request->locationId)) {
+            $this->properties = $this->properties->where(['location_id' => $request->locationId]);
         }
-        if (isset($request->type) && !empty($request->type)) {
-            $this->properties = $this->properties->where(['property_sub_type_id' => $request->type]);
+        if (isset($request->typeId) && !empty($request->typeId)) {
+            $this->properties = $this->properties->where(['property_sub_type_id' => $request->typeId]);
         }
         if (isset($request->beds) && intval($request->beds) > 0) {
             $this->properties = $this->properties->whereHas('propertyDetail', function ($query) use ($request) {

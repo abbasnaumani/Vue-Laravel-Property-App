@@ -376,7 +376,6 @@ export default {
             descriptionLength.value = quill.getLength();
         }
         const handleUpdateProperty = async () => {
-            console.log(propertyData, "HELLO WORL")
             const response = await propertyService.handleUpdateProperty({
                 title: propertyData.value.title,
                 property_sub_type_id: propertyData.value.property_sub_type_id,

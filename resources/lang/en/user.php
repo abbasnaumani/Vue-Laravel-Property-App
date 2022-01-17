@@ -22,6 +22,7 @@ return [
     'password_not_match' => 'You Have Entered Invalid Password.',
     'current_password_not_match' => 'Current Password is Invalid.',
     'user_store' => 'User Added to Agency Successfully.',
+    'user_update' => 'User Updated Successfully.',
     'user_not_store' => 'User adding Failed.',
     'get_all_roles' => 'Roles Fetch Successfully.',
     'user_delete' => 'User deleted Successfully.',

@@ -62,15 +62,9 @@ class UserService extends EventEmitter {
     }
     async getAgencyUserById(userId){
         try {
-            const response = await appApi.get('/user/'+userId);
-            if (response.data.status === ApiResponse.SUCCESS) {
+            const response = await appApi.get('/user/edit/'+userId);
                 toast.success(response.data.message);
-                console.log(response.data.payload,"response.data.payload")
                 return response.data.payload;
-            } else {
-                toast.error(response.data.message);
-            }
-
         } catch (err) {
             console.log(err, "err err")
             const error = await errorHandlerService.errors.index(err);

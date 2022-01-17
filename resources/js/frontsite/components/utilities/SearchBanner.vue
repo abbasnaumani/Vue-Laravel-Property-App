@@ -160,7 +160,7 @@
                         </div>
                         <div class="col-lg-2 mb-2 mb-lg-0">
                             <div class="select-button">
-                                <button @click.prevent="searchPropert" class="btn border-0 btn-block test-fancy text-white text-center btn-color py-3">
+                                <button @click.prevent="searchPropertyByFilter" class="btn border-0 btn-block test-fancy text-white text-center btn-color py-3">
                                     Search Now
                                 </button>
                             </div>
@@ -181,7 +181,7 @@ import Select2 from "vue3-select2-component";
 export default {
     name: "SearchBanner",
     components:{Select2},
-    setup(){
+    setup(props,{emit}){
         const options = getAllLocationsByCItyId(4);
         const locationId = ref(0);
         const typeId = ref(0);
@@ -202,6 +202,9 @@ export default {
                 })
             }
         });
+        async function searchPropertyByFilter(){
+            emit('handlePropertyFilters', {locationId, typeId, beds, minPrice, maxPrice});
+        }
         function myChangeEvent(val) {
             console.log(val);
         }
@@ -220,7 +223,8 @@ export default {
             myChangeEvent,
             mySelectEvent,
             minPrice,
-            maxPrice
+            maxPrice,
+            searchPropertyByFilter
         }
     }
 }
@@ -228,7 +232,7 @@ export default {
 
 <style >
 .select2-container .select2-selection--single{
-    width: 150px !important;
+    width: 120px !important;
     height: 45px !important;
 }
 </style>

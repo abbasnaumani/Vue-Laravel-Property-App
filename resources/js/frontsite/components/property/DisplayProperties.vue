@@ -73,7 +73,7 @@
 </template>
 
 <script>
-import {ref} from "vue";
+import {ref, watch, watchEffect} from "vue";
 import propertyService from "../../services/propertyService";
 import {PropertyPurpose} from "../../../constants";
 
@@ -81,14 +81,18 @@ export default {
     name: "DisplayProperties",
     props: {
         slug: String,
+        filters: Object
     },
     setup(props) {
         let properties = ref([]);
+        watchEffect(()=>{
+            getPropertiesBySlug()
+        })
         getPropertiesBySlug()
 
         async function getPropertiesBySlug(currentPage, perPage) {
             const addMore = 3;
-            properties.value = await propertyService.getPropertiesBySlug(props.slug, {currentPage, perPage, addMore});
+            properties.value = await propertyService.getPropertiesBySlug(props.slug, props.filters,{currentPage, perPage, addMore});
         }
 
         return {

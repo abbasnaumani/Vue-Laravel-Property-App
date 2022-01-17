@@ -50,7 +50,7 @@ class UserService extends BaseService
             $user->agencies()->detach($agency->id);
             $user->agencies()->attach($agency->id,['role_id' => $request->role_id]);
             DB::commit();
-            $this->setApiSuccessMessage(trans('user.user_store'),$user);
+            $this->setApiSuccessMessage(trans('user.user_update'),$user);
         } catch (\Exception $e) {
             DB::rollback();
             $this->setApiErrorMessage(trans('user.user_not_store').$e->getMessage());
