@@ -17,7 +17,6 @@ class AgencyTableSeeder extends Seeder
     {
         $agencies = [
             ['id' => 1, 'name' => 'Kode Studio', 'slug' => 'kode-studio','email' => 'info@kodestudio.com','phone_number' => '+923034207957','address' => 'Nashaiman Park street # 1 House # 2 Sheikhupra Lahore Road', 'is_active' => '1', 'created_at' => Carbon::now()->format('Y-m-d H:i:s')],
-            ['id' => 2, 'name' => 'Lone Star', 'slug' => 'lone-star','email' => 'info@lonestar.com','phone_number' => '+923034207957','address' => 'Nashaiman Park street # 1 House # 2 Sheikhupra Lahore Road', 'is_active' => '1', 'created_at' => Carbon::now()->format('Y-m-d H:i:s')],
         ];
         DB::table('agencies')->insert($agencies);
     }

@@ -172,9 +172,15 @@ export default {
         const roles = ref();
         watch(rolesData,()=>{
             if(rolesData.value) {
-                roles.value = rolesData.value.filter(function (role) {
-                    return role.id !== UserRoles.SUPER_ADMIN;
-                })
+                if(auth.user()?.roles?.[0].id === UserRoles.SUPER_ADMIN || auth.user()?.roles?.[0].id === UserRoles.ADMIN) {
+                    roles.value = rolesData.value.filter(function (role) {
+                        return role.id !== UserRoles.SUPER_ADMIN;
+                    })
+                }else if (auth.user()?.roles?.[0].id === UserRoles.AGENCY_ADMIN){
+                    roles.value = rolesData.value.filter(function (role) {
+                        return role.id !== UserRoles.SUPER_ADMIN && role.id !== UserRoles.ADMIN;
+                    })
+                }
             }
         },{
             deep:true,

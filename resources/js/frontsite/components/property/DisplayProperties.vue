@@ -76,6 +76,7 @@
 import {ref, watch, watchEffect} from "vue";
 import propertyService from "../../services/propertyService";
 import {PropertyPurpose} from "../../../constants";
+import store from "../../store";
 
 export default {
     name: "DisplayProperties",
@@ -92,6 +93,7 @@ export default {
         async function getPropertiesBySlug(currentPage, perPage) {
             const addMore = 3;
             properties.value = await propertyService.getPropertiesBySlug(props.slug,{currentPage, perPage, addMore});
+            // await store.dispatch('actionSearchFilter', null);
         }
 
         return {

@@ -58,7 +58,7 @@ const toast = useToast();
 export default {
     name: "UploadList",
     props: ['items','itemsProgress'],
-    setup() {
+    setup(props) {
         async function removeMedia(index) {
             props.items.splice(index,1)
             toast.success("Media Deleted Successfully",)

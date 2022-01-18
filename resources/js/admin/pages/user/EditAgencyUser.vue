@@ -120,11 +120,12 @@
 </template>
 
 <script>
-import {computed, ref} from "vue";
+import {computed, ref,watch} from "vue";
 import {getAllRoles} from "../../composables/user";
 import userService from "../../services/userService";
 import {email, required} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
+import {UserRoles} from "../../../constants";
 
 
 export default {
@@ -135,11 +136,21 @@ export default {
     setup(props){
 
         const roleId = ref();
-        const roles = getAllRoles();
         const usersData = ref([]);
-
+        const roles = ref();
+        const rolesData = getAllRoles();
         getAgencyUserById(props.userId);
 
+        watch(rolesData,()=>{
+            if(rolesData.value) {
+                roles.value = rolesData.value.filter(function (role) {
+                    return role.id !== UserRoles.SUPER_ADMIN;
+                })
+            }
+        },{
+            deep:true,
+            immediate:true
+        });
         async function getAgencyUserById(userId) {
             usersData.value = await userService.getAgencyUserById(userId);
             roleId.value = usersData.value.roles?.[0].id
