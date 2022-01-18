@@ -64,13 +64,13 @@
                                             </sub>
                                         </div>
                                     </div>
-                                    <div class="form-group" v-if="roles">
+                                    <div class="form-group" v-if="roles && auth.user()?.roles?.[0].id !== usersData.roles?.[0].id">
                                         <label>&nbsp Assign Role</label>
                                         <select id="assign-role"
                                                 class="form-control form-control-lg form-control-alt"
                                                 v-model="roleId"
                                         >
-                                            <option v-for="role in roles" :value="role.id" >{{role.name}}</option>
+                                            <option v-for="role in roles" :value="role.id" :selected="role.id === roleId" >{{role.name}}</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -126,6 +126,7 @@ import userService from "../../services/userService";
 import {email, required} from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
 import {UserRoles} from "../../../constants";
+import auth from "../../../frontsite/services/authService";
 
 
 export default {
@@ -143,9 +144,15 @@ export default {
 
         watch(rolesData,()=>{
             if(rolesData.value) {
-                roles.value = rolesData.value.filter(function (role) {
-                    return role.id !== UserRoles.SUPER_ADMIN;
-                })
+                if(auth.user()?.roles?.[0].id === UserRoles.SUPER_ADMIN) {
+                    roles.value = rolesData.value.filter(function (role) {
+                        return role.id !== UserRoles.SUPER_ADMIN;
+                    })
+                }else if (auth.user()?.roles?.[0].id === UserRoles.ADMIN){
+                    roles.value = rolesData.value.filter(function (role) {
+                        return role.id !== UserRoles.SUPER_ADMIN && role.id !== UserRoles.ADMIN;
+                    })
+                }
             }
         },{
             deep:true,
@@ -199,7 +206,9 @@ export default {
             handleUpdateAgencyUser,
             roles,
             usersData,
-            roleId
+            roleId,
+            UserRoles,
+            auth
         }
     }
 }

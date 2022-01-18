@@ -172,11 +172,11 @@ export default {
         const roles = ref();
         watch(rolesData,()=>{
             if(rolesData.value) {
-                if(auth.user()?.roles?.[0].id === UserRoles.SUPER_ADMIN || auth.user()?.roles?.[0].id === UserRoles.ADMIN) {
+                if(auth.user()?.roles?.[0].id === UserRoles.SUPER_ADMIN) {
                     roles.value = rolesData.value.filter(function (role) {
                         return role.id !== UserRoles.SUPER_ADMIN;
                     })
-                }else if (auth.user()?.roles?.[0].id === UserRoles.AGENCY_ADMIN){
+                }else {
                     roles.value = rolesData.value.filter(function (role) {
                         return role.id !== UserRoles.SUPER_ADMIN && role.id !== UserRoles.ADMIN;
                     })

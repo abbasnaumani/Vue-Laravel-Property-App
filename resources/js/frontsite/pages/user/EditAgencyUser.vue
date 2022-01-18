@@ -3,7 +3,7 @@
         <div class="card shadow-lg login-card w-50">
             <div class="card-header bg-white border-bottom-0 mt-3">
                 <div class="d-flex justify-content-center align-items-center">
-                    <h4 class="login-text text-capitalize letter-spacing">Adding User to Agency</h4>
+                    <h4 class="login-text text-capitalize letter-spacing">Edit User of Agency</h4>
                 </div>
             </div>
             <div class="card-body text-left" v-if="userData">
@@ -80,7 +80,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" v-if="roles">
+                    <div class="row" v-if="roles && auth.user()?.roles?.[0].id !== userData.roles?.[0].id">
                         <div class="form-group col">
                             <label class="form-label">Assign Role</label>
                             <div class="position-relative">
@@ -168,11 +168,11 @@ export default {
         const roles = ref();
         watch(rolesData,()=>{
             if(rolesData.value) {
-                if(auth.user()?.roles?.[0].id === UserRoles.SUPER_ADMIN || auth.user()?.roles?.[0].id === UserRoles.ADMIN) {
+                if(auth.user()?.roles?.[0].id === UserRoles.SUPER_ADMIN) {
                     roles.value = rolesData.value.filter(function (role) {
                         return role.id !== UserRoles.SUPER_ADMIN;
                     })
-                }else if (auth.user()?.roles?.[0].id === UserRoles.AGENCY_ADMIN){
+                }else {
                     roles.value = rolesData.value.filter(function (role) {
                         return role.id !== UserRoles.SUPER_ADMIN && role.id !== UserRoles.ADMIN;
                     })
@@ -222,6 +222,7 @@ export default {
             userData,
             handleUpdateAgencyUser,
             roles,
+            auth
         }
     }
 }

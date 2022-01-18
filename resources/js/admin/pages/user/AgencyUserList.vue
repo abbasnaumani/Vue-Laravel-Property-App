@@ -56,8 +56,8 @@
                                                     {{(user.created_at) ? user.created_at : ''}} </em>
                                             </td>
                                             <td class="mx-auto font-w600 col-2 font-size-sm">
-                                                <router-link :to="{path:'/admin/edit/user/'+user.id}" class="btn btn-primary mx-1"><i class="fa fa-edit"></i></router-link>
-                                                <button v-if="user.roles?.[0].id !== UserRoles.SUPER_ADMIN && user.roles?.[0].id !== UserRoles.ADMIN" @click="openDeleteModal(user)" class="btn btn-danger mx-1"><i class="far fa-trash-alt"></i></button>
+                                                <router-link v-if="user.roles?.[0].id !== UserRoles.SUPER_ADMIN" :to="{path:'/admin/edit/user/'+user.id}" class="btn btn-primary mx-1"><i class="fa fa-edit"></i></router-link>
+                                                <button v-if="loggedInUserId !== user.id && user.roles?.[0].id !== UserRoles.SUPER_ADMIN"  @click="openDeleteModal(user)" class="btn btn-danger mx-1"><i class="far fa-trash-alt"></i></button>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -100,6 +100,7 @@ import {ref} from "vue";
 import AppModal from "../../components/ui/base/AppModal";
 import {ApiResponse} from "~/constants";
 import userService from "../../services/userService";
+import auth from "../../services/authService";
 import {getAgencyUsersList} from "~/admin/composables/agency";
 import {updateUserData} from "../../composables/user";
 import {updateAgencyUsersData} from "../../composables/agency";
@@ -119,7 +120,7 @@ export default {
         const modalUser = ref();
         const responseIcon = ref('');
         const users = getAgencyUsersList(props.agencyId);
-
+        const loggedInUserId = auth.user().id;
         function openDeleteModal(user){
             modalUser.value = user;
             openConfirmDeleteModal.value = true;
@@ -149,7 +150,9 @@ export default {
             confirmationMessage,
             openResponseModal,
             isConfirmButtonDisabled,
-            UserRoles
+            UserRoles,
+            auth,
+            loggedInUserId
         }
     },
 }

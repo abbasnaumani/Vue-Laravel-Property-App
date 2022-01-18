@@ -126,6 +126,7 @@ import useVuelidate from "@vuelidate/core";
 import userService from "../../services/userService";
 import {getAllRoles} from "../../composables/user";
 import {UserRoles} from "../../../constants";
+import auth from "../../../frontsite/services/authService";
 
 export default {
     name: "AddAgencyUser",
@@ -142,9 +143,15 @@ export default {
         const rolesData = getAllRoles();
         watch(rolesData,()=>{
             if(rolesData.value) {
-                roles.value = rolesData.value.filter(function (role) {
-                    return role.id !== UserRoles.SUPER_ADMIN;
-                })
+                if(auth.user()?.roles?.[0].id === UserRoles.SUPER_ADMIN) {
+                    roles.value = rolesData.value.filter(function (role) {
+                        return role.id !== UserRoles.SUPER_ADMIN;
+                    })
+                }else if (auth.user()?.roles?.[0].id === UserRoles.ADMIN){
+                    roles.value = rolesData.value.filter(function (role) {
+                        return role.id !== UserRoles.SUPER_ADMIN && role.id !== UserRoles.ADMIN;
+                    })
+                }
             }
         },{
             deep:true,
