@@ -81,7 +81,6 @@ export default {
     name: "DisplayProperties",
     props: {
         slug: String,
-        filters: Object
     },
     setup(props) {
         let properties = ref([]);
@@ -92,7 +91,7 @@ export default {
 
         async function getPropertiesBySlug(currentPage, perPage) {
             const addMore = 3;
-            properties.value = await propertyService.getPropertiesBySlug(props.slug, props.filters,{currentPage, perPage, addMore});
+            properties.value = await propertyService.getPropertiesBySlug(props.slug,{currentPage, perPage, addMore});
         }
 
         return {

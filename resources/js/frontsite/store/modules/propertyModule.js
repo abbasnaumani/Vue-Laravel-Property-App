@@ -3,7 +3,8 @@ const state = {
     propertyParentTypes: null,
     propertyTypes: null,
     areaUnits: null,
-    locations:null
+    locations:null,
+    searchFilters: null
 }
 const getters = {
     getParentTypes(state){
@@ -15,6 +16,9 @@ const getters = {
     getAreaUnits(state){
         return state.areaUnits;
     },
+    getPropertySearchFilters(state){
+        return state.searchFilters;
+    }
 }
 const mutations = {
     mutatePropertyTypes(state, propertyTypes) {
@@ -26,6 +30,9 @@ const mutations = {
     mutateAreaUnits(state, areaUnits) {
         state.areaUnits = areaUnits;
     },
+    mutateSearchFilter(state, filters) {
+        state.searchFilters = filters;
+    },
 }
 const actions = {
     actionPropertyTypes({commit, state},propertyTypes){
@@ -36,6 +43,9 @@ const actions = {
     },
     actionAreaUnits({commit, state},areaUnits){
         commit('mutateAreaUnits', areaUnits);
+    },
+    actionSearchFilter({commit, state},filters){
+        commit('mutateSearchFilter', filters);
     },
 }
 

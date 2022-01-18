@@ -23,6 +23,13 @@ class MenuRoleTableSeeder extends Seeder
             ['is_allow' => 1, 'role_id' => 1, 'menu_id' => 5],
             ['is_allow' => 1, 'role_id' => 1, 'menu_id' => 6],
 
+            ['is_allow' => 1, 'role_id' => 2, 'menu_id' => 1], // Admin
+            ['is_allow' => 1, 'role_id' => 2, 'menu_id' => 2],
+            ['is_allow' => 1, 'role_id' => 1, 'menu_id' => 3],
+            ['is_allow' => 1, 'role_id' => 2, 'menu_id' => 4],
+            ['is_allow' => 1, 'role_id' => 2, 'menu_id' => 5],
+            ['is_allow' => 1, 'role_id' => 2, 'menu_id' => 6],
+
         ];
         DB::table('menu_role')->insert($menuRoles);
     }

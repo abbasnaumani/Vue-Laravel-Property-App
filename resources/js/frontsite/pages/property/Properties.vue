@@ -1,5 +1,5 @@
 <template>
-   <search-banner @handlePropertyFilters = "handlePropertyFilters($event)"></search-banner>
+   <search-banner></search-banner>
     <section class="main">
         <div class="main-content">
             <div class="container py-5 my-3">
@@ -8,7 +8,7 @@
                         Listing for <span class="text-blue-heading">Sale</span> or <span
                         class="text-blue-heading">Rent</span>
                     </h2>
-                    <display-properties :slug="slug" :filters="searchFilters"></display-properties>
+                    <display-properties :slug="slug"></display-properties>
                 </div>
             </div>
         </div>
@@ -28,13 +28,13 @@ export default {
         slug:String,
     },
     setup(props){
-        const searchFilters = ref();
-        function handlePropertyFilters(params){
-            searchFilters.value = params;
-        }
+        // const searchFilters = ref();
+        // function handlePropertyFilters(params){
+        //     searchFilters.value = params;
+        // }
         return {
-            searchFilters,
-            handlePropertyFilters
+            // searchFilters,
+            // handlePropertyFilters
         }
     }
 }

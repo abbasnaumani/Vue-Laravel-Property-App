@@ -57,7 +57,7 @@
                                             </td>
                                             <td class="mx-auto font-w600 col-2 font-size-sm">
                                                 <router-link :to="{path:'/admin/edit/user/'+user.id}" class="btn btn-primary mx-1"><i class="fa fa-edit"></i></router-link>
-                                                <button @click="openDeleteModal(user)" class="btn btn-danger mx-1"><i class="far fa-trash-alt"></i></button>
+                                                <button v-if="user.roles?.[0].id !== UserRoles.SUPER_ADMIN && user.roles?.[0].id !== UserRoles.ADMIN" @click="openDeleteModal(user)" class="btn btn-danger mx-1"><i class="far fa-trash-alt"></i></button>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -103,6 +103,7 @@ import userService from "../../services/userService";
 import {getAgencyUsersList} from "~/admin/composables/agency";
 import {updateUserData} from "../../composables/user";
 import {updateAgencyUsersData} from "../../composables/agency";
+import {UserRoles} from "../../constants";
 
 export default {
     name: "AgencyUserList",
@@ -147,7 +148,8 @@ export default {
             responseIcon,
             confirmationMessage,
             openResponseModal,
-            isConfirmButtonDisabled
+            isConfirmButtonDisabled,
+            UserRoles
         }
     },
 }

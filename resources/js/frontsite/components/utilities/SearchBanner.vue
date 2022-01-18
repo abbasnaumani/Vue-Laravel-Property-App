@@ -177,6 +177,7 @@ import {getAllLocationsByCItyId} from "../../composables/country";
 import {ref, watchEffect} from "vue";
 import {getPropertyTypes} from "../../composables/property";
 import Select2 from "vue3-select2-component";
+import store from "../../store";
 
 export default {
     name: "SearchBanner",
@@ -203,7 +204,8 @@ export default {
             }
         });
         async function searchPropertyByFilter(){
-            emit('handlePropertyFilters', {locationId, typeId, beds, minPrice, maxPrice});
+           await store.dispatch('actionSearchFilter',{locationId, typeId, beds, minPrice, maxPrice})
+            // emit('handlePropertyFilters', {locationId, typeId, beds, minPrice, maxPrice});
         }
         function myChangeEvent(val) {
             console.log(val);
