@@ -14,7 +14,8 @@ export const LocalStorageKeys = {
 export const UserRoles = {
     SUPER_ADMIN: 1,
     ADMIN: 2,
-    AGENT: 3
+    AGENCY_ADMIN: 3,
+    AGENT: 4
 }
 export const PropertyPurpose = {
     FOR_SALE: 1,

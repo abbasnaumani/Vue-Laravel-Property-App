@@ -58,11 +58,11 @@ class PropertyService extends BaseService
      */
     public function applyPropertyFilters($request)
     {
-        if (isset($request->locationId) && !empty($request->locationId)) {
-            $this->properties = $this->properties->where(['location_id' => $request->locationId]);
+        if (isset($request->location_id) && !empty($request->location_id)) {
+            $this->properties = $this->properties->where(['location_id' => $request->location_id]);
         }
-        if (isset($request->typeId) && !empty($request->typeId)) {
-            $this->properties = $this->properties->where(['property_sub_type_id' => $request->typeId]);
+        if (isset($request->type_id) && !empty($request->type_id)) {
+            $this->properties = $this->properties->where(['property_sub_type_id' => $request->type_id]);
         }
         if (isset($request->beds) && intval($request->beds) > 0) {
             $this->properties = $this->properties->whereHas('propertyDetail', function ($query) use ($request) {

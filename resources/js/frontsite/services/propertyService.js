@@ -11,18 +11,27 @@ const toast = useToast();
 
 class PropertyService extends EventEmitter {
     async getPropertiesBySlug(slug,filters,paginateData) {
-        console.log(filters, 'filters');
+        console.log({
+            current_page: paginateData.currentPage,
+            per_page: paginateData.perPage,
+            add_more: paginateData.addMore,
+            type: (filters && filters.typeId > 0) ? filters.typeId : null,
+            location: (filters && filters.locationId > 0) ? filters.locationId : null,
+            beds: (filters && filters.beds > 0) ? filters.beds : null,
+            min_price: (filters && filters.minPrice > 0) ? filters.minPrice : null,
+            max_price: (filters && filters.maxPrice > 0) ? filters.maxPrice : null
+        }, 'filters');
         try {
             const response = await appApi.get('/' + slug + '/properties', {
                 params: {
                     current_page: paginateData.currentPage,
                     per_page: paginateData.perPage,
                     add_more: paginateData.addMore,
-                    type: (filters && filters.typeId.value > 0) ? filters.typeId.value : null,
-                    // location: (filters) ? filters.locationId.value : null,
-                    // beds: (filters) ? filters.beds.value : null,
-                    // min_price: (filters) ? filters.minPrice.value : null,
-                    // max_price: (filters) ? filters.maxPrice.value : null
+                    type_id: (filters && filters.typeId > 0) ? filters.typeId : null,
+                    location_id: (filters && filters.locationId > 0) ? filters.locationId : null,
+                    beds: (filters && filters.beds > 0) ? filters.beds : null,
+                    min_price: (filters && filters.minPrice > 0) ? filters.minPrice : null,
+                    max_price: (filters && filters.maxPrice > 0) ? filters.maxPrice : null
                 }
             });
                 return response.data.payload;

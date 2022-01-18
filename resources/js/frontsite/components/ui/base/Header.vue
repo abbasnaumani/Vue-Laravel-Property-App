@@ -469,6 +469,7 @@
                                                                 <!-- button  -->
                                                                 <div class="px-3">
                                                                     <button
+                                                                        @click.prevent="searchPropertyByFilter"
                                                                         style="background-color: #19B5FF;font-size: 15px;"
                                                                         type="button"
                                                                         class="btn text-white btn-lg">
@@ -743,6 +744,7 @@ import {useRoute} from 'vue-router'
 import {fetchAgencyBySlug, getAgencyBySlug} from "../../../composables/agency";
 import {UserRoles} from "../../../../constants";
 import {getPropertyTypes} from "../../../composables/property";
+import router from "../../../router";
 
 export default {
     name: "Header",
@@ -752,7 +754,7 @@ export default {
     props: {
         isAuthenticated: String,
     },
-    setup(props) {
+    setup(props,{emit}) {
         const route = useRoute();
         const profile = computed(() => {
             return store.getters.getProfile ? store.getters.getProfile : null;
@@ -798,6 +800,8 @@ export default {
         const beds = ref(0);
         const myOptions = ref([]);
         const model = ref();
+        const minPrice = ref(0);
+        const maxPrice = ref(0);
         const stickySearchBar = ref(false);
         const propertyTypes = getPropertyTypes();
         function handleSearchBar() {
@@ -814,6 +818,10 @@ export default {
                 })
             }
         })
+        async function searchPropertyByFilter(){
+            emit('handlePropertyFilters', {locationId, typeId, beds, minPrice, maxPrice});
+            router.push('/'+slug.value+'/properties')
+        }
         function myChangeEvent(val) {
             console.log(val);
         }
@@ -861,7 +869,10 @@ export default {
             routeAddProperty,
             propertyTypes,
             typeId,
-            beds
+            beds,
+            searchPropertyByFilter,
+            minPrice,
+            maxPrice
         }
     }
 }
