@@ -27,7 +27,7 @@
 import AppModal from "../../../frontsite/components/ui/base/AppModal";
 import DropZone from "../../../frontsite/pages/dropzone/DropZone";
 import UploadList from "../../../frontsite/pages/dropzone/UploadList";
-import {ref} from "vue";
+import {ref,watch} from "vue";
 
 export default {
     name: "PropertyImagesModal",
@@ -44,6 +44,16 @@ export default {
         const modalProperty = ref();
         const dataFiles = ref([]);
         const fileProgress = ref([]);
+        watch(()=>dataFiles,() => {
+           if (dataFiles.value.length > 0){
+               isConfirmButtonDisabled.value = false;
+           }else{
+               isConfirmButtonDisabled.value = true
+           }
+        },{
+            deep:true,
+            immediate:true
+        });
         async function modalConfirmPropertyImage() {
             emit('openConfirmImageModal', false);
             emit('handlePropertyImages', {dataFiles, fileProgress});

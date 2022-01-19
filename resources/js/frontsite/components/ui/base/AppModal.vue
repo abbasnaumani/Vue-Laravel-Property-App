@@ -32,7 +32,7 @@
                        <button
                            v-if="(isLoading || isConfirmButtonDisabled)"
                            disabled
-                           class="btn btn-sm btn-primary"
+                           class="btn btn-sm btn-primary cursor-not-allowed"
                            :class="{'opacity-50 cursor-not-allowed pointer-events-none': (isLoading || isConfirmButtonDisabled)}">
                            {{ confirmLabel }}
                        </button>
@@ -98,4 +98,7 @@ export default {
     div.modal.show {
         background-color: rgba(0, 0, 0, 0.51);
     }
+.cursor-not-allowed {
+    cursor: not-allowed;
+}
 </style>

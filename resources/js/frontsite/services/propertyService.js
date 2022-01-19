@@ -12,6 +12,7 @@ const toast = useToast();
 class PropertyService extends EventEmitter {
     async getPropertiesBySlug(slug,paginateData) {
         let filters = store.getters.getPropertySearchFilters;
+        console.log(filters,"filtersfiltersfiltersfiltersfiltersfiltersfiltersfiltersfiltersfilters")
         try {
             const response = await appApi.get('/' + slug + '/properties', {
                 params: {
@@ -25,7 +26,8 @@ class PropertyService extends EventEmitter {
                     max_price: (filters && filters.maxPrice > 0) ? filters.maxPrice : null
                 }
             });
-                return response.data.payload;
+            // await store.dispatch('actionSearchFilter', null);
+            return response.data.payload;
 
         } catch (err) {
             // console.log(err, "err err")
