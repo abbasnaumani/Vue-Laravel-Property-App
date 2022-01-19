@@ -44,12 +44,17 @@
 								<em class="text-muted">{{ user.created_at }}</em>
 							</td>
                             <td class="font-w600 col-2 font-size-sm">
-								<router-link v-if="true" :to="{path:'/'+slug+'/edit/user/'+user.id}" class="btn btn-primary mx-1">
+								<router-link v-if="((isAgencyAdmin && user.roles?.[0].id !== UserRoles.ADMIN && user.roles?.[0].id !== UserRoles.SUPER_ADMIN) ||
+                                                  (isAdmin && user.roles?.[0].id !== UserRoles.SUPER_ADMIN && (user.roles?.[0].id === UserRoles.AGENT || user.roles?.[0].id === UserRoles.AGENCY_ADMIN || user.id === loggedInUserId) )  ||
+                                                  (isSuperAdmin) )" :to="{path:'/'+slug+'/edit/user/'+user.id}" class="btn btn-primary mx-1">
 									<i class="fa fa-edit"></i>
 								</router-link>
 <!--                                (user.roles?.[0].id !== UserRoles.SUPER_ADMIN && user.roles?.[0].id !== UserRoles.ADMIN) || isAthurized()-->
 <!--                                (user.roles?.[0].id !== UserRoles.SUPER_ADMIN && user.roles?.[0].id !== auth.user().roles?.[0].id )-->
-								<button v-if="user.roles?.[0].id !== UserRoles.SUPER_ADMIN && user.roles?.[0].id !== auth.user().roles?.[0].id"  @click="openDeleteModal(user)" class="btn btn-danger mx-1">
+								<button v-if="(user.roles?.[0].id !== auth.user().roles?.[0].id)
+								               &&( (isAgencyAdmin && user.roles?.[0].id !== UserRoles.ADMIN && user.roles?.[0].id !== UserRoles.SUPER_ADMIN) ||
+                                                  (isAdmin && user.roles?.[0].id !== UserRoles.SUPER_ADMIN && user.roles?.[0].id !== UserRoles.ADMIN)  ||
+                                                  (isSuperAdmin && user.roles?.[0].id !== UserRoles.SUPER_ADMIN) )"  @click="openDeleteModal(user)" class="btn btn-danger mx-1">
 									<i class="far fa-trash-alt"></i>
 								</button>
 							</td>
@@ -108,12 +113,23 @@ export default {
         const responseIcon = ref('');
         const agencyUsers = getAgencyUsersList();
         const loggedInUserId = auth.user().id;
-        const isNotSuperAdmin = auth.user().roles?.[0].id !== UserRoles.SUPER_ADMIN;
+        const isSuperAdmin = ref(false);
+        const isAdmin = ref(false);
+        const isAgencyAdmin = ref(false);
+        const isAccessSuperAdmin = ref(false);
+        const isAccessAgencyAdmin = ref(false);
+        const isAccessAdmin = ref(false);
+        isAthurized();
         function isAthurized(){
             if (auth.user().roles?.[0].id === UserRoles.SUPER_ADMIN){
-                return true
+                 isSuperAdmin.value = true;
+            }else if(auth.user().roles?.[0].id === UserRoles.ADMIN){
+                 isAdmin.value = true;
+            }else if(auth.user().roles?.[0].id === UserRoles.AGENCY_ADMIN){
+                 isAgencyAdmin.value = true;
             }
         }
+
         function openDeleteModal(user){
             modalUser.value = user;
             openConfirmDeleteModal.value = true;
@@ -143,8 +159,10 @@ export default {
             UserRoles,
             auth,
             isAthurized,
-            isNotSuperAdmin,
-            loggedInUserId
+            isSuperAdmin,
+            isAdmin,
+            isAgencyAdmin,
+            loggedInUserId,
         }
     }
 }

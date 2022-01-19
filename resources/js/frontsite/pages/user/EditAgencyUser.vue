@@ -172,9 +172,13 @@ export default {
                     roles.value = rolesData.value.filter(function (role) {
                         return role.id !== UserRoles.SUPER_ADMIN;
                     })
-                }else {
+                }else if (auth.user()?.roles?.[0].id === UserRoles.ADMIN){
                     roles.value = rolesData.value.filter(function (role) {
                         return role.id !== UserRoles.SUPER_ADMIN && role.id !== UserRoles.ADMIN;
+                    })
+                }else if (auth.user()?.roles?.[0].id === UserRoles.AGENCY_ADMIN){
+                    roles.value = rolesData.value.filter(function (role) {
+                        return role.id === UserRoles.AGENT
                     })
                 }
             }

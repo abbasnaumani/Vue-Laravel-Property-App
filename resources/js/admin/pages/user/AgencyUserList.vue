@@ -56,8 +56,10 @@
                                                     {{(user.created_at) ? user.created_at : ''}} </em>
                                             </td>
                                             <td class="mx-auto font-w600 col-2 font-size-sm">
-                                                <router-link v-if="user.roles?.[0].id !== UserRoles.SUPER_ADMIN" :to="{path:'/admin/edit/user/'+user.id}" class="btn btn-primary mx-1"><i class="fa fa-edit"></i></router-link>
-                                                <button v-if="loggedInUserId !== user.id && user.roles?.[0].id !== UserRoles.SUPER_ADMIN"  @click="openDeleteModal(user)" class="btn btn-danger mx-1"><i class="far fa-trash-alt"></i></button>
+                                                <router-link v-if="(auth.user().roles?.[0].id === UserRoles.ADMIN && user.roles?.[0].id !== UserRoles.SUPER_ADMIN && user.roles?.[0].id !== UserRoles.ADMIN)
+                                                                   || auth.user().roles?.[0].id === UserRoles.SUPER_ADMIN" :to="{path:'/admin/edit/user/'+user.id}" class="btn btn-primary mx-1"><i class="fa fa-edit"></i></router-link>
+                                                <button v-if="(auth.user().roles?.[0].id === UserRoles.ADMIN && user.roles?.[0].id !== UserRoles.ADMIN
+                                                                  && user.roles?.[0].id !== UserRoles.SUPER_ADMIN || (auth.user().roles?.[0].id === UserRoles.SUPER_ADMIN && user.roles?.[0].id !== UserRoles.SUPER_ADMIN))  "  @click="openDeleteModal(user)" class="btn btn-danger mx-1"><i class="far fa-trash-alt"></i></button>
                                             </td>
                                         </tr>
                                         </tbody>
