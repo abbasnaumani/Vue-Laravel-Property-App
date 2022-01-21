@@ -59,6 +59,7 @@
             </div>
         </div>
     </div>
+       <div v-else class="no-record-found text-5 text-center">No Record found</div>
     <div class="row d-flex justify-content-center">
         <div class="col-8 col-lg-4 col-md-6">
             <div>

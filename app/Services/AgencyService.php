@@ -9,7 +9,7 @@ use App\Services\BaseService\BaseService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-
+use DB;
 class AgencyService extends BaseService
 {
     /**
@@ -19,6 +19,8 @@ class AgencyService extends BaseService
      */
     public function addAgency(Request $request)
     {
+        DB::beginTransaction();
+        try {
         $agency = new Agency();
         $agencySlug = $this->getUniqueAgencyByParams(['type' => 'slug', 'name' => Str::slug($request->agency_name)]);
         $agency->name = $request->agency_name;
@@ -30,7 +32,14 @@ class AgencyService extends BaseService
         $agency->twitter = $request->agency_twitter;
         $agency->instagram = $request->agency_instagram;
         $agency->save();
-        $this->setApiSuccessMessage(trans('agency.add_agency'));
+            // $user = User::create($this->userData($request)); // add agency user creater
+            // $user->agencyUsers()->create($this->agencyUsersData($user->id,$request));
+            DB::commit();
+            $this->setApiSuccessMessage(trans('agency.add_agency'));
+        } catch (\Exception $e) {
+            DB::rollback();
+            $this->setApiErrorMessage(trans('user.user_not_store'));
+        }
     }
 
     /**
