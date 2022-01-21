@@ -819,7 +819,7 @@ export default {
             }
         })
         async function searchPropertyByFilter(){
-            emit('handlePropertyFilters', {locationId, typeId, beds, minPrice, maxPrice});
+            await store.dispatch('actionSearchFilter',{location_id:locationId.value, type_id:typeId.value, beds:beds.value, min_price:minPrice.value, max_price:maxPrice.value});
             router.push('/'+slug.value+'/properties')
         }
         function myChangeEvent(val) {

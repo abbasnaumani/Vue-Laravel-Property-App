@@ -204,7 +204,7 @@ export default {
             }
         });
         async function searchPropertyByFilter(){
-           await store.dispatch('actionSearchFilter',{locationId, typeId, beds, minPrice, maxPrice})
+           await store.dispatch('actionSearchFilter',{location_id:locationId.value, type_id:typeId.value, beds:beds.value, min_price:minPrice.value, max_price:maxPrice.value})
         }
         function myChangeEvent(val) {
             console.log(val);

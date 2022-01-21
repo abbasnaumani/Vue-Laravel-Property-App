@@ -19,11 +19,11 @@ class PropertyService extends EventEmitter {
                     current_page: paginateData.currentPage,
                     per_page: paginateData.perPage,
                     add_more: paginateData.addMore,
-                    type_id: (filters && filters.typeId > 0) ? filters.typeId : null,
-                    location_id: (filters && filters.locationId > 0) ? filters.locationId : null,
+                    type_id: (filters && filters.type_id > 0) ? filters.type_id : null,
+                    location_id: (filters && filters.location_id > 0) ? filters.location_id : null,
                     beds: (filters && filters.beds > 0) ? filters.beds : null,
-                    min_price: (filters && filters.minPrice > 0) ? filters.minPrice : null,
-                    max_price: (filters && filters.maxPrice > 0) ? filters.maxPrice : null
+                    min_price: (filters && filters.min_price > 0) ? filters.min_price : null,
+                    max_price: (filters && filters.max_price > 0) ? filters.max_price : null
                 }
             });
             // await store.dispatch('actionSearchFilter', null);
