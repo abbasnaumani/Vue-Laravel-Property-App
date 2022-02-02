@@ -242,6 +242,7 @@ import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import DropZone from "../dropzone/DropZone";
 import {ApiResponse} from "../../constants";
 import UploadList from "../dropzone/UploadList";
+import auth from "../../services/authService";
 
 export default {
     name: "AddProperty",
@@ -323,6 +324,7 @@ export default {
                 is_occupancy_status: isOccupancyStatus.value,
                 is_installment_available: isInstallmentAvailable.value,
                 is_possession_available: isPossessionAvailable.value,
+                user_id: auth.user().id,
             });
             if (response.status === ApiResponse.SUCCESS) {
                 propertyService.handleImages(dataFiles, fileProgress, response.payload.property_id);

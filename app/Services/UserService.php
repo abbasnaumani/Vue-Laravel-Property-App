@@ -53,7 +53,7 @@ class UserService extends BaseService
             $this->setApiSuccessMessage(trans('user.user_update'),$user);
         } catch (\Exception $e) {
             DB::rollback();
-            $this->setApiErrorMessage(trans('user.user_not_store').$e->getMessage());
+            $this->setApiErrorMessage(trans('user.user_not_store'));
         }
     }
     /**

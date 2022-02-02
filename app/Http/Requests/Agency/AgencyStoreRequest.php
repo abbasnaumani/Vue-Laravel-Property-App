@@ -27,7 +27,7 @@ class AgencyStoreRequest extends FormRequest
         return [
             'agency_name' => 'required|string|min:3|max:50',
             'agency_address' => 'required|string|min:3|max:50',
-            'agency_email' => 'required|email',
+            'agency_email' => 'required|unique:agencies,email',
             'agency_phone_number' => 'required|min:11',
         ];
     }

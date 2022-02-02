@@ -74,7 +74,7 @@ class RegisterController extends Controller
             );
         } catch (\Exception $e) {
             DB::rollBack();
-            $this->setApiErrorMessage(trans('auth.registration_failed').$e->getMessage());
+            $this->setApiErrorMessage(trans('auth.registration_failed'));
         }
         return $this->getApiResponse();
     }

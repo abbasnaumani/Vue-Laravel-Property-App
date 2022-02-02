@@ -116,7 +116,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                             <div class="form-group col-6 col-lg-3 col-sm-6">
                                                 <label >&nbsp Location</label>
                                                 <select id="cities"
@@ -289,6 +288,7 @@ import {ApiResponse} from "../../constants";
 import DropZone from "../dropzone/DropZone";
 import UploadList from "../dropzone/UploadList";
 import PropertyFilesList from "./PropertyFilesList";
+import auth from "../../services/authService";
 
 export default {
     name: "EditProperty",
@@ -391,6 +391,7 @@ export default {
                 is_occupancy_status: isOccupancyStatus.value,
                 is_installment_available: isInstallmentAvailable.value,
                 is_possession_available: isPossessionAvailable.value,
+                user_id: propertyData.value.user_id,
 
             }, props.propertyId);// city_id: propertyData.value.city_id,
                 propertyService.handleImages(dataFiles, fileProgress, props.propertyId);

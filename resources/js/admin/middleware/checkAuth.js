@@ -40,7 +40,7 @@ export default async (to, from, next) => {
         }
         if (roleHasAccess && !auth.verifyRoleIdsAccess(
             [UserRoles.SUPER_ADMIN, UserRoles.ADMIN])) {
-            auth.onLogout();
+            auth.onLogout(true);
             return next({name: 'login'});
         }
         return (roleHasAccess) ? next() : next({name: 'home'});

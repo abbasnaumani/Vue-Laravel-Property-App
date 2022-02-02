@@ -94,7 +94,7 @@
                                         <ul class="list-unstyled">
                                             <li class="float-left px-2">
                                                 <router-link class="text-decoration-none right-navs"
-                                                             :to="{path:'/login'}">LOGIN<span
+                                                             :to="{path:'/signup'}">LOGIN<span
                                                     style="font-size: 15px;">/</span>REGISTER
                                                 </router-link>
                                             </li>

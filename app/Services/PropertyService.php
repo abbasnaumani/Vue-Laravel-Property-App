@@ -151,7 +151,7 @@ class PropertyService extends BaseService
     {
         DB::beginTransaction();
         try {
-            $property = Property::where(['id' => $id, 'user_id' => $this->getAuthUserId()])->first();
+            $property = Property::where(['id' => $id, 'user_id' => $request->input('user_id')])->firstOrFail();
             $property->update($this->propertyData($request));
             $propertyDetail = $property->propertyDetail()->first();
             $propertyDetail->update($this->propertyDetailsData($request));
@@ -162,7 +162,7 @@ class PropertyService extends BaseService
             $this->setApiSuccessMessage(trans('property.property_updated'), ['property_id' => $id]);
         } catch (\Exception $e) {
             DB::rollback();
-            $this->setApiErrorMessage(trans('property.property_not_updated'));
+            $this->setApiErrorMessage(trans('property.property_not_updated').$e->getMessage());
         }
     }
 
@@ -175,7 +175,7 @@ class PropertyService extends BaseService
     private function propertyData(Request $request): array
     {
         return [
-            'user_id' => $this->getAuthUserId(),
+            'user_id' => $request->input('user_id'),
             'property_sub_type_id' => $request->input('property_sub_type_id'),
             'area_unit_id' => $request->input("area_unit_id"),
             'city_id' => $request->input('city_id'),

@@ -1,5 +1,5 @@
 <template>
-    <div class="row" v-if="properties">
+    <div class="row" v-if="properties && properties.length > 0">
         <div class="col-12 col-sm-6 col-md-4 pb-4 mb-1" v-for="property in properties.data">
             <div class="card custom-card move-svg  border-0">
                 <div class="card-interior overflow-hidden position-relative z-index-1">
@@ -59,6 +59,7 @@
             </div>
         </div>
     </div>
+    <div v-else>No record found</div>
     <div class="row d-flex justify-content-center">
         <div class="col-8 col-lg-4 col-md-6">
             <div>

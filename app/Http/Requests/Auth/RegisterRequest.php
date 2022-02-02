@@ -33,7 +33,7 @@ class RegisterRequest extends FormRequest
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'agency_name' => 'required',
-            'agency_email' => 'required|string|email|max:255',
+            'agency_email' => 'required|string|max:255|unique:agencies,email',
             'phone_number' => 'required',
             'agency_phone_number' => 'required',
             'agency_address' => 'required',

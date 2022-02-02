@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Agency;
 
+use App\Models\Agency;
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 
@@ -24,11 +26,12 @@ class AgencyUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
+        $agency = Agency::find((int) request()->segment(3));
         return [
             'agency_name' => 'required|string|min:3|max:50',
             'agency_slug' => 'required|string',
             'agency_address' => 'required|string|min:3|max:100',
-            'agency_email' => 'required|unique:users,email',
+            'agency_email' => 'required|unique:agencies,email,'.$agency->id.',id' ,
             'agency_phone_number' => 'required|min:11',
         ];
     }

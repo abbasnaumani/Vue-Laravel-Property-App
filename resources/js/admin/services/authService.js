@@ -75,8 +75,9 @@ class AuthService extends EventEmitter {
         }
     }
 
-    async onLogout() {
+    async onLogout(accessDenied = false) {
         await store.dispatch('actionClearAuthState');
+        (accessDenied) ? toast.error('Access Denied') : '' ;
         router.push({name: `login`});
     }
 

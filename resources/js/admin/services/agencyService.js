@@ -48,15 +48,12 @@ class AgencyService extends EventEmitter {
     async handleUpdateAgency(agencyData,agencyId){
         try {
             const response = await appApi.post('/agency/'+agencyId,agencyData);
-            if (response.data.status === ApiResponse.SUCCESS) {
                 toast.success(response.data.message);
                 await store.dispatch('actionAgencies', response.data.payload);
                 router.push({name: 'agency-list'});
-            } else {
-                toast.error(response.data.message);
-            }
 
         } catch (err) {
+            // await this.getAgencyList();
             console.log(err, "err err")
             const error = await errorHandlerService.errors.index(err);
             toast.error(error.message);

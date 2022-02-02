@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\User;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 
@@ -24,10 +25,11 @@ class UserUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
+        $user = User::find((int) request()->segment(3));
         return [
             'first_name' => 'required|string|min:3|max:50',
             'last_name' => 'required|string|min:3|max:50',
-            'email' => 'required|email',
+            'email' => 'required|unique:users,email,'.$user->id.',id' ,
             'phone_number' => 'required|min:11',
             'role_id' => 'required',
         ];

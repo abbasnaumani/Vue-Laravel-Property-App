@@ -16,7 +16,9 @@ class AddColumnsToMediaTable extends Migration
         Schema::table('media', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id')->after('id');
             $table->json('custom_properties')->nullable()->after('original_media_id');
+            $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users');
+
         });
     }
 
