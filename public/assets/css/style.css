@@ -1408,3 +1408,17 @@ aside .nav-tabs .nav-link:hover {
     width: 100%;
     height: 100%;
 }
+
+
+/* No record found */
+
+.no-record-found {
+    animation: blinker 5s linear infinite;
+    color: var(--ks-bg-primary-color);
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
